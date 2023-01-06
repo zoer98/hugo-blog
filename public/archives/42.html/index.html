@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.101.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="toTop" content="true">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://zburu.com/archives/42.html/" />
+  <link rel="canonical" href="https://zburu.com/archives/42.html/" /><link rel="apple-touch-icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="shortcut" href="https://cdn.zburu.com/favicon.ico" /><link rel="alternate" type="application/atom+xml" href="https://zburu.comindex.xml" title="子舒的博客">
+
+  <script type="application/ld+json">
+  {
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https:\/\/zburu.com"
+    },
+    "articleSection" : "posts",
+    "name" : "React 脚手架项目打包时的路径问题",
+    "headline" : "React 脚手架项目打包时的路径问题",
+    "description" : "create-react-app 脚手架指令可以生成 React 项目，在项目完成之后执行打包命令 npm run build，文件夹内生成 build文件夹，就是打包后的文件，在浏览器运行 index.html 发现页面空白，打开控制台有报错，css 和 js 文件的引用路径有问题。\n浏览 index.html 代码可以发现：\n\u0026lt;!-- index.html --\u0026gt; \u0026lt;!doctype html\u0026gt; \u0026lt;html lang=\u0026#34;zh\u0026#34;\u0026gt; \u0026lt;head\u0026gt; \u0026lt;meta charset=\u0026#34;utf-8\u0026#34; \/\u0026gt; \u0026lt;meta name=\u0026#34;viewport\u0026#34; content=\u0026#34;width=device-width,initial-scale=1\u0026#34; \/\u0026gt; \u0026lt;meta name=\u0026#34;theme-color\u0026#34; content=\u0026#34;#000000\u0026#34; \/\u0026gt; \u0026lt;meta name=\u0026#34;description\u0026#34; content=\u0026#34;Web site created using create-react-app\u0026#34; \/\u0026gt; \u0026lt;title\u0026gt;React App\u0026lt;\/title\u0026gt; \u0026lt;link href=\u0026#34;\/static\/css\/main.3394d54e.chunk.css\u0026#34; rel=\u0026#34;stylesheet\u0026#34;\u0026gt; \u0026lt;\/head\u0026gt; \u0026lt;body\u0026gt;\u0026lt;noscript\u0026gt;You need to enable JavaScript to run this app.\u0026lt;\/noscript\u0026gt; \u0026lt;div id=\u0026#34;root\u0026#34;\u0026gt;\u0026lt;\/div\u0026gt; \u0026lt;script\u0026gt;!function (e) { function r(r) { for (var n, l, f = r[0], i = r[1], a = r[2], c = 0, s = []; c \u0026lt; f.",
+    "inLanguage" : "en-US",
+    "author" : "",
+    "creator" : "",
+    "publisher": "",
+    "accountablePerson" : "",
+    "copyrightHolder" : "",
+    "copyrightYear" : "2021",
+    "datePublished": "2021-01-05 20:54:00 \u002b0000 UTC",
+    "dateModified" : "2021-01-05 20:54:00 \u002b0000 UTC",
+    "url" : "https:\/\/zburu.com\/archives\/42.html\/",
+    "keywords" : [ "react", ]
+  }
+</script><title>React 脚手架项目打包时的路径问题 - 子舒的博客</title>
+  <meta property="og:title" content="React 脚手架项目打包时的路径问题" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="create-react-app 脚手架指令可以生成 React 项目，在项目完成之后执行打包命令 npm run build，文件夹内生成 build文件夹，就是打包后的文件，在浏览器运行 index.html 发现页面空白，打开控制台有报错，css 和 js 文件的引用路径有问题。
+浏览 index.html 代码可以发现：
+&amp;lt;!-- index.html --&amp;gt; &amp;lt;!doctype html&amp;gt; &amp;lt;html lang=&amp;#34;zh&amp;#34;&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;utf-8&amp;#34; /&amp;gt; &amp;lt;meta name=&amp;#34;viewport&amp;#34; content=&amp;#34;width=device-width,initial-scale=1&amp;#34; /&amp;gt; &amp;lt;meta name=&amp;#34;theme-color&amp;#34; content=&amp;#34;#000000&amp;#34; /&amp;gt; &amp;lt;meta name=&amp;#34;description&amp;#34; content=&amp;#34;Web site created using create-react-app&amp;#34; /&amp;gt; &amp;lt;title&amp;gt;React App&amp;lt;/title&amp;gt; &amp;lt;link href=&amp;#34;/static/css/main.3394d54e.chunk.css&amp;#34; rel=&amp;#34;stylesheet&amp;#34;&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt;&amp;lt;noscript&amp;gt;You need to enable JavaScript to run this app.&amp;lt;/noscript&amp;gt; &amp;lt;div id=&amp;#34;root&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;script&amp;gt;!function (e) { function r(r) { for (var n, l, f = r[0], i = r[1], a = r[2], c = 0, s = []; c &amp;lt; f." />
+  <meta name="description" content="create-react-app 脚手架指令可以生成 React 项目，在项目完成之后执行打包命令 npm run build，文件夹内生成 build文件夹，就是打包后的文件，在浏览器运行 index.html 发现页面空白，打开控制台有报错，css 和 js 文件的引用路径有问题。
+浏览 index.html 代码可以发现：
+&amp;lt;!-- index.html --&amp;gt; &amp;lt;!doctype html&amp;gt; &amp;lt;html lang=&amp;#34;zh&amp;#34;&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;utf-8&amp;#34; /&amp;gt; &amp;lt;meta name=&amp;#34;viewport&amp;#34; content=&amp;#34;width=device-width,initial-scale=1&amp;#34; /&amp;gt; &amp;lt;meta name=&amp;#34;theme-color&amp;#34; content=&amp;#34;#000000&amp;#34; /&amp;gt; &amp;lt;meta name=&amp;#34;description&amp;#34; content=&amp;#34;Web site created using create-react-app&amp;#34; /&amp;gt; &amp;lt;title&amp;gt;React App&amp;lt;/title&amp;gt; &amp;lt;link href=&amp;#34;/static/css/main.3394d54e.chunk.css&amp;#34; rel=&amp;#34;stylesheet&amp;#34;&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt;&amp;lt;noscript&amp;gt;You need to enable JavaScript to run this app.&amp;lt;/noscript&amp;gt; &amp;lt;div id=&amp;#34;root&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;script&amp;gt;!function (e) { function r(r) { for (var n, l, f = r[0], i = r[1], a = r[2], c = 0, s = []; c &amp;lt; f." />
+  <meta property="og:locale" content="en-us" /><meta property="og:image" content="https://cdn.zburu.com/favicon.ico" />
+  
+
+  <link rel="stylesheet" href="/css/default.css">
+  <link rel="stylesheet" href="/css/simplebox.min.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="子舒的博客">
+  <script src="https://hm.baidu.com/hm.js?5f4839173d00c8b0d3dd40533d14450d"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-item">
+        <a href="/" class="header-title">
+          <img src="https://cdn.zburu.com/favicon.png" alt="logo">
+          <span>子舒的博客</span>
+        </a>
+      </div>
+      <div class="menu-btn">菜单</div>
+      <div class="opacity"></div>
+      <div class="header-item sticky">
+        <ul id="navi">
+          
+          <li>
+            <a href="/posts">归档</a>
+          </li>
+          
+          <li>
+            <a href="/weekly">周刊</a>
+          </li>
+          
+          <li>
+            <a href="/message">留言</a>
+          </li>
+          
+          <li>
+            <a href="/about">关于</a>
+          </li>
+          
+          <li>
+            <a href="/lab">实验室</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+<article>
+  <div class="post-box">
+    <div class="post-header">
+      <h1 class="post-title">React 脚手架项目打包时的路径问题</h1>
+      
+      <div class="post-desc">
+        <div class="post-date">
+          
+          <time datetime=" 2021-01-05 20:54:00 UTC">
+            发布于 2021-01-05
+          </time>
+          
+          浏览: <span id="ArtalkPV">加载中...</span>
+          评论: <span id="ArtalkCount"></span>
+        </div>
+      </div>
+      
+    </div>
+    <div class="post-content markdown-body">
+      <div class="autoMenu" id="autoMenu" data-autoMenu></div>
+      
+      <p><code>create-react-app</code> 脚手架指令可以生成 React 项目，在项目完成之后执行打包命令 <code>npm run build</code>，文件夹内生成 <code>build</code>文件夹，就是打包后的文件，在浏览器运行 <code>index.html</code> 发现页面空白，打开控制台有报错，css 和 js 文件的引用路径有问题。</p>
+<p>浏览 <code>index.html</code> 代码可以发现：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- index.html --&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!doctype html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;zh&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;viewport&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width=device-width,initial-scale=1&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;theme-color&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#000000&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;description&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Web site created using create-react-app&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">title</span>&gt;React App&lt;/<span style="color:#f92672">title</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/static/css/main.3394d54e.chunk.css&#34;</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span>&gt;&lt;<span style="color:#f92672">noscript</span>&gt;You need to enable JavaScript to run this app.&lt;/<span style="color:#f92672">noscript</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;root&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">script</span>&gt;<span style="color:#f92672">!</span><span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">e</span>) { <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">r</span>(<span style="color:#a6e22e">r</span>) { <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">n</span>, <span style="color:#a6e22e">l</span>, <span style="color:#a6e22e">f</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">r</span>[<span style="color:#ae81ff">0</span>], <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">r</span>[<span style="color:#ae81ff">1</span>], <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">r</span>[<span style="color:#ae81ff">2</span>], <span style="color:#a6e22e">c</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">s</span> <span style="color:#f92672">=</span> []; <span style="color:#a6e22e">c</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">f</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">c</span><span style="color:#f92672">++</span>)<span style="color:#a6e22e">l</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">f</span>[<span style="color:#a6e22e">c</span>], Object.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">hasOwnProperty</span>.<span style="color:#a6e22e">call</span>(<span style="color:#a6e22e">o</span>, <span style="color:#a6e22e">l</span>) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">o</span>[<span style="color:#a6e22e">l</span>] <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">o</span>[<span style="color:#a6e22e">l</span>][<span style="color:#ae81ff">0</span>]), <span style="color:#a6e22e">o</span>[<span style="color:#a6e22e">l</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#66d9ef">for</span> (<span style="color:#a6e22e">n</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">i</span>) Object.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">hasOwnProperty</span>.<span style="color:#a6e22e">call</span>(<span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">n</span>) <span style="color:#f92672">&amp;&amp;</span> (<span style="color:#a6e22e">e</span>[<span style="color:#a6e22e">n</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">i</span>[<span style="color:#a6e22e">n</span>]); <span style="color:#66d9ef">for</span> (<span style="color:#a6e22e">p</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">p</span>(<span style="color:#a6e22e">r</span>); <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">length</span>;)<span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">shift</span>()(); <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">push</span>.<span style="color:#a6e22e">apply</span>(<span style="color:#a6e22e">u</span>, <span style="color:#a6e22e">a</span> <span style="color:#f92672">||</span> []), <span style="color:#a6e22e">t</span>() } <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">t</span>() { <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">e</span>, <span style="color:#a6e22e">r</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">r</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">r</span><span style="color:#f92672">++</span>) { <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">t</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">u</span>[<span style="color:#a6e22e">r</span>], <span style="color:#a6e22e">n</span> <span style="color:#f92672">=</span> <span style="color:#f92672">!</span><span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">f</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">f</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">f</span><span style="color:#f92672">++</span>) { <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">t</span>[<span style="color:#a6e22e">f</span>]; <span style="color:#ae81ff">0</span> <span style="color:#f92672">!==</span> <span style="color:#a6e22e">o</span>[<span style="color:#a6e22e">i</span>] <span style="color:#f92672">&amp;&amp;</span> (<span style="color:#a6e22e">n</span> <span style="color:#f92672">=</span> <span style="color:#f92672">!</span><span style="color:#ae81ff">1</span>) } <span style="color:#a6e22e">n</span> <span style="color:#f92672">&amp;&amp;</span> (<span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">splice</span>(<span style="color:#a6e22e">r</span><span style="color:#f92672">--</span>, <span style="color:#ae81ff">1</span>), <span style="color:#a6e22e">e</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">l</span>(<span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">s</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">t</span>[<span style="color:#ae81ff">0</span>])) } <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">e</span> } <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">=</span> {}, <span style="color:#a6e22e">o</span> <span style="color:#f92672">=</span> { <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span> }, <span style="color:#a6e22e">u</span> <span style="color:#f92672">=</span> []; <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">l</span>(<span style="color:#a6e22e">r</span>) { <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">n</span>[<span style="color:#a6e22e">r</span>]) <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">n</span>[<span style="color:#a6e22e">r</span>].<span style="color:#a6e22e">exports</span>; <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">t</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">n</span>[<span style="color:#a6e22e">r</span>] <span style="color:#f92672">=</span> { <span style="color:#a6e22e">i</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">r</span>, <span style="color:#a6e22e">l</span><span style="color:#f92672">:</span> <span style="color:#f92672">!</span><span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">exports</span><span style="color:#f92672">:</span> {} }; <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">e</span>[<span style="color:#a6e22e">r</span>].<span style="color:#a6e22e">call</span>(<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">exports</span>, <span style="color:#a6e22e">t</span>, <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">exports</span>, <span style="color:#a6e22e">l</span>), <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">l</span> <span style="color:#f92672">=</span> <span style="color:#f92672">!</span><span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">exports</span> } <span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">m</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">e</span>, <span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">c</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">n</span>, <span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">d</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">e</span>, <span style="color:#a6e22e">r</span>, <span style="color:#a6e22e">t</span>) { <span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">o</span>(<span style="color:#a6e22e">e</span>, <span style="color:#a6e22e">r</span>) <span style="color:#f92672">||</span> Object.<span style="color:#a6e22e">defineProperty</span>(<span style="color:#a6e22e">e</span>, <span style="color:#a6e22e">r</span>, { <span style="color:#a6e22e">enumerable</span><span style="color:#f92672">:</span> <span style="color:#f92672">!</span><span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">get</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">t</span> }) }, <span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">r</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">e</span>) { <span style="color:#e6db74">&#34;undefined&#34;</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">Symbol</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">Symbol</span>.<span style="color:#a6e22e">toStringTag</span> <span style="color:#f92672">&amp;&amp;</span> Object.<span style="color:#a6e22e">defineProperty</span>(<span style="color:#a6e22e">e</span>, <span style="color:#a6e22e">Symbol</span>.<span style="color:#a6e22e">toStringTag</span>, { <span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Module&#34;</span> }), Object.<span style="color:#a6e22e">defineProperty</span>(<span style="color:#a6e22e">e</span>, <span style="color:#e6db74">&#34;__esModule&#34;</span>, { <span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#f92672">!</span><span style="color:#ae81ff">0</span> }) }, <span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">t</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">e</span>, <span style="color:#a6e22e">r</span>) { <span style="color:#66d9ef">if</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;</span> <span style="color:#a6e22e">r</span> <span style="color:#f92672">&amp;&amp;</span> (<span style="color:#a6e22e">e</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">l</span>(<span style="color:#a6e22e">e</span>)), <span style="color:#ae81ff">8</span> <span style="color:#f92672">&amp;</span> <span style="color:#a6e22e">r</span>) <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">e</span>; <span style="color:#66d9ef">if</span> (<span style="color:#ae81ff">4</span> <span style="color:#f92672">&amp;</span> <span style="color:#a6e22e">r</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#e6db74">&#34;object&#34;</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">e</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">e</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">__esModule</span>) <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">e</span>; <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">t</span> <span style="color:#f92672">=</span> Object.<span style="color:#a6e22e">create</span>(<span style="color:#66d9ef">null</span>); <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">r</span>(<span style="color:#a6e22e">t</span>), Object.<span style="color:#a6e22e">defineProperty</span>(<span style="color:#a6e22e">t</span>, <span style="color:#e6db74">&#34;default&#34;</span>, { <span style="color:#a6e22e">enumerable</span><span style="color:#f92672">:</span> <span style="color:#f92672">!</span><span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">e</span> }), <span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;</span> <span style="color:#a6e22e">r</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#e6db74">&#34;string&#34;</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">e</span>) <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">n</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">e</span>) <span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">d</span>(<span style="color:#a6e22e">t</span>, <span style="color:#a6e22e">n</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">r</span>) { <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">e</span>[<span style="color:#a6e22e">r</span>] }.<span style="color:#a6e22e">bind</span>(<span style="color:#66d9ef">null</span>, <span style="color:#a6e22e">n</span>)); <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">t</span> }, <span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">n</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">e</span>) { <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">r</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">e</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">__esModule</span> <span style="color:#f92672">?</span> <span style="color:#66d9ef">function</span> () { <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">e</span>.<span style="color:#66d9ef">default</span> } <span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span> () { <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">e</span> }; <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">d</span>(<span style="color:#a6e22e">r</span>, <span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#a6e22e">r</span>), <span style="color:#a6e22e">r</span> }, <span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">o</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">e</span>, <span style="color:#a6e22e">r</span>) { <span style="color:#66d9ef">return</span> Object.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">hasOwnProperty</span>.<span style="color:#a6e22e">call</span>(<span style="color:#a6e22e">e</span>, <span style="color:#a6e22e">r</span>) }, <span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;./&#34;</span>; <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">f</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">webpackJsonpdemo</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">webpackJsonpdemo</span> <span style="color:#f92672">||</span> [], <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">f</span>.<span style="color:#a6e22e">push</span>.<span style="color:#a6e22e">bind</span>(<span style="color:#a6e22e">f</span>); <span style="color:#a6e22e">f</span>.<span style="color:#a6e22e">push</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">r</span>, <span style="color:#a6e22e">f</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">f</span>.<span style="color:#a6e22e">slice</span>(); <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">a</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">f</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">a</span><span style="color:#f92672">++</span>)<span style="color:#a6e22e">r</span>(<span style="color:#a6e22e">f</span>[<span style="color:#a6e22e">a</span>]); <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">i</span>; <span style="color:#a6e22e">t</span>() }([])&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/static/js/2.1902eda2.chunk.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/static/js/main.cbf35db7.chunk.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span></code></pre></div><p>发现 css 和 js 文件都是用绝对路径引用的，这是 webpack 打包一贯拥有的问题，将 <code>/static</code> 改成 <code>./static</code> ，再运行，页面没有问题成功显示。</p>
+<p>但是在写实际项目的时候手动修改相对路径，不但麻烦，而且容易引起其他问题。因此直接在项目的 <code>package.json</code> 配置文件进行修改，添加 <code>&quot;homepage&quot;: &quot;.&quot;</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#75715e">// package.json
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;demo&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;0.1.0&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;private&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;homepage&#34;</span>: <span style="color:#e6db74">&#34;.&#34;</span>,  <span style="color:#75715e">// 添加这一行
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#f92672">&#34;dependencies&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;@babel/core&#34;</span>: <span style="color:#e6db74">&#34;7.12.3&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">...</span>
+</span></span></code></pre></div><p>然后再执行 <code>npm run build</code> ，运行打包后的文件，没有任何问题。</p>
+
+    </div>
+
+    
+    <div class="post-tags">
+      <a href="/tags/react/">
+        react
+      </a>
+    </div>
+    
+    
+    <div class="pre-next">
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/43.html/">
+          上一篇：使用 React 与 Vue 创建同一款 App，差别究竟有多大？
+        </a>
+        
+      </p>
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/41.html/">
+          下一篇：如何在 React 中引入 less？
+        </a>
+        
+      </p>
+    </div>
+    
+
+<div class="related-content">
+  <h4>Related Posts</h4>
+  <ul>
+    
+    <li><a href="/archives/41.html/">如何在 React 中引入 less？</a></li>
+    
+    <li><a href="/archives/40.html/">为什么 key 是必须的？</a></li>
+    
+    <li><a href="/archives/39.html/">React 学习笔记（三）</a></li>
+    
+  </ul>
+</div>
+
+
+
+  </div>
+  
+  <div class="post-box">
+    <div class="post-comments">
+      <h4 class="article-h4">评论~</h4>
+<div id="Artalk"></div>
+<link href="https://artalk.zburu.com/dist/Artalk.css" rel="stylesheet">
+<script src="https://artalk.zburu.com/dist/Artalk.js"></script>
+<script>
+  new Artalk({
+    el: '#Artalk',
+    pageKey: '',
+    pageTitle: '',
+    server: 'https://artalk.zburu.com',
+    site: '子舒的博客',
+  })
+</script>
+
+
+    </div>
+    
+  </div>
+  <div class="footer">
+  <p>
+    © 2020-<span id="year"></span> ·
+    <a href="https://beian.miit.gov.cn/" target="_blank">
+      <span>浙ICP备2022002453号-2</span>
+    </a>
+  </p>
+  <i> · </i>
+  <p>网站运行: <span id="days">0</span> 天</p>
+</div>
+<div class="utool">
+  <div class="item totop">
+    <span>top</span>
+  </div>
+</div>
+<script>
+  var s0 = '2020-06-14';
+  s1 = new Date(s0.replace(/-/g, "/"));
+  s2 = new Date();
+  var days = s2.getTime() - s1.getTime();
+  var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+  document.getElementById('days').innerHTML = number_of_days;
+
+  var date = new Date;
+  var year = date.getFullYear();
+  document.getElementById('year').innerHTML = year;
+</script>
+</article>
+
+<script src="/js/jquery3.6.0.min.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/simplebox.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>gravatar on 子舒的博客</title>
+    <link>https://zburu.com/tags/gravatar/</link>
+    <description>Recent content in gravatar on 子舒的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 21 Dec 2021 10:11:00 +0000</lastBuildDate><atom:link href="https://zburu.com/tags/gravatar/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>typecho 更换 gravatar 头像源</title>
+      <link>https://zburu.com/archives/92.html/</link>
+      <pubDate>Tue, 21 Dec 2021 10:11:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/92.html/</guid>
+      <description>找到根目录下 config.inc.php 文件，在最前面加入下面的代码。
+define(&amp;#39;__TYPECHO_GRAVATAR_PREFIX__&amp;#39;, &amp;#39;https://sdn.geekzu.org/avatar/&amp;#39;); 其中 https://sdn.geekzu.org/avatar/ 是一个国内源链接，这个是我目前找到的比较稳定的源。
+如果这个源不能用了，可以更换其他的源，直接搜其他的相关国内源就可以了。
+如果你有其他可以用的头像源，欢迎留言。
+https://cravatar.cn/avatar/ https://sdn.geekzu.org/avatar/</description>
+    </item>
+    
+  </channel>
+</rss>

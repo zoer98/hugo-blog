@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.101.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="toTop" content="true">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://zburu.com/archives/91.html/" />
+  <link rel="canonical" href="https://zburu.com/archives/91.html/" /><link rel="apple-touch-icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="shortcut" href="https://cdn.zburu.com/favicon.ico" /><link rel="alternate" type="application/atom+xml" href="https://zburu.comindex.xml" title="子舒的博客">
+
+  <script type="application/ld+json">
+  {
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https:\/\/zburu.com"
+    },
+    "articleSection" : "posts",
+    "name" : "有关 cdn.jsdelivr.net 证书错误的一些想法",
+    "headline" : "有关 cdn.jsdelivr.net 证书错误的一些想法",
+    "description" : "记录一次不大不小的事件，2021年12月20日，cdn.jsdelivr.net 国内ip全面崩盘，说是证书出错了，然后所有使用cdn.jsdelivr.net进行加速的资源全部404。\n我也是在朋友圈看到的这个消息，上线一看果然全部显示丢失。\n对国外资源没有影响，所以这是一次只出现在国内的问题，jsd官网都还在，估计是cdn配置出错，应该很快就可以修复了。\n然后，我就开始思考将一些文件资源挂在一些比较可靠的网站是否真的可靠，包括之前使用 Github Pages \u002b Vercel ，也出现过一段时间的证书错误，导出托管的网站崩了两天了，之后官方更换了新的 ip，虽然没什么大问题，但依旧是会有一些断断续续的连接错误404。\n所以也就加大了我使用自己服务器的决定。但是在这之前，我的一些其他资源，包括js文件和一些图片，都是托管在 github 仓库里面。然后通过 cdn.jsdelivr.net 进行cdn加速，一直都很相信它的。\n但是最近一系列事情的发生，不是一次两次了，我觉得数据还是放在自己手里安全，以后会考虑将存在在各大平台的文件和图片以及数据都导出来，多处备份，防止像今天这样的事情发生。\n之前我的图片是上传到 github 用 jsdelivr 加速，现在我将其切换到我的服务器了。不再使用任何cdn加速，本身服务器的速度也够了，再加上平时没几个人访问，基本都是自己在看，完全满足我的个人使用了。\n但是之前的图片还在404中，会慢慢转移到别的地方，之后的文件肯定不会用jsdelivr 加速了。\n写完测试一下 jsdelivr 是否修复，很好，已经半天过去了，没有修复完成的迹象。\n最后感叹一句，数据真的是又脆弱又重要！",
+    "inLanguage" : "en-US",
+    "author" : "",
+    "creator" : "",
+    "publisher": "",
+    "accountablePerson" : "",
+    "copyrightHolder" : "",
+    "copyrightYear" : "2021",
+    "datePublished": "2021-12-20 14:25:00 \u002b0000 UTC",
+    "dateModified" : "2021-12-20 14:25:00 \u002b0000 UTC",
+    "url" : "https:\/\/zburu.com\/archives\/91.html\/",
+    "keywords" : [ "随笔","jsdelivr", ]
+  }
+</script><title>有关 cdn.jsdelivr.net 证书错误的一些想法 - 子舒的博客</title>
+  <meta property="og:title" content="有关 cdn.jsdelivr.net 证书错误的一些想法" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="记录一次不大不小的事件，2021年12月20日，cdn.jsdelivr.net 国内ip全面崩盘，说是证书出错了，然后所有使用cdn.jsdelivr.net进行加速的资源全部404。
+我也是在朋友圈看到的这个消息，上线一看果然全部显示丢失。
+对国外资源没有影响，所以这是一次只出现在国内的问题，jsd官网都还在，估计是cdn配置出错，应该很快就可以修复了。
+然后，我就开始思考将一些文件资源挂在一些比较可靠的网站是否真的可靠，包括之前使用 Github Pages &#43; Vercel ，也出现过一段时间的证书错误，导出托管的网站崩了两天了，之后官方更换了新的 ip，虽然没什么大问题，但依旧是会有一些断断续续的连接错误404。
+所以也就加大了我使用自己服务器的决定。但是在这之前，我的一些其他资源，包括js文件和一些图片，都是托管在 github 仓库里面。然后通过 cdn.jsdelivr.net 进行cdn加速，一直都很相信它的。
+但是最近一系列事情的发生，不是一次两次了，我觉得数据还是放在自己手里安全，以后会考虑将存在在各大平台的文件和图片以及数据都导出来，多处备份，防止像今天这样的事情发生。
+之前我的图片是上传到 github 用 jsdelivr 加速，现在我将其切换到我的服务器了。不再使用任何cdn加速，本身服务器的速度也够了，再加上平时没几个人访问，基本都是自己在看，完全满足我的个人使用了。
+但是之前的图片还在404中，会慢慢转移到别的地方，之后的文件肯定不会用jsdelivr 加速了。
+写完测试一下 jsdelivr 是否修复，很好，已经半天过去了，没有修复完成的迹象。
+最后感叹一句，数据真的是又脆弱又重要！" />
+  <meta name="description" content="记录一次不大不小的事件，2021年12月20日，cdn.jsdelivr.net 国内ip全面崩盘，说是证书出错了，然后所有使用cdn.jsdelivr.net进行加速的资源全部404。
+我也是在朋友圈看到的这个消息，上线一看果然全部显示丢失。
+对国外资源没有影响，所以这是一次只出现在国内的问题，jsd官网都还在，估计是cdn配置出错，应该很快就可以修复了。
+然后，我就开始思考将一些文件资源挂在一些比较可靠的网站是否真的可靠，包括之前使用 Github Pages &#43; Vercel ，也出现过一段时间的证书错误，导出托管的网站崩了两天了，之后官方更换了新的 ip，虽然没什么大问题，但依旧是会有一些断断续续的连接错误404。
+所以也就加大了我使用自己服务器的决定。但是在这之前，我的一些其他资源，包括js文件和一些图片，都是托管在 github 仓库里面。然后通过 cdn.jsdelivr.net 进行cdn加速，一直都很相信它的。
+但是最近一系列事情的发生，不是一次两次了，我觉得数据还是放在自己手里安全，以后会考虑将存在在各大平台的文件和图片以及数据都导出来，多处备份，防止像今天这样的事情发生。
+之前我的图片是上传到 github 用 jsdelivr 加速，现在我将其切换到我的服务器了。不再使用任何cdn加速，本身服务器的速度也够了，再加上平时没几个人访问，基本都是自己在看，完全满足我的个人使用了。
+但是之前的图片还在404中，会慢慢转移到别的地方，之后的文件肯定不会用jsdelivr 加速了。
+写完测试一下 jsdelivr 是否修复，很好，已经半天过去了，没有修复完成的迹象。
+最后感叹一句，数据真的是又脆弱又重要！" />
+  <meta property="og:locale" content="en-us" /><meta property="og:image" content="https://cdn.zburu.com/favicon.ico" />
+  
+
+  <link rel="stylesheet" href="/css/default.css">
+  <link rel="stylesheet" href="/css/simplebox.min.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="子舒的博客">
+  <script src="https://hm.baidu.com/hm.js?5f4839173d00c8b0d3dd40533d14450d"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-item">
+        <a href="/" class="header-title">
+          <img src="https://cdn.zburu.com/favicon.png" alt="logo">
+          <span>子舒的博客</span>
+        </a>
+      </div>
+      <div class="menu-btn">菜单</div>
+      <div class="opacity"></div>
+      <div class="header-item sticky">
+        <ul id="navi">
+          
+          <li>
+            <a href="/posts">归档</a>
+          </li>
+          
+          <li>
+            <a href="/weekly">周刊</a>
+          </li>
+          
+          <li>
+            <a href="/message">留言</a>
+          </li>
+          
+          <li>
+            <a href="/about">关于</a>
+          </li>
+          
+          <li>
+            <a href="/lab">实验室</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+<article>
+  <div class="post-box">
+    <div class="post-header">
+      <h1 class="post-title">有关 cdn.jsdelivr.net 证书错误的一些想法</h1>
+      
+      <div class="post-desc">
+        <div class="post-date">
+          
+          <time datetime=" 2021-12-20 14:25:00 UTC">
+            发布于 2021-12-20
+          </time>
+          
+          浏览: <span id="ArtalkPV">加载中...</span>
+          评论: <span id="ArtalkCount"></span>
+        </div>
+      </div>
+      
+    </div>
+    <div class="post-content markdown-body">
+      <div class="autoMenu" id="autoMenu" data-autoMenu></div>
+      
+      <p>记录一次不大不小的事件，2021年12月20日，cdn.jsdelivr.net 国内ip全面崩盘，说是证书出错了，然后所有使用cdn.jsdelivr.net进行加速的资源全部404。</p>
+<p>我也是在朋友圈看到的这个消息，上线一看果然全部显示丢失。</p>
+<p>对国外资源没有影响，所以这是一次只出现在国内的问题，jsd官网都还在，估计是cdn配置出错，应该很快就可以修复了。</p>
+<p>然后，我就开始思考将一些文件资源挂在一些比较可靠的网站是否真的可靠，包括之前使用 Github Pages + Vercel ，也出现过一段时间的证书错误，导出托管的网站崩了两天了，之后官方更换了新的 ip，虽然没什么大问题，但依旧是会有一些断断续续的连接错误404。</p>
+<p>所以也就加大了我使用自己服务器的决定。但是在这之前，我的一些其他资源，包括js文件和一些图片，都是托管在 github 仓库里面。然后通过 cdn.jsdelivr.net 进行cdn加速，一直都很相信它的。</p>
+<p>但是最近一系列事情的发生，不是一次两次了，我觉得数据还是放在自己手里安全，以后会考虑将存在在各大平台的文件和图片以及数据都导出来，多处备份，防止像今天这样的事情发生。</p>
+<p>之前我的图片是上传到 github 用 jsdelivr 加速，现在我将其切换到我的服务器了。不再使用任何cdn加速，本身服务器的速度也够了，再加上平时没几个人访问，基本都是自己在看，完全满足我的个人使用了。</p>
+<p>但是之前的图片还在404中，会慢慢转移到别的地方，之后的文件肯定不会用jsdelivr 加速了。</p>
+<p>写完测试一下 jsdelivr 是否修复，很好，已经半天过去了，没有修复完成的迹象。</p>
+<p>最后感叹一句，数据真的是又脆弱又重要！</p>
+
+    </div>
+
+    
+    <div class="post-tags">
+      <a href="/tags/%E9%9A%8F%E7%AC%94/">
+        随笔
+      </a>
+    </div>
+    
+    <div class="post-tags">
+      <a href="/tags/jsdelivr/">
+        jsdelivr
+      </a>
+    </div>
+    
+    
+    <div class="pre-next">
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/92.html/">
+          上一篇：typecho 更换 gravatar 头像源
+        </a>
+        
+      </p>
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/90.html/">
+          下一篇：闲谈2021
+        </a>
+        
+      </p>
+    </div>
+    
+
+<div class="related-content">
+  <h4>Related Posts</h4>
+  <ul>
+    
+    <li><a href="/archives/90.html/">闲谈2021</a></li>
+    
+    <li><a href="/archives/4.html/">关于人际交往的礼节感触</a></li>
+    
+    <li><a href="/archives/84.html/">网易云摸鱼，测测你的听歌流量</a></li>
+    
+  </ul>
+</div>
+
+
+
+  </div>
+  
+  <div class="post-box">
+    <div class="post-comments">
+      <h4 class="article-h4">评论~</h4>
+<div id="Artalk"></div>
+<link href="https://artalk.zburu.com/dist/Artalk.css" rel="stylesheet">
+<script src="https://artalk.zburu.com/dist/Artalk.js"></script>
+<script>
+  new Artalk({
+    el: '#Artalk',
+    pageKey: '',
+    pageTitle: '',
+    server: 'https://artalk.zburu.com',
+    site: '子舒的博客',
+  })
+</script>
+
+
+    </div>
+    
+  </div>
+  <div class="footer">
+  <p>
+    © 2020-<span id="year"></span> ·
+    <a href="https://beian.miit.gov.cn/" target="_blank">
+      <span>浙ICP备2022002453号-2</span>
+    </a>
+  </p>
+  <i> · </i>
+  <p>网站运行: <span id="days">0</span> 天</p>
+</div>
+<div class="utool">
+  <div class="item totop">
+    <span>top</span>
+  </div>
+</div>
+<script>
+  var s0 = '2020-06-14';
+  s1 = new Date(s0.replace(/-/g, "/"));
+  s2 = new Date();
+  var days = s2.getTime() - s1.getTime();
+  var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+  document.getElementById('days').innerHTML = number_of_days;
+
+  var date = new Date;
+  var year = date.getFullYear();
+  document.getElementById('year').innerHTML = year;
+</script>
+</article>
+
+<script src="/js/jquery3.6.0.min.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/simplebox.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

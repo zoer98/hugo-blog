@@ -1,0 +1,1565 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>技术 on 子舒的博客</title>
+    <link>https://zburu.com/categories/%E6%8A%80%E6%9C%AF/</link>
+    <description>Recent content in 技术 on 子舒的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 06 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://zburu.com/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>分享一个页面点击特效</title>
+      <link>https://zburu.com/archives/180.html/</link>
+      <pubDate>Fri, 06 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/180.html/</guid>
+      <description>点击页面时可以弹出随机颜色小心心，目前我的网站就使用了这个特效。
+直接将下面的代码复制到引入的 js 文件中即可，不用进行其他配置。
+!function(e,t,a){function n(){c(&amp;#34;.heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: &amp;#39;&amp;#39;;width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}&amp;#34;),o(),r()}function r(){for(var e=0;e&amp;lt;d.length;e++)d[e].alpha&amp;lt;=0?(t.body.removeChild(d[e].el),d.splice(e,1)):(d[e].y--,d[e].scale+=.004,d[e].alpha-=.013,d[e].el.style.cssText=&amp;#34;left:&amp;#34;+d[e].x+&amp;#34;px;top:&amp;#34;+d[e].y+&amp;#34;px;opacity:&amp;#34;+d[e].alpha+&amp;#34;;transform:scale(&amp;#34;+d[e].scale+&amp;#34;,&amp;#34;+d[e].scale+&amp;#34;) rotate(45deg);background:&amp;#34;+d[e].color+&amp;#34;;z-index:99999&amp;#34;);requestAnimationFrame(r)}function o(){var t=&amp;#34;function&amp;#34;==typeof e.onclick&amp;amp;&amp;amp;e.onclick;e.onclick=function(e){t&amp;amp;&amp;amp;t(),i(e)}}function i(e){var a=t.createElement(&amp;#34;div&amp;#34;);a.className=&amp;#34;heart&amp;#34;,d.push({el:a,x:e.clientX-5,y:e.clientY-5,scale:1,alpha:1,color:s()}),t.body.appendChild(a)}function c(e){var a=t.createElement(&amp;#34;style&amp;#34;);a.type=&amp;#34;text/css&amp;#34;;try{a.appendChild(t.createTextNode(e))}catch(t){a.styleSheet.cssText=e}t.getElementsByTagName(&amp;#34;head&amp;#34;)[0].appendChild(a)}function s(){return&amp;#34;rgb(&amp;#34;+~~(255*Math.random())+&amp;#34;,&amp;#34;+~~(255*Math.random())+&amp;#34;,&amp;#34;+~~(255*Math.random())+&amp;#34;)&amp;#34;}var d=[];e.requestAnimationFrame=function(){return e.requestAnimationFrame||e.webkitRequestAnimationFrame||e.mozRequestAnimationFrame||e.oRequestAnimationFrame||e.msRequestAnimationFrame||function(e){setTimeout(e,1e3/60)}}(),n()}(window,document); </description>
+    </item>
+    
+    <item>
+      <title>js中 [ ]&#43;{ } 和 { }&#43;[ ] 的区别</title>
+      <link>https://zburu.com/archives/175.html/</link>
+      <pubDate>Tue, 15 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/175.html/</guid>
+      <description>[ ]+{ }：一个数组加一个对象。
+加法会进行隐式类型转换，规则是调用其valueOf()或toString()以取得一个非对象的值(primitive value)。
+如果两个值中的任何一个是字符串，则进行字符串串接，否则进行数字加法。[ ] 和 { } 的 valueOf() 都返回对象自身，所以都会调用 toString()，最后的结果是字符串串接。
+[ ].toString()返回空字符串，({ }).toString()返回 &amp;ldquo;[object Object]&amp;quot;，最后的结果就是 &amp;ldquo;[object Object]&amp;quot;。
+{ }+[ ]：看上去应该和上面一样。
+但是{ }除了表示一个对象之外，也可以表示一个空的bock。在 [ ] + { }中，[ ]被解析为数组，因此后续的+被解析为加法运算符，而{ }就解析为对象。
+但在{ } + [ ]中，{ }被解析为空的bock，随后的+被解析为正号运算符。即实际上成了：{∥empty block}+[ ]，即对一个空数组执行正号运算，实际上就是把数组转型为数字。首先调用.valueOf()，返回数组自身，不是primitive value,因此继续调用 [ ].toString()，返回空字符串。空字符串转型为数字，返回0，即最后的结果。</description>
+    </item>
+    
+    <item>
+      <title>安装一个基于 Github 的静态图床程序</title>
+      <link>https://zburu.com/archives/172.html/</link>
+      <pubDate>Sat, 22 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/172.html/</guid>
+      <description>demo: https://img.zburu.com/
+今天分享一下如何使用 Github 作为图床，首先就要推荐这个工具 picx 。
+Github 仓库: https://github.com/XPoet/picx
+本文的图片全部使用该工具上传，然后通过 Staticaly 进行cdn加速（这个在上传的时候自动生成链接。）
+可以设置自动压缩、转码成 webp 格式。
+基于 GitHub API 开发的具有 CDN 加速功能的图床管理工具。无需下载与安装，网页端在线使用！免费！稳定！便捷！极速！
+看了一下源码，vue 写的，全部都是纯静态化加上本地存储，所以说没有后端。
+也就是说我们也可以部署在自己域名下，不使用开发者提供的域名，虽然这么做没什么区别，但还是折腾一下吧。
+我会在最后提供一个打包好的链接（直接打包源码，不做任何修改），下载后自行上传到域名空间下即可使用。
+说明文档：https://picx-docs.xpoet.cn/tutorial/get-start.html
+这是官方说明，试用了一下，效果很棒。图床如何使用文档中标注的很清晰，我就不赘述了，本文只介绍如何编译打包，面向群友。
+过程很简单，需要提前准备好node环境。
+1.下载源码 直接去 https://github.com/XPoet/picx ，然后 Download Zip。
+2.执行命令 下载后解压来到这个页面，然后在空白处鼠标右键，打开终端。
+如果你已经有node环境了，直接执行下面命令就可以，如果没有，先去安装一下 node 环境，这里就假设环境安装好了 。（https://nodejs.org/zh-cn/）。
+下面这两种方式都可以，没有区别。
+# 安装依赖 # 这个过程因为网速问题可能比较慢 npm install #or yarn 依赖安装之后，就开始构建。
+# 构建 npm run build # or yarn build 构建完成之后就会生成一个 dist 文件夹，这就是打包好后的文件，里面有一个 index.html 和其他静态资源。
+3.我应该上传到哪里？ 这个时候只需要将他们上传到你想要访问的域名目录下即可。
+比如我使用的是 hugo 博客程序，先在 content 下新建一个文件夹，命名为 img，（你可以起任何名字，注意不要和其他文件名冲突即可。） 然后把 dist 文件夹下的所有文件全部复制到 /content/img/ 文件夹下。</description>
+    </item>
+    
+    <item>
+      <title>localStorage 的相关运用</title>
+      <link>https://zburu.com/archives/171.html/</link>
+      <pubDate>Thu, 20 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/171.html/</guid>
+      <description>localStorage 是浏览器自带的一个属性，只读的localStorage 属性允许你访问一个Document 源（origin）的对象 Storage；存储的数据将保存在浏览器会话中。localStorage 类似 sessionStorage，但其区别在于：存储在 localStorage 的数据可以长期保留；而当页面会话结束——也就是说，当页面被关闭时，存储在 sessionStorage 的数据会被清除。
+应注意，无论数据存储在 localStorage 还是 sessionStorage ，它们都特定于页面的协议。
+另外，localStorage 中的键值对总是以字符串的形式存储。 (需要注意，和 js 对象相比，键值对总是以字符串的形式存储意味着数值类型会自动转化为字符串类型).
+localStorage 的使用也非常简单，分为存入和读取，可以将其绑定在事件方法中。
+// 存入 const arr= 100; localStorage.setItem(&amp;#34;key&amp;#34;, JSON.stringify(arr)); // 读取 const arr = JSON.parse(localStorage.getItem(&amp;#34;key&amp;#34;)); 这里 &amp;quot;key&amp;quot; 指的是存到浏览器中的参数名，arr 则是参数值。
+localStorage.setItem(&amp;quot;key&amp;quot;, JSON.stringify(arr)); 这个方法就是将数组arr存到了浏览器的localStorage 中，它的参数名叫 key const arr = JSON.parse(localStorage.getItem(&amp;quot;key&amp;quot;)); 就是读取浏览器中参数名为 key 的参数值。 比如静态保存某个设置参数，可以将其写入数组中，然后通过 localStorage 存储，原本刷新就会显示默认设置，现在可以在每次刷新的适合读取存入的参数。
+在一些场景下非常好用，比如开发一个油猴脚本等等。
+清除 localStorage，分为清除所以的存储值和清除某个特定的 key。
+// 清除本地存储中的所有值 localStorage.clear(); // 本地存储中删除特定项 localStorage.removeItem(key); </description>
+    </item>
+    
+    <item>
+      <title>hugo 一键打包并上传 github</title>
+      <link>https://zburu.com/archives/170.html/</link>
+      <pubDate>Fri, 14 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/170.html/</guid>
+      <description>分享一个 hugo 一键打包并上传 github 的方法，前提是你之前上传过 GitHub 仓库。
+采用 window 支持的 sh可执行文件，在根目录新建一个 hugo.sh 文件，里面放上一些命令。
+hugo # cd public time=$(date &amp;#34;+%Y-%m-%d %H:%M:%S&amp;#34;) echo $time git add . git commit -m &amp;#34;自动执行构建脚本 🎓$time&amp;#34; git push exit 可以在文件夹双击运行 hugo.sh，也可以在终端输入命令。
+.\hugo.sh 省去了我输入繁琐的 Git 上传指令，并且自动生成当前系统时间作为 commit。
+其他
+这里我上传的是整体的 hugo 目录，如果你只想上传生成的 /public ，在中间加入 cd public。</description>
+    </item>
+    
+    <item>
+      <title>将数组中多个对象的同名属性值取出合并成新数组</title>
+      <link>https://zburu.com/archives/168.html/</link>
+      <pubDate>Mon, 26 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/168.html/</guid>
+      <description>业务中需求的方法，接口返回一个数组，里面包含了大量的对象，具有同名的属性名，比较常见。但是需要将其中参数为name的属性值全部取出，合并成数组。
+const num = [ { id: 1, name: &amp;#39;abc&amp;#39;, }, { id: 2, name: &amp;#39;xyz&amp;#39;, } ] function getFields(arrnum, field) { const resnum = []; for (let i = 0; i &amp;lt; arrnum.length; ++i) resnum.push(arrnum[i][field]); return resnum; } const result = getFields(num, &amp;#34;name&amp;#34;); console.log(result); // [&amp;#39;abc&amp;#39;, &amp;#39;xyz&amp;#39;] console.log(result.join(&amp;#39; &amp;#39;)); // &amp;#34;abc xyz&amp;#34; </description>
+    </item>
+    
+    <item>
+      <title>一些容易遗漏的点</title>
+      <link>https://zburu.com/archives/158.html/</link>
+      <pubDate>Wed, 10 Aug 2022 17:48:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/158.html/</guid>
+      <description> 监听对象时如果值是null会报错，默认值设置为{}； for in 只能遍历对象 i in 4是错误的写法； 动态获取数组-拼接传参 var arr = [ &amp;#34;单位1&amp;#34;, &amp;#34;单位2&amp;#34;, &amp;#34;单位3&amp;#34;, &amp;#34;单位4&amp;#34;, &amp;#34;单位5&amp;#34; ] // 1.数组[] for (var i = 0; i &amp;lt; arr.length; i++) { this.defaultData.hostUnitList.push({ [arr[i]]: this.defaultData[arr[i]] }); } // 2.对象{} for (var i = 0; i &amp;lt; arr.length; i++) { this.defaultData.hostUnitList[arr[i]] = this.defaultData[arr[i]] } </description>
+    </item>
+    
+    <item>
+      <title>win11 使用 10版本的鼠标右键设置</title>
+      <link>https://zburu.com/archives/155.html/</link>
+      <pubDate>Tue, 02 Aug 2022 16:39:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/155.html/</guid>
+      <description>实测好用，没有坑。
+管理员权限下打开终端，输入。
+reg add &amp;#34;HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32&amp;#34; /f /ve 随后重新启动资源管理器即可
+taskkill /f /im explorer.exe &amp;amp; start explorer.exe 恢复默认指令。
+reg delete &amp;#34;HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}&amp;#34; /f </description>
+    </item>
+    
+    <item>
+      <title>Anghunk 主题如何在后台评论列表解析表情？</title>
+      <link>https://zburu.com/archives/154.html/</link>
+      <pubDate>Sat, 30 Jul 2022 20:11:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/154.html/</guid>
+      <description>本文专为 Anghunk 主题开发文档而写。 https://github.com/98fuel/Anghunk
+方案是在梦繁星的协助下完成的。
+介绍 Anghunk 评论携带很多精美的表情，但是正常情况下 Typecho 后台是没办法正常解析这些表情的。如下图；
+但是，经过我解析表情之后，就可以变成下面这样，使用主题如果需要这种功能，可以按照我下面的步骤进行改造。
+修改 打开 /admin/manage-comments.php 文件，在题头插入：
+/* * 解析表情 */ function getparseBiaoQingComment($content) { $emopath=$_SERVER[&amp;#39;REQUEST_SCHEME&amp;#39;].&amp;#34;:&amp;#34;. DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR . $_SERVER[&amp;#39;HTTP_HOST&amp;#39;]; $emo = false; global $emo; if(!$emo) { $emo = json_decode(file_get_contents(dirname(dirname(dirname(__FILE__))).&amp;#39;/zburu.com/usr/themes/Anghunk/libs/OwO.json&amp;#39;), true); } foreach ($emo as $v) { if($v[&amp;#39;type&amp;#39;] == &amp;#39;image&amp;#39;) { foreach ($v[&amp;#39;container&amp;#39;] as $vv) { $emoaa=&amp;#34;::&amp;#34;.$v[&amp;#39;name&amp;#39;].&amp;#34;:&amp;#34;.$vv[&amp;#39;icon&amp;#39;].&amp;#34;::&amp;#34;; $content = str_replace($emoaa, &amp;#39; &amp;lt;img style=&amp;#34;max-height:40px;vertical-align:middle;&amp;#34; src=&amp;#34;&amp;#39;.$emopath.&amp;#39;/usr/themes/Anghunk/libs/emotion/&amp;#39;.$v[&amp;#39;name&amp;#39;].&amp;#39;/&amp;#39;.$vv[&amp;#39;icon&amp;#39;] .&amp;#39;.png&amp;#34; alt=&amp;#34;&amp;#39;.$vv[&amp;#39;text&amp;#39;] .&amp;#39;&amp;#34;&amp;gt; &amp;#39;, $content); } } } return $content; } 注意我放置的位置，必须要要 &amp;lt;?</description>
+    </item>
+    
+    <item>
+      <title>出错了，面板运行时发生错误！</title>
+      <link>https://zburu.com/archives/152.html/</link>
+      <pubDate>Mon, 18 Jul 2022 11:51:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/152.html/</guid>
+      <description># 删除之前无法使用的面板环境 rm -rf /www/server/panel/pyenv #重新获取新的面板环境和更新包 curl http://download.bt.cn/install/update_panel.sh|bash </description>
+    </item>
+    
+    <item>
+      <title>笔记:vue 中使用 axios 调用数据并渲染</title>
+      <link>https://zburu.com/archives/151.html/</link>
+      <pubDate>Tue, 12 Jul 2022 14:59:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/151.html/</guid>
+      <description>示例如下。
+&amp;lt;template&amp;gt; &amp;lt;div class=&amp;#34;posts&amp;#34;&amp;gt; &amp;lt;div v-for=&amp;#34;item in list&amp;#34; :key=&amp;#34;item.cid&amp;#34; &amp;gt; {{ item.title }} &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/template&amp;gt; &amp;lt;script&amp;gt; import Axios from &amp;#39;axios&amp;#39;; export default { name: &amp;#39;index&amp;#39;, data () { return { list: [] } }, methods: { getData () { var api = &amp;#39;https://zburu.com/api/posts.php&amp;#39;; Axios.get(api).then((response) =&amp;gt; { this.list = response.data; console.log(response.data) }).catch((error) =&amp;gt; { console.log(error); }) } }, mounted () { this.getData(); }, } &amp;lt;/script&amp;gt; &amp;lt;style&amp;gt; &amp;lt;/style&amp;gt; </description>
+    </item>
+    
+    <item>
+      <title>obsidian:如何使用坚果云进行多端同步?</title>
+      <link>https://zburu.com/archives/146.html/</link>
+      <pubDate>Mon, 27 Jun 2022 13:53:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/146.html/</guid>
+      <description>接上篇文章 《关于我选择笔记系统这件小事》 ，obsidian 的个人体验很棒，我也打算长久使用作为个人知识库。
+但是它有一个弊端，就是本地离线化导致同步是个问题，官方的同步服务很贵，给我劝退了，因此我寻求了其他的同步备份方案，就是今天我要分享的坚果云+ obsidian 。
+注册账号 在坚果云官网注册一个账号，选择个人用户，创建账号之后登陆。
+点击创建 &amp;gt; 个人同步文件夹，以后就同步这个文件夹内的内容了。这个我在里面新建了一个 test 文件夹。
+pc端同步 接下来需要将电脑本地的文件和坚果云的文件夹相连接，只要你在本地修改了文件，自动同步到坚果云。
+点击页面左侧的下载客户端。
+下载完成之后登陆，你就可以看到里面有一个 test 文件夹，是刚才在网页官网创建的。然后在右边三个点里面选择同步到本地。
+浏览你的文件夹，找到一个地方存放 test 文件夹，点击确定，坚果云就会自动同步你在本地文件。但是这个时候 test 文件夹是空的，需要将 obsidian 文件全部移动进去就行了。然后在 obsidian 客户端重新打开 test 库。
+在另一台电脑，进行上面同样的操作，将坚果云的同步文件夹映射到本地，就会自动下载云端的文件。之后，不管你在哪台电脑修改 obsidian 笔记，都会同步到拥有坚果云客户端的其他电脑。
+这是 pc 端同步的方案，之后我会继续分享如果将 pc 同步到手机端。</description>
+    </item>
+    
+    <item>
+      <title>人民币小写转大写</title>
+      <link>https://zburu.com/archives/145.html/</link>
+      <pubDate>Fri, 24 Jun 2022 15:53:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/145.html/</guid>
+      <description>一个有趣的demo
+this.smalltoBIG(43533534.78)); //肆仟叁佰伍拾叁万叁仟伍佰叁拾肆元柒角捌分 smalltoBIG (n) { var fraction = [&amp;#39;角&amp;#39;, &amp;#39;分&amp;#39;]; var digit = [&amp;#39;零&amp;#39;, &amp;#39;壹&amp;#39;, &amp;#39;贰&amp;#39;, &amp;#39;叁&amp;#39;, &amp;#39;肆&amp;#39;, &amp;#39;伍&amp;#39;, &amp;#39;陆&amp;#39;, &amp;#39;柒&amp;#39;, &amp;#39;捌&amp;#39;, &amp;#39;玖&amp;#39;]; var unit = [ [&amp;#39;元&amp;#39;, &amp;#39;万&amp;#39;, &amp;#39;亿&amp;#39;],[&amp;#39;&amp;#39;, &amp;#39;拾&amp;#39;, &amp;#39;佰&amp;#39;, &amp;#39;仟&amp;#39;] ]; var head = n &amp;lt; 0 ? &amp;#39;欠&amp;#39; : &amp;#39;&amp;#39;; n = Math.abs(n); var s = &amp;#39;&amp;#39;; for (var i = 0; i &amp;lt; fraction.length; i++) { s += (digit[Math.floor(n * 10 * Math.pow(10, i)) % 10] + fraction[i]).</description>
+    </item>
+    
+    <item>
+      <title>掘金抽奖脚本</title>
+      <link>https://zburu.com/archives/143.html/</link>
+      <pubDate>Wed, 22 Jun 2022 09:01:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/143.html/</guid>
+      <description>分享一个掘金抽奖的油猴脚本，可以一键签到，抽奖，梭哈。
+攒多一点矿石，体验买彩票的感觉。
+(async function () { &amp;lsquo;use strict&amp;rsquo;;
+const { createApp } = PetiteVue; // 不会吧不会吧，不会还有人不知道petite-vue吧
+const root = document.createElement(&amp;lsquo;div&amp;rsquo;); root.class = &amp;lsquo;wx_draw_wrap&amp;rsquo;; root.innerHTML = ` &amp;lt;div v-show=&amp;quot;!popup&amp;quot; class=&amp;ldquo;wx_draw&amp;rdquo; @click=&amp;ldquo;open&amp;rdquo;&amp;gt;掘金抽奖
+&amp;lt;div v-if=&amp;quot;popup&amp;quot; class=&amp;quot;wx_popup&amp;quot;&amp;gt;&amp;lt;div class=&amp;quot;wx_mask&amp;quot; @click=&amp;quot;popup = false&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;wx_main&amp;quot;&amp;gt;&amp;lt;div class=&amp;quot;wx_header&amp;quot;&amp;gt;&amp;lt;div&amp;gt;掘金抽奖&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;wx_score&amp;quot;&amp;gt;当前矿石：{{ score }}&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;wx_body&amp;quot;&amp;gt;&amp;lt;div class=&amp;quot;wx_options&amp;quot;&amp;gt;&amp;lt;div @click=&amp;quot;check_in&amp;quot; v-if=&amp;quot;check_status === -1 || check_status === false&amp;quot;&amp;gt;签到&amp;lt;/div&amp;gt;&amp;lt;div @click=&amp;quot;get_free&amp;quot; v-else&amp;gt;签到成功&amp;lt;/div&amp;gt;&amp;lt;div @click=&amp;quot;draw(5)&amp;quot;&amp;gt;5连抽&amp;lt;/div&amp;gt;&amp;lt;div @click=&amp;quot;draw(10)&amp;quot;&amp;gt;10连抽&amp;lt;/div&amp;gt;&amp;lt;div @click=&amp;quot;draw(undefined)&amp;quot;&amp;gt;梭哈抽奖&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;table cellpadding=&amp;quot;0&amp;quot; cellspacing=&amp;quot;0&amp;quot; border=&amp;quot;0&amp;quot; width=&amp;quot;100%&amp;quot;&amp;gt;&amp;lt;thead&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;th&amp;gt;奖品图片&amp;lt;/th&amp;gt;&amp;lt;th&amp;gt;奖品名称&amp;lt;/th&amp;gt;&amp;lt;th&amp;gt;中奖次数&amp;lt;/th&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/thead&amp;gt;&amp;lt;tbody&amp;gt;&amp;lt;tr v-for=&amp;quot;item in award&amp;quot;&amp;gt;&amp;lt;td&amp;gt;&amp;lt;img :src=&amp;quot;item.</description>
+    </item>
+    
+    <item>
+      <title>typecho 评论回复艾特评论人</title>
+      <link>https://zburu.com/archives/132.html/</link>
+      <pubDate>Tue, 07 Jun 2022 10:35:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/132.html/</guid>
+      <description>typecho 在评论时默认是没有 @ 评论人的功能，可以用代码加一下。
+在 functions.php 中：
+/* * 评论回复时 @ 评论人 */ function get_comment_at($coid) { $db = Typecho_Db::get(); $prow = $db-&amp;gt;fetchRow($db-&amp;gt;select(&amp;#39;parent,status&amp;#39;)-&amp;gt;from(&amp;#39;table.comments&amp;#39;) -&amp;gt;where(&amp;#39;coid = ?&amp;#39;, $coid)); $mail = &amp;#34;&amp;#34;; $parent = @$prow[&amp;#39;parent&amp;#39;]; if ($parent != &amp;#34;0&amp;#34;) { $arow = $db-&amp;gt;fetchRow($db-&amp;gt;select(&amp;#39;author,status,mail&amp;#39;)-&amp;gt;from(&amp;#39;table.comments&amp;#39;) -&amp;gt;where(&amp;#39;coid = ?&amp;#39;, $parent)); @$author = @$arow[&amp;#39;author&amp;#39;]; $mail = @$arow[&amp;#39;mail&amp;#39;]; if(@$author &amp;amp;&amp;amp; $arow[&amp;#39;status&amp;#39;] == &amp;#34;approved&amp;#34;){ if (@$prow[&amp;#39;status&amp;#39;] == &amp;#34;waiting&amp;#34;){ echo &amp;#39;&amp;lt;p class=&amp;#34;commentReview&amp;#34;&amp;gt;（评论审核中）)&amp;lt;/p&amp;gt;&amp;#39;; } echo &amp;#39;&amp;lt;a href=&amp;#34;#comment-&amp;#39; . $parent . &amp;#39;&amp;#34;&amp;gt;@&amp;#39; .</description>
+    </item>
+    
+    <item>
+      <title>宝塔自动备份网站到邮箱教程</title>
+      <link>https://zburu.com/archives/130.html/</link>
+      <pubDate>Wed, 25 May 2022 17:27:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/130.html/</guid>
+      <description>前言 网站经常备份好处就是遇到问题以后可以迅速的恢复，不那么被动，防止信息丢失，操作性很大。虽然搭建一个网站非常容易，但为了应对网络上各种各样的意外情况，避免自己的网站付诸东流，做好网站备份是非常有必要的。
+现在邮箱接收都支持附件文件，将网站文件和数据库文件备份到我们自己的邮箱也是一种很好地备份方式，也防止备份文件丢失。
+邮箱接收附件文件大小，取决于使用的邮箱服务。一般来说个人博客网站源文件，数据库文件不大，常见邮箱服务都是可以使用的。
+下面开始教程，宝塔安装教程可去宝塔官网查看安装教程。
+系统环境：CentOS 7.9.2009 x86_64（其他系统可参考方式，命令安装自行解决）
+宝塔面板：7.9.0
+安装mailx 浏览器登录进入宝塔面板，左侧-》终端。首次使用宝塔终端，需要登录服务器，填写root用户密码后登录。
+在终端中输入以下mailx安装命令，回车安装。
+yum install -y mailx 编辑配置文件 安装完成后，编辑邮箱服务的相关配置文件。 在终端输入以下命令，然后回车进入编辑文件界面。
+vim /etc/mail.rc 使用键盘上下键，找到大约69行位置，按‘i’键输入，添加以下配置。
+set from=发件人@qq.com #发送邮件后显示的邮件发送方 需要修改 set smtp=smtps://smtp.qq.com:465 #SMTP服务器的网址及端口 需要修改 set smtp-auth-user=发件人@qq.com #发送邮箱 需要修改 set smtp-auth-password=邮箱密码/SMTP授权码 #设置的邮箱密码，SMTP授权密码 需要修改 set smtp-auth=login #动作、登录 无需修改 set ssl-verify=ignore #ssl验证忽略 无需修改 set nss-config-dir=/etc/pki/nssdb #证书存放目录 无需修改 请将配置按要求修改为自己所使用的邮箱服务配置。服务器需要开启465端口。
+配置修改完成后，按Esc键，输入:wq回车保存退出编辑界面。
+测试发送邮件 在终端输入发送测试邮件命令，需要修改收件人邮箱，回车执行。
+echo &amp;#34;这是一封测试邮件&amp;#34; | mail -s &amp;#34;邮件主题&amp;#34; 收件人@qq.com 查看邮箱是否收到测试邮件。
+如果发现终端报以下错误（但没有影响收件），没有错误请跳过。
+Error in certificate: Peer&#39;s certificate issuer has been marked as not trusted by the.</description>
+    </item>
+    
+    <item>
+      <title>一个优雅的字体压缩解决方案 ---fonttools</title>
+      <link>https://zburu.com/archives/106.html/</link>
+      <pubDate>Tue, 24 May 2022 14:28:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/106.html/</guid>
+      <description>分享一个 python 的库 &amp;mdash;fonttools，针对字体文件进行处理非常方便。
+下载 需要先在电脑上下载 python 环境，这个就不多说了。
+然后在本地命令行输入：
+pip install fonttools 字体库 本地新建一个文件夹，取名为 fonts ，随意即可。将自己需要压缩整理的字体放在文件夹中，如 OPPOSans.ttf 。 然后建立一个文件取名为 word.txt，这时我们需要找到一个常用字体库，这里我在github分享一个 https://github.com/zburu/cdn/blob/main/font/汉字常用字体.txt ，把里面的内容常用字体复制到 word.txt 文件。 运行 pyftsubset OPPOSans.ttf --text=$(cat word.txt) --no-hinting 我们看一下命令，其中 OPPOSans.ttf 是字体文件，word.txt 是常用字体，我们要将这些字单独分离出来。
+名字都可以按照自己的要求来，但是一定要互相对应。
+在命令行输入即可，运行完成之后，可以在文件夹中看到带有 subset 字样的字体文件，占用空间大大缩小，可以直接拿来使用。</description>
+    </item>
+    
+    <item>
+      <title>分享一款自用的 v2ex 主题样式</title>
+      <link>https://zburu.com/archives/128.html/</link>
+      <pubDate>Thu, 12 May 2022 13:46:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/128.html/</guid>
+      <description>起因是因为觉得 v2ex 网站主题略有拥挤，阅读体验不好，而正好网站支持自定义 css，所以就在参考其他人的基础上，修改了一套比较美观的样式。
+本来是自用的，但是看到有人发帖分享主题，我也索性将它分享出来了。
+v2ex 帖子: https://www.v2ex.com/t/851735
+Github 仓库: https://github.com/zburu/v2ex_theme
+不想看文档可以直接用下面的链接。
+/* 通过 jsd 加速 github 文件 */ @import &amp;#34;https://cdn.jsdelivr.net/gh/zburu/v2ex_theme/v2ex_theme.min.css&amp;#34;; /* 放在我自己服务器上的链接 */ @import &amp;#34;https://cdn.zburu.com/list/v2ex_theme.css&amp;#34;; </description>
+    </item>
+    
+    <item>
+      <title>docker部署思源笔记</title>
+      <link>https://zburu.com/archives/124.html/</link>
+      <pubDate>Thu, 05 May 2022 09:33:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/124.html/</guid>
+      <description> 文章废弃
+部署 docker run --name siyuan -itd -p 6806:6806 -v /opt/my_siyuan_path:/opt/siyuan --restart always b3log/siyuan 备份 sudo su # 查看容器列表 docker ps -a # 制作备份 docker commit -p 7409ce6aae7b siyuan_backup # 其中 403e6db0c 是容器id, jenkins_backup是备份名称 # 查看备份是否成功 docker images # 将镜像制作成文件 docker save -o [filename] [image] docker save -o siyuan_backup.tar siyuan_backup ls # 在 /home/ubuntu/ 中可以看到制作后的压缩包 </description>
+    </item>
+    
+    <item>
+      <title>浏览器收藏夹一键填写博客评论信息</title>
+      <link>https://zburu.com/archives/120.html/</link>
+      <pubDate>Tue, 26 Apr 2022 14:08:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/120.html/</guid>
+      <description>先点击收藏一个页面，然后右键它，选择修改，在网址输入框复制下面的js代码，就可以一键填入了。
+将其中的昵称，邮箱，网址修改成自己的信息。
+目前支持绝大多数主流博客平台和系统，如果发现没有起作用，可以在下面代码里面修改增加一下input的属性。
+如果你不会修改的话，可以在评论区留言没有起作用的网站，我可以更新代码。
+javascript:void function(){var lauthor=[&amp;#34;#author&amp;#34;,&amp;#34;input[name=&amp;#39;comname&amp;#39;]&amp;#34;,&amp;#34;#inpName&amp;#34;,&amp;#34;input[name=&amp;#39;author&amp;#39;]&amp;#34;,&amp;#34;#ds-dialog-name&amp;#34;,&amp;#34;input[name=&amp;#39;wc_name&amp;#39;]&amp;#34;, &amp;#34;input[name=&amp;#39;nick&amp;#39;]&amp;#34;,],lmail=[&amp;#34;#mail&amp;#34;,&amp;#34;#email&amp;#34;,&amp;#34;input[name=&amp;#39;commail&amp;#39;]&amp;#34;,&amp;#34;#inpEmail&amp;#34;,&amp;#34;input[name=&amp;#39;email&amp;#39;]&amp;#34;,&amp;#34;#ds-dialog-email&amp;#34;,&amp;#34;input[name=&amp;#39;wc_email&amp;#39;]&amp;#34;,&amp;#34;input[name=&amp;#39;mail&amp;#39;]&amp;#34;,],lurl=[&amp;#34;#url&amp;#34;,&amp;#34;input[name=&amp;#39;comurl&amp;#39;]&amp;#34;,&amp;#34;#inpHomePage&amp;#34;,&amp;#34;#ds-dialog-url&amp;#34;,&amp;#34;input[name=&amp;#39;url&amp;#39;]&amp;#34;,&amp;#34;input[name=&amp;#39;wc_website&amp;#39;]&amp;#34;,&amp;#34;input[name=&amp;#39;link&amp;#39;]&amp;#34;,];for(i=0;i&amp;lt;lauthor.length;i++){var author=document.querySelector(lauthor[i]);if(author!=null){author.value=&amp;#39;子舒&amp;#39;;break}}for(j=0;j&amp;lt;lmail.length;j++){var mail=document.querySelector(lmail[j]);if(mail!=null){mail.value=&amp;#39;shuxhan@163.com&amp;#39;;break}}for(k=0;k&amp;lt;lurl.length;k++){var url=document.querySelector(lurl[k]);if(url!=null){url.value=&amp;#39;https://imhan.cn&amp;#39;;break}}return!1}() </description>
+    </item>
+    
+    <item>
+      <title>在宝塔中使用青龙面板代挂京豆</title>
+      <link>https://zburu.com/archives/116.html/</link>
+      <pubDate>Fri, 15 Apr 2022 13:57:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/116.html/</guid>
+      <description>如题所述，想要在闲置的服务器中跑一些服务，青龙面板代挂京豆现存很多开源的脚本，安全性已经经过很多人验证，可以放心使用。
+因此我也安排了一个脚本，成功部署之后，就写这篇不算教程的笔记来记录一下整个过程。
+Github: https://github.com/6dylan6/jdpro 作者会更新一些部署的指令，如果安装不成功可以对照文档中的指令。
+拉取镜像 我是在宝塔中运行服务的，也是非常简单方便。至于怎么安装宝塔，这里就不介绍了，之前写过一篇关于部署宝塔面板的教程，可以点击站内搜索。
+如何安装宝塔面板？
+需要买服务器可以 点击链接在腾讯云购买服务器有优惠哦~ 不嫖白不嫖，省个十几二十块钱不香吗？
+先在软件商店中下载安装一个 Docker管理器 ，之后点击 设置 &amp;gt; 镜像管理 &amp;gt; 镜像获取。
+然后输入 qinglong 进行搜索，选择第一个链接然后拉取。
+创建容器 点击创建容器。
+镜像就选择刚才拉取的那个，端口映射中的容器端口和服务器端口都填入5700，选择开机自启动，其他的都不用填，点击提交。
+服务器的防火墙放行5700端口。
+部署脚本 在浏览器输入 ip:5700 ，ip 地址就是你的服务器ip，会弹出一个青龙面板初始化配置，按照提示点击安装即可，没有特别复杂的。
+都是用户名密码通知设置等，我选择的是邮箱通知。
+安装完成后，在首页右上角点击新建任务，里面的内容直接复制即可。
+名称随便填 命令填写 ql repo https://js.dayplus.xyz/https://github.com/6dylan6/jdpro.git &amp;#34;jd_|jx_|jddj_&amp;#34; &amp;#34;backUp&amp;#34; &amp;#34;^jd[^_]|USER|JD|function|sendNotify&amp;#34; 定时规则填写 0 0 0 * * * 点击确定即可。
+完成之后，什么都先不要点。
+环境变量 接下来来到面板左侧导航的 环境变量，点击新建变量，这里就需要京东账号的cookie值了，浏览器打开 m.jd.com ，登录账号，最后调成手机模式。
+然后在右侧找到 network ，点击搜索js文件，找到前缀为 biz.json?..... 的文件，右侧会显示一个 cookie
+找到其中的 pt_key与pt_pin ，很长看仔细。一起复制到新建变量的值里面，上面的名称输入 JD_COOKIE，最后点击确定。
+运行 最后回到定时任务，在分页的最后一页，找到最开始的那个脚本，单击允许，就会一直转圈在运行中，等到运行结束之后，选择禁用它，以后会始终保定时运行的。
+最后为了安全起见，把前面的脚本中带有 加密 二字的任务全部禁用。</description>
+    </item>
+    
+    <item>
+      <title>在nuxt中实现图片放大预览功能</title>
+      <link>https://zburu.com/archives/112.html/</link>
+      <pubDate>Fri, 01 Apr 2022 13:28:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/112.html/</guid>
+      <description>v-viewer 基于vue的一个插件，可以实现图片放大，缩小，旋转，拖拽，预览等各种功能，效果还是很棒的。这是我在Github摸鱼时发现的一个仓库，感觉很有用，就分享一下使用过程。
+Github: https://github.com/mirari/v-viewer
+1.安装 npm install v-viewer 2.用法 在 plugins 中新建 viewer.js 文件。
+// /plugins/viewer.js import Vue from &amp;#39;vue&amp;#39;; import Viewer from &amp;#39;v-viewer&amp;#39; import &amp;#39;viewerjs/dist/viewer.css&amp;#39; Vue.use(Viewer) Viewer.setDefaults({ Options: { &amp;#39;inline&amp;#39;: true, &amp;#39;button&amp;#39;: true, &amp;#39;navbar&amp;#39;: true, &amp;#39;title&amp;#39;: true, &amp;#39;toolbar&amp;#39;: true, &amp;#39;tooltip&amp;#39;: true, &amp;#39;movable&amp;#39;: true, &amp;#39;zoomable&amp;#39;: true, &amp;#39;rotatable&amp;#39;: true, &amp;#39;scalable&amp;#39;: true, &amp;#39;transition&amp;#39;: true, &amp;#39;fullscreen&amp;#39;: true, &amp;#39;keyboard&amp;#39;: true, &amp;#39;url&amp;#39;: &amp;#39;data-source&amp;#39; } }) 然后再 nuxt.config.js 中引入。
+// nuxt.config.js plugins: [ // ... { src: &amp;#39;@/plugins/viewer&amp;#39;, ssr: false } ], 最后在使用的页面中引入。</description>
+    </item>
+    
+    <item>
+      <title>在vue中制作canvas波浪图</title>
+      <link>https://zburu.com/archives/111.html/</link>
+      <pubDate>Tue, 29 Mar 2022 13:08:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/111.html/</guid>
+      <description>新建组件 Canvas.vue 。
+// @/components/Canvas.vue &amp;lt;template&amp;gt; &amp;lt;div :style=&amp;#34;{ height: waveAllHeight + &amp;#39;px&amp;#39;, background: bgColor }&amp;#34; class=&amp;#34;wave&amp;#34;&amp;gt; &amp;lt;canvas id=&amp;#34;wave1&amp;#34;&amp;gt;&amp;lt;/canvas&amp;gt; &amp;lt;canvas id=&amp;#34;wave2&amp;#34;&amp;gt;&amp;lt;/canvas&amp;gt; &amp;lt;canvas id=&amp;#34;wave3&amp;#34;&amp;gt;&amp;lt;/canvas&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/template&amp;gt; &amp;lt;script&amp;gt; export default { name: &amp;#34;Canvas&amp;#34;, props: { bgColor: { default: &amp;#34;none&amp;#34;, }, // 背景色 waveAllHeight: { default: 160 }, // 波浪的整体高度 waveCount: { default: 2 }, // 波峰个数 waveHeight: { default: 50 }, // 波浪起伏高度 // 波浪颜色 waveColor: { default () { return [ &amp;#34;#f3f3f3&amp;#34;, &amp;#34;#f3f3f3&amp;#34;, &amp;#34;#f3f3f3&amp;#34;, ]; }, }, // 波浪速率 waveTime: { default () { return [4000, 4000, 4000]; }, }, }, data () { return {}; }, mounted () { this.</description>
+    </item>
+    
+    <item>
+      <title>增加了站内搜索功能</title>
+      <link>https://zburu.com/archives/110.html/</link>
+      <pubDate>Fri, 25 Mar 2022 11:43:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/110.html/</guid>
+      <description>如题，我花了一个多小时，参照nuxt文档，把搜索功能给加上了，url地址 /search ，记录一下相关代码。
+可以选择放在 components/&amp;lt;Search /&amp;gt; 里面，然后引入到 head 模板，也可以单独创建一个页面，我选择的是后者。
+新建一个页面模板 /pages/search.vue 。
+&amp;lt;template&amp;gt; &amp;lt;div&amp;gt; &amp;lt;HeaderMe /&amp;gt; &amp;lt;div class=&amp;#34;wrapper&amp;#34;&amp;gt; &amp;lt;PageSidebar /&amp;gt; &amp;lt;div class=&amp;#34;archive&amp;#34;&amp;gt; &amp;lt;h2&amp;gt;{{ article.attributes.title }}&amp;lt;/h2&amp;gt; &amp;lt;div class=&amp;#34;article-content markdown-body&amp;#34; v-html=&amp;#34;article.html&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;search&amp;#34;&amp;gt; &amp;lt;input v-model=&amp;#34;searchQuery&amp;#34; type=&amp;#34;search&amp;#34; autocomplete=&amp;#34;off&amp;#34; placeholder=&amp;#34;文章关键词&amp;#34; /&amp;gt; &amp;lt;ul v-if=&amp;#34;articles.length&amp;#34;&amp;gt; &amp;lt;li v-for=&amp;#34;article of articles&amp;#34; :key=&amp;#34;article.slug&amp;#34;&amp;gt; &amp;lt;NuxtLink :to=&amp;#34;article.path+&amp;#39;/&amp;#39;&amp;#34;&amp;gt;{{ article.title }}&amp;lt;/NuxtLink&amp;gt; &amp;lt;!-- 在url地址后加一个/，配置全站的url格式，防止错乱 --&amp;gt; &amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/template&amp;gt; &amp;lt;script&amp;gt; import HeaderMe from &amp;#34;@/components/HeaderMe&amp;#34;; import PageSidebar from &amp;#39;@/components/PageSidebar&amp;#39;; export default { components: { HeaderMe, PageSidebar }, data () { return { searchQuery: &amp;#39;&amp;#39;, articles: [] } }, async asyncData () { // 调用 search.</description>
+    </item>
+    
+    <item>
+      <title>sql中时间戳转日期</title>
+      <link>https://zburu.com/archives/107.html/</link>
+      <pubDate>Thu, 10 Mar 2022 17:33:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/107.html/</guid>
+      <description>需求: 我将博客和 typecho 后台结合起来，打算做一个在线说说的功能，在 typecho 中输入内容，然后调用接口，实现在我的博客查看说说功能的功能。是不是有点绕？我也这么觉得，但是折腾一下也挺好的。
+typecho 导出的数据默认是时间戳格式，那我在前端调用的时候就很麻烦，所以选择在 sql 查询时直接转换，created 是表里面的参数。
+// 时间转换语句 FROM_UNIXTIME(created) // 数据库查询语句 $sql = &amp;#34;select FROM_UNIXTIME(created),text from ... order by created desc&amp;#34;; 这里导出的数据就是下面这个样子。
+所以使用 as 参数将前面的语句自定义一下。
+$sql = &amp;#34;select FROM_UNIXTIME(created) as created,text from ... order by created desc&amp;#34;; 成功导出，接下来调用就很简单了。
+多谢梦繁星的指导。</description>
+    </item>
+    
+    <item>
+      <title>【笔记】使用php写接口文件调用数据</title>
+      <link>https://zburu.com/archives/103.html/</link>
+      <pubDate>Tue, 22 Feb 2022 17:12:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/103.html/</guid>
+      <description>如何使用 php 写一个接口，然后将数据以 json 文件格式调用。
+&amp;lt;?php header(&amp;#39;Content-Type:application/json; charset=utf-8&amp;#39;); header(&amp;#34;Access-Control-Allow-Origin:*&amp;#34;); $servername = &amp;#34;localhost&amp;#34;; $username = &amp;#34;数据库账号&amp;#34;; $password = &amp;#34;数据库密码&amp;#34;; $dbname = &amp;#34;数据库名称&amp;#34;; // 创建连接 $conn = new mysqli($servername, $username, $password, $dbname); // 检测连接 if ($conn-&amp;gt;connect_error) { die(&amp;#34;连接失败: &amp;#34; . $conn-&amp;gt;connect_error); } $sql = &amp;#34;select slug,title,created,text from typecho_contents&amp;#34;; $result = $conn-&amp;gt;query($sql); if ($result-&amp;gt;num_rows &amp;gt; 0) { // 输出数据 while($row = $result-&amp;gt;fetch_assoc()) { $data[]=$row; } $json = json_encode($data,JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);//把数据转换为JSON数据. exit($json) ; } else { echo &amp;#34;未查询到结果！&amp;#34;; } $conn-&amp;gt;close(); ?</description>
+    </item>
+    
+    <item>
+      <title>Nuxt.js如何部署Artalk和遇到的问题</title>
+      <link>https://zburu.com/archives/102.html/</link>
+      <pubDate>Fri, 18 Feb 2022 13:48:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/102.html/</guid>
+      <description>花了两天时间，终于把 Artalk 部署好了，一款数据自托管带后端的评论程序，非常适合我。这篇文章就介绍一下我部署的流程，以及我在部署过程中遇到的一些问题，将它记录一下，以便之后研究，顺便对使用 Nuxt.js 搭建博客的伙伴提供一些参考价值。
+Artalk 地址: https://artalk.js.org/
+这篇文章我将分为三个部分，后端部署、前端部署、问题研究。
+1.后端部署 官方有两个版本，注意分辨，php 和 go，对应的是不同的仓库，目前官方文档写的默认都是 go 语言开发的。
+ArtalkGo仓库:https://github.com/ArtalkJS/ArtalkGo
+我使用的也是 go 版本，功能和优化都比较好。
+docker构建+宝塔 我的服务器是 Ubuntu 20.04，其他版本类似，没有很大不同。
+首先，使用ssh连接服务器。
+sudo su # 启用sudo模式 cd /www/wwwroot/ # 进入站点目录 mkdir ArtalkGo cd ArtalkGo # 为 ArtalkGo 创建一个目录 curl -L https://raw.githubusercontent.com/ArtalkJS/ArtalkGo/master/artalk-go.example.yml &amp;gt; conf.yml # 下载配置文件模版 到这里之后，官方说的是用 vim conf.yml 进入配置文件，修改参数然后配置。我不是很建议，因为用着并不是那么顺手（因为我菜），我建议直接到达 /www/wwwroot/ArtalkGo 目录下修改 conf.yml 文件，文本模式操作起来更顺手。
+里面的配置基本都是站点名称，管理员，邮箱等设置，没什么大问题。除此之外，端口等参数都不用碰，不然会报错。
+配置完文件之后直接保存就行了。
+在宝塔插件里面下载 Docker管理器，点击镜像管理。
+然后在镜像名称输入 artalk/artalk-go 点击获取镜像即可，大概两分钟就下载结束了。
+然后回到 ssh 连接，新建 docker 容器。
+docker run -d \ --name artalk-go \ -p 0.</description>
+    </item>
+    
+    <item>
+      <title>如何使用谷歌插件为网站注入代码</title>
+      <link>https://zburu.com/archives/100.html/</link>
+      <pubDate>Wed, 26 Jan 2022 14:20:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/100.html/</guid>
+      <description>在浏览网站时，受限于网站的缺陷，我们通常都会写一些脚本和插件来进行扩展，常规方法有油猴和谷歌插件两种，油猴也是一种插件，使用起来很方便，今天要讲的是如何通过谷歌插件进行注入。
+按照结构生成下面几个文件
+|chrome-plugin|---manifest.json|---script.js|---favicon.ico 在 manifest.json 中写入代码，这是一个入口文件，声明了插件的基本信息。
+default_icon 是插件的图标 matches 是使用的网站，在该域名下的网站才会生效。注意后面要加上 /* js 是引入的文件 // manifest.json { &amp;#34;name&amp;#34;: &amp;#34;Welcome&amp;#34;, &amp;#34;manifest_version&amp;#34;: 2, &amp;#34;version&amp;#34;: &amp;#34;1.0&amp;#34;, &amp;#34;description&amp;#34;: &amp;#34;扩展插件&amp;#34;, &amp;#34;browser_action&amp;#34;: { &amp;#34;default_icon&amp;#34;: &amp;#34;favicon.ico&amp;#34; }, &amp;#34;content_scripts&amp;#34;: [ { &amp;#34;matches&amp;#34;: [&amp;#34;https://github.com/*&amp;#34;], &amp;#34;js&amp;#34;: [script.js&amp;#34;] } ] } 然后在 script.js 中随便插入一段代码即可。
+// script.js console.log(&amp;#39;hello, world!&amp;#39;) 这样一个基本的插件就构成了，下一步就是上传。但是如果在打包生成 crx 文件后，上传 crx 文件会报错，显示危险，因为没有上架到谷歌商店。所以我们不用打包，直接加载本地文件。
+然后选择写好的文件夹
+点击确定上传即可，这样一个插件上传的步骤就完成了。我们可以学习相关技术，写上一些自己需要的功能，这也是 Chrome 浏览器这么受欢迎的原因之一，集成了大量的插件。
+如果你想上传到商店出售或者免费分享，都是需要注册开发者账号的。缴纳5美元费用之后就可以上传了，审核过后就可以在商店列表看到你的插件。</description>
+    </item>
+    
+    <item>
+      <title>使用Love主题的数据库</title>
+      <link>https://zburu.com/archives/101.html/</link>
+      <pubDate>Tue, 25 Jan 2022 11:39:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/101.html/</guid>
+      <description>基于typecho中的LOVE主题备份的一个数据库文件，因为需要写一百个文章，将名字一一打字进去，非常耗时间和精力，所以我做了这个数据库，可以直接使用。
+作者没有贴Github地址，就直接指向主题列表说明了，这是主题地址
+数据库的仓库地址: https://github.com/zburu/love-sql
+演示网站: https://love.zburu.cn
+我花了点时间将一百件事的数据写进数据库，然后导出它得到这个文件，如果使用了LOVE恋爱主题，可以下载这个 love.sql。
+上传到服务器中 /www/backup/database 文件下，然后在数据库中导入 sql 文件。
+进入网站就可以直接显示一百件事了。</description>
+    </item>
+    
+    <item>
+      <title>Nuxt 项目中如何引入百度统计？</title>
+      <link>https://zburu.com/archives/96.html/</link>
+      <pubDate>Mon, 17 Jan 2022 15:49:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/96.html/</guid>
+      <description>在部署一个网站之后，我们最关心的事情无异于是访问量，以及对它的分析。国内的百度统计是一个不错的选择，基本的功能都是免费的。
+只需要在head中引入一串 javascript 代码即可。
+&amp;lt;!-- &amp;lt;script&amp;gt; var _hmt = _hmt || []; (function() { var hm = document.createElement(&amp;#34;script&amp;#34;); hm.src = &amp;#34;https://hm.baidu.com/hm.js?xxxxxxxxxxxxxxxxxxx&amp;#34;; var s = document.getElementsByTagName(&amp;#34;script&amp;#34;)[0]; s.parentNode.insertBefore(hm, s); })(); &amp;lt;/script&amp;gt; --&amp;gt; 上面是百度提供的统计代码，需要放在 &amp;lt;head&amp;gt;&amp;lt;/head&amp;gt;中。
+但是在nuxt中，没有传统的 &amp;lt;head&amp;gt;&amp;lt;/head&amp;gt; 。所以要对他进行一些处理。
+1. 首先在根目录下 /plugins 新建一个文件 baidu.js // /plugins/baidu.js export default ({app: {router}, store}) =&amp;gt; { /* 每次路由变更时进行pv统计 */ router.afterEach((to, from) =&amp;gt; { /* 告诉增加一个PV */ try { window._hmt = window._hmt || [] window._hmt.push([&amp;#39;_trackPageview&amp;#39;, to.fullPath]) } catch (e) { } }) } 2.</description>
+    </item>
+    
+    <item>
+      <title>typecho 更换 gravatar 头像源</title>
+      <link>https://zburu.com/archives/92.html/</link>
+      <pubDate>Tue, 21 Dec 2021 10:11:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/92.html/</guid>
+      <description>找到根目录下 config.inc.php 文件，在最前面加入下面的代码。
+define(&amp;#39;__TYPECHO_GRAVATAR_PREFIX__&amp;#39;, &amp;#39;https://sdn.geekzu.org/avatar/&amp;#39;); 其中 https://sdn.geekzu.org/avatar/ 是一个国内源链接，这个是我目前找到的比较稳定的源。
+如果这个源不能用了，可以更换其他的源，直接搜其他的相关国内源就可以了。
+如果你有其他可以用的头像源，欢迎留言。
+https://cravatar.cn/avatar/ https://sdn.geekzu.org/avatar/</description>
+    </item>
+    
+    <item>
+      <title>实现图片灯箱功能</title>
+      <link>https://zburu.com/archives/88.html/</link>
+      <pubDate>Tue, 07 Dec 2021 16:55:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/88.html/</guid>
+      <description>写博客必不可少的一个功能就是图片灯箱功能，也就是点击放大查看。但是不同程序的博客所使用的插件也都不一样，我这里研究出一套可以满足绝大部分程序的灯箱插件。已经测试过hexo, hugo, typecho 均无问题。
+引入文件 首先引入我们关键的两个文件分别是 zoom.css 和 zoom.js 。
+&amp;lt;!-- head头部 --&amp;gt; &amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;https://cdn.imhan.cn/list/zoom.css&amp;#34;&amp;gt; &amp;lt;!-- body底部 --&amp;gt; &amp;lt;!-- 如果已经有jq文件了，就不要引入jquery --&amp;gt; &amp;lt;script src=&amp;#34;https://cdn.imhan.cn/list/jquery3.6.0.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;!--图片灯箱--&amp;gt; &amp;lt;img src=&amp;#34;&amp;#34; alt=&amp;#34;&amp;#34; class=&amp;#34;bigimg&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;mask&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;script src=&amp;#34;https://cdn.imhan.cn/list/zoom.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; 因为这个文件是放在我自己服务器上的，所以不敢保证以后还是这个路径，建议在浏览器打开，然后把里面的代码复制到本地使用。
+调用js 然后我们需要给图片一个类名，以及一个父元素盒子，同样也可以使用 jq 来完成。
+这里的 .post-content 正文的类名，如果你是别的类名，可以直接将 .post-content 替换掉。
+$(function(){ $(&amp;#39;.post-content img&amp;#39;).addClass(&amp;#39;smallimg&amp;#39;) $(&amp;#39;.post-content img&amp;#39;).wrap(&amp;#39;&amp;lt;div class=&amp;#34;imgbox&amp;#34;&amp;gt;&amp;lt;/div&amp;gt;&amp;#39;) }) 接着我们需要对插件进行初始化，直接在刚才的代码下面写入。
+$(function(){ $(&amp;#39;.post-content img&amp;#39;).addClass(&amp;#39;smallimg&amp;#39;) $(&amp;#39;.post-content img&amp;#39;).wrap(&amp;#39;&amp;lt;div class=&amp;#34;imgbox&amp;#34;&amp;gt;&amp;lt;/div&amp;gt;&amp;#39;) /* smallimg // 小图 bigimg //点击放大的图片 mask //黑色遮罩 */ var obj = new zoom(&amp;#39;mask&amp;#39;, &amp;#39;bigimg&amp;#39;, &amp;#39;smallimg&amp;#39;); obj.</description>
+    </item>
+    
+    <item>
+      <title>揭秘箭头函数</title>
+      <link>https://zburu.com/archives/82.html/</link>
+      <pubDate>Fri, 05 Nov 2021 12:16:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/82.html/</guid>
+      <description>英文地址: https://javascript.plainenglish.io/demystifying-javascript-arrow-functions-7b2a0908a2b3
+通过掘金翻译计划活动进行翻译
+箭头函数是函数表达式的替代方法，但在语法上有所不同，不能在所有情况下使用。如果您还没有阅读 JavaScript 中的函数表达式，我建议您在继续阅读之前先阅读这篇文章。
+现在，让我们试着从语法、执行、作用域和提升以及代码示例方面来理解箭头函数。
+1. 语法 const arrowFunctionSyntax = () =&amp;gt; { console.log(&amp;#39;Hi, I am an arrow function&amp;#39;); }; arrowFunctionSyntax(); 在上面的代码示例中，我们可以看到箭头函数类似于函数表达式，因为它们被赋值为变量。 主要区别在于函数的编写方式。 以下是我们可以根据其语法从上述代码中得出的观察结果：
+它不包含 function 关键字。 它没有 函数名 ，这意味着这些是匿名函数。 引入了箭头 =&amp;gt; 符号。 const arrowFunctionWithOneParam = (number) =&amp;gt; number + 1; const arrowFunctionWithMultipleParams = (numberOne, numberTwo) =&amp;gt; { let sum = numberOne + numberTwo; return sum; }; console.log(arrowFunctionWithOneParam(5)); console.log(arrowFunctionWithMultipleParams(5, 6)); 如果我们同时观察 arrowFunctionWithOneParam 和 arrowFunctionWithMultipleParams，我们可以发现三者的不同&amp;mdash;括号 ()、块 {} 和 return 关键字的使用。 根据箭头函数的语法，如果函数只接受一个参数，可以忽略括号()。如果函数只包含一条语句，则可以忽略块{}，最后其实也可以忽略return ，如果函数只包含一个语句。</description>
+    </item>
+    
+    <item>
+      <title>js奇怪的知识--console.table</title>
+      <link>https://zburu.com/archives/81.html/</link>
+      <pubDate>Thu, 04 Nov 2021 14:16:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/81.html/</guid>
+      <description>这个属性对我来说还真有些陌生，无意中发现的，查询过 MDN 之后听得挺有意思的，就记录一下。
+根据字面意思就是“将数据以表格的形式显示”。这个方法需要一个必须参数 data，data 必须是一个数组或者是一个对象；还可以使用一个可选参数 columns。
+表格的第一列是 index。如果数据 data 是一个数组，那么这一列的单元格的值就是数组的索引。 如果数据是一个对象，那么它们的值就是各对象的属性名称。 注意（在 FireFox 中）console.table 被限制为只显示1000行（第一行是被标记的索引）。
+1.直接输出 直接进行尝试，在控制台输出 console.table
+console.table([&amp;#34;双十一&amp;#34;, &amp;#34;双十二&amp;#34;, &amp;#34;双十三&amp;#34;]); PS E:\demo&amp;gt; node 1.js ┌─────────┬──────────┐ │ (index) │ Values │ ├─────────┼──────────┤ │ 1 │ &amp;#39;双十二&amp;#39; │ │ 2 │ &amp;#39;双十三&amp;#39; │ └─────────┴──────────┘ 复制下来怪怪的，直接上个图，就是下面这个样子。
+2.定义对象进行输出 同样也可以定义一个对象然后输出
+function Fun(title, date) { this.title = title this.date = date } const one = new Fun(&amp;#34;双十一&amp;#34;, &amp;#34;11.11&amp;#34;) const two = new Fun(&amp;#34;双十二&amp;#34;, &amp;#34;12.12&amp;#34;) const three = new Fun(&amp;#34;双十三&amp;#34;, &amp;#34;你是傻子吗，没有13月&amp;#34;) console.</description>
+    </item>
+    
+    <item>
+      <title>通过 getTimezoneOffset() 方法判断当前时区是否为夏令时</title>
+      <link>https://zburu.com/archives/80.html/</link>
+      <pubDate>Fri, 22 Oct 2021 11:16:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/80.html/</guid>
+      <description>getTimezoneOffset() 方法 方法返回 UTC 时间和本地时间之间的时差，以分钟为单位。
+世界协调时间 (UTC) 是世界时间标准设定的时间, UTC 时间与 GMT 时间（格林威治时间）相同。
+测一下我所在时区和标准时区的时间差
+function myDate () { var d = new Date(); var n = d.getTimezoneOffset(); console.log(n) } myDate(); // PS E:\demo&amp;gt; node 1.js // -480 也就是 480分钟（8个小时），北京时间是东八区，刚好与格林威治时间相差8个小时，这说明 getTimezoneOffset() 方法是很有效的。
+接下来利用这个方法，判断一下当前时区是否为夏令时。
+const time1 = new Date(2021, 0, 1); const time2 = new Date(2021, 6, 1); if (time1.getTimezoneOffset() != time2.getTimezoneOffset()) { console.log(&amp;#39;夏令时&amp;#39;); } else { console.log(&amp;#39;非夏令时&amp;#39;); } // PS E:\demo&amp;gt; node 1.</description>
+    </item>
+    
+    <item>
+      <title>使用js随机生成背景颜色</title>
+      <link>https://zburu.com/archives/78.html/</link>
+      <pubDate>Wed, 29 Sep 2021 13:15:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/78.html/</guid>
+      <description>先写一个简单的 html 页面出来
+&amp;lt;style&amp;gt; /* ... */ &amp;lt;/style&amp;gt; &amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;html&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;css&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;js&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; 通过 Math.random() 属性可以随机生成一个数字，然后通过转化为十六进制的方法进行处理，下面就是随机生成 6 位数字的代码，并进行转化的代码。
+const randomHex = () =&amp;gt; `#${Math.floor(Math.random() * 0xffffff).toString(16).padEnd(6, &amp;#34;0&amp;#34;)}`; 可以在控制台输出看一下结果，随机生成了一个结果 #62113b。
+接下来就需要将这个颜色传给上面的 li 标签，首先需要将所有的 li 遍历然后生成一个数组，可以使用 for 循环进行遍历。
+var arr = document.getElementsByTagName(&amp;#39;li&amp;#39;), temp = []; for (var i = 0; i &amp;lt; arr.length; i++) { temp.push(arr[i].innerHTML); } 然后再对数组进行循环处理，每个 li 标签要要运行一遍随机生成颜色，并且传给自身。同样也是通过 for 循环进行操作。
+var li = document.getElementsByTagName(&amp;#34;li&amp;#34;); for (var i = 0; i &amp;lt; li.</description>
+    </item>
+    
+    <item>
+      <title>hugo 如何使用 Cusdis ?</title>
+      <link>https://zburu.com/archives/77.html/</link>
+      <pubDate>Thu, 16 Sep 2021 13:14:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/77.html/</guid>
+      <description>Cusdis 是一个界面清爽、注重隐私的轻量级 (~5kb gzip) 评论系统，可以很方便地与 React、Vue 或其他博客系统结合，并且还提供了一个后台来管理所有的评论。
+由于 Cusdis 自称是 Disqus 的替代方案，因此它还支持一键从 Disqus 导入、支持邮件通知等功能。
+官方地址: https://cusdis.com/
+他通常是用于静态博客的一个第三方评论系统，但是官方文档没有提供如何在 hugo 中使用的参数，我也是报错了多次才琢磨出来。
+1. 本地部署 根据提示，注册账号，然后 Add website ，建立一个仓库。
+进入它，然后点击 setting。
+Embed Code 会提供几行代码以及一些 api,复制他们。
+data-app-id 是注册时自动生成的，注意保密，每个人都不一样。
+&amp;lt;div id=&amp;#34;cusdis_thread&amp;#34; data-host=&amp;#34;https://cusdis.com&amp;#34; data-app-id=&amp;#34;xxxxxxxxx&amp;#34; data-page-id=&amp;#34;{{ PAGE_ID }}&amp;#34; data-page-url=&amp;#34;{{ PAGE_URL }}&amp;#34; data-page-title=&amp;#34;{{ PAGE_TITLE }}&amp;#34; &amp;gt;&amp;lt;/div&amp;gt; &amp;lt;script async defer src=&amp;#34;https://cusdis.com/js/cusdis.es.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; 将这些代码复制到本地主题的 comments.html 文件内（就是评论的那个模块，每个主题或许都不一样，注意分辨）。
+这个时候如果你 hugo server 基本都会报错，因为没有修改 {{ PAGE_ID }} 等内容，这不是 hugo 官方提供的参数，按照我下面的格式，将 id, url, title 重写一下即可。
+&amp;lt;div id=&amp;#34;cusdis_thread&amp;#34; data-host=&amp;#34;https://cusdis.</description>
+    </item>
+    
+    <item>
+      <title>使用jq做一个数字递增效果</title>
+      <link>https://zburu.com/archives/76.html/</link>
+      <pubDate>Tue, 14 Sep 2021 15:42:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/76.html/</guid>
+      <description>数字递增，顾名思义就是数字不断增加，数字递增的效果就是要一定时间内，让数字有一个增加的特效，一般用于强调某个内容。
+用 jquery 也很好处理，大概就是下面这些。
+data-to 属性代表最后想要递增到的数值 data-speed 代表数值想要递增的过程时间 class=&amp;quot;num-ber&amp;quot; 和 id=&amp;quot;count-number&amp;quot; 按照这个填入。
+&amp;lt;p&amp;gt; &amp;lt;span class=&amp;#34;num-ber&amp;#34; id=&amp;#34;count-number&amp;#34; data-to=&amp;#34;40&amp;#34; data-speed=&amp;#34;1000&amp;#34;&amp;gt;&amp;lt;/span&amp;gt;+ &amp;lt;/p&amp;gt; 引入 jquery 之后再添加下面的 js 代码。
+$.fn.countTo = function (a) { a = a || {}; return $(this).each(function () { var c = $.extend({}, $.fn.countTo.defaults, { from: $(this).data(&amp;#34;from&amp;#34;), to: $(this).data(&amp;#34;to&amp;#34;), speed: $(this).data(&amp;#34;speed&amp;#34;), refreshInterval: $(this).data(&amp;#34;refresh-interval&amp;#34;), decimals: $(this).data(&amp;#34;decimals&amp;#34;) }, a); var h = Math.ceil(c.speed / c.refreshInterval), i = (c.to - c.from) / h; var j = this, f = $(this), e = 0, g = c.</description>
+    </item>
+    
+    <item>
+      <title>npm install 报错和取消本地代理的问题</title>
+      <link>https://zburu.com/archives/75.html/</link>
+      <pubDate>Thu, 19 Aug 2021 11:15:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/75.html/</guid>
+      <description>npm install下载依赖包的时候出现下面错误，请求失败。
+npm ERR! FetchError: request to https://registry.npm.taobao.org/cnpm failed, reason: connect ECONNREFUSED 127.0.0.1:1181 调试过后发现是本地代理的问题，取消它。
+npm config delete proxy npm config delete https-proxy npm install 成功运行，完毕。</description>
+    </item>
+    
+    <item>
+      <title>关于我为什么要写博客？</title>
+      <link>https://zburu.com/archives/74.html/</link>
+      <pubDate>Wed, 21 Jul 2021 11:16:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/74.html/</guid>
+      <description>关于这个博客的构成 这个就放在最前面吗，算是起到一个统计整理的作用。
+博客基础的框架使用是 hugo, 前端样式是自己慢慢构思的，可能是因为没有设计师的天分吧，构思出来的 UI 就很奇怪。
+我也尽量将色彩往黑白上靠，就是为了避免色彩的冲突造成阅读的不适，以文字为主体，也可以将我的重心转移到写文章上来。
+然后通过本地渲染构建了 public 静态文件，我将这些文件推送到服务器上，服务器的配置是最基础的1h2g，不过已经完全可以满足个人正常使用了，这样可以提升访问速度。同时的话，我在 Github 备份了源码，这样就不用害怕如果有什么突发事件。
+而且，通过 Github ，我在 vercel 也构建了一个备份网站，基于 rope 可以直接生成一个项目网站，也是非常实用。
+目前这个博客主题我并没有将其分离起来，一是不想专门维护一个开源项目，二是我也很难保证其稳定性，隔三差五我都会优化或者改变整体布局，如果作为一个开源项目的话，这毫无疑问是不合格的。
+如果你想使用同款主题，可以前往仓库 https://github.com/Nov8nana/hugo-blog，这是博客全部的源码。
+你可以把 themes 文件夹下的代码copy走。或者直接 fork 仓库，然后把 /content 内的文章删掉，换成你自己的。
+2021.07.21落笔
+写这篇文章，大概是想回顾一下自己从写第一篇博客，一直到现在的心理历程吧！但是动笔的时候，又突然改变想法了。决定好好审视一下自己的内心，“我为什么要写博客？”
+伊始 故事最开始源于2020年五月份，当时我正频临毕业之际，正处于找工作的状态，对前途还是有些迷茫的，不知道未来该怎么走，往哪方面发展，再加上对自己不够自信，可能有些焦虑吧。
+但是不论心态怎么变化，生活总是要继续的，在闲暇之余我浏览很多技术网站，希望可以提升自己，当时我比较热衷于csdn 和博客园吧，两个比较大的中文博客网站，不论是学习和查资料，百度出来的内容基本都是这两个网站的文章。然后在平时学习累计的过程中，我也会写一些笔记或者总结的内容，开始我是直接存放在本地，后来我放在 Gayhub 上面。
+Gayhub: 又名，Github. 全球最大的同性交友网站，在这里你可以畅快的交流技术，copy code 。
+但是上过这个网站的人都懂，它的速度是多么的令人着急。虽然后来学会了一些科学上网的方法，但是还是很不爽，所以我把目光投向了技术交流平台，论坛社区。我开始试着在把笔记放在 csdn 上面，当做博客发布出去，至今还保留一些浅显易懂的文章在我的 csdn 账号上，不过许久没有登陆了。
+接触 有一天，一个做前端的朋友给我推荐了一本书，叫做《Web全栈工程师的自我修养》，作者是余果，之前我还写过一篇读后感，感兴趣的话也可以读一下，《对全栈的一些思考》
+挺好的一本书，也很畅销，读完电子版的，我还专门为此买了一本纸质的书，表示支持一下作者。
+然后了解到作者在大学时期就开始写个人博客，在深入了解过程中，我觉得他的思想真的不错，写的内容也很有深度，虽然很多文章跟技术无关，但是不可否认是好文章。（现在他已经转到微信公告号了，有兴趣搜一下：余果的专栏）。然后我就对他挺感兴趣的，以及对于个人博客这件事也突然有了更多的兴趣。
+我感觉这是一个自己的私人领域，可以自由发挥，更像是自己盖了一栋房子，至于房子盖成什么样，就看自己的能力了。
+一开始我选择的是 hexo 静态博客，他有很多优势，免费，部署快，可以不断的白嫖 github 仓库存储，包括文章，图片等，只要你愿意折腾，总有办法可以解决。
+然后还有很多大佬开发了各种各样的插件，还有各种第三方平台。hexo 官网的主题也是相当丰富，都是个人开发者做出来，总能找到自己喜欢的那一款。
+为此我还开发一款轻量的纯文字主题，simple99，感兴趣的话可以在官方列表搜索到，这里就不贴链接了，有夹带私货的嫌疑。
+之后，我就把自己之前写的笔记都放在了这个博客中，部署之后自己查看的时候，也挺有成就感的。
+本质 隔了两个月，开始继续更新这篇博客，接下来我会持续讲述自己的道路&amp;hellip;
+不知不觉已经写了一年的博客，从最开始兴奋，冲动，到现在的平息了内心的悸动，这一场心理历程，其实走的颇为坎坷。
+中间有一段时间，频繁更换博客程序，hexo, hugo, halo, wordpress, typecho</description>
+    </item>
+    
+    <item>
+      <title>将数据库中的图片信息导出并调用</title>
+      <link>https://zburu.com/archives/73.html/</link>
+      <pubDate>Fri, 09 Jul 2021 21:03:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/73.html/</guid>
+      <description>接口链接：http://121.196.166.173/img/img.php 展示demo：http://121.196.166.173/img
+前言 为了写博客以及其他的一些用途，我使用服务器搭建了一个连接 github 仓库的上传网页，并且在数据库中记录上传的信息，比如缩略名、时间戳和图片链接。分别对应 GitHub 仓库中的图片，但是后期我发现在 GitHub 查看图片非常别扭，因此我打算写一个可展示图片的网页，把 GitHub 仓库中的图片通过链接展示出来，当然我们不可能一张张复制，还好有数据库。
+看一下具体内容
+写一个接口 很好，拥有我们需要的字段。事不宜迟，直接开动，下面是完成的接口代码。
+&amp;lt;?php header(&amp;#39;Content-Type:application/json; charset=utf-8&amp;#39;); header(&amp;#34;Access-Control-Allow-Origin:*&amp;#34;); $servername = &amp;#34;localhost&amp;#34;; $username = &amp;#34;imgbed&amp;#34;; $password = &amp;#34;imgbed&amp;#34;; $dbname = &amp;#34;imgbed&amp;#34;; // 创建连接 $conn = new mysqli($servername, $username, $password, $dbname); // 检测连接 if ($conn-&amp;gt;connect_error) { die(&amp;#34;连接失败: &amp;#34; . $conn-&amp;gt;connect_error); } // imgmd5 名称转md5 // imguploadtime 上传时间戳 // imgurl 链接 // 上传 ip $sql = &amp;#34;select imgmd5,imguploadtime,imgurl,imguploadip from remote_imgs &amp;#34;; $result = $conn-&amp;gt;query($sql); if ($result-&amp;gt;num_rows &amp;gt; 0) { // 输出数据 while($row = $result-&amp;gt;fetch_assoc()) { $data[]=$row; } $json = json_encode($data,JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);//把数据转换为JSON数据.</description>
+    </item>
+    
+    <item>
+      <title>在 vue 中使用 axios 调用数据</title>
+      <link>https://zburu.com/archives/71.html/</link>
+      <pubDate>Tue, 08 Jun 2021 21:02:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/71.html/</guid>
+      <description>如何在 vue 中完成一次接口的调用？首选就是 axios，方便快捷又好用，支持各种 api ,封装也很方便。
+先用 node 安装一下。
+npm install axios 然后在 main.js 文件中引入。
+import axios from &amp;#39;axios&amp;#39; import VueAxios from &amp;#39;vue-axios&amp;#39; Vue.use(VueAxios, axios) 以我的一个工程目录作为实例，看一下代码。
+// ListThere.vue // html 代码 ... &amp;lt;div&amp;gt;{{ info }}&amp;lt;/div&amp;gt; ... // js 代码 import axios from &amp;#34;axios&amp;#34;; export default { name: &amp;#34;ListThere&amp;#34;, data() { return { ... }; }, components: { ... }, methods: { ... }, mounted() { axios .get(&amp;#34;http://api.h-camel.com/api?mod=interview&amp;amp;ctr=issues&amp;amp;act=today&amp;#34;) .then((response) =&amp;gt; (this.info = response)) }, }; 数据成功的被取到，然后需要将它在页面中展示出来。使用 vue 自带的 v-for 列表渲染。</description>
+    </item>
+    
+    <item>
+      <title>宝塔如何实现进程守护？</title>
+      <link>https://zburu.com/archives/70.html/</link>
+      <pubDate>Sun, 30 May 2021 11:37:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/70.html/</guid>
+      <description>为了方便写一些东西，pc端和手机端都可以同步，我用leanote搭建了一个在线笔记，但是必须在服务器后台运行一个指令
+base run.sh 不然就访问不了端口，我也不可能时刻在终端保持指令运行，所以就需要把指令放在服务器后台，让它自己保持运行，刚好有这么一插件 Supervisor管理器 2.2 。
+是一款免费的Python插件，点击下载即可，然后进入设置。
+点击添加进程守护。
+把进程环境目录和启动命令都填好，名称就随便写个自己能分辨出来的就行，最后点击确定。
+让它一直保持启动状态就可以，其他的不用动，以后就不用打开服务器终端输入指令了，直接在浏览器访问端口，就可以访问网页。
+如果为了更方便，做个反代处理即可。</description>
+    </item>
+    
+    <item>
+      <title>css 中 fixed 定位属性和动画的冲突问题及解决方法</title>
+      <link>https://zburu.com/archives/69.html/</link>
+      <pubDate>Thu, 27 May 2021 21:42:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/69.html/</guid>
+      <description>1.问题 css 中使用动画属性会和同标签下的fixed属性冲突，导致定位失效，那么该如何解决他呢？
+2.分析 简单说一下问题产生的背景，昨天夜里我想给我的博客页面做一个简单的动画，浏览器刷新的时候从下往上渐现的效果，代码如下：
+/* index-container类名是页面的主体部分 */ .index-container { opacity: 0; animation-name: index; animation-duration: 0.7s; animation-fill-mode: forwards; } /* 一个简单的动画实现 */ @keyframes index { 0% { transform: translateY(100px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } } 运行之后发现，动画可以很好的显示，但是当我翻阅文章详情的时候发现，目录固定失效了。
+按照原来的设置是当页面往下滑动的时候，目录会紧贴浏览器的顶部，方便跳转和查看目录，但是现在它已经不能紧贴了。看一下浏览器设置，属性确实生效了，但是页面并没有显示我们想要的结果。
+之前我写目录固定事件的时候用的是 scroll 事件，然后昨天写动画，绑定的 onload 事件，我初步判断是两个 window 冲突了，导致第二个失效，所以我就改了一种写法，用 addEventListener 事件监听执行他们，但最终无论怎么写，目录固定始终不能生效。
+昨天熬得太晚了，就没管它放在那了，今天一早我就去张鑫旭的网站查了一下，果然有这么一个问题。
+参考文章：https://www.zhangxinxu.com/wordpress/2015/05/css3-transform-affect/
+但是文章只是介绍了问题产生的原因，并没有明确给出一个好的解决办法。
+3.方法 虽然没有明确的方法，但是给了我一个思路，因为动画中的一些属性，比如 scale、translate 等，会造车容器的宽高重新计算，而 fixed 属性则依赖于规定的一个像素值，所以当执行动画的时候，页面的高度发生了变化，所以 fixed 不能安心的执行自己的任务了。
+原因找到了，方法自然而然就出来了，看图（图很丑，手画的，能理解意思就行）
+这是我最开始的布局，我将动画绑定给 红色框 的容器了，而目录就在红色框内，所以失效。
+现在我重新布局一下，
+目录依旧处于侧边，但是我将他和通常的侧边栏分开成两个容器了，现在我把动画绑定给 主体部分 和 侧边栏 ，这样目录就和绑定动画的标签分开了。</description>
+    </item>
+    
+    <item>
+      <title>Oracle数据库安装教程（超详细）</title>
+      <link>https://zburu.com/archives/68.html/</link>
+      <pubDate>Thu, 13 May 2021 14:51:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/68.html/</guid>
+      <description>转载自：https://www.moeor.com/26.html
+前言 本教程讲解Oracle Database Express Edition (XE) Release 11.2.0.2.0 (11gR2)版本的下载安装教程！
+该版本是一个便携式安装版本，直接安装，就可以了，非常方便。
+由于官网的更新，找不到以前那种提供客户端服务端的安装了，所以这里不再讲解！
+准备 访问Oracle官网下载该版本数据库。下载时需要登录账号，可百度搜索共享的Oracle账号！
+下载地址：https://www.oracle.com/database/technologies/xe-prior-releases.html
+选择适合自己的系统版本，本文以Win10为例。建议使用下载工具或者科学上网，下载更快！
+安装Oracle 下载后解压缩，双击打开文件夹中的 “setup.exe&amp;quot; 安装程序，等待程序启动，进入安装程序。
+开始安装，单击“下一步”
+选择“我接受本许可协议中的条款”，然后单击“下一步”。
+这一步是选择安装位置，由于文件程序比较大，建议安装D盘。新建一个Oracle文件夹，点击“浏览”，选择文件夹，注意查看目标文件夹，文件路径，然后单击“下一步”。
+设置数据库的登录口令，即数据库密码，建议简单一点，比如：root，然后单击“下一步”。
+单击“安装”，开始安装。
+安装过程比较慢，耐心等待安装完成！
+安装完成后，单击“完成”，即Oracle 11gR2已经安装完成了。
+安装完成会在桌面新建一个图标，打开可以通过以web形式访问数据库。
+双击打开，可能会弹出以下错误提示，这个是没有影响的，安装完成后重启一点电脑就可以了！
+验证数据库 选择桌面生成的图标
+鼠标右键打开文件所在位置，弹出文件夹，往上翻，在文件夹中找到bin文件夹。
+双击，进入bin文件夹，往下翻，找到sqlplus.exe程序。
+双击运行。
+输入用户名：system （统一默认都是system），回车
+输入口令：（刚才安装时设置的口令），口令输入是不显示的，直接回车就行了。
+若出现 “连接到: Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production” 语句时，则安装成功！</description>
+    </item>
+    
+    <item>
+      <title>Typecho博客搭建及优化教程(详细)</title>
+      <link>https://zburu.com/archives/67.html/</link>
+      <pubDate>Tue, 11 May 2021 22:29:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/67.html/</guid>
+      <description>1.前言 本文从Typecho 简介开始讲解，其中包括服务器的选择，以及域名注册，服务器系统选择 ，宝塔安装，环境配置，Typecho安装包括中间的防采坑注意事项，为您提供完整的保姆级搭建流程，请珍惜哦！
+如果不喜欢前面的啰嗦讲解，请跳过，直接从宝塔安装开始。
+不喜勿喷，谢谢！
+需要买服务器可以 点击链接在腾讯云购买服务器有优惠哦~ 不嫖白不嫖，省个十几二十块钱不香吗？
+2.Typecho简介 Typecho 基于PHP5开发，支持多种数据库，是一款内核强健﹑扩展方便﹑体验友好﹑运行流畅的轻量级开源博客程序。
+Typecho 非常简洁，仅仅 7 张数据表，加上不足 400KB 的代码，就实现了完整的插件与模板机制。超低的 CPU 和内存使用率，足以发挥主机的最高性能。
+原生支持 Markdown 语法，易读更易写。支持 BAE/GAE/SAE 等各类云主机，即使面对突如其来的高访问量，也能轻松应对。
+Typecho 的默认模板和后台，全部采用了响应式设计。所以Typecho的大多数自制模板，都采用了自适应设计。
+现在Typecho 拥有很多用户，完整的生态，各种功能插件和简洁优美的主题，是做博客的不二选择，相信你会喜欢上她简洁的风格！
+3.准备 服务器+域名
+搭建Typecho 博客需要使用服务器或者虚拟机，最近也看到一篇使用Vercel+Mysql搭建Typecho的文章，但是这种是使用外部Mysql服务的 ，相比使用服务器或者虚拟机这种还是不太方便配置和管理的。使用服务器相比虚拟机会更加的好用。
+**注：**本文只讲解服务器的搭建流程，虚拟机请参考！
+**服务器选择：**推荐去腾讯云或阿里云,有学生机（9元/月）可供选择，腾讯云还是25岁以下免学生认证的，学生价续费三次，所以有条件可以选择1年购买和续费，腾讯的还有免费升配置，，阿里云的学生机下架了，但是也可以买为新用户提供的，建议选择 轻量应用服务器，1h2g的配置完全够用，流量也完全够用。
+腾讯云：https://cloud.tencent.com/act/campus
+阿里云：https://developer.aliyun.com/plan/grow-up
+如果你买不了这种，也可以去其他服务商买新用户优惠的服务器，建议选择大厂。
+选择服务器要看下地区，如果是大陆地区的服务器，需要去其对应的服务商进行域名备案，否者你无法使用，如果是香港地区或者国外的服务器，则不需要进行备案。
+**注：**阿里和腾讯这两种轻量应用服务器都是需要 备案的，如果嫌麻烦或者不想备案，可选择其他地区的服务器！
+备案操作有些复杂，也需要好几天的时间，但是备案也有备案的好处，比如使用国内的CDN加速等。另请仔细参考各服务商提供的流程，要注意看清备案流程上的注意事项，防止备案驳回浪费时间。
+相比国外和香港的服务器，使用大陆的服务器在国内的访问速度是最好的，当然如果你搞外国业务当我没说。。。
+**域名选择：**域名选择很简单，去各大服务商注册一个就完事了，喜欢什么就注册什么，但是如果你要备案使用大陆服务器，一定不要注册不支持备案的域名，当然绝大多数都是支持备案的。另各大服务商也有新用户注册域名优惠活动，在百度仔细找一下就行了。 腾讯云：https://cloud.tencent.com/act/domainsales
+阿里云：https://wanwang.aliyun.com/domain
+华为云：https://activity.huaweicloud.com/domain1.html
+下面开始搭建流程：
+4.LNMP环境 首先我们要搭建的就是LNMP环境，LNMP代表的就是：Linux系统下Nginx+MySQL+PHP这种网站服务器架构。
+Linux 是一类Unix计算机操作系统的统称，是目前最流行的免费操作系统。代表版本有：debian、centos、ubuntu、fedora、gentoo等。
+Nginx 是一个高性能的HTTP和反向代理web服务器，同时也提供了IMAP/POP3/SMTP服务。
+Mysql 是一款安全、跨平台、高效的，并与 PHP、Java 等主流编程语言紧密结合的数据库系统。
+PHP 是一种在服务器端执行的嵌入HTML文档的脚本语言。
+当然如果你不喜欢使用Nginx，或者Mysql，请自行更换其它的，这里不过多介绍！
+Linux系统的话，本文使用Centos 8系统讲解。
+搭建LNMP环境，我们可以选择自行下载对应的安装包，然后在Centos系统中，安装Nginx，Mysql，PHP等，这种纯动手的方式，非常麻烦和复杂，在后期进行多网站管理和配置HTTPS证书，以及网站伪静态配置时非常麻烦。
+所以本文讲解使用宝塔面板来进行安装部署环境！
+5.宝塔是什么 宝塔面板是一款服务器管理软件，支持windows和linux系统，可以通过Web端轻松管理服务器，提升运维效率。例如：创建管理网站、FTP、数据库，拥有可视化文件管理器，可视化软件管理器，可视化CPU、内存、流量监控图表，计划任务等功能。
+宝塔面板拥有极速方便的一键配置与管理，可一键配置服务器环境（LAMP/LNMP/Tomcat/Node.js），一键部署SSL，异地备份；提供SSH开启关闭服务，SSH端口更改，禁ping，防火墙端口放行以及操作日志查看；CPU、内存、磁盘IO、网络IO数据监测，可设置记录保存天数以及任意查看某天数据；</description>
+    </item>
+    
+    <item>
+      <title>网站引入iframe视频，如何实现高度自适应?</title>
+      <link>https://zburu.com/archives/66.html/</link>
+      <pubDate>Sun, 09 May 2021 18:50:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/66.html/</guid>
+      <description>我想很多小伙伴在写博客的时候都能遇到一个令人头疼的问题，某一篇文章想用 iframe 引入一个外链视频，但是大小总是有问题，宽度可以固定到 100% ，但是高度比如用实际高度来表示，比如 100px, 200px，诸如此类。
+但是问题来了，在不同的页面宽度下，视频的高度是一致的，就会导致一个很麻烦的问题,
+看下面两个图，
+pc端
+移动端
+很明显，在pc端正常显示的视频，放到移动端高度就错位了，很不美观。
+解决这个问题，可以同媒体查询，但是显然费时费力，还不那么完美。
+其实很简单，只需要不到10行代码即可完美实现。
+引入 jq ，（一般网站默认都有这个文件）
+加上一段 js 代码，最好放在网站底部， &amp;lt;/body&amp;gt; 前即可。
+$(&amp;#39;iframe&amp;#39;).wrap(&amp;#39;&amp;lt;p class=&amp;#34;iframe&amp;#34;&amp;gt;&amp;lt;/p&amp;gt;&amp;#39;) 在css文件的底部加上: .iframe{ position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; } .iframe iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; } 这个时候再访问带有 iframe 视频的网页，不管宽度如何变化，高度可以随视频自适应。
+例如这个网页，可以看一下效果: https://imhan.cn/posts/20210507.html</description>
+    </item>
+    
+    <item>
+      <title>基于 docsify 搭建一个文档</title>
+      <link>https://zburu.com/archives/63.html/</link>
+      <pubDate>Wed, 21 Apr 2021 20:19:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/63.html/</guid>
+      <description>一、搭建 docsify 是一个类似 vuepress, gitbook 等静态文档程序，但是对比之前，个人还是喜欢 docsify 的风格和源码。不想要那么多附带的功能，能满足写文章，目录的功能就行了。
+点击查看demo.
+打开终端输入指令，把本地环境搭建起来：
+npm install docsify-cli -g 初始化文档：
+docsify init ./docs 本地运行：
+docs serve 然后在浏览器打开 localhost:3000 就可以查看了。
+二、页面 我觉得最基本的页面就三个
+_navbar.md 导航栏
+* [关于](/) 然后在 index.html 调用。
+window.$docsify = { ... loadNavbar: true, ... } 如图：
+_sidebar.md 侧边栏
+* [基于docsify搭建一个文档](基于docsify搭建一个文档.md) 在 index.html 调用。
+window.$docsify = { ... loadSidebar: true, ... } 如图：
+README.md 主页
+## about 博客地址：[https://imhan.cn](https://imhan.cn) 作者：shuxhan 时间：2021.04.20 本文档作为博客的文章备份，如果对文章有一些其他的评论可以直接点击链接到原地址。 如图：</description>
+    </item>
+    
+    <item>
+      <title>我的 python 学习笔记</title>
+      <link>https://zburu.com/archives/61.html/</link>
+      <pubDate>Thu, 01 Apr 2021 16:21:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/61.html/</guid>
+      <description>之所以学习 Python ，本意是想写一些脚本之类的程序，用来在浏览器爬一些自己想要的文字，图片等资料，这些程序其实 GitHub 蛮多的，但奈何我对后端的语言一窍不通，直接拿过来给我用我都不会。
+因此就萌生了先学习 Python 基础知识的想法，一直听说廖雪峰的 Python 教程写的不错，这次趁着这个机会要好好研读一番。也没想说用的多牛逼，至少希望能为自己浅薄的技术栈再增加一点光彩，毕竟我也曾梦想成为一个全栈开发。
+下载安装完 Python 环境,就开始学习吧！
+运行我的第一个python程序 print(&amp;#39;hello,world&amp;#39;) 数据类型 在 Python 中，能直接处理的数据类型有几种，整数、浮点数、字符串、布尔值、空值、变量。
+这与其他语言其实差别并不大，数据类型基本都是相似的，大概只有变量有自己的特性，所以我单独拿出来记录一下。
+变量 python 是一门动态语言，在赋值时可以不断改变，比如：
+a = 123 print(a) # 终端输出数值 123 a = &amp;#39;abc&amp;#39; print(a) # 终端输出字符串 abc 这是允许的，而在 Java 中则不行，它是一门静态语言，如果多次赋值会报错。相对来说，动态语言更灵活，当然，各有利弊罢了。
+并且在赋值上面有一个逻辑顺序，比如定义一个 a = &#39;a&#39; 的变量。在 Python 中其实走了两步，先创造了一个字符串 a ，然后将这个字符串赋值给变量 a 。
+其实这在数学上是有些反逻辑的，x = x + 2 这个计算是行不通的在数学上，但是在计算机中，先计算 x + 2 ，然后将其赋值给左侧的 x ，这是计算机的逻辑。
+x = 1 x = x + 2 print(x) # 3 其实很多计算机语言都是如此，比如我们所熟知的 js 等等。</description>
+    </item>
+    
+    <item>
+      <title>实时监听页面的变化</title>
+      <link>https://zburu.com/archives/60.html/</link>
+      <pubDate>Fri, 26 Mar 2021 14:24:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/60.html/</guid>
+      <description>问题产生于需求，因为项目需要适配pc和移动端多套布局，所以某些元素在特定的宽度下会产生错位的现象。
+如果是在css中，可以很好的判断，使用媒体查询可以实时检测页面的宽度，从而给予标签不同的属性。
+@media (max-width:768px){ ... } 在js下可以使用下面这种方法
+window.addEventListener(&amp;#39;load&amp;#39;, function() { window.addEventListener(&amp;#39;resize&amp;#39;, function() { console.log(window.innerWidth) var w = window.innerWidth; ... } }) }) 具体操作的细节可以尝试一下，还是很不错的一个方法，同时注意 window ，因为这是个例子我就直接写了，实际编码中，慎用 window 事件。</description>
+    </item>
+    
+    <item>
+      <title>ajax 和 js 事件的执行顺序</title>
+      <link>https://zburu.com/archives/58.html/</link>
+      <pubDate>Tue, 23 Mar 2021 15:12:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/58.html/</guid>
+      <description>有一个需求，滚轮滚动到相应位置的时候执行当前的动画，这个动画在footer里面，而网页的主体通过ajax进行渲染，我在js里面调用ajax渲染数据，然后再获取主体的高度，滚动到该高度的时候执行动画。
+本地测试了一下没什么问题，该有的效果都有了。放在服务器上测试发现无论怎么写，都是先获取主体的高度，然后才进行数据的渲染。那么必然高度是一个极小的值，不符合我想要的属性。
+我大致想了两种解决办法，均以失败告终，本地是ajax先执行，服务器是js先执行。
+让获取高度的事件时间延时500ms，发现最后获取不到事件了； 将该事件写在ajax的success回调里面，结果是只有打开网页第一次能够成功，然后不管刷新多少次均无效，事件被屏蔽，所以方法二也被废除； 最后我想到了，ajax不就是一种异步方法，我将其改为同步不就行，先让ajax执行完在执行js事件。
+async: false, 我在ajax里面写了async这个方法，false 意思是将其默认为同步获取数据，很好，回到服务器打开控制台，发现是先渲染了数据，才获取了主体的高度，问题得以解决。
+当然这样做有弊端的，如果接口出问题，ajax渲染失败，那么整个网页的js都将执行不了。不过我想真到了数据都渲染不出的地方，访问网页就没有意义了，所以最后我采用了这种方法。</description>
+    </item>
+    
+    <item>
+      <title>ajax拼接模版字符串的几种方法</title>
+      <link>https://zburu.com/archives/59.html/</link>
+      <pubDate>Mon, 22 Mar 2021 14:54:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/59.html/</guid>
+      <description>起因是因为IE10不兼容es6，所以引发了一系列的问题。
+一 使用ajax拼接字符串有很多方法，最简单的莫过于使用es6的语法中的关键符号，
+str += `&amp;lt;li class=&amp;#34;wrap-item&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;pic-wrap&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;pic&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;pic-son&amp;#34;&amp;gt; &amp;lt;a href=&amp;#34; ` + item.link + `&amp;#34; target=&amp;#34;_blank&amp;#34;&amp;gt;&amp;lt;img src=&amp;#34; ` + item.pic+ `&amp;#34; alt=&amp;#34;缩略图&amp;#34;&amp;gt;&amp;lt;/a&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;pic-main&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;pic-title&amp;#34;&amp;gt; &amp;lt;span&amp;gt;编号：&amp;lt;/span&amp;gt; &amp;lt;span&amp;gt; ` + item.title + ` &amp;lt;/span&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;pic-guide&amp;#34;&amp;gt; ` + item.guide + ` &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;pic-link&amp;#34; id=&amp;#34;picLink&amp;#34;&amp;gt; &amp;lt;a href=&amp;#34; ` + item.link + ` &amp;#34; target=&amp;#34;_blank&amp;#34;&amp;gt;预览&amp;lt;/a&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/li&amp;gt; ` 可以很快的把模版字符串写好，但是正因为它是es6的新特性，因此对于低版本的浏览器兼容性不太好，报错无效字符。
+二 因此还有一种较为麻烦的写法&amp;quot; &#39;&#39; &amp;quot; ，使用单引号和双引号将标签和字符串连接起来。因为太过繁琐，所以需要特别仔细的查看，一不小心漏个符号，就会导致网页报错。</description>
+    </item>
+    
+    <item>
+      <title>用ajax请求获取数据</title>
+      <link>https://zburu.com/archives/57.html/</link>
+      <pubDate>Fri, 19 Mar 2021 13:01:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/57.html/</guid>
+      <description>通过jquery进行ajax请求数据是一种较为简便的方式，我简单写了一个本地的data.json文件，然后用get请求数据，下面是部分代码
+// ajax 请求获取数据 function picShow(){ var str = &amp;#39;&amp;#39;; $.ajax({ url:&amp;#39;./js/data.json&amp;#39;, type:&amp;#39;get&amp;#39;, dataType:&amp;#39;json&amp;#39;, success:function(data){ console.log(&amp;#39;success&amp;#39;) }, error: function() { console.log(&amp;#39;error&amp;#39;) } }) } picShow(); 但是这样做有一个弊端，无法在本地预览，因为浏览器禁止客户端直接获取本地数据，这也算一个跨域问题了，不过这也是为了保证用户的安全。当然这对前端来说很不爽！
+其实解决的方法也很简单，通过node服务，用live server在本地跑一下，就可以让ajax获取数据，当然还有其他更好的解决方法，或者直接在服务器跑，通过jsonp等等。
+live server 不明白的可以百度看看，也是一个技巧。</description>
+    </item>
+    
+    <item>
+      <title>IE10的兼容性处理</title>
+      <link>https://zburu.com/archives/56.html/</link>
+      <pubDate>Thu, 18 Mar 2021 22:15:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/56.html/</guid>
+      <description>IE10不支持箭头函数，写js的时候慎用。
+IE10下对js的语法要求严格，正常参数后如果没有多余的代码，写个,会报错，如果加了删掉就OK，Chrome下不会产生影响。
+zoom属性能不用，尽量别用。我在Chrome使用zoom进行大小调整，放到IE10运行，整个页面都错位了，找半天才想起来之前给一个容器设置了zoom: 1.1;，真是让人头大。
+IE10下img标签自带白边，在默认样式里面设置border: none;即可。
+img { border: none; } IE10能兼容大部分的html5新标签，唯独不能兼容 main。
+box-shadow 阴影属性其实IE10是支持的，但是需要注意语法问题，在普通浏览器color可以用rgba,#等写法，但是在IE10下，只能通过#000000写法，#和六位的颜色标记，不可以简写，否则不生效。
+IE10不兼容es6新语法。</description>
+    </item>
+    
+    <item>
+      <title>window.scroll 方法只能存在一次该如何解决？</title>
+      <link>https://zburu.com/archives/55.html/</link>
+      <pubDate>Wed, 17 Mar 2021 21:55:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/55.html/</guid>
+      <description>页面监听是我们经常用的一个功能，下面两个段代码表示两个事件，分别在页面滚动500px和1000px的时候触发，在代码中使用了箭头函数。
+window.addEventListener(&amp;#39;scroll&amp;#39;, () =&amp;gt; { var scrollTop = document.documentElement.scrollTop if (scrollTop &amp;gt; 500) { console.log(&amp;#39;滚动了500px&amp;#39;) } }) window.addEventListener(&amp;#39;scroll&amp;#39;, () =&amp;gt; { var scrollTop = document.documentElement.scrollTop if (scrollTop &amp;gt; 1000) { console.log(&amp;#39;滚动了1000px&amp;#39;) } }) 但是后面又要求代码兼容到IE10，就不能采用这种写法了。然后我就想使用原生的function写法。
+window.onscroll = function() { // ... } 在用的过程中我发现，如果只有一个window.scroll没有任何问题，但是如果有多个window.scroll，后面的就不会生效。
+那么如何解决这个问题呢？
+window.scroll只能存在一次，第一个会生效，后面的不生效，可以通过js处理这个问题。
+function addEvent(type, toDo) { if (window.attachEvent) { window.attachEvent(&amp;#39;on&amp;#39; + type, function() { toDo.call(window) }) } else { window.addEventListener(type, toDo, false) } } addEvent(&amp;#39;scroll&amp;#39;, function(){ console.log(&amp;#39;第一次调用window.scroll&amp;#39;) } addEvent(&amp;#39;scroll&amp;#39;, function(){ console.</description>
+    </item>
+    
+    <item>
+      <title>IE10下`,`符号不能留白</title>
+      <link>https://zburu.com/archives/54.html/</link>
+      <pubDate>Tue, 16 Mar 2021 10:29:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/54.html/</guid>
+      <description>$(&amp;#34;#test&amp;#34;).click(function () { $(&amp;#39;html,body&amp;#39;).animate({ &amp;#39;scrollTop&amp;#39;: &amp;#39;0&amp;#39; }, 500,) }) 这行代码使用的是jquery的写法，一个500毫秒的动画，这样写在Chrome浏览器等没问题，可以正常运行。
+但是今天在写项目的过程中，要求代码兼容到IE10，没办法，被迫在IE浏览器下运行，结果发现这行代码会报错。这是怎么回事呢？
+简单分析一下，这有点类似js中定时器的写法，setimeout，两个参数，分别代表指定的时间，和定时时间。
+而animate是动画的属性，这个时间共花费500毫秒执行完毕。但是这个不是重点，为什么会报错呢？
+这时候我注意到500后面的,，我突然想到一种可能，先把,删掉。果然不出我所料。控制台不会报错了。
+我猜测，这是由IE的机制引起的，浏览器识别到,的时候，会自动默认后面跟有语句，但是如果空着不写，与浏览器预期的后果不同，就会产生报错。可能IE内核要求也比较严格吧。</description>
+    </item>
+    
+    <item>
+      <title>怎么让 css3 里面的动画属性看起来更流畅?</title>
+      <link>https://zburu.com/archives/53.html/</link>
+      <pubDate>Sun, 14 Mar 2021 07:31:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/53.html/</guid>
+      <description>ps：先说点题外话，因为工作的原因很久没更新博客了，最近也是告一段落，处理一了一些事情之后可以安心坐下来，把我的博客重新整理一下。
+今天要讲的是 css3 的一个新属性 animation，也算是一个回顾吧，我只是将平时如何使用，以及一些技巧分享出来。如果想学习更基础的内容，可以点击链接：https://www.runoob.com/css3/css3-animations.html，网上类似的教程还是蛮多的。
+这篇文章并不细讲动画的基础属性，而是稍微扩展一个话题：怎么让 css3 里面的动画属性看起来更流畅？
+当然在讲之前还是要简单介绍一下 animation 基本属性。
+animation 属性 animation 属性有下面几个值：
+@keyframes | 动画本身（最重要的） animation-name | 动画的名称 animation-duration | 动画所经历的时间 animation-fill-mode | 当属性为 forwards 时，动画停留在最后一帧 动画主要可以用于一些官网特效，或者自适应的布局。
+如何写一个最基本的动画 动画就是由一个状态到另一个状态的过程，比如从左到右的一个移动过程。
+首先要先了解各个属性具体的作用是什么，就拿从白到黑举个例子吧，首先写一个 @keyframes 的动画过程。
+@keyframes leftright { 0% { transform: translateX(0); } 100% { transform: translateX(100px); } } 这段代码的意思就是有一个名为 leftright 的动画，将容器从左到右移动了 100px。
+然后我们进一步补全这个动画。
+&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;title&amp;gt;动画&amp;lt;/title&amp;gt; &amp;lt;style&amp;gt; .demo { width: 100px; height: 100px; background: #000; animation-name: leftright; animation-duration: 1s; } @keyframes leftright { 0% { transform: translateX(0); } 100% { transform: translateX(100px); } } &amp;lt;/style&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;div class=&amp;#34;demo&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; 然后我们到浏览器跑一下这个页面试试看，可以看到一个黑色的方块从左右移动了 100px 的距离，总计1秒完成。</description>
+    </item>
+    
+    <item>
+      <title>chrome浏览器无法显示12px以下的字体</title>
+      <link>https://zburu.com/archives/52.html/</link>
+      <pubDate>Fri, 26 Feb 2021 22:38:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/52.html/</guid>
+      <description>最近正在面试，遇到了很多有意思的东西，比如今天，在面试前先做了一套面试题，其中有这么一道题，觉得挺有意思，之前也没见过，就打算记录下来：
+&amp;lt;!-- chrome浏览器12px字体大小以下无法显示，均显示为12px，应该怎么解决。 --&amp;gt; 我确实有点蒙，在之前写代码的时候，没有遇到过这样的情况，不过既然这样问了，就得想出解决的办法。
+首先我想到之前的一个问题，0.5px 的边框该如何实现，通过 scale(0.5) 可以实现，这是 css3 新属性。
+所以当时我就写了通过 transform:scale() 可以实现。不过后续在面试的中，面试官也没有提及这些问题。
+回到家之后，吃完饭坐在电脑旁，正准备逛一逛 github ，突然想起来了这么一个问题，就自己测试了一遍：
+&amp;lt;div style=&amp;#34;font-size: 13px;&amp;#34;&amp;gt; 测试 &amp;lt;/div&amp;gt; &amp;lt;div style=&amp;#34;font-size: 12px;&amp;#34;&amp;gt; 测试 &amp;lt;/div&amp;gt; &amp;lt;div style=&amp;#34;font-size: 11px;&amp;#34;&amp;gt; 测试 &amp;lt;/div&amp;gt; 竟然真的存在这样的问题，Chrome 12px 以下的字体无法正常显示，均显示为12px。
+然后我用 scale 设置了一下属性，
+&amp;lt;div style=&amp;#34;font-size: 13px;&amp;#34;&amp;gt; 测试 &amp;lt;/div&amp;gt; &amp;lt;div style=&amp;#34;font-size: 12px;&amp;#34;&amp;gt; 测试 &amp;lt;/div&amp;gt; &amp;lt;div style=&amp;#34;font-size: 11px;transform: scale(0.5);&amp;#34;&amp;gt; 测试 &amp;lt;/div&amp;gt; 字体确实可以再次缩小到自己想到的程度，但是存在一些弊端，所有带有长度的属性均被缩小，比如图中的div的长度，本来默认是 100% ，但是显示只有原来的一半了。
+虽然存在这么个问题，但是按照我自己的预估，平时我们浏览的网站基本没有低于12px大小的字体吧！反正我是没有遇到过，我估计面试题也是想考验我们对一些生僻知识的处理吧，不过也不算生僻，前有0.5px，后有12px，其实都大同小异。
+在遇到这个问题的时候，确实可以通过 scale() 处理一下，然后在认真设置其他属性，尽量避免更多的弊端。</description>
+    </item>
+    
+    <item>
+      <title>使用宝塔面板安装 autoPicCdn 图床工具</title>
+      <link>https://zburu.com/archives/51.html/</link>
+      <pubDate>Thu, 25 Feb 2021 22:41:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/51.html/</guid>
+      <description>很多小伙伴在做个人网站或者博客时，总能用到各种各样的图床工具，毕竟在写文章的时候需要插入一些图片，我也不例外，来盘点一下之前用的工具，
+最开始是找一些免费的图床网站，比如sm.ms等，但是后来为了安全性和稳定性考虑放弃了这种。 然后是在 github，gitee 仓库存储的（缺点就是github访问速度有些尴尬，gitee其实挺好的，但时用起来怪怪的） 阿里云oss储存桶（挺好使的，搭配picgo软件，一年也才9.9，但是链接很尴尬，直接下载，无法右键访问图片，搜过了解决办法，嫌太麻烦就搁置了，至今在那放着） 后来在自己的服务器建一个网站，把图片放进去，使用的时候直接引用链接（缺点就是上传太麻烦，然后就是图片太占内存了，影响服务器的性能） 然后就是今天的重头戏，autoPicCdn ，一款开源软件 也是基于github实现图床功能，后来才知道可以用 jsdelivr 给资源进行加速，autoPicCdn 就是基于这样的功能实现。
+今天就讲讲用宝塔面板配置 autoPicCdn 的流程吧！
+准备工作 进入 github 仓库下载资源到本地。 https://github.com/yumusb/autoPicCdn 在 github 建立一个新的仓库，自由命名，我的是 shuxhan/pic-cdn ，简单易懂 去这个页面 https://github.com/settings/tokens生成一个有写权限的 token（repo：Full control of private repositories 和write:packages 前打勾，然后点击确定，会生成一个 token码，记住它，最好复制到你的记事本，不然一刷新网页就不会再显示了 然后解压。
+上传到服务器 先利用自己的域名添加一个新的站点，比如我使用的是 img.shuxhan.com ，然后建立数据库。
+站点建立成功后，进入目录将默认生成的文件删除，然后点击上传，找到刚才解压的文件，点击上传即可。
+配置文件 找到目录中的 up.php 配置文件，
+将下面两个地方配置好，具体的内容在代码里。
+//必选项 define(&amp;#34;TYPE&amp;#34;,&amp;#34;GITHUB&amp;#34;);//选择github //define(&amp;#34;TYPE&amp;#34;,&amp;#34;GITEE&amp;#34;);//选择gitee，如果使用gitee，需要手动建立master分支，可以看这里 https://gitee.com/help/articles/4122 define(&amp;#34;USER&amp;#34;,&amp;#34;shuxhan&amp;#34;);//你的GitHub/Gitee的用户名 define(&amp;#34;REPO&amp;#34;,&amp;#34;pic-cdn&amp;#34;);//必须是上面用户名下的 公开仓库 define(&amp;#34;MAIL&amp;#34;,&amp;#34;shuxhan@163.com&amp;#34;);//邮箱无所谓，随便写 define(&amp;#34;TOKEN&amp;#34;,&amp;#34;971b0a96ff5af545d5fe081f829cf5542007e70b&amp;#34;); // Github 去这个页面 https://github.com/settings/tokens生成一个有写权限的token（repo：Full control of private repositories 和write:packages前打勾） // gitee 去往这个页面 https://gitee.com/personal_access_tokens //数据库配置文件 //请确保把当前目录下的 pic.</description>
+    </item>
+    
+    <item>
+      <title>typecho 博客小表情无法显示问题</title>
+      <link>https://zburu.com/archives/50.html/</link>
+      <pubDate>Thu, 04 Feb 2021 19:47:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/50.html/</guid>
+      <description>typecho 博客建立完成之后，会发现如果插入一些小表情，页面渲染完之后，表情不会显示，并且表情之后的内容全部消失，导致体验感很差。
+表情无法显示的原因是 uft-8 编码的问题，无法识别小表情，需要将其改成 utf8mb4
+第一步，进入数据库 首先登陆博客后台的数据库，然后点击 sql ，输入下列代码：
+alter table typecho_comments convert to character set utf8mb4 collate utf8mb4_unicode_ci; alter table typecho_contents convert to character set utf8mb4 collate utf8mb4_unicode_ci; alter table typecho_fields convert to character set utf8mb4 collate utf8mb4_unicode_ci; alter table typecho_metas convert to character set utf8mb4 collate utf8mb4_unicode_ci; alter table typecho_options convert to character set utf8mb4 collate utf8mb4_unicode_ci; alter table typecho_relationships convert to character set utf8mb4 collate utf8mb4_unicode_ci; alter table typecho_users convert to character set utf8mb4 collate utf8mb4_unicode_ci; 直接复制，然后点击右下角的执行</description>
+    </item>
+    
+    <item>
+      <title>掘金个人主页头像旋转效果</title>
+      <link>https://zburu.com/archives/49.html/</link>
+      <pubDate>Wed, 03 Feb 2021 19:43:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/49.html/</guid>
+      <description>在浏览掘金社区的时候，发现一个很有意思的小彩蛋，在个人主页将鼠标悬浮在头像上，会不停的加速旋转，我感觉挺有意思，f12 看看这个样式怎么写的，发现用到了 css3 的相关技术。
+下面是具体代码，img 是头像元素，直接写在 hover 中即可。
+img:hover { transform: rotate(666turn); transition-delay: 1s; transition-property: all; transition-duration: 59s; transition-timing-function: cubic-bezier(.34,0,.84,1); } ps：今天是2021年2月4号，农历腊月二十三，传统的小年，祝朋友们小年愉快。不知不觉，快过年了。</description>
+    </item>
+    
+    <item>
+      <title>ES5 和 ES6 的区别？</title>
+      <link>https://zburu.com/archives/48.html/</link>
+      <pubDate>Wed, 20 Jan 2021 19:58:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/48.html/</guid>
+      <description>一、javascript 由三部分组成 1.ECMAScript（核心） 它规定了语言的组成部分：法语，类型，语句，关键字，操作符等等。
+2.DOM（文档对象模型） DOM 把整个页面映射为一个多层节点结果，开发人员可借助DOM提供的API，轻松地删除、添加、替换或修改任何节点。
+3.BOM（浏览器对象模型） 支持可以访问和操作浏览器窗口的浏览器对象模型，开发人员可以控制浏览器显示的页面以外的部分。
+二、什么是ES5？ 作为ECMAScript第五个版本（第四版因为过于复杂废弃了），浏览器支持情况可看第一副图，增加特性如下。
+1.strict模式 严格模式，限制一些用法，&amp;lsquo;use strict&amp;rsquo;;
+2.Array增加方法 增加了every、some 、forEach、filter 、indexOf、lastIndexOf、isArray、map、reduce、reduceRight方法
+PS： 还有其他方法 Function.prototype.bind、String.prototype.trim、Date.now
+3.Object方法 Object.getPrototypeOf Object.create Object.getOwnPropertyNames Object.defineProperty Object.getOwnPropertyDescriptor Object.defineProperties Object.keys Object.preventExtensions / Object.isExtensible Object.seal / Object.isSealed Object.freeze / Object.isFrozen PS：只讲有什么，不讲是什么。
+2.什么是ES6? ECMAScript6在保证向下兼容的前提下，提供大量新特性，目前浏览器兼容情况如下：
+ES6特性如下：
+块级作用域 关键字let, 常量const
+对象字面量的属性赋值简写（property value shorthand）
+var obj = { // __proto__ __proto__: theProtoObj, // Shorthand for ‘handler: handler’ handler, // Method definitions toString() { // Super calls return &amp;#34;d &amp;#34; + super.</description>
+    </item>
+    
+    <item>
+      <title>webpack 的核心概念和构建流程</title>
+      <link>https://zburu.com/archives/47.html/</link>
+      <pubDate>Mon, 18 Jan 2021 19:59:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/47.html/</guid>
+      <description>1.webpack 的核心概念 entry（入口）：一个可执行模块或者库的入口。定义了打包后的入口文件。 output（出口）：指示 webpack 如何去输出，以及在哪里输出。 path: 打包文件存放的绝对路径 publicPath: 网站运行时的访问路径 filename: 打包后的文件名 module（模块）：在 webpack 里，一切皆模块，一个模块对应一个文件。webpack 会从配置的 entry 中开始递归找出所有依赖的模块。 chunk（代码块）：一个 chunk 由多个 模块 组合而成。可以将可执行的模块和他所依赖的模块组合成一个 chunk ，这就是打包。 loader（模块转换器）：用于把一个模块原内容按照需求转换成新的内容。例如：es6 转换为 es5，scss 转换为 css 等。 plugin（扩展）：扩展webpack功能的插件。在webpack构建的生命周期节点上加入扩展hook，添加功能。 2.webpack 构建流程 初始化参数：解析 webpack 的配置参数，合并 shell 传入和 webpack.config.js 文件配置的参数，形成最后的配置结果。 开始编译：上一步得到的参数初始化 compiler 对象，注册所有配置的插件，插件监听 webpack 构建生命周期的事件节点，做出相应的反应，执行对象的 run 方法开始执行编译。 确定入口：其配置的 entry 入口，开始解析文件构建的 AST 语法树，找出依赖，递归下去。 编译模块：根据文件类型和 loader 配置，调用所有配置的 loader 对文件进行转换，再找出该模块依赖的模块，再递归本步骤知道所有入口依赖的文件都经过了本步骤的处理。 完成模块编译并输出：递归完后，得到每个文件结果，包含了每个模块及她们之间的依赖关系，根据 entry 配置生成代码块 chunk 。 输出完成：输出所有的 chunk 到文件系统。 3.有哪些常见的 loader ？ babel-loader：把es6转成es5； css-loader：加载css，支持模块化，压缩，文件导入等特性； style-loader：把css代码注入到js中，通过dom操作去加载css； eslint-loader：通过Eslint检查js代码； image-loader：加载并且压缩图片晚间； file-loader：文件输出到一个文件夹中，在代码中通过相对url去引用输出的文件； url-loader：和file-loader类似，文件很小的时候可以base64方式吧文件内容注入到代码中。 source-map-loader：加载额外的source map文件，方便调试。 4.</description>
+    </item>
+    
+    <item>
+      <title>基于 React 的富文本编辑器－－Braft Editor</title>
+      <link>https://zburu.com/archives/44.html/</link>
+      <pubDate>Thu, 07 Jan 2021 20:46:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/44.html/</guid>
+      <description>最近发了很多关于 React 的文章，记录遇到的新技术点，以及在写代码过程中遇到的问题，希望可以帮助到和我遇到同样问题的同学。
+今天分享的是一款基于 React 的富文本编辑器－－Braft Editor。
+Braft Editor 官网：https://braft.margox.cn Github 仓库地址：https://github.com/margox/braft-editor
+这款插件非常方便，只需要下载然后引入即可直接使用，页面整体风格清新，符合绝大多数人的审美观，支持图片，音视频的插入。
+按照官方的说法，假如你对它的功能还不够满意，不够使用，完全可以扩展它，自己写一个插件来强化他。
+经过我的测试，功能绝对强大，可以满足市面上绝大多数的需求。接下来就说一下如何使用这款插件。
+1.安装 在项目中直接通过 npm 或者 yarn 下载插件：
+# 使用 npm 安装 npm install braft-editor --save # 使用 yarn 安装 yarn add braft-editor 2.使用 新建一个组件 EditorDemo.js，在里面写入下列代码：
+// EditorDemo.js import React from &amp;#39;react&amp;#39;; import BraftEditor from &amp;#39;braft-editor&amp;#39;; import &amp;#39;braft-editor/dist/index.css&amp;#39;; export default class PageDemo extends React.Component { state = { editorState: BraftEditor.createEditorState(null) } render () { return ( &amp;lt;BraftEditor value={this.</description>
+    </item>
+    
+    <item>
+      <title>使用 React 与 Vue 创建同一款 App，差别究竟有多大？</title>
+      <link>https://zburu.com/archives/43.html/</link>
+      <pubDate>Wed, 06 Jan 2021 20:47:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/43.html/</guid>
+      <description>关于 React 框架 和 Vue 框架 的对比，用两者写出同一个程序，对比其代码实现的过程，看看它们的差异究竟有多大？
+转载于：https://blog.csdn.net/csdnnews/article/details/81880378 原文：https://medium.com/javascript-in-plain-english/i-created-the-exact-same-app-in-react-and-vue-here-are-the-differences-e9a1ae8077fd 作者简介：Sunil Sandhu，一位 Web 全栈工程师 + 空想家。 译者：安翔，责编：屠敏
+众所周知，Vue 和 React 都是目前非常著名的前端框架。我在工作中经常使用 Vue，因此我对它有很深入的了解。同时，我也对 React 充满了好奇，想要学习一下，一探究竟。
+于是我阅读了 React 文档并观看了一些视频教程，虽然这些资料很不错，但是我真正想了解的是 React 与 Vue 之间的不同之处。所谓“不同之处”，我并非想知道它们是否都具有虚拟 DOMS 或者它们如何渲染页面，而是希望有人能够从代码的角度解释这两者之间的差异。我想找到一篇解释这些差异的文章，以便 Vue 或者 React 的初学者可以更好地理解它们两者之间的差异。
+很遗憾，我并未找到一篇这样的文章。于是我意识到必须自己动手来比较 Vue 与 React 之间的异同。在我自力更生的过程中，我用这篇文章记录下了具体过程。
+1.目标 我将会构建一个标准的待办事项应用程序，允许用户添加和删除列表中的项目。这两个应用程序都使用默认的 CLI（command-line interface，命令行界面） 构建，React 使用 create-react-app，Vue 使用 vue-cli。
+两个应用程序的外观如下：
+两个应用程序的 CSS 代码几乎一样，但这些代码的位置存在差异。考虑到这一点，我们来看看这两个应用程序的文件结构：
+你会发现它们的结构几乎完全相同。唯一的区别在于 React App 拥有三个 CSS 文件，而 Vue App 中没有 CSS 文件。这是因为 React 的 create-react-app 组件需要一个附带文件来保存其样式，而 Vue CLI 采用全包方法，其样式在实际组件文件中声明。</description>
+    </item>
+    
+    <item>
+      <title>React 脚手架项目打包时的路径问题</title>
+      <link>https://zburu.com/archives/42.html/</link>
+      <pubDate>Tue, 05 Jan 2021 20:54:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/42.html/</guid>
+      <description>create-react-app 脚手架指令可以生成 React 项目，在项目完成之后执行打包命令 npm run build，文件夹内生成 build文件夹，就是打包后的文件，在浏览器运行 index.html 发现页面空白，打开控制台有报错，css 和 js 文件的引用路径有问题。
+浏览 index.html 代码可以发现：
+&amp;lt;!-- index.html --&amp;gt; &amp;lt;!doctype html&amp;gt; &amp;lt;html lang=&amp;#34;zh&amp;#34;&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;utf-8&amp;#34; /&amp;gt; &amp;lt;meta name=&amp;#34;viewport&amp;#34; content=&amp;#34;width=device-width,initial-scale=1&amp;#34; /&amp;gt; &amp;lt;meta name=&amp;#34;theme-color&amp;#34; content=&amp;#34;#000000&amp;#34; /&amp;gt; &amp;lt;meta name=&amp;#34;description&amp;#34; content=&amp;#34;Web site created using create-react-app&amp;#34; /&amp;gt; &amp;lt;title&amp;gt;React App&amp;lt;/title&amp;gt; &amp;lt;link href=&amp;#34;/static/css/main.3394d54e.chunk.css&amp;#34; rel=&amp;#34;stylesheet&amp;#34;&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt;&amp;lt;noscript&amp;gt;You need to enable JavaScript to run this app.&amp;lt;/noscript&amp;gt; &amp;lt;div id=&amp;#34;root&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;script&amp;gt;!function (e) { function r(r) { for (var n, l, f = r[0], i = r[1], a = r[2], c = 0, s = []; c &amp;lt; f.</description>
+    </item>
+    
+    <item>
+      <title>如何在 React 中引入 less？</title>
+      <link>https://zburu.com/archives/41.html/</link>
+      <pubDate>Mon, 04 Jan 2021 20:50:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/41.html/</guid>
+      <description>本文主要写如何在 React 中引入 less 。因为 less 和 css 非常像，因此很容易学习。而且 less 仅对 css 语言增加了少许方便的扩展，这就是 less 如此易学的原因之一。
+1.安装 less npm install less less-loader --save-dev 2.暴露 webpack 文件 利用 npx create-react-app 搭建的 React 项目，默认隐藏 webpack 配置文件，引入 less 需要修改 webpack 配置文件，因此我们需要执行命令暴露 webpack 配置文件。
+这里需要注意，一旦暴露，无法回退。
+npm run eject 如果这一步失败，执行下列命令：
+git add . git commit -m &amp;#34;init&amp;#34; 然后再执行 npm run eject
+注意：暴露 webpack 文件只能在 create-react-app 之初，一旦项目结构发生改变，再进行暴露操作就会失败。所以尽量在项目建立时就进行 npm run eject 操作。
+3.修改 wenpack.config.js 配置 在合适的位置添加：
+// 放在 // const sassRegex = /\.</description>
+    </item>
+    
+    <item>
+      <title>为什么 key 是必须的？</title>
+      <link>https://zburu.com/archives/40.html/</link>
+      <pubDate>Fri, 01 Jan 2021 20:48:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/40.html/</guid>
+      <description>之前有说到，在 React 中渲染列表的时候，要给每一个数据加一个 key 值，赋予一个确定的标示，而且也详细描述了如何给一个标示，方法知道了，那么为什么要这么做呢？
+在 React 中如何渲染列表？
+在默认条件下，当递归 DOM 节点的子元素时，React 会同时遍历两个子元素的列表；当产生差异时，生成一个 mutation。
+在子元素列表末尾新增元素时，更新开销比较小。比如：
+&amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;first&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;second&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;first&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;second&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;third&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; React 会先匹配两个 &amp;lt;li&amp;gt;first&amp;lt;/li&amp;gt; 对应的树，然后匹配第二个元素 &amp;lt;li&amp;gt;second&amp;lt;/li&amp;gt; 对应的树，最后插入第三个元素的 &amp;lt;li&amp;gt;third&amp;lt;/li&amp;gt; 树。
+如果只是简单的将新增元素插入到表头，那么更新开销会比较大。比如：
+&amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;Duke&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;Villanova&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;Connecticut&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;Duke&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;Villanova&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; React 不会意识到应该保留 &amp;lt;li&amp;gt;Duke&amp;lt;/li&amp;gt; 和 &amp;lt;li&amp;gt;Villanova&amp;lt;/li&amp;gt;，而是会重建每一个子元素 。这种情况会带来性能问题。
+key
+为了解决上述问题， React 支持 key 属性，当子元素拥有 key 时，React 使用 key 来匹配原有树上的子元素以及最新树上的子元素。以下例子在新增 key 之后使得之前的低效转换变得高效：
+&amp;lt;ul&amp;gt; &amp;lt;li key=&amp;#34;1&amp;#34;&amp;gt;Duke&amp;lt;/li&amp;gt; &amp;lt;li key=&amp;#34;2&amp;#34;&amp;gt;Villanova&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;ul&amp;gt; &amp;lt;li key=&amp;#34;0&amp;#34;&amp;gt;Connecticut&amp;lt;/li&amp;gt; &amp;lt;li key=&amp;#34;1&amp;#34;&amp;gt;Duke&amp;lt;/li&amp;gt; &amp;lt;li key=&amp;#34;2&amp;#34;&amp;gt;Villanova&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; 现在 React 知道只有带着 &#39;0&#39; key 的元素是新元素，带着 &#39;1&#39; 以及 &#39;2&#39; key 的元素仅仅移动了。</description>
+    </item>
+    
+    <item>
+      <title>React 学习笔记（三）</title>
+      <link>https://zburu.com/archives/39.html/</link>
+      <pubDate>Tue, 29 Dec 2020 13:26:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/39.html/</guid>
+      <description>来源于：https://react.docschina.org/docs/forms.html
+一、表单 在 React 中，html 表单元素的工作方式和其他的 DOM 元素不太一样，因为表单内部通常会保持一些内部的 state，比如下面这个纯 html 表单只接受一个名称：
+&amp;lt;form&amp;gt; &amp;lt;label&amp;gt; 名字: &amp;lt;input type=&amp;#34;text&amp;#34; name=&amp;#34;name&amp;#34; /&amp;gt; &amp;lt;/label&amp;gt; &amp;lt;input type=&amp;#34;submit&amp;#34; value=&amp;#34;提交&amp;#34; /&amp;gt; &amp;lt;/form&amp;gt; 这个表单具有默认的 html 表单行为，即在用户提交表单之后自动刷新页面。如果你在 React 中执行相同的代码，它仍然有效。
+但大多数情况下，使用 JavaScript 函数可以很方便的处理表单的提交， 同时还可以访问用户填写的表单数据。实现这种效果的标准方式是使用“受控组件”。
+受控组件 在 html 中，表单元素比如&amp;lt;input&amp;gt;，&amp;lt;textarea&amp;gt;，&amp;lt;select&amp;gt;，这些表单元素通常自己维护 state，并根据用户输入进行更新。而在 React 中，可变状态（mutable state）通常保存在组件的 state 属性中，并且只能通过使用 setState() 来更新。
+我们可以把两者结合起来，使 React 的 state 成为“唯一数据源”。渲染表单的 React 组件还控制着用户输入过程中表单发生的操作。被 React 以这种方式控制取值的表单输入元素就叫做“受控组件”。
+例如，如果我们想让前一个示例在提交时打印出名称，我们可以将表单写为受控组件：
+class NameForm extends React.Component { constructor(props) { super(props); this.state = {value: &amp;#39;&amp;#39;}; this.handleChange = this.handleChange.bind(this); this.</description>
+    </item>
+    
+    <item>
+      <title>React －－万物皆可组件</title>
+      <link>https://zburu.com/archives/37.html/</link>
+      <pubDate>Mon, 21 Dec 2020 13:19:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/37.html/</guid>
+      <description>一、React 组件是什么？ 组件，从概念上类似于 javascript 函数，他接受任意入参（props），并返回作用于描述页面展示内容的 React 元素。
+组件允许你将 UI 拆分为独立可复用的代码片段，并对每个片段进行独立构思。
+1.创建一个组件 // 函数组件 function Welcome(props) { return &amp;lt;h1&amp;gt;Hello, {props.name}&amp;lt;/h1&amp;gt;; } // class组件 class Welcome extends React.Component { render() { return &amp;lt;h1&amp;gt;Hello, {this.props.name}&amp;lt;/h1&amp;gt;; } } 2.渲染组件 class Welcome extends React.Component { render() { return &amp;lt;h1&amp;gt;Hello, {this.props.name}&amp;lt;/h1&amp;gt;; } } ReactDOM.render( &amp;lt;Welcome /&amp;gt;, document.getElementById(&amp;#39;root&amp;#39;) ); 3.组件 React的基础原则有三条，分别是：
+React 界面完全由数据驱动 React 中一切都是组件 props 是 React 组件之间通讯的基本方式 给组件输入一个参数，最终返回一个 React Element,React Element 就是在页面上展示的内容，相当于一个 DOM 节点
+React 一大核心就是－－万物皆可组件</description>
+    </item>
+    
+    <item>
+      <title>javascript 进阶问题</title>
+      <link>https://zburu.com/archives/36.html/</link>
+      <pubDate>Sat, 19 Dec 2020 13:17:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/36.html/</guid>
+      <description>Github：https://github.com/lydiahallie/javascript-questions
+相当不错的一个 Github 仓库，javascript questions ，作者每周都会发布一些有关 javascript 的题目，虽然不难但是考察细节，刷了一会，其实一些很简单的问题，结果因为细节思考不到位直接出错。
+引用作者的话：我在我的 Instagram 上每天都会发布 JavaScript 的多选问题，并且同时也会在这个仓库中发布。
+从基础到进阶，测试你有多了解 JavaScript，刷新你的知识，或者帮助你的 coding 面试！</description>
+    </item>
+    
+    <item>
+      <title>React 学习笔记（二）</title>
+      <link>https://zburu.com/archives/35.html/</link>
+      <pubDate>Wed, 16 Dec 2020 13:15:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/35.html/</guid>
+      <description>React 元素的事件处理和 DOM 元素的很相似，但是有一点语法上的不同
+React 事件的命名采用小驼峰式（camelCase），而不是纯小写
+使用 JSX 语法时你需要传入一个函数作为事件处理函数，而不是一个字符串
+一、事件处理 1.事件绑定 React 元素的事件处理和 DOM 元素类似，但是在语法上有些区别，比如：
+传统的html：用双引号包裹，后面必须跟参数
+&amp;lt;button onclick=&amp;#34;myfun()&amp;#34;&amp;gt;点击&amp;lt;/button&amp;gt; React：用大括号包裹，后面不跟参数
+&amp;lt;button onclick={myfun}&amp;gt;点击&amp;lt;/button&amp;gt; 一个完整的事件函数代码如下
+class Demo extends React.Component { render() { // 事件函数 function myfun() { alert(&amp;#39;helo,world&amp;#39;) } return ( // 绑定事件 &amp;lt;button onClick={this.myfun}&amp;gt; Activate Lasers &amp;lt;/button&amp;gt; ) } } ReactDOM.render( &amp;lt;Demo /&amp;gt;, document.getElementById(&amp;#39;root&amp;#39;) ) 如果方法后面没有()，则需要为这个方法绑定 this
+2.阻止默认行为 在 React 中还有一个不同的点，不能通过返回 fasle 阻止默认行为， React 提供了一个属性－－preventDefault，可以通过 preventDefault 阻止脚本执行
+看一下传统的 html 和 React 的对比</description>
+    </item>
+    
+    <item>
+      <title>React 中的占位符 Fragment</title>
+      <link>https://zburu.com/archives/33.html/</link>
+      <pubDate>Sat, 12 Dec 2020 13:10:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/33.html/</guid>
+      <description>在 React 项目中， render 方法只能有一个根元素，一般都是 &amp;lt;div&amp;gt; &amp;lt;div/&amp;gt; ，然后在里面写上我们的组件，渲染到浏览器一看，除了我们想要显示的组件，外面还套着一层 div ，如果在写项目的时候，套了很多曾组件，那么每一层都会多出来一个父级元素 div ，不美观，而且在调整样式的时候会有些麻烦
+因此， React 提供了一个占位符 Fragment，写法是：
+// index.js import React, { Component,Fragment } from &amp;#39;react&amp;#39; export default class index extends Component { render() { return ( &amp;lt;Fragment&amp;gt; &amp;lt;h2&amp;gt;hello,wolrd&amp;lt;/h2&amp;gt; &amp;lt;/Fragment&amp;gt; ) } } 在引入 React 的时候，增加一个属性 Fragment ，然后 render()方法下唯一的根元素我们用 &amp;lt;Fragment&amp;gt; &amp;lt;/Fragment&amp;gt; 来代替，这时候再看浏览器，就不会显示多余的标签了，直接显示 &amp;lt;h2&amp;gt;标签</description>
+    </item>
+    
+    <item>
+      <title>为什么不可变性在 React 中那么重要？</title>
+      <link>https://zburu.com/archives/32.html/</link>
+      <pubDate>Wed, 02 Dec 2020 13:09:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/32.html/</guid>
+      <description>根据官网文档来解释，为什么不可变性的概念在 React 中非常重要的原因，一般来说，有两种改变数据的方式。第一种方式是直接修改变量的值，第二种方式是使用新的一份数据替换旧数据
+React 文档
+一般来说，有两种改变数据的方式。第一种方式是直接修改变量的值，第二种方式是使用新的一份数据替换旧数据
+直接修改数据 var player = {score: 1, name: &amp;#39;Jeff&amp;#39;}; player.score = 2; // player 修改后的值为 {score: 2, name: &amp;#39;Jeff&amp;#39;} 新数据替换旧数据 var player = {score: 1, name: &amp;#39;Jeff&amp;#39;}; var newPlayer = Object.assign({}, player, {score: 2}); // player 的值没有改变, 但是 newPlayer 的值是 {score: 2, name: &amp;#39;Jeff&amp;#39;} // 使用对象展开语法，就可以写成： // var newPlayer = {...player, score: 2}; 不直接修改（或改变底层数据）这种方式和前一种方式的结果是一样的，这种方式有以下几点好处:
+简化复杂的功能 不可变性使得复杂的特性更容易实现。在后面的章节里，我们会实现一种叫做“时间旅行”的功能。“时间旅行”可以使我们回顾井字棋的历史步骤，并且可以“跳回”之前的步骤。这个功能并不是只有游戏才会用到——撤销和恢复功能在开发中是一个很常见的需求。不直接在数据上修改可以让我们追溯并复用游戏的历史记录
+跟踪数据的改变 如果直接修改数据，那么就很难跟踪到数据的改变。跟踪数据的改变需要可变对象可以与改变之前的版本进行对比，这样整个对象树都需要被遍历一次
+确定在 React 中何时重新渲染 不可变性最主要的优势在于它可以帮助我们在 React 中创建 pure components。我们可以很轻松的确定不可变数据是否发生了改变，从而确定何时对组件进行重新渲染</description>
+    </item>
+    
+    <item>
+      <title>webpack安装配置指令</title>
+      <link>https://zburu.com/archives/30.html/</link>
+      <pubDate>Thu, 26 Nov 2020 13:08:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/30.html/</guid>
+      <description>进行重新加载编译。实际就是将浏览器不认识的语法编译成浏览器认识的语法。比如less编译成css，ES6 语法 转成 ES5等等。
+减少io请求,通常我们在请求后，会返回一个html到浏览器。这时，我们如果打开控制台，就会发现在html页面通过script,link等标签引用的静态资源， 浏览器会再次发出请求去获取这些资源。但是webpack的打包，将所有的静态资源都合并好了，减少了io请求。
+# 安装webpack npm install --save-dev webpack # 安装webpack-cli依赖 npm install --save-dev webpack-cli # 创建新项目 mkdir demo # cd项目 cd demo # 初始化 npm init -y # 安装开发版本cli npm install webpack webpack-cli --save-dev 新建一个html文件和一个js文件，工程目录如下
+demo |- package.json + |- index.html + |- /src + |- index.js src/index.js:
+function component() { var element = document.createElement(&amp;#39;div&amp;#39;); // Lodash（目前通过一个 script 脚本引入）对于执行这一行是必需的 element.innerHTML = _.join([&amp;#39;Hello&amp;#39;, &amp;#39;webpack&amp;#39;], &amp;#39; &amp;#39;); return element; } document.</description>
+    </item>
+    
+    <item>
+      <title>vue学习笔记(3)－－computed, watch，calss, style</title>
+      <link>https://zburu.com/archives/29.html/</link>
+      <pubDate>Wed, 25 Nov 2020 13:05:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/29.html/</guid>
+      <description>一、计算属性computed 1.例子 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;div&amp;gt;{{message}}&amp;lt;/div&amp;gt; &amp;lt;div&amp;gt;{{revermessage}}&amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var vm = new Vue({ el: &amp;#39;#app&amp;#39;, data: { message: &amp;#39;hello,wolrd&amp;#39; }, computed: { revermessage: function() { return this.message.split(&amp;#39;&amp;#39;).reverse().join(&amp;#39;&amp;#39;) } } }) &amp;lt;/script&amp;gt; 声明一个计算属性severmessage，在computed中被指向对message进行一些方法操作后的返回值
+此时vm.severmessage依赖于vm.message的变化，对message改变数据，会引起severmessage的更新
+2.计算属性缓存和方法 还可以通过在表达式中调用方法来达到想要的效果
+&amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;div&amp;gt;{{message}}&amp;lt;/div&amp;gt; &amp;lt;div&amp;gt;{{revermessage()}}&amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var vm = new Vue({ el: &amp;#39;#app&amp;#39;, data: { message: &amp;#39;hello,wolrd&amp;#39; }, methods: { revermessage: function() { return this.message.split(&amp;#39;&amp;#39;).reverse().join(&amp;#39;&amp;#39;) } } }) &amp;lt;/script&amp;gt; 经过测试，两者的结果是一样的
+我们可以将同一函数定义为一个方法而不是一个计算属性。两种方式的最终结果确实是完全相同的
+区别是：计算属性是基于他们的响应式依赖进行缓存的，只有当响应式依赖，也就是message发生改变时才会重新求值，就意味着，只要message还没改变，多次访问revermessage计算属性只会返回之前计算结果的缓存，而不是直接执行计算属性的函数
+而方法，在每次触发重新渲染时，调用方法都会执行一次函数，这就多了一份开销
+我们为什么需要缓存？假设我们有一个性能开销比较大的计算属性 A，它需要遍历一个巨大的数组并做大量的计算。然后我们可能有其他的计算属性依赖于 A。如果没有缓存，我们将不可避免的多次执行 A 的 getter！如果你不希望有缓存，请用方法来替代</description>
+    </item>
+    
+    <item>
+      <title>vue学习笔记(2)－－vue实例和模板语法</title>
+      <link>https://zburu.com/archives/28.html/</link>
+      <pubDate>Tue, 24 Nov 2020 13:05:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/28.html/</guid>
+      <description>一、vue实例 1.创建vue实例 一个vue实例应该通过new Vue来创建根实例，所有的 vue 组件其实都是 vue 实例
+var vm = new Vue({ ... }) 当一个实例被创建时，data对象中的 property 都被加入到vue的响应式系统中，当值发生改变时，试图也会改变
+var data = {a: 1} var vm = new Vue({ data: data }) 此时在控制台输入vm.a == data.a会返回true，变量data已经被赋给vue实例中的data对象了
+同时，对两个对象的数据进行操作改变也会影响到另一个
+vm.a = 2 // data.a = 2 data.a = 3 // vm.a = 3 当数据改变时，视图也会重新渲染，如果在vue实例被创建后，又添加了一个新的property，则不会被加入到响应式系统中
+如果一开始就知道后面会添加一个property，但是一开始不存在或为空，需要设置一些初始值
+data: { newTodoText: &amp;#39;&amp;#39;, visitCount: 0, hideCompletedTods: fasle, todos: [], error: null } 使用Object.freeze()方法的时候，无法修改数据引起视图变化
+Object.freeze() 方法可以冻结一个对象。一个被冻结的对象再也不能被修改；冻结了一个对象则不能向这个对象添加新的属性，不能删除已有属性，不能修改该对象已有属性的可枚举性、可配置性、可写性，以及不能修改已有属性的值。此外，冻结一个对象后该对象的原型也不能被修改。freeze() 返回和传入的参数相同的对象。
+&amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt;{{message}}&amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var data = {message: &amp;#39;hello,wolrd&amp;#39;} Object.</description>
+    </item>
+    
+    <item>
+      <title>vue学习笔记(1)－－什么是vue?</title>
+      <link>https://zburu.com/archives/27.html/</link>
+      <pubDate>Mon, 23 Nov 2020 13:04:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/27.html/</guid>
+      <description>一、什么是vue? 练习时使用，最新版本
+&amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/vue/dist/vue.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; 生产时使用，明确版本号的版本，避免造成不可预见的问题
+&amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/vue@2.6.12&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; hello world
+&amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; {{message}} &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var app = new Vue({ el: &amp;#34;#app&amp;#34;, data: { message: &amp;#39;hello,world&amp;#39; } }) &amp;lt;/script&amp;gt; 1.v-指令 v-bind－－绑定属性 &amp;lt;div id=&amp;#34;app-2&amp;#34;&amp;gt; &amp;lt;span v-bind:title=&amp;#34;message&amp;#34;&amp;gt; 鼠标悬停几秒钟查看此处动态绑定的提示信息！ &amp;lt;/span&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var app = new Vue({ el: &amp;#39;#app&amp;#39;, data: { message: &amp;#39;页面加载于 &amp;#39; + new Date().toLocaleString() } }) &amp;lt;/script&amp;gt; v-bind是vue特有的提供的属性，他会在dom上应用一个响应式的操作
+打开console，输入app.message = &amp;quot;hello&amp;quot;，页面会改变内容只显示hello
+又或者输入app.message = false，内容会直接不显示
+vue官网例子：
+&amp;lt;!-- 绑定一个 attribute --&amp;gt; &amp;lt;img v-bind:src=&amp;#34;imageSrc&amp;#34;&amp;gt; &amp;lt;!</description>
+    </item>
+    
+    <item>
+      <title>React 学习笔记（一）</title>
+      <link>https://zburu.com/archives/26.html/</link>
+      <pubDate>Sun, 22 Nov 2020 13:02:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/26.html/</guid>
+      <description>an</description>
+    </item>
+    
+    <item>
+      <title>对象，类和接口之间的关系</title>
+      <link>https://zburu.com/archives/25.html/</link>
+      <pubDate>Sat, 21 Nov 2020 13:01:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/25.html/</guid>
+      <description>类是对的类型，类是具有相同属性和方法的一组集合，一个类可以对应多个对象，对象通过他们公开的方法来定义他们与外界的交互行为，而方法就形成了与外界交互的接口
+类，对象和接口 1.类和对象 区别：
+对象是类的一个实例。就比如一个人，他有具体的属性，身高，体重，姓名等状态，跑步，跳舞等行为 类是抽象的概念，代表一类事物的模版。对一类对象的行为和状态进行描述，抽离出其共性，形成类 关系：
+类就是对事物的一种描述，对象是具体存在的一个实例 类是对的类型，类是具有相同属性和方法的一组集合，一个类可以对应多个对象
+2.什么是接口？ 对象通过他们公开的方法来定义他们与外界的交互行为，而方法就形成了与外界交互的接口
+更深层次的含义是：使定义和实现分离开，他是交互的具体实现的抽象化
+接口是面向对象编程的基础，它是一组包含了函数方法的数据结构，他是一个比类更抽象化的东西
+可以这么说，类是对象的抽象化，接口是类的抽象化
+比如生活中的接口，机顶盒，人们利用它来实现收看不同频道和信号的节目，它犹如对不同类型的信息进行集合和封装的设备，最后把各种不同类型的信息转换为电视能够识别的信息。
+在编程语言中的接口，实际上是不同类的封装并提供统一的外部联系通道，这样其他对象就可以利用接口来调用不同类的成员了
+接口和类，实际上都是相同的数据结构
+在接口中，可以声明属性，方法，事件，类型，但是不能声明变量，也就是说，接口只能定义成员，不能给成员赋值
+使用接口的好处，提高代码灵活性，降低对象之间的耦合度，在实际项目中非常有用</description>
+    </item>
+    
+    <item>
+      <title>vue使用cli脚手架构建项目工程</title>
+      <link>https://zburu.com/archives/24.html/</link>
+      <pubDate>Fri, 20 Nov 2020 13:03:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/24.html/</guid>
+      <description>vue使用cli脚手架构建项目工程，执行的命令以及遇到的相关的问题
+1.下载安装node 测试一下是否成功安装，
+$ node -v // 返回下载的版本号 2.安装webpack环境 $ npm install webpack -g // 如果失败，可能是因为用户没有权限 // 使用下面这种，管理员权限 $ sudo npm install webpack -g 如果返回版本号代表成功，如果没有，则需要输入下面的命令
+$ npm install webpack webpack-cli -g webpack 4.X 开始，需要安装 webpack-cli 依赖
+3.全局安装vue-cli $ npm install --global vue-cli // 如果失败，使用sudo $ sudo npm install --global vue-cli 安装完成之后，输入
+$ vue -V 如果返会版本号，说明安装成功
+4.构建项目 前面那些命令执行完之后，就可以构建ci项目了，找到我们想要放置项目的文件夹，进入终端，cd到这个文件夹
+输入命令：
+$ vue init webpack vuedemo // 名字自己根据要求起,vuedemo Project name (vuedomo)： &amp;mdash;&amp;ndash;项目名称，直接回车，按照括号中默认名字（注意这里的名字不能有大写字母，如果有会报错Sorry, name can no longer contain capital letters） Project description (A Vue.</description>
+    </item>
+    
+    <item>
+      <title>react学习路径－－怎么学习react？</title>
+      <link>https://zburu.com/archives/23.html/</link>
+      <pubDate>Thu, 19 Nov 2020 13:02:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/23.html/</guid>
+      <description>转载于:https://github.com/petehunt/react-howto，react开源作者对于react框架的一个学习路径的建议，个人感觉还是相当不错的学习路线
+如何学习React? 如果你是一个 React (或者前端) 新手, 出于以下的原因, 你可能会对这个生态圈感到困惑:
+React 的目标群体历来是喜欢尝试新事物的开发者和前端专家. Facebook 开源的内容是应用在他们的实际应用中, 因此他们没有关注那些比 Facebook 小的工程需求. 现有的 React 指引水平参差不齐. 在本文中, 我会假设你已有使用 HTML, CSS 和 JavaScript 开发网页的基础.
+为什么要听我的? 关于 React, 现在已经有大量的相互冲突的建议了, 为什么要听我的?
+因为我是在 Facebook 构建并开源 React 的最初成员之一. 现在我离开了 Facebook 并加入了一家初创公司, 所以我也不会站在 Facebook 的立场上来表态.
+如何踏入 React 生态圈 所有的软件都是建立在某个技术栈之上的, 你需要对整个技术栈有足够深入的理解, 才能建造你的应用. 为什么 React 生态圈的工具似乎总让人感觉压力山大呢, 因为它总是以错误的顺序被解释:
+你应该按照以下的顺序进行学习, 而不是跳着学或者同时学习:
+React npm JavaScript “打包工具” ES6 Routing Flux 你不需要把这些都学完才去使用 React. 只需要在你遇到问题需要解决的时候, 才进入下一步的学习.
+另外, 在 React 社区中, 有一些前沿主题是经常被提及到的, 以下的这些主题很有意思, 但也很难弄懂, 所以它们远没有上面的主题流行, 大多数应用也不需要用到这些.</description>
+    </item>
+    
+    <item>
+      <title>在js中运算不能随便把value属性定义成变量</title>
+      <link>https://zburu.com/archives/22.html/</link>
+      <pubDate>Wed, 18 Nov 2020 13:00:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/22.html/</guid>
+      <description>在写一个小demo的时候，无意中发现定义变量的时候直接写入value，会导致获取不到数据，或者获取的不是我们想要的内容，在js中运算不能随便把value属性定义成变量
+先看一段代码
+&amp;lt;input type=&amp;#34;text&amp;#34;&amp;#34; id=&amp;#34;a&amp;#34;&amp;gt; &amp;lt;span&amp;gt;*&amp;lt;/span&amp;gt; &amp;lt;input type=&amp;#34;text&amp;#34; id=&amp;#34;b&amp;#34;&amp;gt; &amp;lt;input type=&amp;#34;button&amp;#34; value=&amp;#34;=&amp;#34; onclick=&amp;#34;beto()&amp;#34;&amp;gt; &amp;lt;input type=&amp;#34;text&amp;#34; id=&amp;#34;sub&amp;#34; disabled&amp;gt; &amp;lt;script&amp;gt; function beto() { var a = document.getElementById(&amp;#39;a&amp;#39;).value var b = document.getElementById(&amp;#39;b&amp;#39;).value var sub = document.getElementById(&amp;#39;sub&amp;#39;).value sub = a + b } &amp;lt;/script&amp;gt; 就这么一看，逻辑貌似没有问题，获取a和b的value，乘法运算，然后输出sub
+但是放在浏览器运行的时候，发现完全没有反应
+为什么呢？
+（假装思考五分钟&amp;hellip;）
+因为sub.value不能直接定义在变量中
+// 先定义id为sub的input框 var sub = document.getElementById(&amp;#39;sub&amp;#39;) // 然后在运算的时候在直接使用sub.value sub.value = a * b 顺手放一个写demo时候用的简易计算器
+&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html lang=&amp;#34;en&amp;#34;&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;UTF-8&amp;#34;&amp;gt; &amp;lt;title&amp;gt;简易计算器&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;input type=&amp;#34;text&amp;#34;&amp;#34; id=&amp;#34;a&amp;#34;&amp;gt; &amp;lt;select id=&amp;#34;c&amp;#34;&amp;gt; &amp;lt;option value=&amp;#34;+&amp;#34;&amp;gt;+&amp;lt;/option&amp;gt; &amp;lt;option value=&amp;#34;-&amp;#34;&amp;gt;-&amp;lt;/option&amp;gt; &amp;lt;option value=&amp;#34;*&amp;#34;&amp;gt;*&amp;lt;/option&amp;gt; &amp;lt;option value=&amp;#34;/&amp;#34;&amp;gt;/&amp;lt;/option&amp;gt; &amp;lt;/select&amp;gt; &amp;lt;input type=&amp;#34;text&amp;#34; id=&amp;#34;b&amp;#34;&amp;gt; &amp;lt;input type=&amp;#34;button&amp;#34; value=&amp;#34;=&amp;#34; onclick=&amp;#34;beto()&amp;#34;&amp;gt; &amp;lt;input type=&amp;#34;text&amp;#34; id=&amp;#34;sub&amp;#34; disabled&amp;gt; &amp;lt;script&amp;gt; function beto() { var a = document.</description>
+    </item>
+    
+    <item>
+      <title>事件监听函数，以及事件的捕获和冒泡机制</title>
+      <link>https://zburu.com/archives/21.html/</link>
+      <pubDate>Tue, 17 Nov 2020 13:00:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/21.html/</guid>
+      <description>事件一般是用于浏览器和用户操作之间的交互，当用户执行某些特殊的操作时，浏览器给予反应，触发绑定的事件，事件流，事件发生时会在元素节点和根节点之间按照约定的顺序传播，事件经过的所有节点都会受到事件的影响，这个传播过程被称为DOM事件流
+函数事件 事件一般是用于浏览器和用户操作之间的交互，当用户执行某些特殊的操作时，浏览器给予反应，触发绑定的事件
+事件流，事件发生时会在元素节点和根节点之间按照约定的顺序传播，事件经过的所有节点都会受到事件的影响，这个传播过程被称为DOM事件流
+true是捕获，false是冒泡，默认为冒泡事件
+1.addEventListener()－－添加事件监听函数 给元素添加一个事件，假如有多个事件，不会覆盖，会依次执行
+&amp;lt;div id=&amp;#34;demo&amp;#34;&amp;gt;dom&amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; document.getElementById(&amp;#39;demo&amp;#39;).addEventListener(&amp;#34;click&amp;#34;, myfun) document.getElementById(&amp;#39;demo&amp;#39;).addEventListener(&amp;#34;click&amp;#34;, myfun1) function myfun() { console.log(&amp;#39;事件监听函数&amp;#39;) } function myfun1() { console.log(&amp;#39;addEventListener&amp;#39;) } &amp;lt;/script&amp;gt; 注意： 1.这里有一个细节，addEventListener()里面有两个参数，第一个表示触发的条件，第二个表示触发的事件 正常情况下，第二个参数直接写函数名并且不加参数()，如果加了参数()则表示立即执行，不需要触发第一个参数要求的条件
+2.在这里绑定事件的时候，事件名不能和定义的变量名一样，否则无效
+2.removeEventListener()－－移除事件监听函数 下面这个demo，当鼠标在div中移动的时候，出现随机数，点击按钮后，移除事件监听函数
+&amp;lt;!-- css --&amp;gt; &amp;lt;style&amp;gt; #demo { width: 100px; height: 100px; border: 1px solid #000; } &amp;lt;/style&amp;gt; &amp;lt;!-- html --&amp;gt; &amp;lt;div id=&amp;#34;demo&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;input type=&amp;#34;button&amp;#34; value=&amp;#34;点击移除&amp;#34; onclick=&amp;#34;remove()&amp;#34;&amp;gt; &amp;lt;div id=&amp;#34;show&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;!-- js --&amp;gt; &amp;lt;script&amp;gt; document.getElementById(&amp;#39;demo&amp;#39;).addEventListener(&amp;#34;mousemove&amp;#34;, myfun) function myfun() { document.getElementById(&amp;#39;show&amp;#39;).innerHTML = Math.random() } function remove() { document.</description>
+    </item>
+    
+    <item>
+      <title>getElementBy系列和querySelector系列的区别</title>
+      <link>https://zburu.com/archives/19.html/</link>
+      <pubDate>Mon, 16 Nov 2020 12:59:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/19.html/</guid>
+      <description>querySelector和querySelectorAll的用法和getElementBy大致一样，获取的时候带上符号，getElementBy获取的是元素的动态集合，querySelector获取的是元素的静态集合。
+但是需要注意：getElementBy系列和querySelector系列的区别
+比如，我们写一个for循环，每次获取li标签的时候，ul生成一个li子元素
+&amp;lt;ul id=&amp;#34;ul&amp;#34;&amp;gt; &amp;lt;li&amp;gt;a&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;b&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;c&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;script&amp;gt; var ul = document.getElementById(&amp;#39;ul&amp;#39;); var li = document.getElementsByTagName(&amp;#39;li&amp;#39;); for(var i = 0;i &amp;lt; li.length; i++) { ul.appendChild(document.createElement(&amp;#39;li&amp;#39;)) }; console.log(li.length); // 陷入死循环 &amp;lt;/script&amp;gt; 用i &amp;lt; li.length来进行判断时，会导致浏览器死循环，因为循环一次的时候，浏览器又重新获取li标签数组，每调用一次就会重新对文档进行查询，就会进入死循环
+进行修改：把i &amp;lt; li.length改成i &amp;lt; 3，把li标签数组静态化，然后打印
+conosle.log(li.length) // 6 重新用querySelector获取一遍元素
+&amp;lt;ul id=&amp;#34;ul&amp;#34;&amp;gt; &amp;lt;li&amp;gt;a&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;b&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;c&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;script&amp;gt; var ul = document.querySelector(&amp;#39;ul&amp;#39;); var li = document.querySelectorAll(&amp;#39;li&amp;#39;); for(var i = 0;i&amp;lt;li.length;i++) { ul.appendChild(document.createElement(&amp;#39;li&amp;#39;)) }; console.log(li.length); // 输出对结果是原来的li.length = 3，而不是增加后的 6 &amp;lt;/script&amp;gt; 静态集合体现在querySelectorAll(&#39;li&#39;)获取到ul里所有li后，不管后续再动态添加了多少li，都是不会对其参数影响</description>
+    </item>
+    
+    <item>
+      <title>DOM－－文档对象模型</title>
+      <link>https://zburu.com/archives/18.html/</link>
+      <pubDate>Sun, 15 Nov 2020 12:58:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/18.html/</guid>
+      <description>DOM中文名文档对象模型，英文名Document Object Model，我们简称为DOM，是针对html和xml文档的一种API，将html以一种树状结构呈现出来，可以更直观去研究文档结构，我们将这种树状文档结构称为－－DOM树，或者节点树，一样的概念
+一、什么是DOM？ DOM中文名文档对象模型，英文名Document Object Model，我们简称为DOM，是针对html和xml文档的一种API，将html以一种树状结构呈现出来，可以更直观去研究文档结构，我们将这种树状文档结构称为－－DOM树，或者节点树，一样的概念
+js通过dom节点，可以对文档的html标签，属性，css样式，以及具体的内容做出修改，并对页面中的所有事件进行响应
+二、节点树 1.节点类型 文档节点－－Document 标签节点－－Element 文本节点－－Text 注释节点－－Comment 属性节点－－Attr 2. 属性 节点类型－－nodeType 节点名称－－nodeName 节点值－－nodeValue 子节点－－childNodes 父节点－－parentNodes 上一个节点－－previousSibling 下一个节点－－nextSibling 第一个子节点－－firstChild 最后一个子节点－－lastChild 3.文档节点－－document (1) 获取 getElementById()－－通过id获取元素 &amp;lt;div id=&amp;#34;demo&amp;#34;&amp;gt;通过id获取元素&amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var demo = document.getElementById(&amp;#39;demo&amp;#39;); demo.onclick = function() { console.log(&amp;#39;通过id获取元素&amp;#39;) } &amp;lt;/script&amp;gt; &amp;lt;!-- 点击id为demo的元素，控制台输出&amp;#39;通过id获取元素&amp;#39; --&amp;gt; getElementsByName()－－通过name获取元素 &amp;lt;input type=&amp;#34;text&amp;#34; name=&amp;#34;int&amp;#34; value=&amp;#34;通过name获取元素1&amp;#34;&amp;gt; &amp;lt;input type=&amp;#34;text&amp;#34; name=&amp;#34;int&amp;#34; value=&amp;#34;通过name获取元素2&amp;#34;&amp;gt; &amp;lt;script&amp;gt; var int = document.getElementsByName(&amp;#39;int&amp;#39;); for(var i = 0;i &amp;lt; int.length; i++) { console.log(int[i].value); } &amp;lt;/script&amp;gt; &amp;lt;!</description>
+    </item>
+    
+    <item>
+      <title>有关js函数，方法的一些补充总结</title>
+      <link>https://zburu.com/archives/17.html/</link>
+      <pubDate>Sat, 14 Nov 2020 12:57:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/17.html/</guid>
+      <description>数据类型，构造函数，原型和原型链的一些讲解补充
+一、数据类型 1.5个基本类型 string number boolean undefined 未定义 null 值为空 symbol 表示一个符号，符号类型是唯一的并且是不可修改的
+最常见的还是前三种，字符串，数字，布尔值
+2.常见的引用类型 引用类型是一种数据结构，用于将数据和功能组织在一起
+对象－Object, 数组－Array, 函数－Function, 正则－RegExp, 日期－Date等
+二、函数 1.什么是函数？ 具有独立功能的代码块，在js中使用function关键字定义函数 让代码结构更加清晰，提高代码可用性 js函数的分类：自定义函数和系统函数 2.自定义函数 有一种匿名函数，没有名字的函数，创建闭包，避免造成全局变量的污染
+匿名自执行函数
+概念：匿名函数的定义完成后立即执行，执行函数表达式 作用：实现闭包和创建独立的命名空间 使用：分组操作符()，void操作符，~操作符，!操作符等等 使用场景：函数表达式，对象属性，事件，事件参数，返回值 定义完匿名函数后，一定要调用 // 函数表达式 window.onload = function() { let funcobj = function() { alert(&amp;#34;函数表达式中的匿名函数&amp;#34;) } funcobj(); } // 对象属性 window.onload = function() { let obj = { name: function() { alert(&amp;#39;对象属性中的匿名函数&amp;#39;) } } obj.name(); } 3.内置函数 放在全局下面叫做函数，放在对象里面被叫做方法，对象的方法
+常规函数 alert() // 弹出框 confirm() // 弹出一个确认框 prompt() // 弹出一个输入框 isNaN() // 判断是否为数字 parseInt() // 将字符串或浮点数转换为整数 parseFloat() // 将字符串转换为整数或浮点数 eval() // 计算表达式的结果 数组函数 用for循环遍历数组</description>
+    </item>
+    
+    <item>
+      <title>为什么getTime()返回1970年至今的毫秒？</title>
+      <link>https://zburu.com/archives/16.html/</link>
+      <pubDate>Fri, 13 Nov 2020 12:56:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/16.html/</guid>
+      <description>今天在写new Date()时候，无意中发现了一个很有意思的方法，getTime()，百度了一下，有人说是计算从1970年1月1日至今的毫秒数
+为什么要是1970年呢？
+new Date().getTime(); // xxxxxxxxxxx 这个起源于unix的诞生，因为Unix在1969年被开发出来，1971年正式发布，在这之前没有机器会需要来表示1970-01-01-00:00:00之前的时间，后面的语言很多就沿用了这一习惯，js只是也沿用了这种习惯而已。
+当然，这一做法现在看来是很有问题的，例如不方便用它表示更早的时间而且精度有限。
+定义time从1970年1月1日开始，忽然想到在JAVA里，Oracle数据库时间也是从1970年1月1日开始计算。
+比如java类代码:
+Date date = new Date(0); System.out.println(date); // 打印出来的结果：Thu Jan 01 08:00:00 CST 1970也 是1970年1月1日，实际上时分秒是0点0分0秒(这里打印出来是8点，稍后会作解释)。
+为什么这个时间会定义在1970年1月1日这个时候呢?
+于是开始了Google，中文网页根本找不到答案。于是试着搜索英文关键字,在Sun java论坛总算找到准确的帖子:
+http://forums.sun.com/thread.jspa?threadID=595140&amp;amp;start=15
+其中有一个回复:
+I suspect that Java was born and raised on a UNIX system. UNIX considers the epoch (when did time begin) to be midnight, January 1, 1970. 是说java起源于UNIX系统，而UNIX认为1970年1月1日0点是时间纪元.
+但这依然没很好的解释&amp;quot;为什么&amp;quot;,出于好奇，继续Google，总算找到了答案:
+http://en.wikipedia.org/wiki/Unix_time
+这里的解释是:
+最初计算机操作系统是32位，而时间也是用32位表示。
+System.out.println(Integer.MAX_VALUE);
+2147483647
+Integer在JAVA内用32位表示，因此32位能表示的最大值是2147483647。另外1年365天的总秒数是31536000，2147483647/31536000 = 68.1,也就是说32位能表示的最长时间是68年，而实际上到2038年01月19日03时14分07秒，便会到达最大时间，过了这个时间点，所有32位操作系统时间便会变为10000000 00000000 00000000 00000000也就是1901年12月13日20时45分52秒，这样便会出现时间回归的现象，很多软件便会运行异常了。
+到这里，我想问题的答案已经出来了:</description>
+    </item>
+    
+    <item>
+      <title>面向对象编程</title>
+      <link>https://zburu.com/archives/15.html/</link>
+      <pubDate>Thu, 12 Nov 2020 12:58:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/15.html/</guid>
+      <description>面向对象把构成问题的transaction分解成各个对象，而建立对象的目的也不是为了完成一个个步骤，而是为了描述某个事物在解决整个问题的过程中所发生的行为，意在写出通用代码，加强代码重用，屏蔽差异性。
+一、什么是面向对象编程 js是基于原型的，基于面向对象编程
+面向对象就是把数据和对数据的操作方法放在一起，作为一个整体——对象。对同类对象抽象出其共性，形成类
+1.面向过程程序设计 将一个项目（或者一个事件）从头到尾按顺序，一步一步完成，先做什么，后做什么，一直到结束，也是我们人做事的方法。
+自上而下，先确定一个整体的框架，然后添砖加瓦，逐步实现想要得到的效果，适用于简单的系统，容易理解。但是难以应对复杂的系统，不易维护扩展，难以复用
+面向过程是分析解决问题的步骤，然后用函数把这些步骤一步一步的实现，然后在使用的时候一一调用则可。强调的是完成这件事儿的动作，更接近我们日常处理事情的思维。
+2.面向对象程序设计 将一个项目（或者一个事件）分成更小的项目，每一个部分负责一方面的功能，最后由这些部分组成一个整体，先设计组件，在完成拼装，适用于大型复杂的系统
+面向对象把构成问题的transaction分解成各个对象，而建立对象的目的也不是为了完成一个个步骤，而是为了描述某个事物在解决整个问题的过程中所发生的行为，意在写出通用代码，加强代码重用，屏蔽差异性。
+想要弄明白面向对象，需要先理解类和对象的概念
+《什么是类和对象？》
+二、创建对象的方法 1.创建字面量和实例 window.onload = function() { // 实例 var person = new Object(); person.name = &amp;#39;小明&amp;#39;; person.age = 22; person.year = function() { console.log(this.name + &amp;#39;今年&amp;#39; + this.age + &amp;#39;岁了！&amp;#39;) }; person.year(); // 字面量 var student = { name: &amp;#39;小明&amp;#39;, age: 22, year: function () { console.log(this.name + &amp;#39;今年&amp;#39; + this.age + &amp;#39;岁了！&amp;#39;) } } student.year(); } // 小明今年22岁了！ 两者输出的结果是一样的，控制台输出： 缺点：重复实例化对象，代码冗余高</description>
+    </item>
+    
+    <item>
+      <title>小张厨房日记（更新中...）</title>
+      <link>https://zburu.com/archives/14.html/</link>
+      <pubDate>Mon, 09 Nov 2020 21:13:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/14.html/</guid>
+      <description>厨房日记，记录我的&amp;rsquo;高光&amp;rsquo;时刻
+今日菜谱
+莴笋炒肉 准备食材：两根莴笋，一块猪肉，两只青椒
+调料：盐，酱油，醋，油，料酒，姜，蒜
+炒菜前10分钟将猪肉从冰箱取出，放进碗中，用水浸解冻 将莴笋削皮洗净，用刀切成片状 将浸泡解冻好的猪肉取出，切成肉丁 切少许姜和蒜 准备好两根干辣椒 往锅中倒入一勺油，待至烧熟后，将姜和蒜倒入翻炒 将猪肉倒入锅中大火爆炒，并倒入少许料酒和酱油 一到两分钟过后，将莴笋倒入锅中，并添至少许清水防止太干 翻炒时倒入少许醋，盐，并放入干辣椒， 翻炒防止糊锅，静置等待菜熟 没有很复杂的过程，只是细心就可以做出让自己感受舒心的菜
+（更新2020.11.10）
+萝卜炖牛肉 准备食材：一根萝卜，四根胡萝卜，一大块牛肉，一卷粉丝
+调料：盐，酱油，醋，油，料酒，姜，蒜，胡椒，八角
+将牛肉从冰箱取出，切成两块，取一碗清水，然后放在水中化冻 牛肉解冻十分钟左右取出，均匀切碎，根据自己口感可随意 切半块姜，半个蒜，起锅烧油，下葱姜蒜， 暂时没有小葱，等下次有了在下
+加入三四片干辣椒，少许胡椒，八角， 等到锅中调料榨出香味，下牛肉，翻炒均匀防止糊锅 倒入料酒，酱油 在翻炒的过程中，用炖锅烧半锅清水，2-3分钟后，将烧锅内牛肉、配料全部倒入炖锅，用勺子翻滚均匀 用盖子盖住 将萝卜切成片，稍微有点厚度的那种，不薄也不厚，6-7分钟左右，下萝卜，并加入适当的盐 下稍加翻滚，盖住盖子，留一个缝隙 在这个期间洗净胡萝卜，去皮，切成块，等到烧锅20分钟左右，下胡萝卜和粉丝 为什么要这么晚才下胡萝卜和粉丝呢？ 因为他俩比较软，熟得快，如果放在锅中时间过长，很容易煮烂
+继续煮至30分钟左右，煮的差不多了，尝一下咸淡，可适当加入调料 放一会就可以出锅啦 这是一道耗时比较长的菜，可以慢慢做，大致是这些流程，具体的可根据实际情况调整，比如加入的配菜不同</description>
+    </item>
+    
+    <item>
+      <title>javascript——函数、变量和方法</title>
+      <link>https://zburu.com/archives/13.html/</link>
+      <pubDate>Wed, 04 Nov 2020 21:12:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/13.html/</guid>
+      <description>当代码出现有规律的重复之后，可以利用函数，定义变量，调用方法，不用去重复的改动代码，只需要进行函数的修改。基本上所有的高级语言都支持函数，javascript也不例外，它可以像变量一样被使用，方便且强大，因此本文对js函数进行系统的学习，并在学习过程中做了详细的笔记以及样例。
+一、函数的定义和调用 1.定义函数 function abs(x) { if(x = 0) { return x; } else { return -x; } } function()指出这是一个函数定义 abs是函数的代码 (x)里面的内容是函数的参数 {...}的内容是函数体，可以包括若干语句，甚至可以没有任何语句 函数体中，必须以return结尾，才可以把结果返回，如果不用return结尾的话，就会返回undefined
+也可以直接定义一个对象，这个对象也可以写成函数的方式
+var abs = function (x) { if (x&amp;gt;=0) { return x }else { return -x } }； function(x)就是一个匿名函数，这个函数被赋值给了变量abs，所以可以直接通过abs调用该函数
+这两种定义函数的方式完全一致，，但是用变量定义的时候需要注意，要用;结尾，代表函数语句结束
+2.调用函数 调用函数时，直接传参即可 abs(10)，根据函数定义，将10代入进去即可，返回的结果是x , 即10
+3.检查参数 可以对参数进行检查，看看是否是自己想要的参数对类型
+如果传入对参数abs(x)中非数字，控制台返回结果this is not number，如果传参为数字，则进行条件判断
+function abs(x) { // 检查参数x是否为数字 if (typeof x !== &amp;#39;number&amp;#39;) { console.log(&amp;#39;this is not number&amp;#39;) }else{ if (x &amp;gt;= 0) { return x }else { return -x } } } 4.</description>
+    </item>
+    
+    <item>
+      <title>HTML事件属性--DOM</title>
+      <link>https://zburu.com/archives/12.html/</link>
+      <pubDate>Thu, 29 Oct 2020 21:12:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/12.html/</guid>
+      <description>研究html的对象，事件和方法，从js的角度来思考，这个标签的属性是通过什么方法，触发什么事件来实现的
+键盘鼠标事件 页面窗口事件 表单事件 一、window事件属性 针对window对象触发的事件，在&amp;lt;body&amp;gt;中执行
+1.onbeforeprint／onafterprint 在浏览器打印之间/后触发
+&amp;lt;body onbeforeprint = print()&amp;gt; &amp;lt;script&amp;gt; function print() { alert(&amp;#34;打印之间！&amp;#34;) } &amp;lt;/script&amp;gt; 打印前和打印后的事件方法类似，一个是在打印前触发事件，一个是在打印这个事件结束之后触发onafterprint这个事件
+demo查看
+2.onbeforeunload/unload 离开页面之间触发的事件／之后触发的事件
+打开f12，然后刷新，或者关闭浏览器，可以在浏览器触发事件
+&amp;lt;script&amp;gt; window.onbeforeunload = function(){ return &amp;#34;提示&amp;#34; //返回的内容不会显示， //在刷新的时候触发，或者关闭浏览器，浏览会直接提示是否重新加载，不能直接返回return } &amp;lt;/script&amp;gt; demo查看
+3.onerror 当图片出错是可以触发该事件，支持该事件的标签只有 &amp;lt;img&amp;gt;,&amp;lt;object&amp;gt;,&amp;lt;style&amp;gt;
+&amp;lt;img src=&amp;#34;1.gif&amp;#34; onerror = &amp;#34;myfun()&amp;#34;&amp;gt; &amp;lt;script&amp;gt; function myfun() { alert(&amp;#34;图片出错&amp;#34;) } &amp;lt;/script&amp;gt; 1.gif不存在，因此触发了一个myfun()事件，弹出窗口
+demo查看
+4.onhashchange 当文档改变时发生的脚本 ？？？
+5.onload 页面加载完成之后触发
+demo查看
+6.onmessage 在消息被触发时运行 ???
+7.onoffline 当浏览器离线时触发
+&amp;lt;body onoffline=&amp;#34;myfun()&amp;#34;&amp;gt; 8.ononline 当浏览器在线工作时触发
+&amp;lt;body ononline=&amp;#34;myfun()&amp;#34;&amp;gt; ononline和onoffline在网络断线或者连线时触发，可以控制电脑网络查看效果</description>
+    </item>
+    
+    <item>
+      <title>js基本语法</title>
+      <link>https://zburu.com/archives/11.html/</link>
+      <pubDate>Wed, 21 Oct 2020 21:11:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/11.html/</guid>
+      <description>在学习js基本语法的过程中，把遇见的知识点和问题记录喜下来，以便未来复习和参考。
+数据类型有：数据，字符串，数组，数字，布尔值等。
+一、数据类型 1.number 2.布尔值 只有true和false两种，可以直接用true和false来表达，比如：
+true;	//true false;	//false 2&amp;gt;1;	//true 2&amp;gt;3;	//fasle 与	&amp;amp;&amp;amp; 两者同时为true，运算结果为true
+或	|| 只要有一个为true，运算结果就是true
+非	！ 当程序为true时，运算结果取反为false
+var age = 15; if(age &amp;gt;= 18) { alert(&amp;#39;adult&amp;#39;) }else{ alert(&amp;#39;teenager&amp;#39;) } age值是15，当age大于且等于18的时候浏览器弹出adult，反之弹出teenager
+3.字符串 4.比较运算符 ==和===
+当使用==进行比较的时候，一般会自动转换类型然后再进行比较
+当使用===进行比较的时候，如果数据类型不一样，直接返回false，等到类型一致了，然后再进行比较
+有一个特殊的number就是NaN，它不与任何值相等，包括它自己NaN
+NaN === NaN	//false 5.null和undefined null表示一个空值，0表示一个数值，&#39;&#39;表示长度为0的字符串，但是null表示空
+undefined表示未定义
+但是区分两者意义不大，大多数还是在用null，undefined仅仅在判断函数参数是否传递的情况下有用
+6.数组Array [ ] ，表示一组按顺序排列的集合，其中的每个值称为元素
+new Array(1,2,3)	//[1,2,3] 数组的索引
+二、对象和变量 var person = { name: &amp;#39;jack&amp;#39;, age: 20, city: &amp;#39;hangzhou&amp;#39; } person是对象变量，name: &#39;jack&#39;这就是一个键值对，name是属性名，&#39;jack&#39;是属性</description>
+    </item>
+    
+    <item>
+      <title>chrome浏览器中对autoplay的一些处理技巧</title>
+      <link>https://zburu.com/archives/8.html/</link>
+      <pubDate>Fri, 11 Sep 2020 21:08:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/8.html/</guid>
+      <description>我在写博客的时候，想给博客网页添加自己喜欢的音乐，这样我在写作和阅读的时候，心情也会比较愉悦，这个时候，我们就需要用到audio这个标签。
+&amp;lt;audio src=&amp;#34;&amp;#34;&amp;gt;&amp;lt;/audio&amp;gt; 同时audio标签还带有很多实用的属性，常用的有以下几个：
+src &amp;ndash; 这个就不说了，懂的都懂 autoplay &amp;ndash; 如果出现该属性，音频在就绪后马上播放 controls &amp;ndash; 网页中显示音频控件 loop &amp;ndash; 循环播放 muted &amp;ndash; 默认静音 但是我在设置 autoplay 的时候发现，chrome对自动播放深恶痛绝，直接从根源上限制了这个属性的开启，意思是说，这个属性直接禁用，在打开网页没有交互的情况下，不允许自动播放。
+但仔细想一想，这个做法其实是对用户比较有利的。假设用户使用的时候宽带流量，直接自动播放视频、音频，就会对用户造成损失。甚至一些广告会自动播放，这就直接影响到了用户的体验。所以，对于chrome的做法我还是比较赞同的。
+回过头一想，不对啊，我的目的是解决这个问题，不是夸赞谷歌的。我想给自己的个人博客添加喜欢的音乐，所以我找了一个不算办法的办法。我直接在模拟一个事件，当鼠标点击网页任意处的时候，自动触发autoplay的音频效果，直接上代码。
+&amp;lt;script&amp;gt; function toggleSound() { var music = document.getElementById(&amp;#34;vd&amp;#34;); //获取ID console.log(music); console.log(music.paused); if (music.paused) { //判读是否播放 music.paused=false; music.play(); //没有就播放 } } setInterval(&amp;#34;toggleSound()&amp;#34;,1); &amp;lt;/script&amp;gt; 这样处理过之后，插入音频，任意点击网页某个地方，都会触发播放效果，但凡事有利有弊，这样做的话，一旦开启播放，将无法启用暂停功能，也就是说会一直播放下去
+如果是像我这样写个人博客，这个弊端倒是影响不大，我在这里记录一下这个方法。</description>
+    </item>
+    
+    <item>
+      <title>文字溢出隐藏以及和flex冲突的问题</title>
+      <link>https://zburu.com/archives/6.html/</link>
+      <pubDate>Mon, 03 Aug 2020 21:08:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/6.html/</guid>
+      <description>在某些段落中，页面要求文字只显示一行，但是width固定，而文字过长，就会出现一个需求，超过长度限制的文字被隐藏且显示省略号，css 支持这样的属性。
+单行文本溢出隐藏
+div{ overflow: hidden; white-space: nowrap; text-overflow: ellipsis; } 多行文本溢出隐藏
+div { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; } 简单的几行代码就可以达到我们的要求。
+但是有一个我们需要注意的地方！！
+flex布局是前端写代码经常使用的一种布局方式，简单便捷且有效，但是在使用flex布局的元素中不能同时使用文字溢出隐藏,也就是两者不能同时出现在同一标签中。
+这里，我们也有对应的解决办法。
+只要保证flex布局和隐藏的样式不在同级元素中就可以，所以在文字外部多包裹一层标签。
+可以采用下面这段代码的写法；
+&amp;lt;p&amp;gt; &amp;lt;!-- 我们在这一层的标签进行flex布局 --&amp;gt; &amp;lt;span&amp;gt; &amp;lt;!-- 这一层的标签我们引入文字过长隐藏的样式 --&amp;gt; &amp;lt;!-- 文本 --&amp;gt; &amp;lt;/span&amp;gt; &amp;lt;/p&amp;gt; </description>
+    </item>
+    
+    <item>
+      <title>vue生命周期</title>
+      <link>https://zburu.com/archives/5.html/</link>
+      <pubDate>Fri, 19 Jun 2020 21:07:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/5.html/</guid>
+      <description>学习vue中一个非常重要的领域，就是生命周期，它包含了很多的内容。每个vue实例在被创建的时候都要经历一系列的初始化过程，这个过程就是vue的生命周期。
+每个vue实例在被创建的时候都要经过一系列的初始化过程——例如，需要把设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等，我们要把这一系列的过程称为组件的生命周期（组件从注册到销毁的整个过程）。我们有时候需要在组件生命周期的某个过程中，执行某些代码，基于此，vue提供了生命周期钩子函数，给了用户在不同阶段添加自己的代码的机会。
+但是在此之前，我们要详细的介绍下组件的生命周期，以及生命后期中每个阶段组件完成和未完成的部分。
+一、组件的生命周期 放一张大家都很熟悉的官网文章中对生命周期的注释图。
+从图中可以看出，vue为生命周期提供了8个钩子函数，分别是：
+beforeCreate: 创建前 created: 创建后 beforeMount: 挂载前 mounted: 挂载后 beforeUpate: 更新前 upated: 更新后 beforeDestoy: 销毁前 destoyed: 销毁后 1.beforeCreate beforeCreate在vue实例发生之后，数据观测(data observer) 和 event/watcher 事件配置之前被调用。
+我们在上面的例子中在的beforeCreate钩子中调用Vue的data和method，来看一下结果：
+可以看到Vue中的data和方法都是去不到的，并且是在wath之前执行
+2.created 实例已经创建完成之后被调用。在这一步，实例已完成以下的配置：数据观测(data observer)，属性和方法的运算， watch/event 事件回调。然而，挂载阶段还没开始，$el 属性目前不可见。
+主要应用：调用数据，调用方法，调用异步函数
+console输出的结果我们看一下
+可以看到：created钩子可以获取Vue的data，调用Vue方法，获取原本HTML上的直接加载出来的DOM，但是无法获取到通过挂载模板生成的DOM（例如：v-for循环遍历Vue.list生成li）
+3.beforeMount 在挂载开始之前被调用：相关的 render 函数（模板）首次被调用。
+例如通过v-for生成的html还没有被挂载到页面上
+beforeMount: function () { console.log(&amp;#39;beforeMount:&amp;#39;,document.getElementsByTagName(&amp;#39;li&amp;#39;).length); }, console打印出来的beforeMount为1
+4.mounted el 被新创建的 vm.$el 替换，并挂载到实例上去之后调用该钩子。
+有初始值的DOM渲染，例如我们的初始数据list,渲染出来的li，只有这里才能获取
+mounted: function () { console.log(&amp;#39;mounted:&amp;#39;,document.getElementsByTagName(&amp;#39;li&amp;#39;).length); }, 结果 mounted: 3 , 可以看到到这里为止，挂载到实例上了，我们可以获取到li的个数了
+5.beforeUpdate 数据更新时调用，发生在虚拟 DOM 重新渲染和打补丁之前。 你可以在这个钩子中进一步地更改状态，这不会触发附加的重渲染过程。</description>
+    </item>
+    
+  </channel>
+</rss>

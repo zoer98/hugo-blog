@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.101.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="toTop" content="true">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://zburu.com/archives/40.html/" />
+  <link rel="canonical" href="https://zburu.com/archives/40.html/" /><link rel="apple-touch-icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="shortcut" href="https://cdn.zburu.com/favicon.ico" /><link rel="alternate" type="application/atom+xml" href="https://zburu.comindex.xml" title="子舒的博客">
+
+  <script type="application/ld+json">
+  {
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https:\/\/zburu.com"
+    },
+    "articleSection" : "posts",
+    "name" : "为什么 key 是必须的？",
+    "headline" : "为什么 key 是必须的？",
+    "description" : "之前有说到，在 React 中渲染列表的时候，要给每一个数据加一个 key 值，赋予一个确定的标示，而且也详细描述了如何给一个标示，方法知道了，那么为什么要这么做呢？\n在 React 中如何渲染列表？\n在默认条件下，当递归 DOM 节点的子元素时，React 会同时遍历两个子元素的列表；当产生差异时，生成一个 mutation。\n在子元素列表末尾新增元素时，更新开销比较小。比如：\n\u0026lt;ul\u0026gt; \u0026lt;li\u0026gt;first\u0026lt;\/li\u0026gt; \u0026lt;li\u0026gt;second\u0026lt;\/li\u0026gt; \u0026lt;\/ul\u0026gt; \u0026lt;ul\u0026gt; \u0026lt;li\u0026gt;first\u0026lt;\/li\u0026gt; \u0026lt;li\u0026gt;second\u0026lt;\/li\u0026gt; \u0026lt;li\u0026gt;third\u0026lt;\/li\u0026gt; \u0026lt;\/ul\u0026gt; React 会先匹配两个 \u0026lt;li\u0026gt;first\u0026lt;\/li\u0026gt; 对应的树，然后匹配第二个元素 \u0026lt;li\u0026gt;second\u0026lt;\/li\u0026gt; 对应的树，最后插入第三个元素的 \u0026lt;li\u0026gt;third\u0026lt;\/li\u0026gt; 树。\n如果只是简单的将新增元素插入到表头，那么更新开销会比较大。比如：\n\u0026lt;ul\u0026gt; \u0026lt;li\u0026gt;Duke\u0026lt;\/li\u0026gt; \u0026lt;li\u0026gt;Villanova\u0026lt;\/li\u0026gt; \u0026lt;\/ul\u0026gt; \u0026lt;ul\u0026gt; \u0026lt;li\u0026gt;Connecticut\u0026lt;\/li\u0026gt; \u0026lt;li\u0026gt;Duke\u0026lt;\/li\u0026gt; \u0026lt;li\u0026gt;Villanova\u0026lt;\/li\u0026gt; \u0026lt;\/ul\u0026gt; React 不会意识到应该保留 \u0026lt;li\u0026gt;Duke\u0026lt;\/li\u0026gt; 和 \u0026lt;li\u0026gt;Villanova\u0026lt;\/li\u0026gt;，而是会重建每一个子元素 。这种情况会带来性能问题。\nkey\n为了解决上述问题， React 支持 key 属性，当子元素拥有 key 时，React 使用 key 来匹配原有树上的子元素以及最新树上的子元素。以下例子在新增 key 之后使得之前的低效转换变得高效：\n\u0026lt;ul\u0026gt; \u0026lt;li key=\u0026#34;1\u0026#34;\u0026gt;Duke\u0026lt;\/li\u0026gt; \u0026lt;li key=\u0026#34;2\u0026#34;\u0026gt;Villanova\u0026lt;\/li\u0026gt; \u0026lt;\/ul\u0026gt; \u0026lt;ul\u0026gt; \u0026lt;li key=\u0026#34;0\u0026#34;\u0026gt;Connecticut\u0026lt;\/li\u0026gt; \u0026lt;li key=\u0026#34;1\u0026#34;\u0026gt;Duke\u0026lt;\/li\u0026gt; \u0026lt;li key=\u0026#34;2\u0026#34;\u0026gt;Villanova\u0026lt;\/li\u0026gt; \u0026lt;\/ul\u0026gt; 现在 React 知道只有带着 \u00270\u0027 key 的元素是新元素，带着 \u00271\u0027 以及 \u00272\u0027 key 的元素仅仅移动了。",
+    "inLanguage" : "en-US",
+    "author" : "",
+    "creator" : "",
+    "publisher": "",
+    "accountablePerson" : "",
+    "copyrightHolder" : "",
+    "copyrightYear" : "2021",
+    "datePublished": "2021-01-01 20:48:00 \u002b0000 UTC",
+    "dateModified" : "2021-01-01 20:48:00 \u002b0000 UTC",
+    "url" : "https:\/\/zburu.com\/archives\/40.html\/",
+    "keywords" : [ "react", ]
+  }
+</script><title>为什么 key 是必须的？ - 子舒的博客</title>
+  <meta property="og:title" content="为什么 key 是必须的？" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="之前有说到，在 React 中渲染列表的时候，要给每一个数据加一个 key 值，赋予一个确定的标示，而且也详细描述了如何给一个标示，方法知道了，那么为什么要这么做呢？
+在 React 中如何渲染列表？
+在默认条件下，当递归 DOM 节点的子元素时，React 会同时遍历两个子元素的列表；当产生差异时，生成一个 mutation。
+在子元素列表末尾新增元素时，更新开销比较小。比如：
+&amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;first&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;second&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;first&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;second&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;third&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; React 会先匹配两个 &amp;lt;li&amp;gt;first&amp;lt;/li&amp;gt; 对应的树，然后匹配第二个元素 &amp;lt;li&amp;gt;second&amp;lt;/li&amp;gt; 对应的树，最后插入第三个元素的 &amp;lt;li&amp;gt;third&amp;lt;/li&amp;gt; 树。
+如果只是简单的将新增元素插入到表头，那么更新开销会比较大。比如：
+&amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;Duke&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;Villanova&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;Connecticut&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;Duke&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;Villanova&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; React 不会意识到应该保留 &amp;lt;li&amp;gt;Duke&amp;lt;/li&amp;gt; 和 &amp;lt;li&amp;gt;Villanova&amp;lt;/li&amp;gt;，而是会重建每一个子元素 。这种情况会带来性能问题。
+key
+为了解决上述问题， React 支持 key 属性，当子元素拥有 key 时，React 使用 key 来匹配原有树上的子元素以及最新树上的子元素。以下例子在新增 key 之后使得之前的低效转换变得高效：
+&amp;lt;ul&amp;gt; &amp;lt;li key=&amp;#34;1&amp;#34;&amp;gt;Duke&amp;lt;/li&amp;gt; &amp;lt;li key=&amp;#34;2&amp;#34;&amp;gt;Villanova&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;ul&amp;gt; &amp;lt;li key=&amp;#34;0&amp;#34;&amp;gt;Connecticut&amp;lt;/li&amp;gt; &amp;lt;li key=&amp;#34;1&amp;#34;&amp;gt;Duke&amp;lt;/li&amp;gt; &amp;lt;li key=&amp;#34;2&amp;#34;&amp;gt;Villanova&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; 现在 React 知道只有带着 &#39;0&#39; key 的元素是新元素，带着 &#39;1&#39; 以及 &#39;2&#39; key 的元素仅仅移动了。" />
+  <meta name="description" content="之前有说到，在 React 中渲染列表的时候，要给每一个数据加一个 key 值，赋予一个确定的标示，而且也详细描述了如何给一个标示，方法知道了，那么为什么要这么做呢？
+在 React 中如何渲染列表？
+在默认条件下，当递归 DOM 节点的子元素时，React 会同时遍历两个子元素的列表；当产生差异时，生成一个 mutation。
+在子元素列表末尾新增元素时，更新开销比较小。比如：
+&amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;first&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;second&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;first&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;second&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;third&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; React 会先匹配两个 &amp;lt;li&amp;gt;first&amp;lt;/li&amp;gt; 对应的树，然后匹配第二个元素 &amp;lt;li&amp;gt;second&amp;lt;/li&amp;gt; 对应的树，最后插入第三个元素的 &amp;lt;li&amp;gt;third&amp;lt;/li&amp;gt; 树。
+如果只是简单的将新增元素插入到表头，那么更新开销会比较大。比如：
+&amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;Duke&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;Villanova&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;Connecticut&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;Duke&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;Villanova&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; React 不会意识到应该保留 &amp;lt;li&amp;gt;Duke&amp;lt;/li&amp;gt; 和 &amp;lt;li&amp;gt;Villanova&amp;lt;/li&amp;gt;，而是会重建每一个子元素 。这种情况会带来性能问题。
+key
+为了解决上述问题， React 支持 key 属性，当子元素拥有 key 时，React 使用 key 来匹配原有树上的子元素以及最新树上的子元素。以下例子在新增 key 之后使得之前的低效转换变得高效：
+&amp;lt;ul&amp;gt; &amp;lt;li key=&amp;#34;1&amp;#34;&amp;gt;Duke&amp;lt;/li&amp;gt; &amp;lt;li key=&amp;#34;2&amp;#34;&amp;gt;Villanova&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;ul&amp;gt; &amp;lt;li key=&amp;#34;0&amp;#34;&amp;gt;Connecticut&amp;lt;/li&amp;gt; &amp;lt;li key=&amp;#34;1&amp;#34;&amp;gt;Duke&amp;lt;/li&amp;gt; &amp;lt;li key=&amp;#34;2&amp;#34;&amp;gt;Villanova&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; 现在 React 知道只有带着 &#39;0&#39; key 的元素是新元素，带着 &#39;1&#39; 以及 &#39;2&#39; key 的元素仅仅移动了。" />
+  <meta property="og:locale" content="en-us" /><meta property="og:image" content="https://cdn.zburu.com/favicon.ico" />
+  
+
+  <link rel="stylesheet" href="/css/default.css">
+  <link rel="stylesheet" href="/css/simplebox.min.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="子舒的博客">
+  <script src="https://hm.baidu.com/hm.js?5f4839173d00c8b0d3dd40533d14450d"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-item">
+        <a href="/" class="header-title">
+          <img src="https://cdn.zburu.com/favicon.png" alt="logo">
+          <span>子舒的博客</span>
+        </a>
+      </div>
+      <div class="menu-btn">菜单</div>
+      <div class="opacity"></div>
+      <div class="header-item sticky">
+        <ul id="navi">
+          
+          <li>
+            <a href="/posts">归档</a>
+          </li>
+          
+          <li>
+            <a href="/weekly">周刊</a>
+          </li>
+          
+          <li>
+            <a href="/message">留言</a>
+          </li>
+          
+          <li>
+            <a href="/about">关于</a>
+          </li>
+          
+          <li>
+            <a href="/lab">实验室</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+<article>
+  <div class="post-box">
+    <div class="post-header">
+      <h1 class="post-title">为什么 key 是必须的？</h1>
+      
+      <div class="post-desc">
+        <div class="post-date">
+          
+          <time datetime=" 2021-01-01 20:48:00 UTC">
+            发布于 2021-01-01
+          </time>
+          
+          浏览: <span id="ArtalkPV">加载中...</span>
+          评论: <span id="ArtalkCount"></span>
+        </div>
+      </div>
+      
+    </div>
+    <div class="post-content markdown-body">
+      <div class="autoMenu" id="autoMenu" data-autoMenu></div>
+      
+      <p>之前有说到，在 React 中渲染列表的时候，要给每一个数据加一个 key 值，赋予一个确定的标示，而且也详细描述了如何给一个标示，方法知道了，那么为什么要这么做呢？</p>
+<!-- raw HTML omitted -->
+<p><a href="../20201216-react-note-2/#%E4%B8%89%E3%80%81%E8%BD%AC%E6%8D%A2%E5%88%97%E8%A1%A8">在 React 中如何渲染列表？</a></p>
+<p>在默认条件下，当递归 DOM 节点的子元素时，React 会同时遍历两个子元素的列表；当产生差异时，生成一个 mutation。</p>
+<p>在子元素列表末尾新增元素时，更新开销比较小。比如：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">ul</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">li</span>&gt;first&lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">li</span>&gt;second&lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">ul</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">ul</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">li</span>&gt;first&lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">li</span>&gt;second&lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">li</span>&gt;third&lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">ul</span>&gt;
+</span></span></code></pre></div><p>React 会先匹配两个 <code>&lt;li&gt;first&lt;/li&gt;</code> 对应的树，然后匹配第二个元素 <code>&lt;li&gt;second&lt;/li&gt;</code> 对应的树，最后插入第三个元素的 <code>&lt;li&gt;third&lt;/li&gt;</code> 树。</p>
+<p>如果只是简单的将新增元素插入到表头，那么更新开销会比较大。比如：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">ul</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">li</span>&gt;Duke&lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">li</span>&gt;Villanova&lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">ul</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">ul</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">li</span>&gt;Connecticut&lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">li</span>&gt;Duke&lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">li</span>&gt;Villanova&lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">ul</span>&gt;
+</span></span></code></pre></div><p>React 不会意识到应该保留 <code>&lt;li&gt;Duke&lt;/li&gt;</code> 和 <code>&lt;li&gt;Villanova&lt;/li&gt;</code>，而是会重建每一个子元素 。这种情况会带来性能问题。</p>
+<p><strong>key</strong></p>
+<p>为了解决上述问题， React 支持 <code>key</code> 属性，当子元素拥有 key 时，React 使用 key 来匹配原有树上的子元素以及最新树上的子元素。以下例子在新增 <code>key</code> 之后使得之前的低效转换变得高效：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">ul</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">li</span> <span style="color:#a6e22e">key</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1&#34;</span>&gt;Duke&lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">li</span> <span style="color:#a6e22e">key</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;2&#34;</span>&gt;Villanova&lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">ul</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">ul</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">li</span> <span style="color:#a6e22e">key</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;0&#34;</span>&gt;Connecticut&lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">li</span> <span style="color:#a6e22e">key</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1&#34;</span>&gt;Duke&lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">li</span> <span style="color:#a6e22e">key</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;2&#34;</span>&gt;Villanova&lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">ul</span>&gt;
+</span></span></code></pre></div><p>现在 React 知道只有带着 <code>'0'</code> key 的元素是新元素，带着 <code>'1'</code> 以及 <code>'2'</code> key 的元素仅仅移动了。</p>
+<p>现实场景中，产生一个 key 并不困难。你要展现的元素可能已经有了一个唯一 ID，于是 key 可以直接从你的数据中提取：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">li</span> <span style="color:#a6e22e">key</span><span style="color:#f92672">=</span><span style="color:#e6db74">{item.id}</span>&gt;{item.name}&lt;/<span style="color:#f92672">li</span>&gt;
+</span></span></code></pre></div><p>当以上情况不成立时，你可以新增一个 ID 字段到你的模型中，或者利用一部分内容作为哈希值来生成一个 key。这个 key 不需要全局唯一，但在列表中需要保持唯一。</p>
+<p>最后，你也可以使用元素在数组中的下标作为 key。这个策略在元素不进行重新排序时比较合适，如果有顺序修改，diff 就会变得慢。</p>
+<p>当基于下标的组件进行重新排序时，组件 state 可能会遇到一些问题。由于组件实例是基于它们的 key 来决定是否更新以及复用，如果 key 是一个下标，那么修改顺序时会修改当前的 key，导致非受控组件的 state（比如输入框）可能相互篡改导致无法预期的变动。</p>
+
+    </div>
+
+    
+    <div class="post-tags">
+      <a href="/tags/react/">
+        react
+      </a>
+    </div>
+    
+    
+    <div class="pre-next">
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/41.html/">
+          上一篇：如何在 React 中引入 less？
+        </a>
+        
+      </p>
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/39.html/">
+          下一篇：React 学习笔记（三）
+        </a>
+        
+      </p>
+    </div>
+    
+
+<div class="related-content">
+  <h4>Related Posts</h4>
+  <ul>
+    
+    <li><a href="/archives/39.html/">React 学习笔记（三）</a></li>
+    
+    <li><a href="/archives/37.html/">React －－万物皆可组件</a></li>
+    
+    <li><a href="/archives/35.html/">React 学习笔记（二）</a></li>
+    
+  </ul>
+</div>
+
+
+
+  </div>
+  
+  <div class="post-box">
+    <div class="post-comments">
+      <h4 class="article-h4">评论~</h4>
+<div id="Artalk"></div>
+<link href="https://artalk.zburu.com/dist/Artalk.css" rel="stylesheet">
+<script src="https://artalk.zburu.com/dist/Artalk.js"></script>
+<script>
+  new Artalk({
+    el: '#Artalk',
+    pageKey: '',
+    pageTitle: '',
+    server: 'https://artalk.zburu.com',
+    site: '子舒的博客',
+  })
+</script>
+
+
+    </div>
+    
+  </div>
+  <div class="footer">
+  <p>
+    © 2020-<span id="year"></span> ·
+    <a href="https://beian.miit.gov.cn/" target="_blank">
+      <span>浙ICP备2022002453号-2</span>
+    </a>
+  </p>
+  <i> · </i>
+  <p>网站运行: <span id="days">0</span> 天</p>
+</div>
+<div class="utool">
+  <div class="item totop">
+    <span>top</span>
+  </div>
+</div>
+<script>
+  var s0 = '2020-06-14';
+  s1 = new Date(s0.replace(/-/g, "/"));
+  s2 = new Date();
+  var days = s2.getTime() - s1.getTime();
+  var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+  document.getElementById('days').innerHTML = number_of_days;
+
+  var date = new Date;
+  var year = date.getFullYear();
+  document.getElementById('year').innerHTML = year;
+</script>
+</article>
+
+<script src="/js/jquery3.6.0.min.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/simplebox.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

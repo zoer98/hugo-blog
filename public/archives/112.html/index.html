@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.101.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="toTop" content="true">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://zburu.com/archives/112.html/" />
+  <link rel="canonical" href="https://zburu.com/archives/112.html/" /><link rel="apple-touch-icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="shortcut" href="https://cdn.zburu.com/favicon.ico" /><link rel="alternate" type="application/atom+xml" href="https://zburu.comindex.xml" title="子舒的博客">
+
+  <script type="application/ld+json">
+  {
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https:\/\/zburu.com"
+    },
+    "articleSection" : "posts",
+    "name" : "在nuxt中实现图片放大预览功能",
+    "headline" : "在nuxt中实现图片放大预览功能",
+    "description" : "v-viewer 基于vue的一个插件，可以实现图片放大，缩小，旋转，拖拽，预览等各种功能，效果还是很棒的。这是我在Github摸鱼时发现的一个仓库，感觉很有用，就分享一下使用过程。\nGithub: https:\/\/github.com\/mirari\/v-viewer\n1.安装 npm install v-viewer 2.用法 在 plugins 中新建 viewer.js 文件。\n\/\/ \/plugins\/viewer.js import Vue from \u0026#39;vue\u0026#39;; import Viewer from \u0026#39;v-viewer\u0026#39; import \u0026#39;viewerjs\/dist\/viewer.css\u0026#39; Vue.use(Viewer) Viewer.setDefaults({ Options: { \u0026#39;inline\u0026#39;: true, \u0026#39;button\u0026#39;: true, \u0026#39;navbar\u0026#39;: true, \u0026#39;title\u0026#39;: true, \u0026#39;toolbar\u0026#39;: true, \u0026#39;tooltip\u0026#39;: true, \u0026#39;movable\u0026#39;: true, \u0026#39;zoomable\u0026#39;: true, \u0026#39;rotatable\u0026#39;: true, \u0026#39;scalable\u0026#39;: true, \u0026#39;transition\u0026#39;: true, \u0026#39;fullscreen\u0026#39;: true, \u0026#39;keyboard\u0026#39;: true, \u0026#39;url\u0026#39;: \u0026#39;data-source\u0026#39; } }) 然后再 nuxt.config.js 中引入。\n\/\/ nuxt.config.js plugins: [ \/\/ ... { src: \u0026#39;@\/plugins\/viewer\u0026#39;, ssr: false } ], 最后在使用的页面中引入。",
+    "inLanguage" : "en-US",
+    "author" : "",
+    "creator" : "",
+    "publisher": "",
+    "accountablePerson" : "",
+    "copyrightHolder" : "",
+    "copyrightYear" : "2022",
+    "datePublished": "2022-04-01 13:28:00 \u002b0000 UTC",
+    "dateModified" : "2022-04-01 13:28:00 \u002b0000 UTC",
+    "url" : "https:\/\/zburu.com\/archives\/112.html\/",
+    "keywords" : [ "Nuxt","图片", ]
+  }
+</script><title>在nuxt中实现图片放大预览功能 - 子舒的博客</title>
+  <meta property="og:title" content="在nuxt中实现图片放大预览功能" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="v-viewer 基于vue的一个插件，可以实现图片放大，缩小，旋转，拖拽，预览等各种功能，效果还是很棒的。这是我在Github摸鱼时发现的一个仓库，感觉很有用，就分享一下使用过程。
+Github: https://github.com/mirari/v-viewer
+1.安装 npm install v-viewer 2.用法 在 plugins 中新建 viewer.js 文件。
+// /plugins/viewer.js import Vue from &amp;#39;vue&amp;#39;; import Viewer from &amp;#39;v-viewer&amp;#39; import &amp;#39;viewerjs/dist/viewer.css&amp;#39; Vue.use(Viewer) Viewer.setDefaults({ Options: { &amp;#39;inline&amp;#39;: true, &amp;#39;button&amp;#39;: true, &amp;#39;navbar&amp;#39;: true, &amp;#39;title&amp;#39;: true, &amp;#39;toolbar&amp;#39;: true, &amp;#39;tooltip&amp;#39;: true, &amp;#39;movable&amp;#39;: true, &amp;#39;zoomable&amp;#39;: true, &amp;#39;rotatable&amp;#39;: true, &amp;#39;scalable&amp;#39;: true, &amp;#39;transition&amp;#39;: true, &amp;#39;fullscreen&amp;#39;: true, &amp;#39;keyboard&amp;#39;: true, &amp;#39;url&amp;#39;: &amp;#39;data-source&amp;#39; } }) 然后再 nuxt.config.js 中引入。
+// nuxt.config.js plugins: [ // ... { src: &amp;#39;@/plugins/viewer&amp;#39;, ssr: false } ], 最后在使用的页面中引入。" />
+  <meta name="description" content="v-viewer 基于vue的一个插件，可以实现图片放大，缩小，旋转，拖拽，预览等各种功能，效果还是很棒的。这是我在Github摸鱼时发现的一个仓库，感觉很有用，就分享一下使用过程。
+Github: https://github.com/mirari/v-viewer
+1.安装 npm install v-viewer 2.用法 在 plugins 中新建 viewer.js 文件。
+// /plugins/viewer.js import Vue from &amp;#39;vue&amp;#39;; import Viewer from &amp;#39;v-viewer&amp;#39; import &amp;#39;viewerjs/dist/viewer.css&amp;#39; Vue.use(Viewer) Viewer.setDefaults({ Options: { &amp;#39;inline&amp;#39;: true, &amp;#39;button&amp;#39;: true, &amp;#39;navbar&amp;#39;: true, &amp;#39;title&amp;#39;: true, &amp;#39;toolbar&amp;#39;: true, &amp;#39;tooltip&amp;#39;: true, &amp;#39;movable&amp;#39;: true, &amp;#39;zoomable&amp;#39;: true, &amp;#39;rotatable&amp;#39;: true, &amp;#39;scalable&amp;#39;: true, &amp;#39;transition&amp;#39;: true, &amp;#39;fullscreen&amp;#39;: true, &amp;#39;keyboard&amp;#39;: true, &amp;#39;url&amp;#39;: &amp;#39;data-source&amp;#39; } }) 然后再 nuxt.config.js 中引入。
+// nuxt.config.js plugins: [ // ... { src: &amp;#39;@/plugins/viewer&amp;#39;, ssr: false } ], 最后在使用的页面中引入。" />
+  <meta property="og:locale" content="en-us" /><meta property="og:image" content="https://cdn.zburu.com/favicon.ico" />
+  
+
+  <link rel="stylesheet" href="/css/default.css">
+  <link rel="stylesheet" href="/css/simplebox.min.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="子舒的博客">
+  <script src="https://hm.baidu.com/hm.js?5f4839173d00c8b0d3dd40533d14450d"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-item">
+        <a href="/" class="header-title">
+          <img src="https://cdn.zburu.com/favicon.png" alt="logo">
+          <span>子舒的博客</span>
+        </a>
+      </div>
+      <div class="menu-btn">菜单</div>
+      <div class="opacity"></div>
+      <div class="header-item sticky">
+        <ul id="navi">
+          
+          <li>
+            <a href="/posts">归档</a>
+          </li>
+          
+          <li>
+            <a href="/weekly">周刊</a>
+          </li>
+          
+          <li>
+            <a href="/message">留言</a>
+          </li>
+          
+          <li>
+            <a href="/about">关于</a>
+          </li>
+          
+          <li>
+            <a href="/lab">实验室</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+<article>
+  <div class="post-box">
+    <div class="post-header">
+      <h1 class="post-title">在nuxt中实现图片放大预览功能</h1>
+      
+      <div class="post-desc">
+        <div class="post-date">
+          
+          <time datetime=" 2022-04-01 13:28:00 UTC">
+            发布于 2022-04-01
+          </time>
+          
+          浏览: <span id="ArtalkPV">加载中...</span>
+          评论: <span id="ArtalkCount"></span>
+        </div>
+      </div>
+      
+    </div>
+    <div class="post-content markdown-body">
+      <div class="autoMenu" id="autoMenu" data-autoMenu></div>
+      
+      <p><code>v-viewer</code> 基于vue的一个插件，可以实现图片放大，缩小，旋转，拖拽，预览等各种功能，效果还是很棒的。这是我在Github摸鱼时发现的一个仓库，感觉很有用，就分享一下使用过程。</p>
+<!-- raw HTML omitted -->
+<p>Github: <a href="https://github.com/mirari/v-viewer">https://github.com/mirari/v-viewer</a></p>
+<h2 id="1安装">1.安装</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>npm install v-viewer
+</span></span></code></pre></div><h2 id="2用法">2.用法</h2>
+<p>在 <code>plugins</code> 中新建 <code>viewer.js</code> 文件。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// /plugins/viewer.js
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Vue</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;vue&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Viewer</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;v-viewer&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;viewerjs/dist/viewer.css&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">Viewer</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Viewer</span>.<span style="color:#a6e22e">setDefaults</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Options</span><span style="color:#f92672">:</span> { <span style="color:#e6db74">&#39;inline&#39;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>, <span style="color:#e6db74">&#39;button&#39;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>, <span style="color:#e6db74">&#39;navbar&#39;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>, <span style="color:#e6db74">&#39;title&#39;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>, <span style="color:#e6db74">&#39;toolbar&#39;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>, <span style="color:#e6db74">&#39;tooltip&#39;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>, <span style="color:#e6db74">&#39;movable&#39;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>, <span style="color:#e6db74">&#39;zoomable&#39;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>, <span style="color:#e6db74">&#39;rotatable&#39;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>, <span style="color:#e6db74">&#39;scalable&#39;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>, <span style="color:#e6db74">&#39;transition&#39;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>, <span style="color:#e6db74">&#39;fullscreen&#39;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>, <span style="color:#e6db74">&#39;keyboard&#39;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>, <span style="color:#e6db74">&#39;url&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;data-source&#39;</span> }
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><p>然后再 <code>nuxt.config.js</code> 中引入。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// nuxt.config.js
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	{ <span style="color:#a6e22e">src</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;@/plugins/viewer&#39;</span>, <span style="color:#a6e22e">ssr</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span> }
+</span></span><span style="display:flex;"><span>],
+</span></span></code></pre></div><p>最后在使用的页面中引入。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;markdown-body-box&#34;</span> <span style="color:#a6e22e">v-viewer</span> <span style="color:#a6e22e">v-highlight</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- 页面内容 --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span></code></pre></div><p>在任意页面中引入，可以是一个小组件页面，也可以是根页面，取决于你想在哪里引入这个功能，只要将<code>class</code>, <code>v-viewer</code>, <code>v-highlight</code> 这三个参数引入即可。</p>
+
+    </div>
+
+    
+    <div class="post-tags">
+      <a href="/tags/nuxt/">
+        Nuxt
+      </a>
+    </div>
+    
+    <div class="post-tags">
+      <a href="/tags/%E5%9B%BE%E7%89%87/">
+        图片
+      </a>
+    </div>
+    
+    
+    <div class="pre-next">
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/113.html/">
+          上一篇：2022 清明出游
+        </a>
+        
+      </p>
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/111.html/">
+          下一篇：在vue中制作canvas波浪图
+        </a>
+        
+      </p>
+    </div>
+    
+
+<div class="related-content">
+  <h4>Related Posts</h4>
+  <ul>
+    
+    <li><a href="/archives/96.html/">Nuxt 项目中如何引入百度统计？</a></li>
+    
+  </ul>
+</div>
+
+
+
+  </div>
+  
+  <div class="post-box">
+    <div class="post-comments">
+      <h4 class="article-h4">评论~</h4>
+<div id="Artalk"></div>
+<link href="https://artalk.zburu.com/dist/Artalk.css" rel="stylesheet">
+<script src="https://artalk.zburu.com/dist/Artalk.js"></script>
+<script>
+  new Artalk({
+    el: '#Artalk',
+    pageKey: '',
+    pageTitle: '',
+    server: 'https://artalk.zburu.com',
+    site: '子舒的博客',
+  })
+</script>
+
+
+    </div>
+    
+  </div>
+  <div class="footer">
+  <p>
+    © 2020-<span id="year"></span> ·
+    <a href="https://beian.miit.gov.cn/" target="_blank">
+      <span>浙ICP备2022002453号-2</span>
+    </a>
+  </p>
+  <i> · </i>
+  <p>网站运行: <span id="days">0</span> 天</p>
+</div>
+<div class="utool">
+  <div class="item totop">
+    <span>top</span>
+  </div>
+</div>
+<script>
+  var s0 = '2020-06-14';
+  s1 = new Date(s0.replace(/-/g, "/"));
+  s2 = new Date();
+  var days = s2.getTime() - s1.getTime();
+  var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+  document.getElementById('days').innerHTML = number_of_days;
+
+  var date = new Date;
+  var year = date.getFullYear();
+  document.getElementById('year').innerHTML = year;
+</script>
+</article>
+
+<script src="/js/jquery3.6.0.min.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/simplebox.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

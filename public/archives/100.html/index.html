@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.101.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="toTop" content="true">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://zburu.com/archives/100.html/" />
+  <link rel="canonical" href="https://zburu.com/archives/100.html/" /><link rel="apple-touch-icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="shortcut" href="https://cdn.zburu.com/favicon.ico" /><link rel="alternate" type="application/atom+xml" href="https://zburu.comindex.xml" title="子舒的博客">
+
+  <script type="application/ld+json">
+  {
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https:\/\/zburu.com"
+    },
+    "articleSection" : "posts",
+    "name" : "如何使用谷歌插件为网站注入代码",
+    "headline" : "如何使用谷歌插件为网站注入代码",
+    "description" : "在浏览网站时，受限于网站的缺陷，我们通常都会写一些脚本和插件来进行扩展，常规方法有油猴和谷歌插件两种，油猴也是一种插件，使用起来很方便，今天要讲的是如何通过谷歌插件进行注入。\n按照结构生成下面几个文件\n|chrome-plugin\r|---manifest.json\r|---script.js\r|---favicon.ico 在 manifest.json 中写入代码，这是一个入口文件，声明了插件的基本信息。\ndefault_icon 是插件的图标 matches 是使用的网站，在该域名下的网站才会生效。注意后面要加上 \/* js 是引入的文件 \/\/ manifest.json { \u0026#34;name\u0026#34;: \u0026#34;Welcome\u0026#34;, \u0026#34;manifest_version\u0026#34;: 2, \u0026#34;version\u0026#34;: \u0026#34;1.0\u0026#34;, \u0026#34;description\u0026#34;: \u0026#34;扩展插件\u0026#34;, \u0026#34;browser_action\u0026#34;: { \u0026#34;default_icon\u0026#34;: \u0026#34;favicon.ico\u0026#34; }, \u0026#34;content_scripts\u0026#34;: [ { \u0026#34;matches\u0026#34;: [\u0026#34;https:\/\/github.com\/*\u0026#34;], \u0026#34;js\u0026#34;: [script.js\u0026#34;] } ] } 然后在 script.js 中随便插入一段代码即可。\n\/\/ script.js console.log(\u0026#39;hello, world!\u0026#39;) 这样一个基本的插件就构成了，下一步就是上传。但是如果在打包生成 crx 文件后，上传 crx 文件会报错，显示危险，因为没有上架到谷歌商店。所以我们不用打包，直接加载本地文件。\n然后选择写好的文件夹\n点击确定上传即可，这样一个插件上传的步骤就完成了。我们可以学习相关技术，写上一些自己需要的功能，这也是 Chrome 浏览器这么受欢迎的原因之一，集成了大量的插件。\n如果你想上传到商店出售或者免费分享，都是需要注册开发者账号的。缴纳5美元费用之后就可以上传了，审核过后就可以在商店列表看到你的插件。",
+    "inLanguage" : "en-US",
+    "author" : "",
+    "creator" : "",
+    "publisher": "",
+    "accountablePerson" : "",
+    "copyrightHolder" : "",
+    "copyrightYear" : "2022",
+    "datePublished": "2022-01-26 14:20:00 \u002b0000 UTC",
+    "dateModified" : "2022-01-26 14:20:00 \u002b0000 UTC",
+    "url" : "https:\/\/zburu.com\/archives\/100.html\/",
+    "keywords" : [ "浏览器","谷歌插件", ]
+  }
+</script><title>如何使用谷歌插件为网站注入代码 - 子舒的博客</title>
+  <meta property="og:title" content="如何使用谷歌插件为网站注入代码" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="在浏览网站时，受限于网站的缺陷，我们通常都会写一些脚本和插件来进行扩展，常规方法有油猴和谷歌插件两种，油猴也是一种插件，使用起来很方便，今天要讲的是如何通过谷歌插件进行注入。
+按照结构生成下面几个文件
+|chrome-plugin|---manifest.json|---script.js|---favicon.ico 在 manifest.json 中写入代码，这是一个入口文件，声明了插件的基本信息。
+default_icon 是插件的图标 matches 是使用的网站，在该域名下的网站才会生效。注意后面要加上 /* js 是引入的文件 // manifest.json { &amp;#34;name&amp;#34;: &amp;#34;Welcome&amp;#34;, &amp;#34;manifest_version&amp;#34;: 2, &amp;#34;version&amp;#34;: &amp;#34;1.0&amp;#34;, &amp;#34;description&amp;#34;: &amp;#34;扩展插件&amp;#34;, &amp;#34;browser_action&amp;#34;: { &amp;#34;default_icon&amp;#34;: &amp;#34;favicon.ico&amp;#34; }, &amp;#34;content_scripts&amp;#34;: [ { &amp;#34;matches&amp;#34;: [&amp;#34;https://github.com/*&amp;#34;], &amp;#34;js&amp;#34;: [script.js&amp;#34;] } ] } 然后在 script.js 中随便插入一段代码即可。
+// script.js console.log(&amp;#39;hello, world!&amp;#39;) 这样一个基本的插件就构成了，下一步就是上传。但是如果在打包生成 crx 文件后，上传 crx 文件会报错，显示危险，因为没有上架到谷歌商店。所以我们不用打包，直接加载本地文件。
+然后选择写好的文件夹
+点击确定上传即可，这样一个插件上传的步骤就完成了。我们可以学习相关技术，写上一些自己需要的功能，这也是 Chrome 浏览器这么受欢迎的原因之一，集成了大量的插件。
+如果你想上传到商店出售或者免费分享，都是需要注册开发者账号的。缴纳5美元费用之后就可以上传了，审核过后就可以在商店列表看到你的插件。" />
+  <meta name="description" content="在浏览网站时，受限于网站的缺陷，我们通常都会写一些脚本和插件来进行扩展，常规方法有油猴和谷歌插件两种，油猴也是一种插件，使用起来很方便，今天要讲的是如何通过谷歌插件进行注入。
+按照结构生成下面几个文件
+|chrome-plugin|---manifest.json|---script.js|---favicon.ico 在 manifest.json 中写入代码，这是一个入口文件，声明了插件的基本信息。
+default_icon 是插件的图标 matches 是使用的网站，在该域名下的网站才会生效。注意后面要加上 /* js 是引入的文件 // manifest.json { &amp;#34;name&amp;#34;: &amp;#34;Welcome&amp;#34;, &amp;#34;manifest_version&amp;#34;: 2, &amp;#34;version&amp;#34;: &amp;#34;1.0&amp;#34;, &amp;#34;description&amp;#34;: &amp;#34;扩展插件&amp;#34;, &amp;#34;browser_action&amp;#34;: { &amp;#34;default_icon&amp;#34;: &amp;#34;favicon.ico&amp;#34; }, &amp;#34;content_scripts&amp;#34;: [ { &amp;#34;matches&amp;#34;: [&amp;#34;https://github.com/*&amp;#34;], &amp;#34;js&amp;#34;: [script.js&amp;#34;] } ] } 然后在 script.js 中随便插入一段代码即可。
+// script.js console.log(&amp;#39;hello, world!&amp;#39;) 这样一个基本的插件就构成了，下一步就是上传。但是如果在打包生成 crx 文件后，上传 crx 文件会报错，显示危险，因为没有上架到谷歌商店。所以我们不用打包，直接加载本地文件。
+然后选择写好的文件夹
+点击确定上传即可，这样一个插件上传的步骤就完成了。我们可以学习相关技术，写上一些自己需要的功能，这也是 Chrome 浏览器这么受欢迎的原因之一，集成了大量的插件。
+如果你想上传到商店出售或者免费分享，都是需要注册开发者账号的。缴纳5美元费用之后就可以上传了，审核过后就可以在商店列表看到你的插件。" />
+  <meta property="og:locale" content="en-us" /><meta property="og:image" content="https://cdn.zburu.com/favicon.ico" />
+  
+
+  <link rel="stylesheet" href="/css/default.css">
+  <link rel="stylesheet" href="/css/simplebox.min.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="子舒的博客">
+  <script src="https://hm.baidu.com/hm.js?5f4839173d00c8b0d3dd40533d14450d"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-item">
+        <a href="/" class="header-title">
+          <img src="https://cdn.zburu.com/favicon.png" alt="logo">
+          <span>子舒的博客</span>
+        </a>
+      </div>
+      <div class="menu-btn">菜单</div>
+      <div class="opacity"></div>
+      <div class="header-item sticky">
+        <ul id="navi">
+          
+          <li>
+            <a href="/posts">归档</a>
+          </li>
+          
+          <li>
+            <a href="/weekly">周刊</a>
+          </li>
+          
+          <li>
+            <a href="/message">留言</a>
+          </li>
+          
+          <li>
+            <a href="/about">关于</a>
+          </li>
+          
+          <li>
+            <a href="/lab">实验室</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+<article>
+  <div class="post-box">
+    <div class="post-header">
+      <h1 class="post-title">如何使用谷歌插件为网站注入代码</h1>
+      
+      <div class="post-desc">
+        <div class="post-date">
+          
+          <time datetime=" 2022-01-26 14:20:00 UTC">
+            发布于 2022-01-26
+          </time>
+          
+          浏览: <span id="ArtalkPV">加载中...</span>
+          评论: <span id="ArtalkCount"></span>
+        </div>
+      </div>
+      
+    </div>
+    <div class="post-content markdown-body">
+      <div class="autoMenu" id="autoMenu" data-autoMenu></div>
+      
+      <p>在浏览网站时，受限于网站的缺陷，我们通常都会写一些脚本和插件来进行扩展，常规方法有油猴和谷歌插件两种，油猴也是一种插件，使用起来很方便，今天要讲的是如何通过谷歌插件进行注入。</p>
+<!-- raw HTML omitted -->
+<p>按照结构生成下面几个文件</p>
+<pre tabindex="0"><code>|chrome-plugin
+|---manifest.json
+|---script.js
+|---favicon.ico
+</code></pre><p>在 <code>manifest.json</code> 中写入代码，这是一个入口文件，声明了插件的基本信息。</p>
+<ol>
+<li><code>default_icon</code> 是插件的图标</li>
+<li><code>matches</code> 是使用的网站，在该域名下的网站才会生效。注意后面要加上 <code>/*</code></li>
+<li><code>js</code> 是引入的文件</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#75715e">// manifest.json
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Welcome&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;manifest_version&#34;</span>: <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;1.0&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;扩展插件&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;browser_action&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;default_icon&#34;</span>: <span style="color:#e6db74">&#34;favicon.ico&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;content_scripts&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;matches&#34;</span>: [<span style="color:#e6db74">&#34;https://github.com/*&#34;</span>],
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;js&#34;</span>: [<span style="color:#960050;background-color:#1e0010">script.js&#34;</span>]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>然后在 <code>script.js</code> 中随便插入一段代码即可。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// script.js
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;hello, world!&#39;</span>)
+</span></span></code></pre></div><p>这样一个基本的插件就构成了，下一步就是上传。但是如果在打包生成 <code>crx</code> 文件后，上传 <code>crx</code> 文件会报错，显示危险，因为没有上架到谷歌商店。所以我们不用打包，直接加载本地文件。</p>
+<p><img src="https://cdn.staticaly.com/gh/zoer98/pic-cdn@main/2022/01/26/dcd25af801e900a58a07b9b9a06c162d.png" alt=""></p>
+<p>然后选择写好的文件夹</p>
+<p><img src="https://cdn.staticaly.com/gh/zoer98/pic-cdn@main/2022/01/26/e433070c769840d226fae27052fc275c.png" alt=""></p>
+<p>点击确定上传即可，这样一个插件上传的步骤就完成了。我们可以学习相关技术，写上一些自己需要的功能，这也是 Chrome 浏览器这么受欢迎的原因之一，集成了大量的插件。</p>
+<p>如果你想上传到商店出售或者免费分享，都是需要注册开发者账号的。缴纳5美元费用之后就可以上传了，审核过后就可以在商店列表看到你的插件。</p>
+
+    </div>
+
+    
+    <div class="post-tags">
+      <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/">
+        浏览器
+      </a>
+    </div>
+    
+    <div class="post-tags">
+      <a href="/tags/%E8%B0%B7%E6%AD%8C%E6%8F%92%E4%BB%B6/">
+        谷歌插件
+      </a>
+    </div>
+    
+    
+    <div class="pre-next">
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/99.html/">
+          上一篇：2022新春快乐
+        </a>
+        
+      </p>
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/101.html/">
+          下一篇：使用Love主题的数据库
+        </a>
+        
+      </p>
+    </div>
+    
+
+<div class="related-content">
+  <h4>Related Posts</h4>
+  <ul>
+    
+    <li><a href="/archives/56.html/">IE10的兼容性处理</a></li>
+    
+    <li><a href="/archives/52.html/">chrome浏览器无法显示12px以下的字体</a></li>
+    
+    <li><a href="/archives/8.html/">chrome浏览器中对autoplay的一些处理技巧</a></li>
+    
+  </ul>
+</div>
+
+
+
+  </div>
+  
+  <div class="post-box">
+    <div class="post-comments">
+      <h4 class="article-h4">评论~</h4>
+<div id="Artalk"></div>
+<link href="https://artalk.zburu.com/dist/Artalk.css" rel="stylesheet">
+<script src="https://artalk.zburu.com/dist/Artalk.js"></script>
+<script>
+  new Artalk({
+    el: '#Artalk',
+    pageKey: '',
+    pageTitle: '',
+    server: 'https://artalk.zburu.com',
+    site: '子舒的博客',
+  })
+</script>
+
+
+    </div>
+    
+  </div>
+  <div class="footer">
+  <p>
+    © 2020-<span id="year"></span> ·
+    <a href="https://beian.miit.gov.cn/" target="_blank">
+      <span>浙ICP备2022002453号-2</span>
+    </a>
+  </p>
+  <i> · </i>
+  <p>网站运行: <span id="days">0</span> 天</p>
+</div>
+<div class="utool">
+  <div class="item totop">
+    <span>top</span>
+  </div>
+</div>
+<script>
+  var s0 = '2020-06-14';
+  s1 = new Date(s0.replace(/-/g, "/"));
+  s2 = new Date();
+  var days = s2.getTime() - s1.getTime();
+  var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+  document.getElementById('days').innerHTML = number_of_days;
+
+  var date = new Date;
+  var year = date.getFullYear();
+  document.getElementById('year').innerHTML = year;
+</script>
+</article>
+
+<script src="/js/jquery3.6.0.min.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/simplebox.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

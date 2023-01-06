@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>webpack on 子舒的博客</title>
+    <link>https://zburu.com/tags/webpack/</link>
+    <description>Recent content in webpack on 子舒的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 18 Jan 2021 19:59:00 +0000</lastBuildDate><atom:link href="https://zburu.com/tags/webpack/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>webpack 的核心概念和构建流程</title>
+      <link>https://zburu.com/archives/47.html/</link>
+      <pubDate>Mon, 18 Jan 2021 19:59:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/47.html/</guid>
+      <description>1.webpack 的核心概念 entry（入口）：一个可执行模块或者库的入口。定义了打包后的入口文件。 output（出口）：指示 webpack 如何去输出，以及在哪里输出。 path: 打包文件存放的绝对路径 publicPath: 网站运行时的访问路径 filename: 打包后的文件名 module（模块）：在 webpack 里，一切皆模块，一个模块对应一个文件。webpack 会从配置的 entry 中开始递归找出所有依赖的模块。 chunk（代码块）：一个 chunk 由多个 模块 组合而成。可以将可执行的模块和他所依赖的模块组合成一个 chunk ，这就是打包。 loader（模块转换器）：用于把一个模块原内容按照需求转换成新的内容。例如：es6 转换为 es5，scss 转换为 css 等。 plugin（扩展）：扩展webpack功能的插件。在webpack构建的生命周期节点上加入扩展hook，添加功能。 2.webpack 构建流程 初始化参数：解析 webpack 的配置参数，合并 shell 传入和 webpack.config.js 文件配置的参数，形成最后的配置结果。 开始编译：上一步得到的参数初始化 compiler 对象，注册所有配置的插件，插件监听 webpack 构建生命周期的事件节点，做出相应的反应，执行对象的 run 方法开始执行编译。 确定入口：其配置的 entry 入口，开始解析文件构建的 AST 语法树，找出依赖，递归下去。 编译模块：根据文件类型和 loader 配置，调用所有配置的 loader 对文件进行转换，再找出该模块依赖的模块，再递归本步骤知道所有入口依赖的文件都经过了本步骤的处理。 完成模块编译并输出：递归完后，得到每个文件结果，包含了每个模块及她们之间的依赖关系，根据 entry 配置生成代码块 chunk 。 输出完成：输出所有的 chunk 到文件系统。 3.有哪些常见的 loader ？ babel-loader：把es6转成es5； css-loader：加载css，支持模块化，压缩，文件导入等特性； style-loader：把css代码注入到js中，通过dom操作去加载css； eslint-loader：通过Eslint检查js代码； image-loader：加载并且压缩图片晚间； file-loader：文件输出到一个文件夹中，在代码中通过相对url去引用输出的文件； url-loader：和file-loader类似，文件很小的时候可以base64方式吧文件内容注入到代码中。 source-map-loader：加载额外的source map文件，方便调试。 4.</description>
+    </item>
+    
+    <item>
+      <title>webpack安装配置指令</title>
+      <link>https://zburu.com/archives/30.html/</link>
+      <pubDate>Thu, 26 Nov 2020 13:08:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/30.html/</guid>
+      <description>进行重新加载编译。实际就是将浏览器不认识的语法编译成浏览器认识的语法。比如less编译成css，ES6 语法 转成 ES5等等。
+减少io请求,通常我们在请求后，会返回一个html到浏览器。这时，我们如果打开控制台，就会发现在html页面通过script,link等标签引用的静态资源， 浏览器会再次发出请求去获取这些资源。但是webpack的打包，将所有的静态资源都合并好了，减少了io请求。
+# 安装webpack npm install --save-dev webpack # 安装webpack-cli依赖 npm install --save-dev webpack-cli # 创建新项目 mkdir demo # cd项目 cd demo # 初始化 npm init -y # 安装开发版本cli npm install webpack webpack-cli --save-dev 新建一个html文件和一个js文件，工程目录如下
+demo |- package.json + |- index.html + |- /src + |- index.js src/index.js:
+function component() { var element = document.createElement(&amp;#39;div&amp;#39;); // Lodash（目前通过一个 script 脚本引入）对于执行这一行是必需的 element.innerHTML = _.join([&amp;#39;Hello&amp;#39;, &amp;#39;webpack&amp;#39;], &amp;#39; &amp;#39;); return element; } document.</description>
+    </item>
+    
+  </channel>
+</rss>

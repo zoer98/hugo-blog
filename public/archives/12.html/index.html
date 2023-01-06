@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.101.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="toTop" content="true">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://zburu.com/archives/12.html/" />
+  <link rel="canonical" href="https://zburu.com/archives/12.html/" /><link rel="apple-touch-icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="shortcut" href="https://cdn.zburu.com/favicon.ico" /><link rel="alternate" type="application/atom+xml" href="https://zburu.comindex.xml" title="子舒的博客">
+
+  <script type="application/ld+json">
+  {
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https:\/\/zburu.com"
+    },
+    "articleSection" : "posts",
+    "name" : "HTML事件属性--DOM",
+    "headline" : "HTML事件属性--DOM",
+    "description" : "研究html的对象，事件和方法，从js的角度来思考，这个标签的属性是通过什么方法，触发什么事件来实现的\n键盘鼠标事件 页面窗口事件 表单事件 一、window事件属性 针对window对象触发的事件，在\u0026lt;body\u0026gt;中执行\n1.onbeforeprint／onafterprint 在浏览器打印之间\/后触发\n\u0026lt;body onbeforeprint = print()\u0026gt; \u0026lt;script\u0026gt; function print() { alert(\u0026#34;打印之间！\u0026#34;) } \u0026lt;\/script\u0026gt; 打印前和打印后的事件方法类似，一个是在打印前触发事件，一个是在打印这个事件结束之后触发onafterprint这个事件\ndemo查看\n2.onbeforeunload\/unload 离开页面之间触发的事件／之后触发的事件\n打开f12，然后刷新，或者关闭浏览器，可以在浏览器触发事件\n\u0026lt;script\u0026gt; window.onbeforeunload = function(){ return \u0026#34;提示\u0026#34; \/\/返回的内容不会显示， \/\/在刷新的时候触发，或者关闭浏览器，浏览会直接提示是否重新加载，不能直接返回return } \u0026lt;\/script\u0026gt; demo查看\n3.onerror 当图片出错是可以触发该事件，支持该事件的标签只有 \u0026lt;img\u0026gt;,\u0026lt;object\u0026gt;,\u0026lt;style\u0026gt;\n\u0026lt;img src=\u0026#34;1.gif\u0026#34; onerror = \u0026#34;myfun()\u0026#34;\u0026gt; \u0026lt;script\u0026gt; function myfun() { alert(\u0026#34;图片出错\u0026#34;) } \u0026lt;\/script\u0026gt; 1.gif不存在，因此触发了一个myfun()事件，弹出窗口\ndemo查看\n4.onhashchange 当文档改变时发生的脚本 ？？？\n5.onload 页面加载完成之后触发\ndemo查看\n6.onmessage 在消息被触发时运行 ???\n7.onoffline 当浏览器离线时触发\n\u0026lt;body onoffline=\u0026#34;myfun()\u0026#34;\u0026gt; 8.ononline 当浏览器在线工作时触发\n\u0026lt;body ononline=\u0026#34;myfun()\u0026#34;\u0026gt; ononline和onoffline在网络断线或者连线时触发，可以控制电脑网络查看效果",
+    "inLanguage" : "en-US",
+    "author" : "",
+    "creator" : "",
+    "publisher": "",
+    "accountablePerson" : "",
+    "copyrightHolder" : "",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-10-29 21:12:00 \u002b0000 UTC",
+    "dateModified" : "2020-10-29 21:12:00 \u002b0000 UTC",
+    "url" : "https:\/\/zburu.com\/archives\/12.html\/",
+    "keywords" : [ "笔记", ]
+  }
+</script><title>HTML事件属性--DOM - 子舒的博客</title>
+  <meta property="og:title" content="HTML事件属性--DOM" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="研究html的对象，事件和方法，从js的角度来思考，这个标签的属性是通过什么方法，触发什么事件来实现的
+键盘鼠标事件 页面窗口事件 表单事件 一、window事件属性 针对window对象触发的事件，在&amp;lt;body&amp;gt;中执行
+1.onbeforeprint／onafterprint 在浏览器打印之间/后触发
+&amp;lt;body onbeforeprint = print()&amp;gt; &amp;lt;script&amp;gt; function print() { alert(&amp;#34;打印之间！&amp;#34;) } &amp;lt;/script&amp;gt; 打印前和打印后的事件方法类似，一个是在打印前触发事件，一个是在打印这个事件结束之后触发onafterprint这个事件
+demo查看
+2.onbeforeunload/unload 离开页面之间触发的事件／之后触发的事件
+打开f12，然后刷新，或者关闭浏览器，可以在浏览器触发事件
+&amp;lt;script&amp;gt; window.onbeforeunload = function(){ return &amp;#34;提示&amp;#34; //返回的内容不会显示， //在刷新的时候触发，或者关闭浏览器，浏览会直接提示是否重新加载，不能直接返回return } &amp;lt;/script&amp;gt; demo查看
+3.onerror 当图片出错是可以触发该事件，支持该事件的标签只有 &amp;lt;img&amp;gt;,&amp;lt;object&amp;gt;,&amp;lt;style&amp;gt;
+&amp;lt;img src=&amp;#34;1.gif&amp;#34; onerror = &amp;#34;myfun()&amp;#34;&amp;gt; &amp;lt;script&amp;gt; function myfun() { alert(&amp;#34;图片出错&amp;#34;) } &amp;lt;/script&amp;gt; 1.gif不存在，因此触发了一个myfun()事件，弹出窗口
+demo查看
+4.onhashchange 当文档改变时发生的脚本 ？？？
+5.onload 页面加载完成之后触发
+demo查看
+6.onmessage 在消息被触发时运行 ???
+7.onoffline 当浏览器离线时触发
+&amp;lt;body onoffline=&amp;#34;myfun()&amp;#34;&amp;gt; 8.ononline 当浏览器在线工作时触发
+&amp;lt;body ononline=&amp;#34;myfun()&amp;#34;&amp;gt; ononline和onoffline在网络断线或者连线时触发，可以控制电脑网络查看效果" />
+  <meta name="description" content="研究html的对象，事件和方法，从js的角度来思考，这个标签的属性是通过什么方法，触发什么事件来实现的
+键盘鼠标事件 页面窗口事件 表单事件 一、window事件属性 针对window对象触发的事件，在&amp;lt;body&amp;gt;中执行
+1.onbeforeprint／onafterprint 在浏览器打印之间/后触发
+&amp;lt;body onbeforeprint = print()&amp;gt; &amp;lt;script&amp;gt; function print() { alert(&amp;#34;打印之间！&amp;#34;) } &amp;lt;/script&amp;gt; 打印前和打印后的事件方法类似，一个是在打印前触发事件，一个是在打印这个事件结束之后触发onafterprint这个事件
+demo查看
+2.onbeforeunload/unload 离开页面之间触发的事件／之后触发的事件
+打开f12，然后刷新，或者关闭浏览器，可以在浏览器触发事件
+&amp;lt;script&amp;gt; window.onbeforeunload = function(){ return &amp;#34;提示&amp;#34; //返回的内容不会显示， //在刷新的时候触发，或者关闭浏览器，浏览会直接提示是否重新加载，不能直接返回return } &amp;lt;/script&amp;gt; demo查看
+3.onerror 当图片出错是可以触发该事件，支持该事件的标签只有 &amp;lt;img&amp;gt;,&amp;lt;object&amp;gt;,&amp;lt;style&amp;gt;
+&amp;lt;img src=&amp;#34;1.gif&amp;#34; onerror = &amp;#34;myfun()&amp;#34;&amp;gt; &amp;lt;script&amp;gt; function myfun() { alert(&amp;#34;图片出错&amp;#34;) } &amp;lt;/script&amp;gt; 1.gif不存在，因此触发了一个myfun()事件，弹出窗口
+demo查看
+4.onhashchange 当文档改变时发生的脚本 ？？？
+5.onload 页面加载完成之后触发
+demo查看
+6.onmessage 在消息被触发时运行 ???
+7.onoffline 当浏览器离线时触发
+&amp;lt;body onoffline=&amp;#34;myfun()&amp;#34;&amp;gt; 8.ononline 当浏览器在线工作时触发
+&amp;lt;body ononline=&amp;#34;myfun()&amp;#34;&amp;gt; ononline和onoffline在网络断线或者连线时触发，可以控制电脑网络查看效果" />
+  <meta property="og:locale" content="en-us" /><meta property="og:image" content="https://cdn.zburu.com/favicon.ico" />
+  
+
+  <link rel="stylesheet" href="/css/default.css">
+  <link rel="stylesheet" href="/css/simplebox.min.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="子舒的博客">
+  <script src="https://hm.baidu.com/hm.js?5f4839173d00c8b0d3dd40533d14450d"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-item">
+        <a href="/" class="header-title">
+          <img src="https://cdn.zburu.com/favicon.png" alt="logo">
+          <span>子舒的博客</span>
+        </a>
+      </div>
+      <div class="menu-btn">菜单</div>
+      <div class="opacity"></div>
+      <div class="header-item sticky">
+        <ul id="navi">
+          
+          <li>
+            <a href="/posts">归档</a>
+          </li>
+          
+          <li>
+            <a href="/weekly">周刊</a>
+          </li>
+          
+          <li>
+            <a href="/message">留言</a>
+          </li>
+          
+          <li>
+            <a href="/about">关于</a>
+          </li>
+          
+          <li>
+            <a href="/lab">实验室</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+<article>
+  <div class="post-box">
+    <div class="post-header">
+      <h1 class="post-title">HTML事件属性--DOM</h1>
+      
+      <div class="post-desc">
+        <div class="post-date">
+          
+          <time datetime=" 2020-10-29 21:12:00 UTC">
+            发布于 2020-10-29
+          </time>
+          
+          浏览: <span id="ArtalkPV">加载中...</span>
+          评论: <span id="ArtalkCount"></span>
+        </div>
+      </div>
+      
+    </div>
+    <div class="post-content markdown-body">
+      <div class="autoMenu" id="autoMenu" data-autoMenu></div>
+      
+      <p>研究html的<code>对象，事件和方法</code>，从js的角度来思考，这个标签的属性是通过什么方法，触发什么事件来实现的</p>
+<!-- raw HTML omitted -->
+<ol>
+<li>
+<p>键盘鼠标事件
+<img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-imgbed/24fd2c8f-a301-47b2-b816-ec299236777f.png" alt="键盘鼠标事件"></p>
+</li>
+<li>
+<p>页面窗口事件
+<img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-imgbed/fd1efd06-b9a0-4d3f-a289-2f8d58d8a8fd.png" alt=""></p>
+</li>
+<li>
+<p>表单事件
+<img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-imgbed/7b34d1ab-1443-46e1-bf59-a443a6779d3a.png" alt=""></p>
+</li>
+</ol>
+<h2 id="一window事件属性">一、window事件属性</h2>
+<p>针对window对象触发的事件，在<code>&lt;body&gt;</code>中执行</p>
+<h3 id="1onbeforeprintonafterprint">1.onbeforeprint／onafterprint</h3>
+<p>在浏览器打印之间/后触发</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span> <span style="color:#a6e22e">onbeforeprint </span><span style="color:#f92672">=</span> <span style="color:#e6db74">print()</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">print</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;打印之间！&#34;</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p>打印前和打印后的事件方法类似，一个是在打印前触发事件，一个是在打印这个事件结束之后触发<code>onafterprint</code>这个事件</p>
+<p><!-- raw HTML omitted -->demo查看<!-- raw HTML omitted --></p>
+<h3 id="2onbeforeunloadunload">2.onbeforeunload/unload</h3>
+<p>离开页面之间触发的事件／之后触发的事件</p>
+<p>打开f12，然后刷新，或者关闭浏览器，可以在浏览器触发事件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    window.<span style="color:#a6e22e">onbeforeunload</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;提示&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//返回的内容不会显示，
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">//在刷新的时候触发，或者关闭浏览器，浏览会直接提示是否重新加载，不能直接返回return
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p><!-- raw HTML omitted -->demo查看<!-- raw HTML omitted --></p>
+<h3 id="3onerror">3.onerror</h3>
+<p>当图片出错是可以触发该事件，支持该事件的标签只有 <code>&lt;img&gt;</code>,<code>&lt;object&gt;</code>,<code>&lt;style&gt;</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1.gif&#34;</span> <span style="color:#a6e22e">onerror </span><span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;myfun()&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">myfun</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;图片出错&#34;</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p>1.gif不存在，因此触发了一个myfun()事件，弹出窗口</p>
+<p><!-- raw HTML omitted -->demo查看<!-- raw HTML omitted --></p>
+<h3 id="4onhashchange">4.onhashchange</h3>
+<p>当文档改变时发生的脚本 
+？？？</p>
+<h3 id="5onload">5.onload</h3>
+<p>页面加载完成之后触发</p>
+<p><!-- raw HTML omitted -->demo查看<!-- raw HTML omitted --></p>
+<h3 id="6onmessage">6.onmessage</h3>
+<p>在消息被触发时运行
+???</p>
+<h3 id="7onoffline">7.onoffline</h3>
+<p>当浏览器<code>离线</code>时触发</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span> <span style="color:#a6e22e">onoffline</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;myfun()&#34;</span>&gt;
+</span></span></code></pre></div><h3 id="8ononline">8.ononline</h3>
+<p>当浏览器<code>在线</code>工作时触发</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span> <span style="color:#a6e22e">ononline</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;myfun()&#34;</span>&gt;
+</span></span></code></pre></div><blockquote>
+<p><code>ononline</code>和<code>onoffline</code>在网络断线或者连线时触发，可以控制电脑网络查看效果</p>
+</blockquote>
+<h3 id="9onpagehide">9.onpagehide</h3>
+<p>当用户从网页离开时触发，也可以理解成当窗口隐藏时运行的脚本</p>
+<p>刷新页面可以触发事件</p>
+<p><!-- raw HTML omitted -->demo查看<!-- raw HTML omitted --></p>
+<h3 id="10onpageshow">10.onpageshow</h3>
+<p>打开一个新页面或者刷新的时候触发</p>
+<p><!-- raw HTML omitted -->demo查看<!-- raw HTML omitted --></p>
+<p>相当于<code>onload</code>，加载页面时触发，但是在不同浏览器触发的有所不同</p>
+<blockquote>
+<p>第一次加载页面时，<code>onpageshow</code>在<code>ie浏览器</code>中不触发，其他情况都触发</p>
+</blockquote>
+<h3 id="11onresize">11.onresize</h3>
+<p>当浏览器窗口被改变大小时触发事件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span> <span style="color:#a6e22e">onresize</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;myfun()&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">myfun</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#39;浏览器窗口改变了&#39;</span>)
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span></code></pre></div><p><!-- raw HTML omitted -->demo查看<!-- raw HTML omitted --></p>
+<blockquote>
+<h3 id="12onunload">12.onunload</h3>
+</blockquote>
+<p>页面被下载时触发，就是刷新或者关闭页面时触发</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>window.onunload = function() {
+</span></span><span style="display:flex;"><span>    return &#39;确定关闭吗？&#39;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="13onpopstate">13.onpopstate</h3>
+<p>当浏览器窗口记录改变时运行的脚本，</p>
+<h3 id="14onredo">14.onredo</h3>
+<p>当文档执行撤销时触发的事件</p>
+<h2 id="二form事件属性">二、form事件属性</h2>
+<p>由html表单内触发的事件，通常使用在form元素中</p>
+<h3 id="1onblur">1.onblur</h3>
+<p>失去焦点时运行的脚本</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;int&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;int&#34;</span> <span style="color:#a6e22e">onblur</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;myfun()&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">myfun</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;int&#39;</span>).<span style="color:#a6e22e">value</span>;
+</span></span><span style="display:flex;"><span>        document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;int&#39;</span>).<span style="color:#a6e22e">value</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">int</span>.<span style="color:#a6e22e">toUpperCase</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p>给input绑定一个onblur=myfun()的事件，当input失去焦点的时候产生什么样的效果</p>
+<p><!-- raw HTML omitted -->demo查看<!-- raw HTML omitted --></p>
+<h3 id="2onfocus">2.onfocus</h3>
+<p>元素获得焦点时触发事件，和onblur相反</p>
+<p><!-- raw HTML omitted -->demo查看<!-- raw HTML omitted --></p>
+<h3 id="3onchange">3.onchange</h3>
+<p>当元素值被改变的时候触发事件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;int&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;int&#34;</span> <span style="color:#a6e22e">onchange</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;myfun()&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">myfun</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#39;我的元素被改变啦！&#39;</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p>这个事件的意思就是，当我对input内容进行操作改变后，浏览器会弹出一个alert</p>
+<p><!-- raw HTML omitted -->demo查看<!-- raw HTML omitted --></p>
+<h3 id="4oncontextmenu">4.oncontextmenu</h3>
+<p>当用户右键操作时触发该事件</p>
+<p>可以绑定在任意元素中触发，可以一直触发，不用刷新</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">oncontextmenu</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;myfun()&#34;</span>&gt;这是一个文本框！&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">myfun</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#39;oncontentmenu事件触发&#39;</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p><!-- raw HTML omitted -->demo查看<!-- raw HTML omitted --></p>
+<h3 id="5onformchange">5.onformchange</h3>
+<p>当表单获得输入时可以触发事件</p>
+<blockquote>
+<p>触发发不了脚本</p>
+</blockquote>
+<h3 id="6onforminput">6.onforminput</h3>
+<p>当表单获得用户输入时触发的事件，无法触发</p>
+<p>浏览器不支持</p>
+<h3 id="6oninput">6.oninput</h3>
+<p>当元素获得用户输入时触发的事件
+当输入框输入或者删除时都会触发oninput</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">oninput</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;myfun()&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">myfun</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#39;oninput触发了&#39;</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><blockquote>
+<p><code>onchange</code>和<code>oninput</code>有相似的地方，都是改变文本内容时触发事件<!-- raw HTML omitted -->
+但是<code>onchange</code>是在input失去焦点时才触发，<code>oninput</code>是立刻触发</p>
+</blockquote>
+<p><!-- raw HTML omitted -->demo查看<!-- raw HTML omitted --></p>
+<h3 id="7oninvalid">7.oninvalid</h3>
+<p><code>oninvalid</code>事件要搭配<code>required</code>属性来使用</p>
+<blockquote>
+<p><code>required</code>如果使用该属性，代表必填字段，<code>oninvalid</code>是当元素无效时触发的事件</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">form</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">oninvalid</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;myfun()&#34;</span> <span style="color:#a6e22e">required</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">form</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">myfun</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#39;填写为空&#39;</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p><!-- raw HTML omitted -->demo查看<!-- raw HTML omitted --></p>
+<h3 id="8onreset">8.onreset</h3>
+<p>表单中重置按钮被点击时触发</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">onreset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;myfun()&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;reset&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;reset&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">form</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">myfun</span>(){
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#39;重置成功&#39;</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p><!-- raw HTML omitted -->demo查看<!-- raw HTML omitted --></p>
+<h3 id="9onselect">9.onselect</h3>
+<p>文本被选中时触发</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">onselect</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;myfun()&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;选中我&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">myfun</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#39;onselect被触发 &#39;</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p><!-- raw HTML omitted -->demo查看<!-- raw HTML omitted --></p>
+<h3 id="10onsubmit">10.onsubmit</h3>
+<p>当表单被提交时触发</p>
+<p>要把事件绑定到form标签里面</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">onsubmit</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;myfun()&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- 注意：事件要绑定到form标签上面 --&gt;</span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;name&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">form</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">myfun</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#39;提交了&#39;</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p><!-- raw HTML omitted -->demo查看<!-- raw HTML omitted --></p>
+<blockquote>
+<p>注意：提交了之后会自动刷新页面，document和console的触发内容会立刻刷新，一闪而过，只有alert能停留在页面上，等待点击确定</p>
+</blockquote>
+<h3 id="三key键盘事件">三、key键盘事件</h3>
+<h3 id="1onkeydown">1.onkeydown</h3>
+<p>按下任意键时触发，包括系统按钮，箭头和功能键</p>
+<p><!-- raw HTML omitted -->demo查看<!-- raw HTML omitted --></p>
+<h3 id="2onkeypress">2.onkeypress</h3>
+<p>按下任意字母数字键时触发，但系统按钮，箭头和功能无法识别</p>
+<h3 id="3onkeyup">3.onkeyup</h3>
+<p>松开任何之前按下的键盘时触发</p>
+<p><!-- raw HTML omitted -->demo查看<!-- raw HTML omitted --></p>
+<h2 id="四mouse鼠标事件">四、mouse鼠标事件</h2>
+<p>利用鼠标触发的事件</p>
+<h3 id="1onclick">1.onclick</h3>
+<p>鼠标点击元素触发的事件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">onclick</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;myfun()&#34;</span>&gt;点击我&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">myfun</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#39;点击成功&#39;</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p><!-- raw HTML omitted -->demo查看<!-- raw HTML omitted --></p>
+<h3 id="2ondblclick">2.ondblclick</h3>
+<p>鼠标双击时触发的事件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">ondblclick</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;myfun()&#34;</span>&gt;测试文本！&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">myfun</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#39;双击测试成功！&#39;</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p><!-- raw HTML omitted -->demo查看<!-- raw HTML omitted --></p>
+<h3 id="3拖动事件">3.拖动事件</h3>
+<p>ondrag/
+元素被拖动时触发的事件</p>
+<p>ondragstart/在拖动操作开端运行的脚本</p>
+<p>ondrop/
+当元素正在被拖动时触发的事件</p>
+<p>ondragend/在拖动操作末端运行的脚本</p>
+<p>ondragenter/当元素元素已被拖动到有效拖放区域时运行的脚本</p>
+<p>ondragleave/当元素离开有效拖放目标时运行的脚本</p>
+<p>ondragover/当元素在有效拖放目标上正在被拖动时运行的脚本</p>
+<h3 id="4onmousedownonmouseup">4.onmousedown/onmouseup</h3>
+<p>当元素按下鼠标时触发的事件/鼠标释放时触发的事件</p>
+<ol>
+<li>一个是按下去的瞬间就触发</li>
+<li>一个是当鼠标被松开的时候触发</li>
+</ol>
+<p><code>onmouseup</code>效果和<code>onclick</code>一样，因为<code>click</code>也是点击过后触发</p>
+<p>这两个事件加起来相当于一个<code>click</code>事件，但是并不能用这两个事件来做点击事件的效果</p>
+<p><!-- raw HTML omitted -->demo查看<!-- raw HTML omitted --></p>
+<h3 id="5onmousemove">5.onmousemove</h3>
+<p>当鼠标移动到元素上时触发</p>
+<p>相当于css里面的 <code>:hover</code>，但是作为事件拥有更灵活多变的用法</p>
+<p><!-- raw HTML omitted -->demo查看<!-- raw HTML omitted --></p>
+<h3 id="6onmouseout">6.onmouseout</h3>
+<p>当鼠标离开元素时触发</p>
+<p><!-- raw HTML omitted -->demo查看<!-- raw HTML omitted --></p>
+<h3 id="7onmouseover">7.onmouseover</h3>
+<p>当鼠标进入元素时触发</p>
+<blockquote>
+<p><code>onmouseover</code>和<code>onmousemove</code>都是鼠标进入元素触发<!-- raw HTML omitted -->
+区别：<!-- raw HTML omitted -->
+1.<!-- raw HTML omitted -->
+<code>over</code>在进入元素时触发，但在元素内部移动时不触发 <!-- raw HTML omitted -->
+<code>move</code>是进入元素时和在元素里面移动时都触发<!-- raw HTML omitted -->
+2.<!-- raw HTML omitted -->
+<code>over</code>优先触发，然后才触发<code>move</code></p>
+</blockquote>
+<h3 id="8onmousewheel">8.onmousewheel</h3>
+<p>当鼠标滚动被滚动时触发的事件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">style</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">div</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">height</span>: <span style="color:#ae81ff">1000</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">style</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">onmousewheel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;myfun()&#34;</span>&gt;测试&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">myfun</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#39;onmousewheel&#39;</span>)
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span></code></pre></div><p>每次滚动时都可以触发，可以绑定到body上</p>
+<p><!-- raw HTML omitted -->demo查看<!-- raw HTML omitted --></p>
+<h3 id="9onscroll">9.onscroll</h3>
+<p>当元素滚动条被滚动时触发的事件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">onscroll</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;myfun()&#34;</span>&gt;In my younger and more vulnerable years my father gave me some advice that I&#39;ve been turning over in my mind ever since.&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">p</span>&gt;滑动了&lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ci&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;次&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">myfun</span>() {
+</span></span><span style="display:flex;"><span>        document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;ci&#39;</span>).<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p>这个案例－－－滑动滚动计数</p>
+<p><!-- raw HTML omitted -->demo查看<!-- raw HTML omitted --></p>
+<blockquote>
+<p>区别：<!-- raw HTML omitted -->
+1.<code>wheel</code>在滚轮滑动的时候有效，鼠标拖拽的时候无效<!-- raw HTML omitted -->
+2.<code>onscroll</code>不管在滑动还是拖动的时候，均生效</p>
+</blockquote>
+
+    </div>
+
+    
+    <div class="post-tags">
+      <a href="/tags/%E7%AC%94%E8%AE%B0/">
+        笔记
+      </a>
+    </div>
+    
+    
+    <div class="pre-next">
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/13.html/">
+          上一篇：javascript——函数、变量和方法
+        </a>
+        
+      </p>
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/11.html/">
+          下一篇：js基本语法
+        </a>
+        
+      </p>
+    </div>
+    
+
+<div class="related-content">
+  <h4>Related Posts</h4>
+  <ul>
+    
+    <li><a href="/archives/11.html/">js基本语法</a></li>
+    
+  </ul>
+</div>
+
+
+
+  </div>
+  
+  <div class="post-box">
+    <div class="post-comments">
+      <h4 class="article-h4">评论~</h4>
+<div id="Artalk"></div>
+<link href="https://artalk.zburu.com/dist/Artalk.css" rel="stylesheet">
+<script src="https://artalk.zburu.com/dist/Artalk.js"></script>
+<script>
+  new Artalk({
+    el: '#Artalk',
+    pageKey: '',
+    pageTitle: '',
+    server: 'https://artalk.zburu.com',
+    site: '子舒的博客',
+  })
+</script>
+
+
+    </div>
+    
+  </div>
+  <div class="footer">
+  <p>
+    © 2020-<span id="year"></span> ·
+    <a href="https://beian.miit.gov.cn/" target="_blank">
+      <span>浙ICP备2022002453号-2</span>
+    </a>
+  </p>
+  <i> · </i>
+  <p>网站运行: <span id="days">0</span> 天</p>
+</div>
+<div class="utool">
+  <div class="item totop">
+    <span>top</span>
+  </div>
+</div>
+<script>
+  var s0 = '2020-06-14';
+  s1 = new Date(s0.replace(/-/g, "/"));
+  s2 = new Date();
+  var days = s2.getTime() - s1.getTime();
+  var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+  document.getElementById('days').innerHTML = number_of_days;
+
+  var date = new Date;
+  var year = date.getFullYear();
+  document.getElementById('year').innerHTML = year;
+</script>
+</article>
+
+<script src="/js/jquery3.6.0.min.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/simplebox.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

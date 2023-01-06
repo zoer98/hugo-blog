@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="https://cdn.zburu.com/favicon.ico" type="image/x-icon">
+  <title>Noted</title>
+  <style>
+@font-face {font-family: "OPPOSans";src: url(https://cdn.staticaly.com/gh/zburu/cdn@main/font/OPPOSans.subset.ttf);}
+*{margin:0;padding:0;box-sizing: border-box;font-family: "OPPOSans";}
+body{padding:10px;height: 100vh;background: #eee;}
+#textarea{width:100%;height:100%;padding:12px;border: 1px solid #cecece;outline: none;border-radius: 4px;font-size:16px;resize: none;}
+#tag{position:fixed;left:50%;top:20px;background:#e1f3d8;color:#67C23A;font-size: 14px;padding: 2px 30px;transform: translateX(-50%);border-radius:4px;opacity: 0;z-index:999;}
+#tag.up{animation: up 2s forwards;}
+@keyframes up{0%{transform:translate(-50%,0);opacity:0}
+50%{transform:translate(-50%,0);opacity:1}
+100%{transform:translate(-50%,-50px);opacity:1}
+}
+  </style>
+</head>
+<body>
+  <textarea id="textarea" oninput="changes()" placeholder="实时存储在浏览器中，可用作临时记录笔记。如果保存失败，ctrl+s可手动保存。"></textarea>
+  <p id="tag">已保存</p>
+  <script>
+    window.onload=function(){
+      const content = JSON.parse(localStorage.getItem("content"));
+      document.getElementById('textarea').value = content
+    }
+
+    function changes(){
+      document.getElementsByTagName('title')[0].innerText = '* Noted';
+      setTimeout(function(){
+        const textarea= document.getElementById('textarea').value;
+        // console.log(textarea);
+        localStorage.setItem("content", JSON.stringify(textarea));
+        document.getElementsByTagName('title')[0].innerText = 'Noted';
+      },1000)
+    }
+
+    document.onkeydown = function(){
+      if (event.ctrlKey && window.event.keyCode==83){
+        const textarea= document.getElementById('textarea').value;
+        // console.log(textarea);
+        localStorage.setItem("content", JSON.stringify(textarea));
+        document.getElementById('tag').className = 'up';
+        document.getElementsByTagName('title')[0].innerText = 'Noted';
+        setTimeout(function(){
+          document.getElementById('tag').className = '';
+        },2000)
+        return false;
+      }
+    }
+  </script>
+</body>
+</html>

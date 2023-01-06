@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.101.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="toTop" content="true">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://zburu.com/archives/21.html/" />
+  <link rel="canonical" href="https://zburu.com/archives/21.html/" /><link rel="apple-touch-icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="shortcut" href="https://cdn.zburu.com/favicon.ico" /><link rel="alternate" type="application/atom+xml" href="https://zburu.comindex.xml" title="子舒的博客">
+
+  <script type="application/ld+json">
+  {
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https:\/\/zburu.com"
+    },
+    "articleSection" : "posts",
+    "name" : "事件监听函数，以及事件的捕获和冒泡机制",
+    "headline" : "事件监听函数，以及事件的捕获和冒泡机制",
+    "description" : "事件一般是用于浏览器和用户操作之间的交互，当用户执行某些特殊的操作时，浏览器给予反应，触发绑定的事件，事件流，事件发生时会在元素节点和根节点之间按照约定的顺序传播，事件经过的所有节点都会受到事件的影响，这个传播过程被称为DOM事件流\n函数事件 事件一般是用于浏览器和用户操作之间的交互，当用户执行某些特殊的操作时，浏览器给予反应，触发绑定的事件\n事件流，事件发生时会在元素节点和根节点之间按照约定的顺序传播，事件经过的所有节点都会受到事件的影响，这个传播过程被称为DOM事件流\ntrue是捕获，false是冒泡，默认为冒泡事件\n1.addEventListener()－－添加事件监听函数 给元素添加一个事件，假如有多个事件，不会覆盖，会依次执行\n\u0026lt;div id=\u0026#34;demo\u0026#34;\u0026gt;dom\u0026lt;\/div\u0026gt; \u0026lt;script\u0026gt; document.getElementById(\u0026#39;demo\u0026#39;).addEventListener(\u0026#34;click\u0026#34;, myfun) document.getElementById(\u0026#39;demo\u0026#39;).addEventListener(\u0026#34;click\u0026#34;, myfun1) function myfun() { console.log(\u0026#39;事件监听函数\u0026#39;) } function myfun1() { console.log(\u0026#39;addEventListener\u0026#39;) } \u0026lt;\/script\u0026gt; 注意： 1.这里有一个细节，addEventListener()里面有两个参数，第一个表示触发的条件，第二个表示触发的事件 正常情况下，第二个参数直接写函数名并且不加参数()，如果加了参数()则表示立即执行，不需要触发第一个参数要求的条件\n2.在这里绑定事件的时候，事件名不能和定义的变量名一样，否则无效\n2.removeEventListener()－－移除事件监听函数 下面这个demo，当鼠标在div中移动的时候，出现随机数，点击按钮后，移除事件监听函数\n\u0026lt;!-- css --\u0026gt; \u0026lt;style\u0026gt; #demo { width: 100px; height: 100px; border: 1px solid #000; } \u0026lt;\/style\u0026gt; \u0026lt;!-- html --\u0026gt; \u0026lt;div id=\u0026#34;demo\u0026#34;\u0026gt;\u0026lt;\/div\u0026gt; \u0026lt;input type=\u0026#34;button\u0026#34; value=\u0026#34;点击移除\u0026#34; onclick=\u0026#34;remove()\u0026#34;\u0026gt; \u0026lt;div id=\u0026#34;show\u0026#34;\u0026gt;\u0026lt;\/div\u0026gt; \u0026lt;!-- js --\u0026gt; \u0026lt;script\u0026gt; document.getElementById(\u0026#39;demo\u0026#39;).addEventListener(\u0026#34;mousemove\u0026#34;, myfun) function myfun() { document.getElementById(\u0026#39;show\u0026#39;).innerHTML = Math.random() } function remove() { document.",
+    "inLanguage" : "en-US",
+    "author" : "",
+    "creator" : "",
+    "publisher": "",
+    "accountablePerson" : "",
+    "copyrightHolder" : "",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-11-17 13:00:00 \u002b0000 UTC",
+    "dateModified" : "2020-11-17 13:00:00 \u002b0000 UTC",
+    "url" : "https:\/\/zburu.com\/archives\/21.html\/",
+    "keywords" : [ "笔记","js", ]
+  }
+</script><title>事件监听函数，以及事件的捕获和冒泡机制 - 子舒的博客</title>
+  <meta property="og:title" content="事件监听函数，以及事件的捕获和冒泡机制" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="事件一般是用于浏览器和用户操作之间的交互，当用户执行某些特殊的操作时，浏览器给予反应，触发绑定的事件，事件流，事件发生时会在元素节点和根节点之间按照约定的顺序传播，事件经过的所有节点都会受到事件的影响，这个传播过程被称为DOM事件流
+函数事件 事件一般是用于浏览器和用户操作之间的交互，当用户执行某些特殊的操作时，浏览器给予反应，触发绑定的事件
+事件流，事件发生时会在元素节点和根节点之间按照约定的顺序传播，事件经过的所有节点都会受到事件的影响，这个传播过程被称为DOM事件流
+true是捕获，false是冒泡，默认为冒泡事件
+1.addEventListener()－－添加事件监听函数 给元素添加一个事件，假如有多个事件，不会覆盖，会依次执行
+&amp;lt;div id=&amp;#34;demo&amp;#34;&amp;gt;dom&amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; document.getElementById(&amp;#39;demo&amp;#39;).addEventListener(&amp;#34;click&amp;#34;, myfun) document.getElementById(&amp;#39;demo&amp;#39;).addEventListener(&amp;#34;click&amp;#34;, myfun1) function myfun() { console.log(&amp;#39;事件监听函数&amp;#39;) } function myfun1() { console.log(&amp;#39;addEventListener&amp;#39;) } &amp;lt;/script&amp;gt; 注意： 1.这里有一个细节，addEventListener()里面有两个参数，第一个表示触发的条件，第二个表示触发的事件 正常情况下，第二个参数直接写函数名并且不加参数()，如果加了参数()则表示立即执行，不需要触发第一个参数要求的条件
+2.在这里绑定事件的时候，事件名不能和定义的变量名一样，否则无效
+2.removeEventListener()－－移除事件监听函数 下面这个demo，当鼠标在div中移动的时候，出现随机数，点击按钮后，移除事件监听函数
+&amp;lt;!-- css --&amp;gt; &amp;lt;style&amp;gt; #demo { width: 100px; height: 100px; border: 1px solid #000; } &amp;lt;/style&amp;gt; &amp;lt;!-- html --&amp;gt; &amp;lt;div id=&amp;#34;demo&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;input type=&amp;#34;button&amp;#34; value=&amp;#34;点击移除&amp;#34; onclick=&amp;#34;remove()&amp;#34;&amp;gt; &amp;lt;div id=&amp;#34;show&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;!-- js --&amp;gt; &amp;lt;script&amp;gt; document.getElementById(&amp;#39;demo&amp;#39;).addEventListener(&amp;#34;mousemove&amp;#34;, myfun) function myfun() { document.getElementById(&amp;#39;show&amp;#39;).innerHTML = Math.random() } function remove() { document." />
+  <meta name="description" content="事件一般是用于浏览器和用户操作之间的交互，当用户执行某些特殊的操作时，浏览器给予反应，触发绑定的事件，事件流，事件发生时会在元素节点和根节点之间按照约定的顺序传播，事件经过的所有节点都会受到事件的影响，这个传播过程被称为DOM事件流
+函数事件 事件一般是用于浏览器和用户操作之间的交互，当用户执行某些特殊的操作时，浏览器给予反应，触发绑定的事件
+事件流，事件发生时会在元素节点和根节点之间按照约定的顺序传播，事件经过的所有节点都会受到事件的影响，这个传播过程被称为DOM事件流
+true是捕获，false是冒泡，默认为冒泡事件
+1.addEventListener()－－添加事件监听函数 给元素添加一个事件，假如有多个事件，不会覆盖，会依次执行
+&amp;lt;div id=&amp;#34;demo&amp;#34;&amp;gt;dom&amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; document.getElementById(&amp;#39;demo&amp;#39;).addEventListener(&amp;#34;click&amp;#34;, myfun) document.getElementById(&amp;#39;demo&amp;#39;).addEventListener(&amp;#34;click&amp;#34;, myfun1) function myfun() { console.log(&amp;#39;事件监听函数&amp;#39;) } function myfun1() { console.log(&amp;#39;addEventListener&amp;#39;) } &amp;lt;/script&amp;gt; 注意： 1.这里有一个细节，addEventListener()里面有两个参数，第一个表示触发的条件，第二个表示触发的事件 正常情况下，第二个参数直接写函数名并且不加参数()，如果加了参数()则表示立即执行，不需要触发第一个参数要求的条件
+2.在这里绑定事件的时候，事件名不能和定义的变量名一样，否则无效
+2.removeEventListener()－－移除事件监听函数 下面这个demo，当鼠标在div中移动的时候，出现随机数，点击按钮后，移除事件监听函数
+&amp;lt;!-- css --&amp;gt; &amp;lt;style&amp;gt; #demo { width: 100px; height: 100px; border: 1px solid #000; } &amp;lt;/style&amp;gt; &amp;lt;!-- html --&amp;gt; &amp;lt;div id=&amp;#34;demo&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;input type=&amp;#34;button&amp;#34; value=&amp;#34;点击移除&amp;#34; onclick=&amp;#34;remove()&amp;#34;&amp;gt; &amp;lt;div id=&amp;#34;show&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;!-- js --&amp;gt; &amp;lt;script&amp;gt; document.getElementById(&amp;#39;demo&amp;#39;).addEventListener(&amp;#34;mousemove&amp;#34;, myfun) function myfun() { document.getElementById(&amp;#39;show&amp;#39;).innerHTML = Math.random() } function remove() { document." />
+  <meta property="og:locale" content="en-us" /><meta property="og:image" content="https://cdn.zburu.com/favicon.ico" />
+  
+
+  <link rel="stylesheet" href="/css/default.css">
+  <link rel="stylesheet" href="/css/simplebox.min.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="子舒的博客">
+  <script src="https://hm.baidu.com/hm.js?5f4839173d00c8b0d3dd40533d14450d"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-item">
+        <a href="/" class="header-title">
+          <img src="https://cdn.zburu.com/favicon.png" alt="logo">
+          <span>子舒的博客</span>
+        </a>
+      </div>
+      <div class="menu-btn">菜单</div>
+      <div class="opacity"></div>
+      <div class="header-item sticky">
+        <ul id="navi">
+          
+          <li>
+            <a href="/posts">归档</a>
+          </li>
+          
+          <li>
+            <a href="/weekly">周刊</a>
+          </li>
+          
+          <li>
+            <a href="/message">留言</a>
+          </li>
+          
+          <li>
+            <a href="/about">关于</a>
+          </li>
+          
+          <li>
+            <a href="/lab">实验室</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+<article>
+  <div class="post-box">
+    <div class="post-header">
+      <h1 class="post-title">事件监听函数，以及事件的捕获和冒泡机制</h1>
+      
+      <div class="post-desc">
+        <div class="post-date">
+          
+          <time datetime=" 2020-11-17 13:00:00 UTC">
+            发布于 2020-11-17
+          </time>
+          
+          浏览: <span id="ArtalkPV">加载中...</span>
+          评论: <span id="ArtalkCount"></span>
+        </div>
+      </div>
+      
+    </div>
+    <div class="post-content markdown-body">
+      <div class="autoMenu" id="autoMenu" data-autoMenu></div>
+      
+      <p>事件一般是用于浏览器和用户操作之间的交互，当用户执行某些特殊的操作时，浏览器给予反应，触发绑定的事件，<code>事件流</code>，事件发生时会在元素节点和根节点之间按照约定的顺序传播，事件经过的所有节点都会受到事件的影响，这个传播过程被称为DOM事件流</p>
+<!-- raw HTML omitted -->
+<h2 id="函数事件">函数事件</h2>
+<p>事件一般是用于浏览器和用户操作之间的交互，当用户执行某些特殊的操作时，浏览器给予反应，触发绑定的事件</p>
+<p><code>事件流</code>，事件发生时会在元素节点和根节点之间按照约定的顺序传播，事件经过的所有节点都会受到事件的影响，这个传播过程被称为DOM事件流</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-imgbed/ed20b5e5-b6db-4f1a-af69-4479be1c6151.png" alt=""></p>
+<p>true是捕获，false是冒泡，默认为冒泡事件</p>
+<!-- raw HTML omitted -->
+<h3 id="1addeventlistener添加事件监听函数">1.addEventListener()－－添加事件监听函数</h3>
+<p>给元素添加一个事件，假如有多个事件，不会覆盖，会依次执行</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;demo&#34;</span>&gt;dom&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;demo&#39;</span>).<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;click&#34;</span>, <span style="color:#a6e22e">myfun</span>)
+</span></span><span style="display:flex;"><span>    document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;demo&#39;</span>).<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;click&#34;</span>, <span style="color:#a6e22e">myfun1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">myfun</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;事件监听函数&#39;</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">myfun1</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;addEventListener&#39;</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-imgbed/1da0721f-98e6-4c4e-810c-88f42bff554d.jpg" alt=""></p>
+<blockquote>
+<p>注意：
+1.这里有一个细节，addEventListener()里面有两个参数，第一个表示触发的条件，第二个表示触发的事件
+正常情况下，第二个参数直接写函数名并且不加参数<code>()</code>，如果加了参数<code>()</code>则表示立即执行，不需要触发第一个参数要求的条件</p>
+</blockquote>
+<blockquote>
+<p>2.在这里绑定事件的时候，事件名不能和定义的变量名一样，否则无效</p>
+</blockquote>
+<h3 id="2removeeventlistener移除事件监听函数">2.removeEventListener()－－移除事件监听函数</h3>
+<p>下面这个demo，当鼠标在div中移动的时候，出现随机数，点击按钮后，移除事件监听函数</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- css --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">style</span>&gt;
+</span></span><span style="display:flex;"><span>    #demo {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">height</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">border</span>: <span style="color:#ae81ff">1</span><span style="color:#66d9ef">px</span> <span style="color:#66d9ef">solid</span> <span style="color:#ae81ff">#000</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">style</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- html --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;demo&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;点击移除&#34;</span> <span style="color:#a6e22e">onclick</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;remove()&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;show&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- js --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;demo&#39;</span>).<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;mousemove&#34;</span>, <span style="color:#a6e22e">myfun</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">myfun</span>() {
+</span></span><span style="display:flex;"><span>        document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;show&#39;</span>).<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">random</span>()
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">remove</span>() {
+</span></span><span style="display:flex;"><span>        document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;demo&#39;</span>).<span style="color:#a6e22e">removeEventListener</span>(<span style="color:#e6db74">&#34;mousemove&#34;</span>, <span style="color:#a6e22e">myfun</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p><!-- raw HTML omitted -->您的浏览器不支持播放该视频！<!-- raw HTML omitted --></p>
+<h3 id="3利用事件的捕获和冒泡做点事情">3.利用事件的捕获和冒泡做点事情</h3>
+<p>addEventListener()和removeEventListener()其实拥有三个参数，刚才说过了，第一个表示触发条件，第二个表示触发事件，第三个参数正常情况下可以省略，但是要知道它代表的意思</p>
+<p>用布尔值来表示，true或者false，默认是false</p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-imgbed/297eedab-74a9-4417-baa4-0242c2f66630.png" alt=""></p>
+<ul>
+<li>true表示在捕获阶段调用事件处理程序</li>
+<li>false表示在冒泡阶段调用事件处理程序</li>
+</ul>
+<p>根据图片可以看出，捕获阶段要先于冒泡阶段，因此，true事件要先于flase事件触发，多个true事件按顺序触发，多个false事件，写在后面的先触发</p>
+<blockquote>
+<p>结论：写在前面的true事件 &gt; 写在后面的true事件 &gt; 写在后面的false事件 &gt; 写在前面的false事件</p>
+</blockquote>
+<p>因此，利用这个参数，可以控制同一个元素的不同事件触发的顺序</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;out&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">p</span>&gt;最外面&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;middle&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;inner&#34;</span>&gt;最里面&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- 第一种情况 --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">out</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;out&#39;</span>); 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">middle</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;middle&#39;</span>); 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">inner</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;inner&#39;</span>); 
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//点击inner时，触发顺序为：inner-------middle------out
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>,<span style="color:#66d9ef">function</span>(){<span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;我是最外面的&#34;</span>);},<span style="color:#66d9ef">false</span>);   
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">middle</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>,<span style="color:#66d9ef">function</span>(){<span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;我是中间的&#34;</span>);},<span style="color:#66d9ef">false</span>);    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">inner</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>,<span style="color:#66d9ef">function</span>(){<span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;我是最里面的&#34;</span>);},<span style="color:#66d9ef">false</span>); 
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- 第二种情况 --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">out</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;out&#39;</span>); 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">middle</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;middle&#39;</span>); 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">inner</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;inner&#39;</span>); 
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//点击inner时，触发顺序为：out------middle-------inner
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>,<span style="color:#66d9ef">function</span>(){<span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;我是最外面的&#34;</span>);},<span style="color:#66d9ef">true</span>);   
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">middle</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>,<span style="color:#66d9ef">function</span>(){<span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;我是中间的&#34;</span>);},<span style="color:#66d9ef">true</span>);  
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">inner</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>,<span style="color:#66d9ef">function</span>(){<span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;我是最里面的&#34;</span>);},<span style="color:#66d9ef">true</span>); 
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- 第三种情况 --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">out</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;out&#39;</span>); 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">middle</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;middle&#39;</span>); 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">inner</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;inner&#39;</span>); 
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//点击inner时，触发顺序为：out------inner-------middle
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>,<span style="color:#66d9ef">function</span>(){<span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;我是最外面的&#34;</span>);},<span style="color:#66d9ef">true</span>);   
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">middle</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>,<span style="color:#66d9ef">function</span>(){<span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;我是中间的&#34;</span>);},<span style="color:#66d9ef">false</span>);    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">inner</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>,<span style="color:#66d9ef">function</span>(){<span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;我是最里面的&#34;</span>);},<span style="color:#66d9ef">false</span>);
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- 第四种情况 --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">out</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;out&#39;</span>); 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">middle</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;middle&#39;</span>); 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">inner</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;inner&#39;</span>); 
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//点击inner时，触发顺序为：out-------middle------inner
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>,<span style="color:#66d9ef">function</span>(){<span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;我是最外面的&#34;</span>);},<span style="color:#66d9ef">true</span>);   
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">middle</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>,<span style="color:#66d9ef">function</span>(){<span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;我是中间的&#34;</span>);},<span style="color:#66d9ef">true</span>);  
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">inner</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>,<span style="color:#66d9ef">function</span>(){<span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;我是最里面的&#34;</span>);},<span style="color:#66d9ef">false</span>);
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- 第五种情况 --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">out</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;out&#39;</span>); 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">middle</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;middle&#39;</span>); 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">inner</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;inner&#39;</span>); 
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//点击inner时，触发顺序为：middle-------inner------out
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>,<span style="color:#66d9ef">function</span>(){<span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;我是最外面的&#34;</span>);},<span style="color:#66d9ef">false</span>);   
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">middle</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>,<span style="color:#66d9ef">function</span>(){<span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;我是中间的&#34;</span>);},<span style="color:#66d9ef">true</span>);  
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">inner</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>,<span style="color:#66d9ef">function</span>(){<span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;我是最里面的&#34;</span>);},<span style="color:#66d9ef">false</span>);
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- 第六种情况 --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">out</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;out&#39;</span>); 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">middle</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;middle&#39;</span>); 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">inner</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;inner&#39;</span>); 
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//点击inner时，触发顺序为：out-------inner------middle
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>,<span style="color:#66d9ef">function</span>(){<span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;我是最外面的&#34;</span>);},<span style="color:#66d9ef">true</span>);   
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">middle</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>,<span style="color:#66d9ef">function</span>(){<span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;我是中间的&#34;</span>);},<span style="color:#66d9ef">false</span>);    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">inner</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>,<span style="color:#66d9ef">function</span>(){<span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;我是最里面的&#34;</span>);},<span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><h3 id="4事件处理程序">4.事件处理程序</h3>
+<ol>
+<li>HTML事件处理程序</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">onclick</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;test()&#34;</span>&gt;测试&lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">test</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;HTML事件处理程序&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><blockquote>
+<p>1.优点：事件处理程序中的代码，能够访问全局作用域中的任何变量
+2.缺点：时差问题、扩展的作用域链在不同浏览器中会导致不同结果、html代码与js代码高度耦合</p>
+</blockquote>
+<ol start="2">
+<li>DOM0级事件处理程序</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;btn&#34;</span>&gt;测试&lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">btn</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;btn&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">btn</span>.<span style="color:#a6e22e">onclick</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">test</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;DOM0级事件处理程序&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><blockquote>
+<p>1.优点：代码简单，浏览器兼容性好，解决了html代码和js代码的高度耦合问题
+2.缺点：一个元素只能绑定一个事件处理函数，只会在事件冒泡中运行</p>
+</blockquote>
+<ol start="3">
+<li>DOM2级事件处理程序</li>
+</ol>
+<p>该级别的事件处理程序，运用的就是事件捕获和冒泡机制</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;btn&#34;</span>&gt;测试&lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">btn</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;btn&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 事件监听
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">btn</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;click&#34;</span>, <span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;DOM2级事件处理程序，我在捕获阶段执行&#34;</span>);
+</span></span><span style="display:flex;"><span>    }, <span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">btn</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;click&#34;</span>, <span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;DOM2级事件处理程序，我在冒泡阶段执行&#34;</span>);
+</span></span><span style="display:flex;"><span>    }, <span style="color:#66d9ef">false</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 移除事件监听
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">fun</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;我要被移除了&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">btn</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;click&#34;</span>, <span style="color:#a6e22e">fun</span>, <span style="color:#66d9ef">false</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">btn</span>.<span style="color:#a6e22e">removeEventListener</span>(<span style="color:#e6db74">&#34;click&#34;</span>, <span style="color:#a6e22e">fun</span>, <span style="color:#66d9ef">false</span>);
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><blockquote>
+<p>1.优点：同时支持事件处理的捕获和冒泡阶段，并且一个元素可以绑定多个处理函数
+2.缺点：IE不支持</p>
+</blockquote>
+
+    </div>
+
+    
+    <div class="post-tags">
+      <a href="/tags/%E7%AC%94%E8%AE%B0/">
+        笔记
+      </a>
+    </div>
+    
+    <div class="post-tags">
+      <a href="/tags/js/">
+        js
+      </a>
+    </div>
+    
+    
+    <div class="pre-next">
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/22.html/">
+          上一篇：在js中运算不能随便把value属性定义成变量
+        </a>
+        
+      </p>
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/19.html/">
+          下一篇：getElementBy系列和querySelector系列的区别
+        </a>
+        
+      </p>
+    </div>
+    
+
+<div class="related-content">
+  <h4>Related Posts</h4>
+  <ul>
+    
+    <li><a href="/archives/17.html/">有关js函数，方法的一些补充总结</a></li>
+    
+    <li><a href="/archives/19.html/">getElementBy系列和querySelector系列的区别</a></li>
+    
+    <li><a href="/archives/18.html/">DOM－－文档对象模型</a></li>
+    
+  </ul>
+</div>
+
+
+
+  </div>
+  
+  <div class="post-box">
+    <div class="post-comments">
+      <h4 class="article-h4">评论~</h4>
+<div id="Artalk"></div>
+<link href="https://artalk.zburu.com/dist/Artalk.css" rel="stylesheet">
+<script src="https://artalk.zburu.com/dist/Artalk.js"></script>
+<script>
+  new Artalk({
+    el: '#Artalk',
+    pageKey: '',
+    pageTitle: '',
+    server: 'https://artalk.zburu.com',
+    site: '子舒的博客',
+  })
+</script>
+
+
+    </div>
+    
+  </div>
+  <div class="footer">
+  <p>
+    © 2020-<span id="year"></span> ·
+    <a href="https://beian.miit.gov.cn/" target="_blank">
+      <span>浙ICP备2022002453号-2</span>
+    </a>
+  </p>
+  <i> · </i>
+  <p>网站运行: <span id="days">0</span> 天</p>
+</div>
+<div class="utool">
+  <div class="item totop">
+    <span>top</span>
+  </div>
+</div>
+<script>
+  var s0 = '2020-06-14';
+  s1 = new Date(s0.replace(/-/g, "/"));
+  s2 = new Date();
+  var days = s2.getTime() - s1.getTime();
+  var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+  document.getElementById('days').innerHTML = number_of_days;
+
+  var date = new Date;
+  var year = date.getFullYear();
+  document.getElementById('year').innerHTML = year;
+</script>
+</article>
+
+<script src="/js/jquery3.6.0.min.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/simplebox.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

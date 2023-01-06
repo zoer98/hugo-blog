@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.101.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="toTop" content="true">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://zburu.com/archives/103.html/" />
+  <link rel="canonical" href="https://zburu.com/archives/103.html/" /><link rel="apple-touch-icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="shortcut" href="https://cdn.zburu.com/favicon.ico" /><link rel="alternate" type="application/atom+xml" href="https://zburu.comindex.xml" title="子舒的博客">
+
+  <script type="application/ld+json">
+  {
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https:\/\/zburu.com"
+    },
+    "articleSection" : "posts",
+    "name" : "【笔记】使用php写接口文件调用数据",
+    "headline" : "【笔记】使用php写接口文件调用数据",
+    "description" : "如何使用 php 写一个接口，然后将数据以 json 文件格式调用。\n\u0026lt;?php header(\u0026#39;Content-Type:application\/json; charset=utf-8\u0026#39;); header(\u0026#34;Access-Control-Allow-Origin:*\u0026#34;); $servername = \u0026#34;localhost\u0026#34;; $username = \u0026#34;数据库账号\u0026#34;; $password = \u0026#34;数据库密码\u0026#34;; $dbname = \u0026#34;数据库名称\u0026#34;; \/\/ 创建连接 $conn = new mysqli($servername, $username, $password, $dbname); \/\/ 检测连接 if ($conn-\u0026gt;connect_error) { die(\u0026#34;连接失败: \u0026#34; . $conn-\u0026gt;connect_error); } $sql = \u0026#34;select slug,title,created,text from typecho_contents\u0026#34;; $result = $conn-\u0026gt;query($sql); if ($result-\u0026gt;num_rows \u0026gt; 0) { \/\/ 输出数据 while($row = $result-\u0026gt;fetch_assoc()) { $data[]=$row; } $json = json_encode($data,JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);\/\/把数据转换为JSON数据. exit($json) ; } else { echo \u0026#34;未查询到结果！\u0026#34;; } $conn-\u0026gt;close(); ?",
+    "inLanguage" : "en-US",
+    "author" : "",
+    "creator" : "",
+    "publisher": "",
+    "accountablePerson" : "",
+    "copyrightHolder" : "",
+    "copyrightYear" : "2022",
+    "datePublished": "2022-02-22 17:12:00 \u002b0000 UTC",
+    "dateModified" : "2022-02-22 17:12:00 \u002b0000 UTC",
+    "url" : "https:\/\/zburu.com\/archives\/103.html\/",
+    "keywords" : [ "笔记","数据库","php", ]
+  }
+</script><title>【笔记】使用php写接口文件调用数据 - 子舒的博客</title>
+  <meta property="og:title" content="【笔记】使用php写接口文件调用数据" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="如何使用 php 写一个接口，然后将数据以 json 文件格式调用。
+&amp;lt;?php header(&amp;#39;Content-Type:application/json; charset=utf-8&amp;#39;); header(&amp;#34;Access-Control-Allow-Origin:*&amp;#34;); $servername = &amp;#34;localhost&amp;#34;; $username = &amp;#34;数据库账号&amp;#34;; $password = &amp;#34;数据库密码&amp;#34;; $dbname = &amp;#34;数据库名称&amp;#34;; // 创建连接 $conn = new mysqli($servername, $username, $password, $dbname); // 检测连接 if ($conn-&amp;gt;connect_error) { die(&amp;#34;连接失败: &amp;#34; . $conn-&amp;gt;connect_error); } $sql = &amp;#34;select slug,title,created,text from typecho_contents&amp;#34;; $result = $conn-&amp;gt;query($sql); if ($result-&amp;gt;num_rows &amp;gt; 0) { // 输出数据 while($row = $result-&amp;gt;fetch_assoc()) { $data[]=$row; } $json = json_encode($data,JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);//把数据转换为JSON数据. exit($json) ; } else { echo &amp;#34;未查询到结果！&amp;#34;; } $conn-&amp;gt;close(); ?" />
+  <meta name="description" content="如何使用 php 写一个接口，然后将数据以 json 文件格式调用。
+&amp;lt;?php header(&amp;#39;Content-Type:application/json; charset=utf-8&amp;#39;); header(&amp;#34;Access-Control-Allow-Origin:*&amp;#34;); $servername = &amp;#34;localhost&amp;#34;; $username = &amp;#34;数据库账号&amp;#34;; $password = &amp;#34;数据库密码&amp;#34;; $dbname = &amp;#34;数据库名称&amp;#34;; // 创建连接 $conn = new mysqli($servername, $username, $password, $dbname); // 检测连接 if ($conn-&amp;gt;connect_error) { die(&amp;#34;连接失败: &amp;#34; . $conn-&amp;gt;connect_error); } $sql = &amp;#34;select slug,title,created,text from typecho_contents&amp;#34;; $result = $conn-&amp;gt;query($sql); if ($result-&amp;gt;num_rows &amp;gt; 0) { // 输出数据 while($row = $result-&amp;gt;fetch_assoc()) { $data[]=$row; } $json = json_encode($data,JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);//把数据转换为JSON数据. exit($json) ; } else { echo &amp;#34;未查询到结果！&amp;#34;; } $conn-&amp;gt;close(); ?" />
+  <meta property="og:locale" content="en-us" /><meta property="og:image" content="https://cdn.zburu.com/favicon.ico" />
+  
+
+  <link rel="stylesheet" href="/css/default.css">
+  <link rel="stylesheet" href="/css/simplebox.min.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="子舒的博客">
+  <script src="https://hm.baidu.com/hm.js?5f4839173d00c8b0d3dd40533d14450d"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-item">
+        <a href="/" class="header-title">
+          <img src="https://cdn.zburu.com/favicon.png" alt="logo">
+          <span>子舒的博客</span>
+        </a>
+      </div>
+      <div class="menu-btn">菜单</div>
+      <div class="opacity"></div>
+      <div class="header-item sticky">
+        <ul id="navi">
+          
+          <li>
+            <a href="/posts">归档</a>
+          </li>
+          
+          <li>
+            <a href="/weekly">周刊</a>
+          </li>
+          
+          <li>
+            <a href="/message">留言</a>
+          </li>
+          
+          <li>
+            <a href="/about">关于</a>
+          </li>
+          
+          <li>
+            <a href="/lab">实验室</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+<article>
+  <div class="post-box">
+    <div class="post-header">
+      <h1 class="post-title">【笔记】使用php写接口文件调用数据</h1>
+      
+      <div class="post-desc">
+        <div class="post-date">
+          
+          <time datetime=" 2022-02-22 17:12:00 UTC">
+            发布于 2022-02-22
+          </time>
+          
+          浏览: <span id="ArtalkPV">加载中...</span>
+          评论: <span id="ArtalkCount"></span>
+        </div>
+      </div>
+      
+    </div>
+    <div class="post-content markdown-body">
+      <div class="autoMenu" id="autoMenu" data-autoMenu></div>
+      
+      <p>如何使用 php 写一个接口，然后将数据以 json 文件格式调用。</p>
+<!-- raw HTML omitted -->
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#39;Content-Type:application/json; charset=utf-8&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Access-Control-Allow-Origin:*&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$servername <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;localhost&#34;</span>;
+</span></span><span style="display:flex;"><span>$username <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;数据库账号&#34;</span>;
+</span></span><span style="display:flex;"><span>$password <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;数据库密码&#34;</span>;
+</span></span><span style="display:flex;"><span>$dbname <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;数据库名称&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 创建连接
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>$conn <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">mysqli</span>($servername, $username, $password, $dbname);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 检测连接
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">if</span> ($conn<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">connect_error</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">die</span>(<span style="color:#e6db74">&#34;连接失败: &#34;</span> <span style="color:#f92672">.</span> $conn<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">connect_error</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$sql <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;select slug,title,created,text from typecho_contents&#34;</span>;
+</span></span><span style="display:flex;"><span>$result <span style="color:#f92672">=</span> $conn<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">query</span>($sql);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> ($result<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">num_rows</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 输出数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span>($row <span style="color:#f92672">=</span> $result<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">fetch_assoc</span>()) {
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    $data[]<span style="color:#f92672">=</span>$row;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    $json <span style="color:#f92672">=</span> <span style="color:#a6e22e">json_encode</span>($data,<span style="color:#a6e22e">JSON_UNESCAPED_UNICODE</span><span style="color:#f92672">|</span><span style="color:#a6e22e">JSON_PRETTY_PRINT</span>);<span style="color:#75715e">//把数据转换为JSON数据.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">exit</span>($json) ;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;未查询到结果！&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$conn<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">close</span>();
+</span></span><span style="display:flex;"><span><span style="color:#75715e">?&gt;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><hr>
+<p>根据某个条件排序，将32行的sql语句改为下面的，意为根据 <code>created</code> 进行排序。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>$sql <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;select slug,title,created,text from typecho_contents order by created desc&#34;</span>;
+</span></span></code></pre></div>
+    </div>
+
+    
+    <div class="post-tags">
+      <a href="/tags/%E7%AC%94%E8%AE%B0/">
+        笔记
+      </a>
+    </div>
+    
+    <div class="post-tags">
+      <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+        数据库
+      </a>
+    </div>
+    
+    <div class="post-tags">
+      <a href="/tags/php/">
+        php
+      </a>
+    </div>
+    
+    
+    <div class="pre-next">
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/104.html/">
+          上一篇：“不如吃茶去”
+        </a>
+        
+      </p>
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/102.html/">
+          下一篇：Nuxt.js如何部署Artalk和遇到的问题
+        </a>
+        
+      </p>
+    </div>
+    
+
+<div class="related-content">
+  <h4>Related Posts</h4>
+  <ul>
+    
+    <li><a href="/archives/101.html/">使用Love主题的数据库</a></li>
+    
+    <li><a href="/archives/73.html/">将数据库中的图片信息导出并调用</a></li>
+    
+    <li><a href="/archives/68.html/">Oracle数据库安装教程（超详细）</a></li>
+    
+  </ul>
+</div>
+
+
+
+  </div>
+  
+  <div class="post-box">
+    <div class="post-comments">
+      <h4 class="article-h4">评论~</h4>
+<div id="Artalk"></div>
+<link href="https://artalk.zburu.com/dist/Artalk.css" rel="stylesheet">
+<script src="https://artalk.zburu.com/dist/Artalk.js"></script>
+<script>
+  new Artalk({
+    el: '#Artalk',
+    pageKey: '',
+    pageTitle: '',
+    server: 'https://artalk.zburu.com',
+    site: '子舒的博客',
+  })
+</script>
+
+
+    </div>
+    
+  </div>
+  <div class="footer">
+  <p>
+    © 2020-<span id="year"></span> ·
+    <a href="https://beian.miit.gov.cn/" target="_blank">
+      <span>浙ICP备2022002453号-2</span>
+    </a>
+  </p>
+  <i> · </i>
+  <p>网站运行: <span id="days">0</span> 天</p>
+</div>
+<div class="utool">
+  <div class="item totop">
+    <span>top</span>
+  </div>
+</div>
+<script>
+  var s0 = '2020-06-14';
+  s1 = new Date(s0.replace(/-/g, "/"));
+  s2 = new Date();
+  var days = s2.getTime() - s1.getTime();
+  var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+  document.getElementById('days').innerHTML = number_of_days;
+
+  var date = new Date;
+  var year = date.getFullYear();
+  document.getElementById('year').innerHTML = year;
+</script>
+</article>
+
+<script src="/js/jquery3.6.0.min.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/simplebox.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

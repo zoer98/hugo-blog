@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.101.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="toTop" content="true">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://zburu.com/archives/39.html/" />
+  <link rel="canonical" href="https://zburu.com/archives/39.html/" /><link rel="apple-touch-icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="shortcut" href="https://cdn.zburu.com/favicon.ico" /><link rel="alternate" type="application/atom+xml" href="https://zburu.comindex.xml" title="子舒的博客">
+
+  <script type="application/ld+json">
+  {
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https:\/\/zburu.com"
+    },
+    "articleSection" : "posts",
+    "name" : "React 学习笔记（三）",
+    "headline" : "React 学习笔记（三）",
+    "description" : "来源于：https:\/\/react.docschina.org\/docs\/forms.html\n一、表单 在 React 中，html 表单元素的工作方式和其他的 DOM 元素不太一样，因为表单内部通常会保持一些内部的 state，比如下面这个纯 html 表单只接受一个名称：\n\u0026lt;form\u0026gt; \u0026lt;label\u0026gt; 名字: \u0026lt;input type=\u0026#34;text\u0026#34; name=\u0026#34;name\u0026#34; \/\u0026gt; \u0026lt;\/label\u0026gt; \u0026lt;input type=\u0026#34;submit\u0026#34; value=\u0026#34;提交\u0026#34; \/\u0026gt; \u0026lt;\/form\u0026gt; 这个表单具有默认的 html 表单行为，即在用户提交表单之后自动刷新页面。如果你在 React 中执行相同的代码，它仍然有效。\n但大多数情况下，使用 JavaScript 函数可以很方便的处理表单的提交， 同时还可以访问用户填写的表单数据。实现这种效果的标准方式是使用“受控组件”。\n受控组件 在 html 中，表单元素比如\u0026lt;input\u0026gt;，\u0026lt;textarea\u0026gt;，\u0026lt;select\u0026gt;，这些表单元素通常自己维护 state，并根据用户输入进行更新。而在 React 中，可变状态（mutable state）通常保存在组件的 state 属性中，并且只能通过使用 setState() 来更新。\n我们可以把两者结合起来，使 React 的 state 成为“唯一数据源”。渲染表单的 React 组件还控制着用户输入过程中表单发生的操作。被 React 以这种方式控制取值的表单输入元素就叫做“受控组件”。\n例如，如果我们想让前一个示例在提交时打印出名称，我们可以将表单写为受控组件：\nclass NameForm extends React.Component { constructor(props) { super(props); this.state = {value: \u0026#39;\u0026#39;}; this.handleChange = this.handleChange.bind(this); this.",
+    "inLanguage" : "en-US",
+    "author" : "",
+    "creator" : "",
+    "publisher": "",
+    "accountablePerson" : "",
+    "copyrightHolder" : "",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-12-29 13:26:00 \u002b0000 UTC",
+    "dateModified" : "2020-12-29 13:26:00 \u002b0000 UTC",
+    "url" : "https:\/\/zburu.com\/archives\/39.html\/",
+    "keywords" : [ "笔记","react", ]
+  }
+</script><title>React 学习笔记（三） - 子舒的博客</title>
+  <meta property="og:title" content="React 学习笔记（三）" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="来源于：https://react.docschina.org/docs/forms.html
+一、表单 在 React 中，html 表单元素的工作方式和其他的 DOM 元素不太一样，因为表单内部通常会保持一些内部的 state，比如下面这个纯 html 表单只接受一个名称：
+&amp;lt;form&amp;gt; &amp;lt;label&amp;gt; 名字: &amp;lt;input type=&amp;#34;text&amp;#34; name=&amp;#34;name&amp;#34; /&amp;gt; &amp;lt;/label&amp;gt; &amp;lt;input type=&amp;#34;submit&amp;#34; value=&amp;#34;提交&amp;#34; /&amp;gt; &amp;lt;/form&amp;gt; 这个表单具有默认的 html 表单行为，即在用户提交表单之后自动刷新页面。如果你在 React 中执行相同的代码，它仍然有效。
+但大多数情况下，使用 JavaScript 函数可以很方便的处理表单的提交， 同时还可以访问用户填写的表单数据。实现这种效果的标准方式是使用“受控组件”。
+受控组件 在 html 中，表单元素比如&amp;lt;input&amp;gt;，&amp;lt;textarea&amp;gt;，&amp;lt;select&amp;gt;，这些表单元素通常自己维护 state，并根据用户输入进行更新。而在 React 中，可变状态（mutable state）通常保存在组件的 state 属性中，并且只能通过使用 setState() 来更新。
+我们可以把两者结合起来，使 React 的 state 成为“唯一数据源”。渲染表单的 React 组件还控制着用户输入过程中表单发生的操作。被 React 以这种方式控制取值的表单输入元素就叫做“受控组件”。
+例如，如果我们想让前一个示例在提交时打印出名称，我们可以将表单写为受控组件：
+class NameForm extends React.Component { constructor(props) { super(props); this.state = {value: &amp;#39;&amp;#39;}; this.handleChange = this.handleChange.bind(this); this." />
+  <meta name="description" content="来源于：https://react.docschina.org/docs/forms.html
+一、表单 在 React 中，html 表单元素的工作方式和其他的 DOM 元素不太一样，因为表单内部通常会保持一些内部的 state，比如下面这个纯 html 表单只接受一个名称：
+&amp;lt;form&amp;gt; &amp;lt;label&amp;gt; 名字: &amp;lt;input type=&amp;#34;text&amp;#34; name=&amp;#34;name&amp;#34; /&amp;gt; &amp;lt;/label&amp;gt; &amp;lt;input type=&amp;#34;submit&amp;#34; value=&amp;#34;提交&amp;#34; /&amp;gt; &amp;lt;/form&amp;gt; 这个表单具有默认的 html 表单行为，即在用户提交表单之后自动刷新页面。如果你在 React 中执行相同的代码，它仍然有效。
+但大多数情况下，使用 JavaScript 函数可以很方便的处理表单的提交， 同时还可以访问用户填写的表单数据。实现这种效果的标准方式是使用“受控组件”。
+受控组件 在 html 中，表单元素比如&amp;lt;input&amp;gt;，&amp;lt;textarea&amp;gt;，&amp;lt;select&amp;gt;，这些表单元素通常自己维护 state，并根据用户输入进行更新。而在 React 中，可变状态（mutable state）通常保存在组件的 state 属性中，并且只能通过使用 setState() 来更新。
+我们可以把两者结合起来，使 React 的 state 成为“唯一数据源”。渲染表单的 React 组件还控制着用户输入过程中表单发生的操作。被 React 以这种方式控制取值的表单输入元素就叫做“受控组件”。
+例如，如果我们想让前一个示例在提交时打印出名称，我们可以将表单写为受控组件：
+class NameForm extends React.Component { constructor(props) { super(props); this.state = {value: &amp;#39;&amp;#39;}; this.handleChange = this.handleChange.bind(this); this." />
+  <meta property="og:locale" content="en-us" /><meta property="og:image" content="https://cdn.zburu.com/favicon.ico" />
+  
+
+  <link rel="stylesheet" href="/css/default.css">
+  <link rel="stylesheet" href="/css/simplebox.min.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="子舒的博客">
+  <script src="https://hm.baidu.com/hm.js?5f4839173d00c8b0d3dd40533d14450d"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-item">
+        <a href="/" class="header-title">
+          <img src="https://cdn.zburu.com/favicon.png" alt="logo">
+          <span>子舒的博客</span>
+        </a>
+      </div>
+      <div class="menu-btn">菜单</div>
+      <div class="opacity"></div>
+      <div class="header-item sticky">
+        <ul id="navi">
+          
+          <li>
+            <a href="/posts">归档</a>
+          </li>
+          
+          <li>
+            <a href="/weekly">周刊</a>
+          </li>
+          
+          <li>
+            <a href="/message">留言</a>
+          </li>
+          
+          <li>
+            <a href="/about">关于</a>
+          </li>
+          
+          <li>
+            <a href="/lab">实验室</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+<article>
+  <div class="post-box">
+    <div class="post-header">
+      <h1 class="post-title">React 学习笔记（三）</h1>
+      
+      <div class="post-desc">
+        <div class="post-date">
+          
+          <time datetime=" 2020-12-29 13:26:00 UTC">
+            发布于 2020-12-29
+          </time>
+          
+          浏览: <span id="ArtalkPV">加载中...</span>
+          评论: <span id="ArtalkCount"></span>
+        </div>
+      </div>
+      
+    </div>
+    <div class="post-content markdown-body">
+      <div class="autoMenu" id="autoMenu" data-autoMenu></div>
+      
+      <p>来源于：<a href="https://react.docschina.org/docs/forms.html">https://react.docschina.org/docs/forms.html</a></p>
+<h2 id="一表单">一、表单</h2>
+<p>在 React 中，html 表单元素的工作方式和其他的 DOM 元素不太一样，因为表单内部通常会保持一些内部的 <code>state</code>，比如下面这个纯 html 表单只接受一个名称：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">form</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">label</span>&gt;
+</span></span><span style="display:flex;"><span>    名字:
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;name&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">label</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;提交&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">form</span>&gt;
+</span></span></code></pre></div><p>这个表单具有默认的 html 表单行为，即在用户提交表单之后自动刷新页面。如果你在 React 中执行相同的代码，它仍然有效。</p>
+<p>但大多数情况下，使用 JavaScript 函数可以很方便的处理表单的提交， 同时还可以访问用户填写的表单数据。实现这种效果的标准方式是使用“受控组件”。</p>
+<h3 id="受控组件">受控组件</h3>
+<p>在 html 中，表单元素比如<code>&lt;input&gt;</code>，<code>&lt;textarea&gt;</code>，<code>&lt;select&gt;</code>，这些表单元素通常自己维护 <code>state</code>，并根据用户输入进行更新。而在 React 中，可变状态（mutable state）通常保存在组件的 state 属性中，并且只能通过使用 <code>setState()</code> 来更新。</p>
+<p>我们可以把两者结合起来，使 React 的 state 成为“唯一数据源”。渲染表单的 React 组件还控制着用户输入过程中表单发生的操作。被 React 以这种方式控制取值的表单输入元素就叫做“受控组件”。</p>
+<p>例如，如果我们想让前一个示例在提交时打印出名称，我们可以将表单写为受控组件：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NameForm</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">React</span>.<span style="color:#a6e22e">Component</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">constructor</span>(<span style="color:#a6e22e">props</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">super</span>(<span style="color:#a6e22e">props</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">state</span> <span style="color:#f92672">=</span> {<span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&#39;</span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">handleChange</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">handleChange</span>.<span style="color:#a6e22e">bind</span>(<span style="color:#66d9ef">this</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">handleSubmit</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">handleSubmit</span>.<span style="color:#a6e22e">bind</span>(<span style="color:#66d9ef">this</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">handleChange</span>(<span style="color:#a6e22e">event</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">setState</span>({<span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">value</span>});
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">handleSubmit</span>(<span style="color:#a6e22e">event</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#39;提交的名字: &#39;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">state</span>.<span style="color:#a6e22e">value</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">preventDefault</span>();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">render</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">form</span> <span style="color:#a6e22e">onSubmit</span><span style="color:#f92672">=</span>{<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">handleSubmit</span>}<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">label</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">名字</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span>{<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">state</span>.<span style="color:#a6e22e">value</span>} <span style="color:#a6e22e">onChange</span><span style="color:#f92672">=</span>{<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">handleChange</span>} <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/label&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;提交&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/form&gt;</span>
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>由于在表单元素上设置了 <code>value</code> 属性，因此显示的值将始终为 <code>this.state.value</code>，这使得 React 的 state 成为唯一数据源。由于 <code>handlechange</code> 在每次按键时都会执行并更新 React 的 state，因此显示的值将随着用户输入而更新。</p>
+<p>对于受控组件来说，输入的值始终由 React 的 state 驱动。你也可以将 value 传递给其他 UI 元素，或者通过其他事件处理函数重置，但这意味着你需要编写更多的代码。</p>
+<h3 id="textarea-标签">textarea 标签</h3>
+<p>在 html 中，<code>&lt;textarea&gt;</code> 元素通过其子元素定义其文本：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">textarea</span>&gt;
+</span></span><span style="display:flex;"><span>  测试！
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">textarea</span>&gt;
+</span></span></code></pre></div><p>而在 React 中，<code>&lt;textarea&gt;</code> 使用 <code>value</code> 属性代替。这样，可以使得使用 <code>&lt;textarea&gt;</code> 的表单和使用单行 input 的表单非常类似：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">EssayForm</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">React</span>.<span style="color:#a6e22e">Component</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">constructor</span>(<span style="color:#a6e22e">props</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">super</span>(<span style="color:#a6e22e">props</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">state</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;请撰写一篇关于你喜欢的 DOM 元素的文章.&#39;</span>
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">handleChange</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">handleChange</span>.<span style="color:#a6e22e">bind</span>(<span style="color:#66d9ef">this</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">handleSubmit</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">handleSubmit</span>.<span style="color:#a6e22e">bind</span>(<span style="color:#66d9ef">this</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">handleChange</span>(<span style="color:#a6e22e">event</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">setState</span>({<span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">value</span>});
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">handleSubmit</span>(<span style="color:#a6e22e">event</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#39;提交的文章: &#39;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">state</span>.<span style="color:#a6e22e">value</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">preventDefault</span>();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">render</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">form</span> <span style="color:#a6e22e">onSubmit</span><span style="color:#f92672">=</span>{<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">handleSubmit</span>}<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">label</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">文章</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">textarea</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span>{<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">state</span>.<span style="color:#a6e22e">value</span>} <span style="color:#a6e22e">onChange</span><span style="color:#f92672">=</span>{<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">handleChange</span>} <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/label&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;提交&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/form&gt;</span>
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>请注意，<code>this.state.value</code> 初始化于构造函数中，因此文本区域默认有初值。</p>
+<h3 id="select-标签">select 标签</h3>
+<p>在 HTML 中，<code>&lt;select&gt;</code> 创建下拉列表标签。例如，如下 html 创建了水果相关的下拉列表：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">select</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">option</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;grapefruit&#34;</span>&gt;葡萄柚&lt;/<span style="color:#f92672">option</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">option</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;lime&#34;</span>&gt;酸橙&lt;/<span style="color:#f92672">option</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">option</span> <span style="color:#a6e22e">selected</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;coconut&#34;</span>&gt;椰子&lt;/<span style="color:#f92672">option</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">option</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mango&#34;</span>&gt;芒果&lt;/<span style="color:#f92672">option</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">select</span>&gt;
+</span></span></code></pre></div><p>请注意，由于 <code>selected</code> 属性的缘故，椰子选项默认被选中。React 并不会使用 <code>selected</code> 属性，而是在根 <code>select</code> 标签上使用 <code>value</code> 属性。这在受控组件中更便捷，因为您只需要在根标签中更新它。例如：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FlavorForm</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">React</span>.<span style="color:#a6e22e">Component</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">constructor</span>(<span style="color:#a6e22e">props</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">super</span>(<span style="color:#a6e22e">props</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">state</span> <span style="color:#f92672">=</span> {<span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;coconut&#39;</span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">handleChange</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">handleChange</span>.<span style="color:#a6e22e">bind</span>(<span style="color:#66d9ef">this</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">handleSubmit</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">handleSubmit</span>.<span style="color:#a6e22e">bind</span>(<span style="color:#66d9ef">this</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">handleChange</span>(<span style="color:#a6e22e">event</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">setState</span>({<span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">value</span>});
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">handleSubmit</span>(<span style="color:#a6e22e">event</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#39;你喜欢的风味是: &#39;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">state</span>.<span style="color:#a6e22e">value</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">preventDefault</span>();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">render</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">form</span> <span style="color:#a6e22e">onSubmit</span><span style="color:#f92672">=</span>{<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">handleSubmit</span>}<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">label</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">选择你喜欢的风味</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">select</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span>{<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">state</span>.<span style="color:#a6e22e">value</span>} <span style="color:#a6e22e">onChange</span><span style="color:#f92672">=</span>{<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">handleChange</span>}<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">option</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;grapefruit&#34;</span><span style="color:#f92672">&gt;</span><span style="color:#a6e22e">葡萄柚</span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/option&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">option</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;lime&#34;</span><span style="color:#f92672">&gt;</span><span style="color:#a6e22e">酸橙</span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/option&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">option</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;coconut&#34;</span><span style="color:#f92672">&gt;</span><span style="color:#a6e22e">椰子</span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/option&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">option</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mango&#34;</span><span style="color:#f92672">&gt;</span><span style="color:#a6e22e">芒果</span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/option&gt;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/select&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/label&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;提交&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/form&gt;</span>
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>总的来说，这使得 <code>&lt;input type=&quot;text&quot;&gt;</code>, <code>&lt;textarea&gt;</code> 和 <code>&lt;select&gt;</code> 之类的标签都非常相似—它们都接受一个 value 属性，你可以使用它来实现受控组件。</p>
+<blockquote>
+<p>注意:你可以将数组传递到 value 属性中，以支持在 select 标签中选择多个选项：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">select</span> <span style="color:#a6e22e">multiple</span><span style="color:#f92672">=</span><span style="color:#e6db74">{true}</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">{[&#39;B&#39;,</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">C</span><span style="color:#960050;background-color:#1e0010">&#39;]}</span>&gt;
+</span></span></code></pre></div></blockquote>
+<h3 id="文件-input-标签">文件 input 标签</h3>
+<p>在 HTML 中，<code>&lt;input type=&quot;file&quot;&gt;</code> 允许用户从存储设备中选择一个或多个文件，将其上传到服务器，或通过使用 JavaScript 的 <code>File API</code> 进行控制。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;file&#34;</span> /&gt;
+</span></span></code></pre></div><p>因为它的 value 只读，所以它是 React 中的一个非受控组件。</p>
+<h3 id="处理多个输入">处理多个输入</h3>
+<p>当需要处理多个 <code>input</code> 元素时，我们可以给每个元素添加 <code>name</code> 属性，并让处理函数根据 <code>event.target.name</code> 的值选择要执行的操作。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Reservation</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">React</span>.<span style="color:#a6e22e">Component</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">constructor</span>(<span style="color:#a6e22e">props</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">super</span>(<span style="color:#a6e22e">props</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">state</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">isGoing</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">numberOfGuests</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">handleInputChange</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">handleInputChange</span>.<span style="color:#a6e22e">bind</span>(<span style="color:#66d9ef">this</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">handleInputChange</span>(<span style="color:#a6e22e">event</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">target</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">target</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;isGoing&#39;</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">checked</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">value</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">name</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">setState</span>({
+</span></span><span style="display:flex;"><span>      [<span style="color:#a6e22e">name</span>]<span style="color:#f92672">:</span> <span style="color:#a6e22e">value</span>
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">render</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">form</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">label</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">参与</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">input</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;isGoing&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;checkbox&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">checked</span><span style="color:#f92672">=</span>{<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">state</span>.<span style="color:#a6e22e">isGoing</span>}
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">onChange</span><span style="color:#f92672">=</span>{<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">handleInputChange</span>} <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/label&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">br</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">label</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">来宾人数</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">input</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;numberOfGuests&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;number&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span>{<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">state</span>.<span style="color:#a6e22e">numberOfGuests</span>}
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">onChange</span><span style="color:#f92672">=</span>{<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">handleInputChange</span>} <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/label&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/form&gt;</span>
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>这里使用了 ES6 <code>计算属性名称</code>的语法更新给定输入名称对应的 state 值：</p>
+<p>例如：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">setState</span>({
+</span></span><span style="display:flex;"><span>  [<span style="color:#a6e22e">name</span>]<span style="color:#f92672">:</span> <span style="color:#a6e22e">value</span>
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>等同于 es5：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">partialState</span> <span style="color:#f92672">=</span> {};
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">partialState</span>[<span style="color:#a6e22e">name</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">value</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">setState</span>(<span style="color:#a6e22e">partialState</span>);
+</span></span></code></pre></div><p>另外，由于 <code>setState()</code> 自动将部分 state 合并到当前 state, 只需调用它更改部分 state 即可。</p>
+<h3 id="受控输入空值">受控输入空值</h3>
+<p>在受控组件上指定 value 的 prop 会阻止用户更改输入。如果你指定了 <code>value</code>，但输入仍可编辑，则可能是你意外地将 <code>value</code> 设置为 <code>undefined</code> 或 <code>null</code>。</p>
+<p>下面的代码演示了这一点。（输入最初被锁定，但在短时间延迟后变为可编辑。）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">ReactDOM</span>.<span style="color:#a6e22e">render</span>(<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">input</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;hi&#34;</span> <span style="color:#f92672">/&gt;</span>, <span style="color:#a6e22e">mountNode</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">setTimeout</span>(<span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ReactDOM</span>.<span style="color:#a6e22e">render</span>(<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">input</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span>{<span style="color:#66d9ef">null</span>} <span style="color:#f92672">/&gt;</span>, <span style="color:#a6e22e">mountNode</span>);
+</span></span><span style="display:flex;"><span>}, <span style="color:#ae81ff">1000</span>);
+</span></span></code></pre></div><h3 id="受控组件的替代品">受控组件的替代品</h3>
+<p>有时使用受控组件会很麻烦，因为你需要为数据变化的每种方式都编写事件处理函数，并通过一个 React 组件传递所有的输入 state。当你将之前的代码库转换为 React 或将 React 应用程序与非 React 库集成时，这可能会令人厌烦。在这些情况下，你可能希望使用非受控组件, 这是实现输入表单的另一种方式。</p>
+<h3 id="成熟的解决方案">成熟的解决方案</h3>
+<p>如果你想寻找包含验证、追踪访问字段以及处理表单提交的完整解决方案，使用 Formik 是不错的选择。然而，它也是建立在受控组件和管理 state 的基础之上 —— 所以不要忽视学习它们。</p>
+
+    </div>
+
+    
+    <div class="post-tags">
+      <a href="/tags/%E7%AC%94%E8%AE%B0/">
+        笔记
+      </a>
+    </div>
+    
+    <div class="post-tags">
+      <a href="/tags/react/">
+        react
+      </a>
+    </div>
+    
+    
+    <div class="pre-next">
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/40.html/">
+          上一篇：为什么 key 是必须的？
+        </a>
+        
+      </p>
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/38.html/">
+          下一篇：2020年度总结
+        </a>
+        
+      </p>
+    </div>
+    
+
+<div class="related-content">
+  <h4>Related Posts</h4>
+  <ul>
+    
+    <li><a href="/archives/37.html/">React －－万物皆可组件</a></li>
+    
+    <li><a href="/archives/35.html/">React 学习笔记（二）</a></li>
+    
+    <li><a href="/archives/33.html/">React 中的占位符 Fragment</a></li>
+    
+  </ul>
+</div>
+
+
+
+  </div>
+  
+  <div class="post-box">
+    <div class="post-comments">
+      <h4 class="article-h4">评论~</h4>
+<div id="Artalk"></div>
+<link href="https://artalk.zburu.com/dist/Artalk.css" rel="stylesheet">
+<script src="https://artalk.zburu.com/dist/Artalk.js"></script>
+<script>
+  new Artalk({
+    el: '#Artalk',
+    pageKey: '',
+    pageTitle: '',
+    server: 'https://artalk.zburu.com',
+    site: '子舒的博客',
+  })
+</script>
+
+
+    </div>
+    
+  </div>
+  <div class="footer">
+  <p>
+    © 2020-<span id="year"></span> ·
+    <a href="https://beian.miit.gov.cn/" target="_blank">
+      <span>浙ICP备2022002453号-2</span>
+    </a>
+  </p>
+  <i> · </i>
+  <p>网站运行: <span id="days">0</span> 天</p>
+</div>
+<div class="utool">
+  <div class="item totop">
+    <span>top</span>
+  </div>
+</div>
+<script>
+  var s0 = '2020-06-14';
+  s1 = new Date(s0.replace(/-/g, "/"));
+  s2 = new Date();
+  var days = s2.getTime() - s1.getTime();
+  var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+  document.getElementById('days').innerHTML = number_of_days;
+
+  var date = new Date;
+  var year = date.getFullYear();
+  document.getElementById('year').innerHTML = year;
+</script>
+</article>
+
+<script src="/js/jquery3.6.0.min.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/simplebox.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

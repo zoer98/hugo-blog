@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.101.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="toTop" content="true">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://zburu.com/archives/54.html/" />
+  <link rel="canonical" href="https://zburu.com/archives/54.html/" /><link rel="apple-touch-icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="shortcut" href="https://cdn.zburu.com/favicon.ico" /><link rel="alternate" type="application/atom+xml" href="https://zburu.comindex.xml" title="子舒的博客">
+
+  <script type="application/ld+json">
+  {
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https:\/\/zburu.com"
+    },
+    "articleSection" : "posts",
+    "name" : "IE10下`,`符号不能留白",
+    "headline" : "IE10下`,`符号不能留白",
+    "description" : "$(\u0026#34;#test\u0026#34;).click(function () { $(\u0026#39;html,body\u0026#39;).animate({ \u0026#39;scrollTop\u0026#39;: \u0026#39;0\u0026#39; }, 500,) }) 这行代码使用的是jquery的写法，一个500毫秒的动画，这样写在Chrome浏览器等没问题，可以正常运行。\n但是今天在写项目的过程中，要求代码兼容到IE10，没办法，被迫在IE浏览器下运行，结果发现这行代码会报错。这是怎么回事呢？\n简单分析一下，这有点类似js中定时器的写法，setimeout，两个参数，分别代表指定的时间，和定时时间。\n而animate是动画的属性，这个时间共花费500毫秒执行完毕。但是这个不是重点，为什么会报错呢？\n这时候我注意到500后面的,，我突然想到一种可能，先把,删掉。果然不出我所料。控制台不会报错了。\n我猜测，这是由IE的机制引起的，浏览器识别到,的时候，会自动默认后面跟有语句，但是如果空着不写，与浏览器预期的后果不同，就会产生报错。可能IE内核要求也比较严格吧。",
+    "inLanguage" : "en-US",
+    "author" : "",
+    "creator" : "",
+    "publisher": "",
+    "accountablePerson" : "",
+    "copyrightHolder" : "",
+    "copyrightYear" : "2021",
+    "datePublished": "2021-03-16 10:29:00 \u002b0000 UTC",
+    "dateModified" : "2021-03-16 10:29:00 \u002b0000 UTC",
+    "url" : "https:\/\/zburu.com\/archives\/54.html\/",
+    "keywords" : [ "css","IE", ]
+  }
+</script><title>IE10下`,`符号不能留白 - 子舒的博客</title>
+  <meta property="og:title" content="IE10下`,`符号不能留白" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="$(&amp;#34;#test&amp;#34;).click(function () { $(&amp;#39;html,body&amp;#39;).animate({ &amp;#39;scrollTop&amp;#39;: &amp;#39;0&amp;#39; }, 500,) }) 这行代码使用的是jquery的写法，一个500毫秒的动画，这样写在Chrome浏览器等没问题，可以正常运行。
+但是今天在写项目的过程中，要求代码兼容到IE10，没办法，被迫在IE浏览器下运行，结果发现这行代码会报错。这是怎么回事呢？
+简单分析一下，这有点类似js中定时器的写法，setimeout，两个参数，分别代表指定的时间，和定时时间。
+而animate是动画的属性，这个时间共花费500毫秒执行完毕。但是这个不是重点，为什么会报错呢？
+这时候我注意到500后面的,，我突然想到一种可能，先把,删掉。果然不出我所料。控制台不会报错了。
+我猜测，这是由IE的机制引起的，浏览器识别到,的时候，会自动默认后面跟有语句，但是如果空着不写，与浏览器预期的后果不同，就会产生报错。可能IE内核要求也比较严格吧。" />
+  <meta name="description" content="$(&amp;#34;#test&amp;#34;).click(function () { $(&amp;#39;html,body&amp;#39;).animate({ &amp;#39;scrollTop&amp;#39;: &amp;#39;0&amp;#39; }, 500,) }) 这行代码使用的是jquery的写法，一个500毫秒的动画，这样写在Chrome浏览器等没问题，可以正常运行。
+但是今天在写项目的过程中，要求代码兼容到IE10，没办法，被迫在IE浏览器下运行，结果发现这行代码会报错。这是怎么回事呢？
+简单分析一下，这有点类似js中定时器的写法，setimeout，两个参数，分别代表指定的时间，和定时时间。
+而animate是动画的属性，这个时间共花费500毫秒执行完毕。但是这个不是重点，为什么会报错呢？
+这时候我注意到500后面的,，我突然想到一种可能，先把,删掉。果然不出我所料。控制台不会报错了。
+我猜测，这是由IE的机制引起的，浏览器识别到,的时候，会自动默认后面跟有语句，但是如果空着不写，与浏览器预期的后果不同，就会产生报错。可能IE内核要求也比较严格吧。" />
+  <meta property="og:locale" content="en-us" /><meta property="og:image" content="https://cdn.zburu.com/favicon.ico" />
+  
+
+  <link rel="stylesheet" href="/css/default.css">
+  <link rel="stylesheet" href="/css/simplebox.min.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="子舒的博客">
+  <script src="https://hm.baidu.com/hm.js?5f4839173d00c8b0d3dd40533d14450d"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-item">
+        <a href="/" class="header-title">
+          <img src="https://cdn.zburu.com/favicon.png" alt="logo">
+          <span>子舒的博客</span>
+        </a>
+      </div>
+      <div class="menu-btn">菜单</div>
+      <div class="opacity"></div>
+      <div class="header-item sticky">
+        <ul id="navi">
+          
+          <li>
+            <a href="/posts">归档</a>
+          </li>
+          
+          <li>
+            <a href="/weekly">周刊</a>
+          </li>
+          
+          <li>
+            <a href="/message">留言</a>
+          </li>
+          
+          <li>
+            <a href="/about">关于</a>
+          </li>
+          
+          <li>
+            <a href="/lab">实验室</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+<article>
+  <div class="post-box">
+    <div class="post-header">
+      <h1 class="post-title">IE10下`,`符号不能留白</h1>
+      
+      <div class="post-desc">
+        <div class="post-date">
+          
+          <time datetime=" 2021-03-16 10:29:00 UTC">
+            发布于 2021-03-16
+          </time>
+          
+          浏览: <span id="ArtalkPV">加载中...</span>
+          评论: <span id="ArtalkCount"></span>
+        </div>
+      </div>
+      
+    </div>
+    <div class="post-content markdown-body">
+      <div class="autoMenu" id="autoMenu" data-autoMenu></div>
+      
+      <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;#test&#34;</span>).<span style="color:#a6e22e">click</span>(<span style="color:#66d9ef">function</span> () {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#39;html,body&#39;</span>).<span style="color:#a6e22e">animate</span>({ <span style="color:#e6db74">&#39;scrollTop&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;0&#39;</span> }, <span style="color:#ae81ff">500</span>,)
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><p>这行代码使用的是jquery的写法，一个500毫秒的动画，这样写在Chrome浏览器等没问题，可以正常运行。</p>
+<p>但是今天在写项目的过程中，要求代码兼容到IE10，没办法，被迫在IE浏览器下运行，结果发现这行代码会报错。这是怎么回事呢？</p>
+<p>简单分析一下，这有点类似js中定时器的写法，setimeout，两个参数，分别代表指定的时间，和定时时间。</p>
+<p>而animate是动画的属性，这个时间共花费500毫秒执行完毕。但是这个不是重点，为什么会报错呢？</p>
+<p>这时候我注意到500后面的<code>,</code>，我突然想到一种可能，先把<code>,</code>删掉。果然不出我所料。控制台不会报错了。</p>
+<p>我猜测，这是由IE的机制引起的，浏览器识别到<code>,</code>的时候，会自动默认后面跟有语句，但是如果空着不写，与浏览器预期的后果不同，就会产生报错。可能IE内核要求也比较严格吧。</p>
+
+    </div>
+
+    
+    <div class="post-tags">
+      <a href="/tags/css/">
+        css
+      </a>
+    </div>
+    
+    <div class="post-tags">
+      <a href="/tags/ie/">
+        IE
+      </a>
+    </div>
+    
+    
+    <div class="pre-next">
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/55.html/">
+          上一篇：window.scroll 方法只能存在一次该如何解决？
+        </a>
+        
+      </p>
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/53.html/">
+          下一篇：怎么让 css3 里面的动画属性看起来更流畅?
+        </a>
+        
+      </p>
+    </div>
+    
+
+<div class="related-content">
+  <h4>Related Posts</h4>
+  <ul>
+    
+    <li><a href="/archives/53.html/">怎么让 css3 里面的动画属性看起来更流畅?</a></li>
+    
+    <li><a href="/archives/52.html/">chrome浏览器无法显示12px以下的字体</a></li>
+    
+    <li><a href="/archives/49.html/">掘金个人主页头像旋转效果</a></li>
+    
+  </ul>
+</div>
+
+
+
+  </div>
+  
+  <div class="post-box">
+    <div class="post-comments">
+      <h4 class="article-h4">评论~</h4>
+<div id="Artalk"></div>
+<link href="https://artalk.zburu.com/dist/Artalk.css" rel="stylesheet">
+<script src="https://artalk.zburu.com/dist/Artalk.js"></script>
+<script>
+  new Artalk({
+    el: '#Artalk',
+    pageKey: '',
+    pageTitle: '',
+    server: 'https://artalk.zburu.com',
+    site: '子舒的博客',
+  })
+</script>
+
+
+    </div>
+    
+  </div>
+  <div class="footer">
+  <p>
+    © 2020-<span id="year"></span> ·
+    <a href="https://beian.miit.gov.cn/" target="_blank">
+      <span>浙ICP备2022002453号-2</span>
+    </a>
+  </p>
+  <i> · </i>
+  <p>网站运行: <span id="days">0</span> 天</p>
+</div>
+<div class="utool">
+  <div class="item totop">
+    <span>top</span>
+  </div>
+</div>
+<script>
+  var s0 = '2020-06-14';
+  s1 = new Date(s0.replace(/-/g, "/"));
+  s2 = new Date();
+  var days = s2.getTime() - s1.getTime();
+  var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+  document.getElementById('days').innerHTML = number_of_days;
+
+  var date = new Date;
+  var year = date.getFullYear();
+  document.getElementById('year').innerHTML = year;
+</script>
+</article>
+
+<script src="/js/jquery3.6.0.min.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/simplebox.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.101.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="toTop" content="true">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://zburu.com/archives/56.html/" />
+  <link rel="canonical" href="https://zburu.com/archives/56.html/" /><link rel="apple-touch-icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="shortcut" href="https://cdn.zburu.com/favicon.ico" /><link rel="alternate" type="application/atom+xml" href="https://zburu.comindex.xml" title="子舒的博客">
+
+  <script type="application/ld+json">
+  {
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https:\/\/zburu.com"
+    },
+    "articleSection" : "posts",
+    "name" : "IE10的兼容性处理",
+    "headline" : "IE10的兼容性处理",
+    "description" : "IE10不支持箭头函数，写js的时候慎用。\nIE10下对js的语法要求严格，正常参数后如果没有多余的代码，写个,会报错，如果加了删掉就OK，Chrome下不会产生影响。\nzoom属性能不用，尽量别用。我在Chrome使用zoom进行大小调整，放到IE10运行，整个页面都错位了，找半天才想起来之前给一个容器设置了zoom: 1.1;，真是让人头大。\nIE10下img标签自带白边，在默认样式里面设置border: none;即可。\nimg { border: none; } IE10能兼容大部分的html5新标签，唯独不能兼容 main。\nbox-shadow 阴影属性其实IE10是支持的，但是需要注意语法问题，在普通浏览器color可以用rgba,#等写法，但是在IE10下，只能通过#000000写法，#和六位的颜色标记，不可以简写，否则不生效。\nIE10不兼容es6新语法。",
+    "inLanguage" : "en-US",
+    "author" : "",
+    "creator" : "",
+    "publisher": "",
+    "accountablePerson" : "",
+    "copyrightHolder" : "",
+    "copyrightYear" : "2021",
+    "datePublished": "2021-03-18 22:15:00 \u002b0000 UTC",
+    "dateModified" : "2021-03-18 22:15:00 \u002b0000 UTC",
+    "url" : "https:\/\/zburu.com\/archives\/56.html\/",
+    "keywords" : [ "浏览器","IE", ]
+  }
+</script><title>IE10的兼容性处理 - 子舒的博客</title>
+  <meta property="og:title" content="IE10的兼容性处理" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="IE10不支持箭头函数，写js的时候慎用。
+IE10下对js的语法要求严格，正常参数后如果没有多余的代码，写个,会报错，如果加了删掉就OK，Chrome下不会产生影响。
+zoom属性能不用，尽量别用。我在Chrome使用zoom进行大小调整，放到IE10运行，整个页面都错位了，找半天才想起来之前给一个容器设置了zoom: 1.1;，真是让人头大。
+IE10下img标签自带白边，在默认样式里面设置border: none;即可。
+img { border: none; } IE10能兼容大部分的html5新标签，唯独不能兼容 main。
+box-shadow 阴影属性其实IE10是支持的，但是需要注意语法问题，在普通浏览器color可以用rgba,#等写法，但是在IE10下，只能通过#000000写法，#和六位的颜色标记，不可以简写，否则不生效。
+IE10不兼容es6新语法。" />
+  <meta name="description" content="IE10不支持箭头函数，写js的时候慎用。
+IE10下对js的语法要求严格，正常参数后如果没有多余的代码，写个,会报错，如果加了删掉就OK，Chrome下不会产生影响。
+zoom属性能不用，尽量别用。我在Chrome使用zoom进行大小调整，放到IE10运行，整个页面都错位了，找半天才想起来之前给一个容器设置了zoom: 1.1;，真是让人头大。
+IE10下img标签自带白边，在默认样式里面设置border: none;即可。
+img { border: none; } IE10能兼容大部分的html5新标签，唯独不能兼容 main。
+box-shadow 阴影属性其实IE10是支持的，但是需要注意语法问题，在普通浏览器color可以用rgba,#等写法，但是在IE10下，只能通过#000000写法，#和六位的颜色标记，不可以简写，否则不生效。
+IE10不兼容es6新语法。" />
+  <meta property="og:locale" content="en-us" /><meta property="og:image" content="https://cdn.zburu.com/favicon.ico" />
+  
+
+  <link rel="stylesheet" href="/css/default.css">
+  <link rel="stylesheet" href="/css/simplebox.min.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="子舒的博客">
+  <script src="https://hm.baidu.com/hm.js?5f4839173d00c8b0d3dd40533d14450d"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-item">
+        <a href="/" class="header-title">
+          <img src="https://cdn.zburu.com/favicon.png" alt="logo">
+          <span>子舒的博客</span>
+        </a>
+      </div>
+      <div class="menu-btn">菜单</div>
+      <div class="opacity"></div>
+      <div class="header-item sticky">
+        <ul id="navi">
+          
+          <li>
+            <a href="/posts">归档</a>
+          </li>
+          
+          <li>
+            <a href="/weekly">周刊</a>
+          </li>
+          
+          <li>
+            <a href="/message">留言</a>
+          </li>
+          
+          <li>
+            <a href="/about">关于</a>
+          </li>
+          
+          <li>
+            <a href="/lab">实验室</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+<article>
+  <div class="post-box">
+    <div class="post-header">
+      <h1 class="post-title">IE10的兼容性处理</h1>
+      
+      <div class="post-desc">
+        <div class="post-date">
+          
+          <time datetime=" 2021-03-18 22:15:00 UTC">
+            发布于 2021-03-18
+          </time>
+          
+          浏览: <span id="ArtalkPV">加载中...</span>
+          评论: <span id="ArtalkCount"></span>
+        </div>
+      </div>
+      
+    </div>
+    <div class="post-content markdown-body">
+      <div class="autoMenu" id="autoMenu" data-autoMenu></div>
+      
+      <ol>
+<li>
+<p>IE10不支持箭头函数，写js的时候慎用。</p>
+</li>
+<li>
+<p>IE10下对js的语法要求严格，正常参数后如果没有多余的代码，写个<code>,</code>会报错，如果加了删掉就OK，Chrome下不会产生影响。</p>
+</li>
+<li>
+<p>zoom属性能不用，尽量别用。我在Chrome使用zoom进行大小调整，放到IE10运行，整个页面都错位了，找半天才想起来之前给一个容器设置了<code>zoom: 1.1;</code>，真是让人头大。</p>
+</li>
+<li>
+<p>IE10下<code>img</code>标签自带白边，在默认样式里面设置<code>border: none;</code>即可。</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-css" data-lang="css"><span style="display:flex;"><span><span style="color:#f92672">img</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">border</span>: <span style="color:#66d9ef">none</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ol start="5">
+<li>
+<p>IE10能兼容大部分的html5新标签，唯独不能兼容 <code>main</code>。</p>
+</li>
+<li>
+<p>box-shadow 阴影属性其实IE10是支持的，但是需要注意语法问题，在普通浏览器color可以用<code>rgba</code>,<code>#</code>等写法，但是在IE10下，只能通过<code>#000000</code>写法，<code>#</code>和六位的颜色标记，不可以简写，否则不生效。</p>
+</li>
+<li>
+<p>IE10不兼容es6新语法。</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    <div class="post-tags">
+      <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/">
+        浏览器
+      </a>
+    </div>
+    
+    <div class="post-tags">
+      <a href="/tags/ie/">
+        IE
+      </a>
+    </div>
+    
+    
+    <div class="pre-next">
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/57.html/">
+          上一篇：用ajax请求获取数据
+        </a>
+        
+      </p>
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/55.html/">
+          下一篇：window.scroll 方法只能存在一次该如何解决？
+        </a>
+        
+      </p>
+    </div>
+    
+
+<div class="related-content">
+  <h4>Related Posts</h4>
+  <ul>
+    
+    <li><a href="/archives/55.html/">window.scroll 方法只能存在一次该如何解决？</a></li>
+    
+    <li><a href="/archives/54.html/">IE10下`,`符号不能留白</a></li>
+    
+    <li><a href="/archives/52.html/">chrome浏览器无法显示12px以下的字体</a></li>
+    
+  </ul>
+</div>
+
+
+
+  </div>
+  
+  <div class="post-box">
+    <div class="post-comments">
+      <h4 class="article-h4">评论~</h4>
+<div id="Artalk"></div>
+<link href="https://artalk.zburu.com/dist/Artalk.css" rel="stylesheet">
+<script src="https://artalk.zburu.com/dist/Artalk.js"></script>
+<script>
+  new Artalk({
+    el: '#Artalk',
+    pageKey: '',
+    pageTitle: '',
+    server: 'https://artalk.zburu.com',
+    site: '子舒的博客',
+  })
+</script>
+
+
+    </div>
+    
+  </div>
+  <div class="footer">
+  <p>
+    © 2020-<span id="year"></span> ·
+    <a href="https://beian.miit.gov.cn/" target="_blank">
+      <span>浙ICP备2022002453号-2</span>
+    </a>
+  </p>
+  <i> · </i>
+  <p>网站运行: <span id="days">0</span> 天</p>
+</div>
+<div class="utool">
+  <div class="item totop">
+    <span>top</span>
+  </div>
+</div>
+<script>
+  var s0 = '2020-06-14';
+  s1 = new Date(s0.replace(/-/g, "/"));
+  s2 = new Date();
+  var days = s2.getTime() - s1.getTime();
+  var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+  document.getElementById('days').innerHTML = number_of_days;
+
+  var date = new Date;
+  var year = date.getFullYear();
+  document.getElementById('year').innerHTML = year;
+</script>
+</article>
+
+<script src="/js/jquery3.6.0.min.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/simplebox.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

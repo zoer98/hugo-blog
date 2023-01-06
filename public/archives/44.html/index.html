@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.101.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="toTop" content="true">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://zburu.com/archives/44.html/" />
+  <link rel="canonical" href="https://zburu.com/archives/44.html/" /><link rel="apple-touch-icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="shortcut" href="https://cdn.zburu.com/favicon.ico" /><link rel="alternate" type="application/atom+xml" href="https://zburu.comindex.xml" title="子舒的博客">
+
+  <script type="application/ld+json">
+  {
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https:\/\/zburu.com"
+    },
+    "articleSection" : "posts",
+    "name" : "基于 React 的富文本编辑器－－Braft Editor",
+    "headline" : "基于 React 的富文本编辑器－－Braft Editor",
+    "description" : "最近发了很多关于 React 的文章，记录遇到的新技术点，以及在写代码过程中遇到的问题，希望可以帮助到和我遇到同样问题的同学。\n今天分享的是一款基于 React 的富文本编辑器－－Braft Editor。\nBraft Editor 官网：https:\/\/braft.margox.cn Github 仓库地址：https:\/\/github.com\/margox\/braft-editor\n这款插件非常方便，只需要下载然后引入即可直接使用，页面整体风格清新，符合绝大多数人的审美观，支持图片，音视频的插入。\n按照官方的说法，假如你对它的功能还不够满意，不够使用，完全可以扩展它，自己写一个插件来强化他。\n经过我的测试，功能绝对强大，可以满足市面上绝大多数的需求。接下来就说一下如何使用这款插件。\n1.安装 在项目中直接通过 npm 或者 yarn 下载插件：\n# 使用 npm 安装 npm install braft-editor --save # 使用 yarn 安装 yarn add braft-editor 2.使用 新建一个组件 EditorDemo.js，在里面写入下列代码：\n\/\/ EditorDemo.js import React from \u0026#39;react\u0026#39;; import BraftEditor from \u0026#39;braft-editor\u0026#39;; import \u0026#39;braft-editor\/dist\/index.css\u0026#39;; export default class PageDemo extends React.Component { state = { editorState: BraftEditor.createEditorState(null) } render () { return ( \u0026lt;BraftEditor value={this.",
+    "inLanguage" : "en-US",
+    "author" : "",
+    "creator" : "",
+    "publisher": "",
+    "accountablePerson" : "",
+    "copyrightHolder" : "",
+    "copyrightYear" : "2021",
+    "datePublished": "2021-01-07 20:46:00 \u002b0000 UTC",
+    "dateModified" : "2021-01-07 20:46:00 \u002b0000 UTC",
+    "url" : "https:\/\/zburu.com\/archives\/44.html\/",
+    "keywords" : [ "react","组件", ]
+  }
+</script><title>基于 React 的富文本编辑器－－Braft Editor - 子舒的博客</title>
+  <meta property="og:title" content="基于 React 的富文本编辑器－－Braft Editor" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="最近发了很多关于 React 的文章，记录遇到的新技术点，以及在写代码过程中遇到的问题，希望可以帮助到和我遇到同样问题的同学。
+今天分享的是一款基于 React 的富文本编辑器－－Braft Editor。
+Braft Editor 官网：https://braft.margox.cn Github 仓库地址：https://github.com/margox/braft-editor
+这款插件非常方便，只需要下载然后引入即可直接使用，页面整体风格清新，符合绝大多数人的审美观，支持图片，音视频的插入。
+按照官方的说法，假如你对它的功能还不够满意，不够使用，完全可以扩展它，自己写一个插件来强化他。
+经过我的测试，功能绝对强大，可以满足市面上绝大多数的需求。接下来就说一下如何使用这款插件。
+1.安装 在项目中直接通过 npm 或者 yarn 下载插件：
+# 使用 npm 安装 npm install braft-editor --save # 使用 yarn 安装 yarn add braft-editor 2.使用 新建一个组件 EditorDemo.js，在里面写入下列代码：
+// EditorDemo.js import React from &amp;#39;react&amp;#39;; import BraftEditor from &amp;#39;braft-editor&amp;#39;; import &amp;#39;braft-editor/dist/index.css&amp;#39;; export default class PageDemo extends React.Component { state = { editorState: BraftEditor.createEditorState(null) } render () { return ( &amp;lt;BraftEditor value={this." />
+  <meta name="description" content="最近发了很多关于 React 的文章，记录遇到的新技术点，以及在写代码过程中遇到的问题，希望可以帮助到和我遇到同样问题的同学。
+今天分享的是一款基于 React 的富文本编辑器－－Braft Editor。
+Braft Editor 官网：https://braft.margox.cn Github 仓库地址：https://github.com/margox/braft-editor
+这款插件非常方便，只需要下载然后引入即可直接使用，页面整体风格清新，符合绝大多数人的审美观，支持图片，音视频的插入。
+按照官方的说法，假如你对它的功能还不够满意，不够使用，完全可以扩展它，自己写一个插件来强化他。
+经过我的测试，功能绝对强大，可以满足市面上绝大多数的需求。接下来就说一下如何使用这款插件。
+1.安装 在项目中直接通过 npm 或者 yarn 下载插件：
+# 使用 npm 安装 npm install braft-editor --save # 使用 yarn 安装 yarn add braft-editor 2.使用 新建一个组件 EditorDemo.js，在里面写入下列代码：
+// EditorDemo.js import React from &amp;#39;react&amp;#39;; import BraftEditor from &amp;#39;braft-editor&amp;#39;; import &amp;#39;braft-editor/dist/index.css&amp;#39;; export default class PageDemo extends React.Component { state = { editorState: BraftEditor.createEditorState(null) } render () { return ( &amp;lt;BraftEditor value={this." />
+  <meta property="og:locale" content="en-us" /><meta property="og:image" content="https://cdn.zburu.com/favicon.ico" />
+  
+
+  <link rel="stylesheet" href="/css/default.css">
+  <link rel="stylesheet" href="/css/simplebox.min.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="子舒的博客">
+  <script src="https://hm.baidu.com/hm.js?5f4839173d00c8b0d3dd40533d14450d"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-item">
+        <a href="/" class="header-title">
+          <img src="https://cdn.zburu.com/favicon.png" alt="logo">
+          <span>子舒的博客</span>
+        </a>
+      </div>
+      <div class="menu-btn">菜单</div>
+      <div class="opacity"></div>
+      <div class="header-item sticky">
+        <ul id="navi">
+          
+          <li>
+            <a href="/posts">归档</a>
+          </li>
+          
+          <li>
+            <a href="/weekly">周刊</a>
+          </li>
+          
+          <li>
+            <a href="/message">留言</a>
+          </li>
+          
+          <li>
+            <a href="/about">关于</a>
+          </li>
+          
+          <li>
+            <a href="/lab">实验室</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+<article>
+  <div class="post-box">
+    <div class="post-header">
+      <h1 class="post-title">基于 React 的富文本编辑器－－Braft Editor</h1>
+      
+      <div class="post-desc">
+        <div class="post-date">
+          
+          <time datetime=" 2021-01-07 20:46:00 UTC">
+            发布于 2021-01-07
+          </time>
+          
+          浏览: <span id="ArtalkPV">加载中...</span>
+          评论: <span id="ArtalkCount"></span>
+        </div>
+      </div>
+      
+    </div>
+    <div class="post-content markdown-body">
+      <div class="autoMenu" id="autoMenu" data-autoMenu></div>
+      
+      <p>最近发了很多关于 React 的文章，记录遇到的新技术点，以及在写代码过程中遇到的问题，希望可以帮助到和我遇到同样问题的同学。</p>
+<p>今天分享的是一款基于 React 的富文本编辑器－－Braft Editor。</p>
+<!-- raw HTML omitted -->
+<blockquote>
+<p>Braft Editor 官网：<a href="https://braft.margox.cn">https://braft.margox.cn</a>
+Github 仓库地址：<a href="https://github.com/margox/braft-editor">https://github.com/margox/braft-editor</a></p>
+</blockquote>
+<p>这款插件非常方便，只需要下载然后引入即可直接使用，页面整体风格清新，符合绝大多数人的审美观，支持图片，音视频的插入。</p>
+<p>按照官方的说法，假如你对它的功能还不够满意，不够使用，完全可以扩展它，自己写一个插件来强化他。</p>
+<p>经过我的测试，功能绝对强大，可以满足市面上绝大多数的需求。接下来就说一下如何使用这款插件。</p>
+<h2 id="1安装">1.安装</h2>
+<p>在项目中直接通过 <code>npm</code> 或者 <code>yarn</code> 下载插件：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 使用 npm 安装</span>
+</span></span><span style="display:flex;"><span>npm install braft-editor --save
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 使用 yarn 安装</span>
+</span></span><span style="display:flex;"><span>yarn add braft-editor
+</span></span></code></pre></div><h2 id="2使用">2.使用</h2>
+<p>新建一个组件 <code>EditorDemo.js</code>，在里面写入下列代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// EditorDemo.js
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">BraftEditor</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;braft-editor&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;braft-editor/dist/index.css&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PageDemo</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">React</span>.<span style="color:#a6e22e">Component</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">state</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">editorState</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">BraftEditor</span>.<span style="color:#a6e22e">createEditorState</span>(<span style="color:#66d9ef">null</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">render</span> () {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">BraftEditor</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span>{<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">state</span>.<span style="color:#a6e22e">editorState</span>} <span style="color:#a6e22e">onChange</span><span style="color:#f92672">=</span>{<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">handleChange</span>}<span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">handleChange</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">editorState</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">setState</span>({ <span style="color:#a6e22e">editorState</span> })
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>然后引入到 <code>index.js</code> 中去。</p>
+<h2 id="3运行">3.运行</h2>
+<p>写完组件之后，<code>npm start</code> 运行看看效果</p>
+<p><img src="https://shuxhan-imgbed.oss-cn-hangzhou.aliyuncs.com/img/20210108143022.png" alt=""></p>
+<p>相当不错，页面很简洁，如果觉得样式不喜欢，完全可以自己重新定制风格，非常方便。</p>
+<h2 id="4文档">4.文档</h2>
+<p>如果想使用更多功能、方法，进入 <a href="https://www.yuque.com/braft-editor/be/gz44tn">Braft Editor 官方文档</a>吧，还有更多关于它的讲解！</p>
+<p>属性、方法、示例，一应俱全。</p>
+
+    </div>
+
+    
+    <div class="post-tags">
+      <a href="/tags/react/">
+        react
+      </a>
+    </div>
+    
+    <div class="post-tags">
+      <a href="/tags/%E7%BB%84%E4%BB%B6/">
+        组件
+      </a>
+    </div>
+    
+    
+    <div class="pre-next">
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/45.html/">
+          上一篇：许嵩的歌又一次被抄袭！
+        </a>
+        
+      </p>
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/43.html/">
+          下一篇：使用 React 与 Vue 创建同一款 App，差别究竟有多大？
+        </a>
+        
+      </p>
+    </div>
+    
+
+<div class="related-content">
+  <h4>Related Posts</h4>
+  <ul>
+    
+    <li><a href="/archives/37.html/">React －－万物皆可组件</a></li>
+    
+    <li><a href="/archives/43.html/">使用 React 与 Vue 创建同一款 App，差别究竟有多大？</a></li>
+    
+    <li><a href="/archives/42.html/">React 脚手架项目打包时的路径问题</a></li>
+    
+  </ul>
+</div>
+
+
+
+  </div>
+  
+  <div class="post-box">
+    <div class="post-comments">
+      <h4 class="article-h4">评论~</h4>
+<div id="Artalk"></div>
+<link href="https://artalk.zburu.com/dist/Artalk.css" rel="stylesheet">
+<script src="https://artalk.zburu.com/dist/Artalk.js"></script>
+<script>
+  new Artalk({
+    el: '#Artalk',
+    pageKey: '',
+    pageTitle: '',
+    server: 'https://artalk.zburu.com',
+    site: '子舒的博客',
+  })
+</script>
+
+
+    </div>
+    
+  </div>
+  <div class="footer">
+  <p>
+    © 2020-<span id="year"></span> ·
+    <a href="https://beian.miit.gov.cn/" target="_blank">
+      <span>浙ICP备2022002453号-2</span>
+    </a>
+  </p>
+  <i> · </i>
+  <p>网站运行: <span id="days">0</span> 天</p>
+</div>
+<div class="utool">
+  <div class="item totop">
+    <span>top</span>
+  </div>
+</div>
+<script>
+  var s0 = '2020-06-14';
+  s1 = new Date(s0.replace(/-/g, "/"));
+  s2 = new Date();
+  var days = s2.getTime() - s1.getTime();
+  var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+  document.getElementById('days').innerHTML = number_of_days;
+
+  var date = new Date;
+  var year = date.getFullYear();
+  document.getElementById('year').innerHTML = year;
+</script>
+</article>
+
+<script src="/js/jquery3.6.0.min.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/simplebox.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

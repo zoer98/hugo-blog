@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>笔记 on 子舒的博客</title>
+    <link>https://zburu.com/tags/%E7%AC%94%E8%AE%B0/</link>
+    <description>Recent content in 笔记 on 子舒的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 12 Jul 2022 14:59:00 +0000</lastBuildDate><atom:link href="https://zburu.com/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>笔记:vue 中使用 axios 调用数据并渲染</title>
+      <link>https://zburu.com/archives/151.html/</link>
+      <pubDate>Tue, 12 Jul 2022 14:59:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/151.html/</guid>
+      <description>示例如下。
+&amp;lt;template&amp;gt; &amp;lt;div class=&amp;#34;posts&amp;#34;&amp;gt; &amp;lt;div v-for=&amp;#34;item in list&amp;#34; :key=&amp;#34;item.cid&amp;#34; &amp;gt; {{ item.title }} &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/template&amp;gt; &amp;lt;script&amp;gt; import Axios from &amp;#39;axios&amp;#39;; export default { name: &amp;#39;index&amp;#39;, data () { return { list: [] } }, methods: { getData () { var api = &amp;#39;https://zburu.com/api/posts.php&amp;#39;; Axios.get(api).then((response) =&amp;gt; { this.list = response.data; console.log(response.data) }).catch((error) =&amp;gt; { console.log(error); }) } }, mounted () { this.getData(); }, } &amp;lt;/script&amp;gt; &amp;lt;style&amp;gt; &amp;lt;/style&amp;gt; </description>
+    </item>
+    
+    <item>
+      <title>obsidian:如何使用坚果云进行多端同步?</title>
+      <link>https://zburu.com/archives/146.html/</link>
+      <pubDate>Mon, 27 Jun 2022 13:53:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/146.html/</guid>
+      <description>接上篇文章 《关于我选择笔记系统这件小事》 ，obsidian 的个人体验很棒，我也打算长久使用作为个人知识库。
+但是它有一个弊端，就是本地离线化导致同步是个问题，官方的同步服务很贵，给我劝退了，因此我寻求了其他的同步备份方案，就是今天我要分享的坚果云+ obsidian 。
+注册账号 在坚果云官网注册一个账号，选择个人用户，创建账号之后登陆。
+点击创建 &amp;gt; 个人同步文件夹，以后就同步这个文件夹内的内容了。这个我在里面新建了一个 test 文件夹。
+pc端同步 接下来需要将电脑本地的文件和坚果云的文件夹相连接，只要你在本地修改了文件，自动同步到坚果云。
+点击页面左侧的下载客户端。
+下载完成之后登陆，你就可以看到里面有一个 test 文件夹，是刚才在网页官网创建的。然后在右边三个点里面选择同步到本地。
+浏览你的文件夹，找到一个地方存放 test 文件夹，点击确定，坚果云就会自动同步你在本地文件。但是这个时候 test 文件夹是空的，需要将 obsidian 文件全部移动进去就行了。然后在 obsidian 客户端重新打开 test 库。
+在另一台电脑，进行上面同样的操作，将坚果云的同步文件夹映射到本地，就会自动下载云端的文件。之后，不管你在哪台电脑修改 obsidian 笔记，都会同步到拥有坚果云客户端的其他电脑。
+这是 pc 端同步的方案，之后我会继续分享如果将 pc 同步到手机端。</description>
+    </item>
+    
+    <item>
+      <title>关于我选择笔记系统这件小事</title>
+      <link>https://zburu.com/archives/121.html/</link>
+      <pubDate>Thu, 28 Apr 2022 22:43:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/121.html/</guid>
+      <description>受年龄增长以及生活影响，人接触到的新事物和知识将会越来越多，大脑就显得有些混乱了，我也不敢保证自己的思维会始终保持一个高强度的在线状态。
+因此决定整理个人知识库， 将大脑中的片段和思想整理出来。以笔记和文字的形式将他记录下来，但是最近一直在寻求这样的工具，多方对比，也没有一款能真正满足我的需求的工具。
+最好是自建的笔记，因为我今天在语雀写了一篇私密笔记，或许因为内容略带敏感吧，然后就被审查了，说我违规。
+语雀这是我目前最满意的工具，但是现在对他的热情瞬间降低了很多。我怕哪天一下子账号里面的笔记全部被删了，那样我会很绝望的。
+接下来我还会多方对比，最终选择一款平台亦或者是自建的笔记系统。
+博客是写给别人看的，笔记是给自己看的，包括一些计划，列表清单等等，都是隐私的内容。还有就是一些文章的草稿，碎片化的记录，所以不宜放在博客上。
+而且对于功能方面，我也有较高的要求，比如拖拽，表单，下拉框，卡片等等，都是我比较需要的，隐私和安全性更是我比较看重的。
+暂时就这样吧，我会慢慢寻觅。
+2022/05/03 更新
+经过为期一周的尝试和部署过后，我最终决定了使用思源笔记，可以使用docker进行私有部署，本地备份，而且还可以选择付费订阅，备份到官方，这是两种可以同时进行的选择，我觉得很好的满足了我的需要。
+主要还是思源的功能以及外表打动了我，页面简洁而美，功能不臃肿，刚好我需要的他都有，一点也没有多余的按键。符合我对笔记和个人知识库的个人，支持双链，不过我暂时用不到。支持markdown格式导入导出。
+而我也逐步将我其他的笔记都迁移过来了，不过目前唯一的缺陷好像不支持分享，这也算我某种需求吧，我在寻求其解决方案，不过也不算什么大问题。
+思源很多细节都打动了我，在单个文章复制的时候，提供了直接复制到其他平台的格式，不用再手动调了。
+至于安全性方面，可以设置全局鉴权密码，不支持单篇文章加密。
+2022/05/18 更新
+半个月过去了，慢慢从思源迁移出来，原因很多，一方面是针对文件的安全性和稳定性抱有一丝怀疑，另外就是同步的问题，成本和精力都有些费事。
+因此我选择了一个更不错的软件&amp;mdash;obsidian，强大的社区，海量的插件以及可扩展性都是我选择它的原因。
+对比之下，它更像是笔记界的vscode，优势很多，轻量，可扩展，插件多。同时使用坚果云进行多端同步，这样不论是在公司电脑还是在自己的电脑上，我都可以做到无缝切换。
+2022/06/18 更新
+使用了一个月的 obsidain，反馈一下感受。整体来说很适合我这种记录文字的人，对 markdown 语法支持特别友好，格式都可以根据自己的想法展示出来，还带有一些插件，扩展我的使用方法。
+在安全性方面，本地化、离线化也是非常棒的，可以根据自己的需要利用同步盘进行同步，或者自建 webdav 服务，稳定性也是很高的。
+在数据迁移方面，完全不用担心，数据本质上还是 markdown 文件，如果哪有你对 obsidian 失望不再使用，或者有了更好的选择，可以直接把文件夹复制过去，都是很方便的。
+但是这也只针对纯文件来说，如果是元数据，带有一些属性类的东西时，obsidain 就不是很好的选择了。正因为它是一个纯文件，所以注定没法保存元数据信息，这方面我和群里的阿均作了深刻的探讨。他比较注重 “属性，标签，双链的指向，关系链，数值大小，层级隶属” 等概念。
+obsidian 是一堆小文件集合在一起形成的笔记架构，这和一般的数据库不太一样。
+小文件很难做数据管理，反正长期看性能方面会有问题。一致性，也有问题，不重新索引确保不了一致性，重新索引，对于海量小文件，又难以提高性能。
+阿均的担忧我也是能理解的，不过我们对笔记的定位有所不同。他更希望打造一个碎片化，利用双链结构形成自己的知识架构；而我是需要一个类 wiki 的东西，将我所获取到的知识按照分类进行归档，然后根据关键词，标签，标题，正文等内容进行搜索查询。
+这是不同的方向，所以选择了不同的软件也是很正常的。</description>
+    </item>
+    
+    <item>
+      <title>【笔记】使用php写接口文件调用数据</title>
+      <link>https://zburu.com/archives/103.html/</link>
+      <pubDate>Tue, 22 Feb 2022 17:12:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/103.html/</guid>
+      <description>如何使用 php 写一个接口，然后将数据以 json 文件格式调用。
+&amp;lt;?php header(&amp;#39;Content-Type:application/json; charset=utf-8&amp;#39;); header(&amp;#34;Access-Control-Allow-Origin:*&amp;#34;); $servername = &amp;#34;localhost&amp;#34;; $username = &amp;#34;数据库账号&amp;#34;; $password = &amp;#34;数据库密码&amp;#34;; $dbname = &amp;#34;数据库名称&amp;#34;; // 创建连接 $conn = new mysqli($servername, $username, $password, $dbname); // 检测连接 if ($conn-&amp;gt;connect_error) { die(&amp;#34;连接失败: &amp;#34; . $conn-&amp;gt;connect_error); } $sql = &amp;#34;select slug,title,created,text from typecho_contents&amp;#34;; $result = $conn-&amp;gt;query($sql); if ($result-&amp;gt;num_rows &amp;gt; 0) { // 输出数据 while($row = $result-&amp;gt;fetch_assoc()) { $data[]=$row; } $json = json_encode($data,JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);//把数据转换为JSON数据. exit($json) ; } else { echo &amp;#34;未查询到结果！&amp;#34;; } $conn-&amp;gt;close(); ?</description>
+    </item>
+    
+    <item>
+      <title>我的 python 学习笔记</title>
+      <link>https://zburu.com/archives/61.html/</link>
+      <pubDate>Thu, 01 Apr 2021 16:21:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/61.html/</guid>
+      <description>之所以学习 Python ，本意是想写一些脚本之类的程序，用来在浏览器爬一些自己想要的文字，图片等资料，这些程序其实 GitHub 蛮多的，但奈何我对后端的语言一窍不通，直接拿过来给我用我都不会。
+因此就萌生了先学习 Python 基础知识的想法，一直听说廖雪峰的 Python 教程写的不错，这次趁着这个机会要好好研读一番。也没想说用的多牛逼，至少希望能为自己浅薄的技术栈再增加一点光彩，毕竟我也曾梦想成为一个全栈开发。
+下载安装完 Python 环境,就开始学习吧！
+运行我的第一个python程序 print(&amp;#39;hello,world&amp;#39;) 数据类型 在 Python 中，能直接处理的数据类型有几种，整数、浮点数、字符串、布尔值、空值、变量。
+这与其他语言其实差别并不大，数据类型基本都是相似的，大概只有变量有自己的特性，所以我单独拿出来记录一下。
+变量 python 是一门动态语言，在赋值时可以不断改变，比如：
+a = 123 print(a) # 终端输出数值 123 a = &amp;#39;abc&amp;#39; print(a) # 终端输出字符串 abc 这是允许的，而在 Java 中则不行，它是一门静态语言，如果多次赋值会报错。相对来说，动态语言更灵活，当然，各有利弊罢了。
+并且在赋值上面有一个逻辑顺序，比如定义一个 a = &#39;a&#39; 的变量。在 Python 中其实走了两步，先创造了一个字符串 a ，然后将这个字符串赋值给变量 a 。
+其实这在数学上是有些反逻辑的，x = x + 2 这个计算是行不通的在数学上，但是在计算机中，先计算 x + 2 ，然后将其赋值给左侧的 x ，这是计算机的逻辑。
+x = 1 x = x + 2 print(x) # 3 其实很多计算机语言都是如此，比如我们所熟知的 js 等等。</description>
+    </item>
+    
+    <item>
+      <title>React 学习笔记（三）</title>
+      <link>https://zburu.com/archives/39.html/</link>
+      <pubDate>Tue, 29 Dec 2020 13:26:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/39.html/</guid>
+      <description>来源于：https://react.docschina.org/docs/forms.html
+一、表单 在 React 中，html 表单元素的工作方式和其他的 DOM 元素不太一样，因为表单内部通常会保持一些内部的 state，比如下面这个纯 html 表单只接受一个名称：
+&amp;lt;form&amp;gt; &amp;lt;label&amp;gt; 名字: &amp;lt;input type=&amp;#34;text&amp;#34; name=&amp;#34;name&amp;#34; /&amp;gt; &amp;lt;/label&amp;gt; &amp;lt;input type=&amp;#34;submit&amp;#34; value=&amp;#34;提交&amp;#34; /&amp;gt; &amp;lt;/form&amp;gt; 这个表单具有默认的 html 表单行为，即在用户提交表单之后自动刷新页面。如果你在 React 中执行相同的代码，它仍然有效。
+但大多数情况下，使用 JavaScript 函数可以很方便的处理表单的提交， 同时还可以访问用户填写的表单数据。实现这种效果的标准方式是使用“受控组件”。
+受控组件 在 html 中，表单元素比如&amp;lt;input&amp;gt;，&amp;lt;textarea&amp;gt;，&amp;lt;select&amp;gt;，这些表单元素通常自己维护 state，并根据用户输入进行更新。而在 React 中，可变状态（mutable state）通常保存在组件的 state 属性中，并且只能通过使用 setState() 来更新。
+我们可以把两者结合起来，使 React 的 state 成为“唯一数据源”。渲染表单的 React 组件还控制着用户输入过程中表单发生的操作。被 React 以这种方式控制取值的表单输入元素就叫做“受控组件”。
+例如，如果我们想让前一个示例在提交时打印出名称，我们可以将表单写为受控组件：
+class NameForm extends React.Component { constructor(props) { super(props); this.state = {value: &amp;#39;&amp;#39;}; this.handleChange = this.handleChange.bind(this); this.</description>
+    </item>
+    
+    <item>
+      <title>vue学习笔记(3)－－computed, watch，calss, style</title>
+      <link>https://zburu.com/archives/29.html/</link>
+      <pubDate>Wed, 25 Nov 2020 13:05:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/29.html/</guid>
+      <description>一、计算属性computed 1.例子 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;div&amp;gt;{{message}}&amp;lt;/div&amp;gt; &amp;lt;div&amp;gt;{{revermessage}}&amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var vm = new Vue({ el: &amp;#39;#app&amp;#39;, data: { message: &amp;#39;hello,wolrd&amp;#39; }, computed: { revermessage: function() { return this.message.split(&amp;#39;&amp;#39;).reverse().join(&amp;#39;&amp;#39;) } } }) &amp;lt;/script&amp;gt; 声明一个计算属性severmessage，在computed中被指向对message进行一些方法操作后的返回值
+此时vm.severmessage依赖于vm.message的变化，对message改变数据，会引起severmessage的更新
+2.计算属性缓存和方法 还可以通过在表达式中调用方法来达到想要的效果
+&amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;div&amp;gt;{{message}}&amp;lt;/div&amp;gt; &amp;lt;div&amp;gt;{{revermessage()}}&amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var vm = new Vue({ el: &amp;#39;#app&amp;#39;, data: { message: &amp;#39;hello,wolrd&amp;#39; }, methods: { revermessage: function() { return this.message.split(&amp;#39;&amp;#39;).reverse().join(&amp;#39;&amp;#39;) } } }) &amp;lt;/script&amp;gt; 经过测试，两者的结果是一样的
+我们可以将同一函数定义为一个方法而不是一个计算属性。两种方式的最终结果确实是完全相同的
+区别是：计算属性是基于他们的响应式依赖进行缓存的，只有当响应式依赖，也就是message发生改变时才会重新求值，就意味着，只要message还没改变，多次访问revermessage计算属性只会返回之前计算结果的缓存，而不是直接执行计算属性的函数
+而方法，在每次触发重新渲染时，调用方法都会执行一次函数，这就多了一份开销
+我们为什么需要缓存？假设我们有一个性能开销比较大的计算属性 A，它需要遍历一个巨大的数组并做大量的计算。然后我们可能有其他的计算属性依赖于 A。如果没有缓存，我们将不可避免的多次执行 A 的 getter！如果你不希望有缓存，请用方法来替代</description>
+    </item>
+    
+    <item>
+      <title>vue学习笔记(2)－－vue实例和模板语法</title>
+      <link>https://zburu.com/archives/28.html/</link>
+      <pubDate>Tue, 24 Nov 2020 13:05:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/28.html/</guid>
+      <description>一、vue实例 1.创建vue实例 一个vue实例应该通过new Vue来创建根实例，所有的 vue 组件其实都是 vue 实例
+var vm = new Vue({ ... }) 当一个实例被创建时，data对象中的 property 都被加入到vue的响应式系统中，当值发生改变时，试图也会改变
+var data = {a: 1} var vm = new Vue({ data: data }) 此时在控制台输入vm.a == data.a会返回true，变量data已经被赋给vue实例中的data对象了
+同时，对两个对象的数据进行操作改变也会影响到另一个
+vm.a = 2 // data.a = 2 data.a = 3 // vm.a = 3 当数据改变时，视图也会重新渲染，如果在vue实例被创建后，又添加了一个新的property，则不会被加入到响应式系统中
+如果一开始就知道后面会添加一个property，但是一开始不存在或为空，需要设置一些初始值
+data: { newTodoText: &amp;#39;&amp;#39;, visitCount: 0, hideCompletedTods: fasle, todos: [], error: null } 使用Object.freeze()方法的时候，无法修改数据引起视图变化
+Object.freeze() 方法可以冻结一个对象。一个被冻结的对象再也不能被修改；冻结了一个对象则不能向这个对象添加新的属性，不能删除已有属性，不能修改该对象已有属性的可枚举性、可配置性、可写性，以及不能修改已有属性的值。此外，冻结一个对象后该对象的原型也不能被修改。freeze() 返回和传入的参数相同的对象。
+&amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt;{{message}}&amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var data = {message: &amp;#39;hello,wolrd&amp;#39;} Object.</description>
+    </item>
+    
+    <item>
+      <title>vue学习笔记(1)－－什么是vue?</title>
+      <link>https://zburu.com/archives/27.html/</link>
+      <pubDate>Mon, 23 Nov 2020 13:04:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/27.html/</guid>
+      <description>一、什么是vue? 练习时使用，最新版本
+&amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/vue/dist/vue.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; 生产时使用，明确版本号的版本，避免造成不可预见的问题
+&amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/vue@2.6.12&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; hello world
+&amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; {{message}} &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var app = new Vue({ el: &amp;#34;#app&amp;#34;, data: { message: &amp;#39;hello,world&amp;#39; } }) &amp;lt;/script&amp;gt; 1.v-指令 v-bind－－绑定属性 &amp;lt;div id=&amp;#34;app-2&amp;#34;&amp;gt; &amp;lt;span v-bind:title=&amp;#34;message&amp;#34;&amp;gt; 鼠标悬停几秒钟查看此处动态绑定的提示信息！ &amp;lt;/span&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var app = new Vue({ el: &amp;#39;#app&amp;#39;, data: { message: &amp;#39;页面加载于 &amp;#39; + new Date().toLocaleString() } }) &amp;lt;/script&amp;gt; v-bind是vue特有的提供的属性，他会在dom上应用一个响应式的操作
+打开console，输入app.message = &amp;quot;hello&amp;quot;，页面会改变内容只显示hello
+又或者输入app.message = false，内容会直接不显示
+vue官网例子：
+&amp;lt;!-- 绑定一个 attribute --&amp;gt; &amp;lt;img v-bind:src=&amp;#34;imageSrc&amp;#34;&amp;gt; &amp;lt;!</description>
+    </item>
+    
+    <item>
+      <title>事件监听函数，以及事件的捕获和冒泡机制</title>
+      <link>https://zburu.com/archives/21.html/</link>
+      <pubDate>Tue, 17 Nov 2020 13:00:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/21.html/</guid>
+      <description>事件一般是用于浏览器和用户操作之间的交互，当用户执行某些特殊的操作时，浏览器给予反应，触发绑定的事件，事件流，事件发生时会在元素节点和根节点之间按照约定的顺序传播，事件经过的所有节点都会受到事件的影响，这个传播过程被称为DOM事件流
+函数事件 事件一般是用于浏览器和用户操作之间的交互，当用户执行某些特殊的操作时，浏览器给予反应，触发绑定的事件
+事件流，事件发生时会在元素节点和根节点之间按照约定的顺序传播，事件经过的所有节点都会受到事件的影响，这个传播过程被称为DOM事件流
+true是捕获，false是冒泡，默认为冒泡事件
+1.addEventListener()－－添加事件监听函数 给元素添加一个事件，假如有多个事件，不会覆盖，会依次执行
+&amp;lt;div id=&amp;#34;demo&amp;#34;&amp;gt;dom&amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; document.getElementById(&amp;#39;demo&amp;#39;).addEventListener(&amp;#34;click&amp;#34;, myfun) document.getElementById(&amp;#39;demo&amp;#39;).addEventListener(&amp;#34;click&amp;#34;, myfun1) function myfun() { console.log(&amp;#39;事件监听函数&amp;#39;) } function myfun1() { console.log(&amp;#39;addEventListener&amp;#39;) } &amp;lt;/script&amp;gt; 注意： 1.这里有一个细节，addEventListener()里面有两个参数，第一个表示触发的条件，第二个表示触发的事件 正常情况下，第二个参数直接写函数名并且不加参数()，如果加了参数()则表示立即执行，不需要触发第一个参数要求的条件
+2.在这里绑定事件的时候，事件名不能和定义的变量名一样，否则无效
+2.removeEventListener()－－移除事件监听函数 下面这个demo，当鼠标在div中移动的时候，出现随机数，点击按钮后，移除事件监听函数
+&amp;lt;!-- css --&amp;gt; &amp;lt;style&amp;gt; #demo { width: 100px; height: 100px; border: 1px solid #000; } &amp;lt;/style&amp;gt; &amp;lt;!-- html --&amp;gt; &amp;lt;div id=&amp;#34;demo&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;input type=&amp;#34;button&amp;#34; value=&amp;#34;点击移除&amp;#34; onclick=&amp;#34;remove()&amp;#34;&amp;gt; &amp;lt;div id=&amp;#34;show&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;!-- js --&amp;gt; &amp;lt;script&amp;gt; document.getElementById(&amp;#39;demo&amp;#39;).addEventListener(&amp;#34;mousemove&amp;#34;, myfun) function myfun() { document.getElementById(&amp;#39;show&amp;#39;).innerHTML = Math.random() } function remove() { document.</description>
+    </item>
+    
+    <item>
+      <title>getElementBy系列和querySelector系列的区别</title>
+      <link>https://zburu.com/archives/19.html/</link>
+      <pubDate>Mon, 16 Nov 2020 12:59:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/19.html/</guid>
+      <description>querySelector和querySelectorAll的用法和getElementBy大致一样，获取的时候带上符号，getElementBy获取的是元素的动态集合，querySelector获取的是元素的静态集合。
+但是需要注意：getElementBy系列和querySelector系列的区别
+比如，我们写一个for循环，每次获取li标签的时候，ul生成一个li子元素
+&amp;lt;ul id=&amp;#34;ul&amp;#34;&amp;gt; &amp;lt;li&amp;gt;a&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;b&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;c&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;script&amp;gt; var ul = document.getElementById(&amp;#39;ul&amp;#39;); var li = document.getElementsByTagName(&amp;#39;li&amp;#39;); for(var i = 0;i &amp;lt; li.length; i++) { ul.appendChild(document.createElement(&amp;#39;li&amp;#39;)) }; console.log(li.length); // 陷入死循环 &amp;lt;/script&amp;gt; 用i &amp;lt; li.length来进行判断时，会导致浏览器死循环，因为循环一次的时候，浏览器又重新获取li标签数组，每调用一次就会重新对文档进行查询，就会进入死循环
+进行修改：把i &amp;lt; li.length改成i &amp;lt; 3，把li标签数组静态化，然后打印
+conosle.log(li.length) // 6 重新用querySelector获取一遍元素
+&amp;lt;ul id=&amp;#34;ul&amp;#34;&amp;gt; &amp;lt;li&amp;gt;a&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;b&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;c&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;script&amp;gt; var ul = document.querySelector(&amp;#39;ul&amp;#39;); var li = document.querySelectorAll(&amp;#39;li&amp;#39;); for(var i = 0;i&amp;lt;li.length;i++) { ul.appendChild(document.createElement(&amp;#39;li&amp;#39;)) }; console.log(li.length); // 输出对结果是原来的li.length = 3，而不是增加后的 6 &amp;lt;/script&amp;gt; 静态集合体现在querySelectorAll(&#39;li&#39;)获取到ul里所有li后，不管后续再动态添加了多少li，都是不会对其参数影响</description>
+    </item>
+    
+    <item>
+      <title>DOM－－文档对象模型</title>
+      <link>https://zburu.com/archives/18.html/</link>
+      <pubDate>Sun, 15 Nov 2020 12:58:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/18.html/</guid>
+      <description>DOM中文名文档对象模型，英文名Document Object Model，我们简称为DOM，是针对html和xml文档的一种API，将html以一种树状结构呈现出来，可以更直观去研究文档结构，我们将这种树状文档结构称为－－DOM树，或者节点树，一样的概念
+一、什么是DOM？ DOM中文名文档对象模型，英文名Document Object Model，我们简称为DOM，是针对html和xml文档的一种API，将html以一种树状结构呈现出来，可以更直观去研究文档结构，我们将这种树状文档结构称为－－DOM树，或者节点树，一样的概念
+js通过dom节点，可以对文档的html标签，属性，css样式，以及具体的内容做出修改，并对页面中的所有事件进行响应
+二、节点树 1.节点类型 文档节点－－Document 标签节点－－Element 文本节点－－Text 注释节点－－Comment 属性节点－－Attr 2. 属性 节点类型－－nodeType 节点名称－－nodeName 节点值－－nodeValue 子节点－－childNodes 父节点－－parentNodes 上一个节点－－previousSibling 下一个节点－－nextSibling 第一个子节点－－firstChild 最后一个子节点－－lastChild 3.文档节点－－document (1) 获取 getElementById()－－通过id获取元素 &amp;lt;div id=&amp;#34;demo&amp;#34;&amp;gt;通过id获取元素&amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var demo = document.getElementById(&amp;#39;demo&amp;#39;); demo.onclick = function() { console.log(&amp;#39;通过id获取元素&amp;#39;) } &amp;lt;/script&amp;gt; &amp;lt;!-- 点击id为demo的元素，控制台输出&amp;#39;通过id获取元素&amp;#39; --&amp;gt; getElementsByName()－－通过name获取元素 &amp;lt;input type=&amp;#34;text&amp;#34; name=&amp;#34;int&amp;#34; value=&amp;#34;通过name获取元素1&amp;#34;&amp;gt; &amp;lt;input type=&amp;#34;text&amp;#34; name=&amp;#34;int&amp;#34; value=&amp;#34;通过name获取元素2&amp;#34;&amp;gt; &amp;lt;script&amp;gt; var int = document.getElementsByName(&amp;#39;int&amp;#39;); for(var i = 0;i &amp;lt; int.length; i++) { console.log(int[i].value); } &amp;lt;/script&amp;gt; &amp;lt;!</description>
+    </item>
+    
+    <item>
+      <title>有关js函数，方法的一些补充总结</title>
+      <link>https://zburu.com/archives/17.html/</link>
+      <pubDate>Sat, 14 Nov 2020 12:57:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/17.html/</guid>
+      <description>数据类型，构造函数，原型和原型链的一些讲解补充
+一、数据类型 1.5个基本类型 string number boolean undefined 未定义 null 值为空 symbol 表示一个符号，符号类型是唯一的并且是不可修改的
+最常见的还是前三种，字符串，数字，布尔值
+2.常见的引用类型 引用类型是一种数据结构，用于将数据和功能组织在一起
+对象－Object, 数组－Array, 函数－Function, 正则－RegExp, 日期－Date等
+二、函数 1.什么是函数？ 具有独立功能的代码块，在js中使用function关键字定义函数 让代码结构更加清晰，提高代码可用性 js函数的分类：自定义函数和系统函数 2.自定义函数 有一种匿名函数，没有名字的函数，创建闭包，避免造成全局变量的污染
+匿名自执行函数
+概念：匿名函数的定义完成后立即执行，执行函数表达式 作用：实现闭包和创建独立的命名空间 使用：分组操作符()，void操作符，~操作符，!操作符等等 使用场景：函数表达式，对象属性，事件，事件参数，返回值 定义完匿名函数后，一定要调用 // 函数表达式 window.onload = function() { let funcobj = function() { alert(&amp;#34;函数表达式中的匿名函数&amp;#34;) } funcobj(); } // 对象属性 window.onload = function() { let obj = { name: function() { alert(&amp;#39;对象属性中的匿名函数&amp;#39;) } } obj.name(); } 3.内置函数 放在全局下面叫做函数，放在对象里面被叫做方法，对象的方法
+常规函数 alert() // 弹出框 confirm() // 弹出一个确认框 prompt() // 弹出一个输入框 isNaN() // 判断是否为数字 parseInt() // 将字符串或浮点数转换为整数 parseFloat() // 将字符串转换为整数或浮点数 eval() // 计算表达式的结果 数组函数 用for循环遍历数组</description>
+    </item>
+    
+    <item>
+      <title>javascript——函数、变量和方法</title>
+      <link>https://zburu.com/archives/13.html/</link>
+      <pubDate>Wed, 04 Nov 2020 21:12:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/13.html/</guid>
+      <description>当代码出现有规律的重复之后，可以利用函数，定义变量，调用方法，不用去重复的改动代码，只需要进行函数的修改。基本上所有的高级语言都支持函数，javascript也不例外，它可以像变量一样被使用，方便且强大，因此本文对js函数进行系统的学习，并在学习过程中做了详细的笔记以及样例。
+一、函数的定义和调用 1.定义函数 function abs(x) { if(x = 0) { return x; } else { return -x; } } function()指出这是一个函数定义 abs是函数的代码 (x)里面的内容是函数的参数 {...}的内容是函数体，可以包括若干语句，甚至可以没有任何语句 函数体中，必须以return结尾，才可以把结果返回，如果不用return结尾的话，就会返回undefined
+也可以直接定义一个对象，这个对象也可以写成函数的方式
+var abs = function (x) { if (x&amp;gt;=0) { return x }else { return -x } }； function(x)就是一个匿名函数，这个函数被赋值给了变量abs，所以可以直接通过abs调用该函数
+这两种定义函数的方式完全一致，，但是用变量定义的时候需要注意，要用;结尾，代表函数语句结束
+2.调用函数 调用函数时，直接传参即可 abs(10)，根据函数定义，将10代入进去即可，返回的结果是x , 即10
+3.检查参数 可以对参数进行检查，看看是否是自己想要的参数对类型
+如果传入对参数abs(x)中非数字，控制台返回结果this is not number，如果传参为数字，则进行条件判断
+function abs(x) { // 检查参数x是否为数字 if (typeof x !== &amp;#39;number&amp;#39;) { console.log(&amp;#39;this is not number&amp;#39;) }else{ if (x &amp;gt;= 0) { return x }else { return -x } } } 4.</description>
+    </item>
+    
+    <item>
+      <title>HTML事件属性--DOM</title>
+      <link>https://zburu.com/archives/12.html/</link>
+      <pubDate>Thu, 29 Oct 2020 21:12:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/12.html/</guid>
+      <description>研究html的对象，事件和方法，从js的角度来思考，这个标签的属性是通过什么方法，触发什么事件来实现的
+键盘鼠标事件 页面窗口事件 表单事件 一、window事件属性 针对window对象触发的事件，在&amp;lt;body&amp;gt;中执行
+1.onbeforeprint／onafterprint 在浏览器打印之间/后触发
+&amp;lt;body onbeforeprint = print()&amp;gt; &amp;lt;script&amp;gt; function print() { alert(&amp;#34;打印之间！&amp;#34;) } &amp;lt;/script&amp;gt; 打印前和打印后的事件方法类似，一个是在打印前触发事件，一个是在打印这个事件结束之后触发onafterprint这个事件
+demo查看
+2.onbeforeunload/unload 离开页面之间触发的事件／之后触发的事件
+打开f12，然后刷新，或者关闭浏览器，可以在浏览器触发事件
+&amp;lt;script&amp;gt; window.onbeforeunload = function(){ return &amp;#34;提示&amp;#34; //返回的内容不会显示， //在刷新的时候触发，或者关闭浏览器，浏览会直接提示是否重新加载，不能直接返回return } &amp;lt;/script&amp;gt; demo查看
+3.onerror 当图片出错是可以触发该事件，支持该事件的标签只有 &amp;lt;img&amp;gt;,&amp;lt;object&amp;gt;,&amp;lt;style&amp;gt;
+&amp;lt;img src=&amp;#34;1.gif&amp;#34; onerror = &amp;#34;myfun()&amp;#34;&amp;gt; &amp;lt;script&amp;gt; function myfun() { alert(&amp;#34;图片出错&amp;#34;) } &amp;lt;/script&amp;gt; 1.gif不存在，因此触发了一个myfun()事件，弹出窗口
+demo查看
+4.onhashchange 当文档改变时发生的脚本 ？？？
+5.onload 页面加载完成之后触发
+demo查看
+6.onmessage 在消息被触发时运行 ???
+7.onoffline 当浏览器离线时触发
+&amp;lt;body onoffline=&amp;#34;myfun()&amp;#34;&amp;gt; 8.ononline 当浏览器在线工作时触发
+&amp;lt;body ononline=&amp;#34;myfun()&amp;#34;&amp;gt; ononline和onoffline在网络断线或者连线时触发，可以控制电脑网络查看效果</description>
+    </item>
+    
+    <item>
+      <title>js基本语法</title>
+      <link>https://zburu.com/archives/11.html/</link>
+      <pubDate>Wed, 21 Oct 2020 21:11:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/11.html/</guid>
+      <description>在学习js基本语法的过程中，把遇见的知识点和问题记录喜下来，以便未来复习和参考。
+数据类型有：数据，字符串，数组，数字，布尔值等。
+一、数据类型 1.number 2.布尔值 只有true和false两种，可以直接用true和false来表达，比如：
+true;	//true false;	//false 2&amp;gt;1;	//true 2&amp;gt;3;	//fasle 与	&amp;amp;&amp;amp; 两者同时为true，运算结果为true
+或	|| 只要有一个为true，运算结果就是true
+非	！ 当程序为true时，运算结果取反为false
+var age = 15; if(age &amp;gt;= 18) { alert(&amp;#39;adult&amp;#39;) }else{ alert(&amp;#39;teenager&amp;#39;) } age值是15，当age大于且等于18的时候浏览器弹出adult，反之弹出teenager
+3.字符串 4.比较运算符 ==和===
+当使用==进行比较的时候，一般会自动转换类型然后再进行比较
+当使用===进行比较的时候，如果数据类型不一样，直接返回false，等到类型一致了，然后再进行比较
+有一个特殊的number就是NaN，它不与任何值相等，包括它自己NaN
+NaN === NaN	//false 5.null和undefined null表示一个空值，0表示一个数值，&#39;&#39;表示长度为0的字符串，但是null表示空
+undefined表示未定义
+但是区分两者意义不大，大多数还是在用null，undefined仅仅在判断函数参数是否传递的情况下有用
+6.数组Array [ ] ，表示一组按顺序排列的集合，其中的每个值称为元素
+new Array(1,2,3)	//[1,2,3] 数组的索引
+二、对象和变量 var person = { name: &amp;#39;jack&amp;#39;, age: 20, city: &amp;#39;hangzhou&amp;#39; } person是对象变量，name: &#39;jack&#39;这就是一个键值对，name是属性名，&#39;jack&#39;是属性</description>
+    </item>
+    
+  </channel>
+</rss>

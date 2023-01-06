@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.101.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="toTop" content="true">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://zburu.com/archives/66.html/" />
+  <link rel="canonical" href="https://zburu.com/archives/66.html/" /><link rel="apple-touch-icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="shortcut" href="https://cdn.zburu.com/favicon.ico" /><link rel="alternate" type="application/atom+xml" href="https://zburu.comindex.xml" title="子舒的博客">
+
+  <script type="application/ld+json">
+  {
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https:\/\/zburu.com"
+    },
+    "articleSection" : "posts",
+    "name" : "网站引入iframe视频，如何实现高度自适应?",
+    "headline" : "网站引入iframe视频，如何实现高度自适应?",
+    "description" : "我想很多小伙伴在写博客的时候都能遇到一个令人头疼的问题，某一篇文章想用 iframe 引入一个外链视频，但是大小总是有问题，宽度可以固定到 100% ，但是高度比如用实际高度来表示，比如 100px, 200px，诸如此类。\n但是问题来了，在不同的页面宽度下，视频的高度是一致的，就会导致一个很麻烦的问题,\n看下面两个图，\npc端\n移动端\n很明显，在pc端正常显示的视频，放到移动端高度就错位了，很不美观。\n解决这个问题，可以同媒体查询，但是显然费时费力，还不那么完美。\n其实很简单，只需要不到10行代码即可完美实现。\n引入 jq ，（一般网站默认都有这个文件）\n加上一段 js 代码，最好放在网站底部， \u0026lt;\/body\u0026gt; 前即可。\n$(\u0026#39;iframe\u0026#39;).wrap(\u0026#39;\u0026lt;p class=\u0026#34;iframe\u0026#34;\u0026gt;\u0026lt;\/p\u0026gt;\u0026#39;) 在css文件的底部加上: .iframe{ position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; } .iframe iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; } 这个时候再访问带有 iframe 视频的网页，不管宽度如何变化，高度可以随视频自适应。\n例如这个网页，可以看一下效果: https:\/\/imhan.cn\/posts\/20210507.html",
+    "inLanguage" : "en-US",
+    "author" : "",
+    "creator" : "",
+    "publisher": "",
+    "accountablePerson" : "",
+    "copyrightHolder" : "",
+    "copyrightYear" : "2021",
+    "datePublished": "2021-05-09 18:50:00 \u002b0000 UTC",
+    "dateModified" : "2021-05-09 18:50:00 \u002b0000 UTC",
+    "url" : "https:\/\/zburu.com\/archives\/66.html\/",
+    "keywords" : [ "博客","css", ]
+  }
+</script><title>网站引入iframe视频，如何实现高度自适应? - 子舒的博客</title>
+  <meta property="og:title" content="网站引入iframe视频，如何实现高度自适应?" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="我想很多小伙伴在写博客的时候都能遇到一个令人头疼的问题，某一篇文章想用 iframe 引入一个外链视频，但是大小总是有问题，宽度可以固定到 100% ，但是高度比如用实际高度来表示，比如 100px, 200px，诸如此类。
+但是问题来了，在不同的页面宽度下，视频的高度是一致的，就会导致一个很麻烦的问题,
+看下面两个图，
+pc端
+移动端
+很明显，在pc端正常显示的视频，放到移动端高度就错位了，很不美观。
+解决这个问题，可以同媒体查询，但是显然费时费力，还不那么完美。
+其实很简单，只需要不到10行代码即可完美实现。
+引入 jq ，（一般网站默认都有这个文件）
+加上一段 js 代码，最好放在网站底部， &amp;lt;/body&amp;gt; 前即可。
+$(&amp;#39;iframe&amp;#39;).wrap(&amp;#39;&amp;lt;p class=&amp;#34;iframe&amp;#34;&amp;gt;&amp;lt;/p&amp;gt;&amp;#39;) 在css文件的底部加上: .iframe{ position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; } .iframe iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; } 这个时候再访问带有 iframe 视频的网页，不管宽度如何变化，高度可以随视频自适应。
+例如这个网页，可以看一下效果: https://imhan.cn/posts/20210507.html" />
+  <meta name="description" content="我想很多小伙伴在写博客的时候都能遇到一个令人头疼的问题，某一篇文章想用 iframe 引入一个外链视频，但是大小总是有问题，宽度可以固定到 100% ，但是高度比如用实际高度来表示，比如 100px, 200px，诸如此类。
+但是问题来了，在不同的页面宽度下，视频的高度是一致的，就会导致一个很麻烦的问题,
+看下面两个图，
+pc端
+移动端
+很明显，在pc端正常显示的视频，放到移动端高度就错位了，很不美观。
+解决这个问题，可以同媒体查询，但是显然费时费力，还不那么完美。
+其实很简单，只需要不到10行代码即可完美实现。
+引入 jq ，（一般网站默认都有这个文件）
+加上一段 js 代码，最好放在网站底部， &amp;lt;/body&amp;gt; 前即可。
+$(&amp;#39;iframe&amp;#39;).wrap(&amp;#39;&amp;lt;p class=&amp;#34;iframe&amp;#34;&amp;gt;&amp;lt;/p&amp;gt;&amp;#39;) 在css文件的底部加上: .iframe{ position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; } .iframe iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; } 这个时候再访问带有 iframe 视频的网页，不管宽度如何变化，高度可以随视频自适应。
+例如这个网页，可以看一下效果: https://imhan.cn/posts/20210507.html" />
+  <meta property="og:locale" content="en-us" /><meta property="og:image" content="https://cdn.zburu.com/favicon.ico" />
+  
+
+  <link rel="stylesheet" href="/css/default.css">
+  <link rel="stylesheet" href="/css/simplebox.min.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="子舒的博客">
+  <script src="https://hm.baidu.com/hm.js?5f4839173d00c8b0d3dd40533d14450d"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-item">
+        <a href="/" class="header-title">
+          <img src="https://cdn.zburu.com/favicon.png" alt="logo">
+          <span>子舒的博客</span>
+        </a>
+      </div>
+      <div class="menu-btn">菜单</div>
+      <div class="opacity"></div>
+      <div class="header-item sticky">
+        <ul id="navi">
+          
+          <li>
+            <a href="/posts">归档</a>
+          </li>
+          
+          <li>
+            <a href="/weekly">周刊</a>
+          </li>
+          
+          <li>
+            <a href="/message">留言</a>
+          </li>
+          
+          <li>
+            <a href="/about">关于</a>
+          </li>
+          
+          <li>
+            <a href="/lab">实验室</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+<article>
+  <div class="post-box">
+    <div class="post-header">
+      <h1 class="post-title">网站引入iframe视频，如何实现高度自适应?</h1>
+      
+      <div class="post-desc">
+        <div class="post-date">
+          
+          <time datetime=" 2021-05-09 18:50:00 UTC">
+            发布于 2021-05-09
+          </time>
+          
+          浏览: <span id="ArtalkPV">加载中...</span>
+          评论: <span id="ArtalkCount"></span>
+        </div>
+      </div>
+      
+    </div>
+    <div class="post-content markdown-body">
+      <div class="autoMenu" id="autoMenu" data-autoMenu></div>
+      
+      <p>我想很多小伙伴在写博客的时候都能遇到一个令人头疼的问题，某一篇文章想用 <code>iframe</code> 引入一个外链视频，但是大小总是有问题，宽度可以固定到 100% ，但是高度比如用实际高度来表示，比如 <code>100px</code>, <code>200px</code>，诸如此类。</p>
+<p>但是问题来了，在不同的页面宽度下，视频的高度是一致的，就会导致一个很麻烦的问题,</p>
+<p>看下面两个图，</p>
+<p><strong>pc端</strong></p>
+<p><img src="https://cdn.staticaly.com/gh/zoer98/pic-cdn@main/2021/05/09/536b956db2e924c141df412e800aa87e.png" alt=""></p>
+<p><strong>移动端</strong></p>
+<p><img src="https://cdn.staticaly.com/gh/zoer98/pic-cdn@main/2021/05/09/f4b81a36000e814ab16da85082ded5d4.png" alt=""></p>
+<p>很明显，在pc端正常显示的视频，放到移动端高度就错位了，很不美观。</p>
+<p>解决这个问题，可以同媒体查询，但是显然费时费力，还不那么完美。</p>
+<p>其实很简单，只需要不到10行代码即可完美实现。</p>
+<ol>
+<li>
+<p>引入 jq ，（一般网站默认都有这个文件）</p>
+</li>
+<li>
+<p>加上一段 js 代码，最好放在网站底部， <code>&lt;/body&gt;</code> 前即可。</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#39;iframe&#39;</span>).<span style="color:#a6e22e">wrap</span>(<span style="color:#e6db74">&#39;&lt;p class=&#34;iframe&#34;&gt;&lt;/p&gt;&#39;</span>)
+</span></span></code></pre></div><ol start="3">
+<li>在css文件的底部加上:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>.<span style="color:#a6e22e">iframe</span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">position</span>: <span style="color:#66d9ef">relative</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">padding-bottom</span>: <span style="color:#ae81ff">56.25</span><span style="color:#66d9ef">%</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">height</span>: <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">overflow</span>: <span style="color:#66d9ef">hidden</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">iframe</span> <span style="color:#f92672">iframe</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">position</span>: <span style="color:#66d9ef">absolute</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">top</span>: <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">left</span>: <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">height</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>这个时候再访问带有 iframe 视频的网页，不管宽度如何变化，高度可以随视频自适应。</p>
+<p>例如这个网页，可以看一下效果: <a href="/posts/20210507.html">https://imhan.cn/posts/20210507.html</a></p>
+
+    </div>
+
+    
+    <div class="post-tags">
+      <a href="/tags/%E5%8D%9A%E5%AE%A2/">
+        博客
+      </a>
+    </div>
+    
+    <div class="post-tags">
+      <a href="/tags/css/">
+        css
+      </a>
+    </div>
+    
+    
+    <div class="pre-next">
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/67.html/">
+          上一篇：Typecho博客搭建及优化教程(详细)
+        </a>
+        
+      </p>
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/65.html/">
+          下一篇：呼吸之野
+        </a>
+        
+      </p>
+    </div>
+    
+
+<div class="related-content">
+  <h4>Related Posts</h4>
+  <ul>
+    
+    <li><a href="/archives/54.html/">IE10下`,`符号不能留白</a></li>
+    
+    <li><a href="/archives/53.html/">怎么让 css3 里面的动画属性看起来更流畅?</a></li>
+    
+    <li><a href="/archives/52.html/">chrome浏览器无法显示12px以下的字体</a></li>
+    
+  </ul>
+</div>
+
+
+
+  </div>
+  
+  <div class="post-box">
+    <div class="post-comments">
+      <h4 class="article-h4">评论~</h4>
+<div id="Artalk"></div>
+<link href="https://artalk.zburu.com/dist/Artalk.css" rel="stylesheet">
+<script src="https://artalk.zburu.com/dist/Artalk.js"></script>
+<script>
+  new Artalk({
+    el: '#Artalk',
+    pageKey: '',
+    pageTitle: '',
+    server: 'https://artalk.zburu.com',
+    site: '子舒的博客',
+  })
+</script>
+
+
+    </div>
+    
+  </div>
+  <div class="footer">
+  <p>
+    © 2020-<span id="year"></span> ·
+    <a href="https://beian.miit.gov.cn/" target="_blank">
+      <span>浙ICP备2022002453号-2</span>
+    </a>
+  </p>
+  <i> · </i>
+  <p>网站运行: <span id="days">0</span> 天</p>
+</div>
+<div class="utool">
+  <div class="item totop">
+    <span>top</span>
+  </div>
+</div>
+<script>
+  var s0 = '2020-06-14';
+  s1 = new Date(s0.replace(/-/g, "/"));
+  s2 = new Date();
+  var days = s2.getTime() - s1.getTime();
+  var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+  document.getElementById('days').innerHTML = number_of_days;
+
+  var date = new Date;
+  var year = date.getFullYear();
+  document.getElementById('year').innerHTML = year;
+</script>
+</article>
+
+<script src="/js/jquery3.6.0.min.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/simplebox.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

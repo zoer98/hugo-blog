@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>评论 on 子舒的博客</title>
+    <link>https://zburu.com/tags/%E8%AF%84%E8%AE%BA/</link>
+    <description>Recent content in 评论 on 子舒的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 18 Feb 2022 13:48:00 +0000</lastBuildDate><atom:link href="https://zburu.com/tags/%E8%AF%84%E8%AE%BA/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nuxt.js如何部署Artalk和遇到的问题</title>
+      <link>https://zburu.com/archives/102.html/</link>
+      <pubDate>Fri, 18 Feb 2022 13:48:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/102.html/</guid>
+      <description>花了两天时间，终于把 Artalk 部署好了，一款数据自托管带后端的评论程序，非常适合我。这篇文章就介绍一下我部署的流程，以及我在部署过程中遇到的一些问题，将它记录一下，以便之后研究，顺便对使用 Nuxt.js 搭建博客的伙伴提供一些参考价值。
+Artalk 地址: https://artalk.js.org/
+这篇文章我将分为三个部分，后端部署、前端部署、问题研究。
+1.后端部署 官方有两个版本，注意分辨，php 和 go，对应的是不同的仓库，目前官方文档写的默认都是 go 语言开发的。
+ArtalkGo仓库:https://github.com/ArtalkJS/ArtalkGo
+我使用的也是 go 版本，功能和优化都比较好。
+docker构建+宝塔 我的服务器是 Ubuntu 20.04，其他版本类似，没有很大不同。
+首先，使用ssh连接服务器。
+sudo su # 启用sudo模式 cd /www/wwwroot/ # 进入站点目录 mkdir ArtalkGo cd ArtalkGo # 为 ArtalkGo 创建一个目录 curl -L https://raw.githubusercontent.com/ArtalkJS/ArtalkGo/master/artalk-go.example.yml &amp;gt; conf.yml # 下载配置文件模版 到这里之后，官方说的是用 vim conf.yml 进入配置文件，修改参数然后配置。我不是很建议，因为用着并不是那么顺手（因为我菜），我建议直接到达 /www/wwwroot/ArtalkGo 目录下修改 conf.yml 文件，文本模式操作起来更顺手。
+里面的配置基本都是站点名称，管理员，邮箱等设置，没什么大问题。除此之外，端口等参数都不用碰，不然会报错。
+配置完文件之后直接保存就行了。
+在宝塔插件里面下载 Docker管理器，点击镜像管理。
+然后在镜像名称输入 artalk/artalk-go 点击获取镜像即可，大概两分钟就下载结束了。
+然后回到 ssh 连接，新建 docker 容器。
+docker run -d \ --name artalk-go \ -p 0.</description>
+    </item>
+    
+  </channel>
+</rss>

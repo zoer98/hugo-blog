@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>油猴脚本 on 子舒的博客</title>
+    <link>https://zburu.com/tags/%E6%B2%B9%E7%8C%B4%E8%84%9A%E6%9C%AC/</link>
+    <description>Recent content in 油猴脚本 on 子舒的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 22 Jun 2022 09:01:00 +0000</lastBuildDate><atom:link href="https://zburu.com/tags/%E6%B2%B9%E7%8C%B4%E8%84%9A%E6%9C%AC/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>掘金抽奖脚本</title>
+      <link>https://zburu.com/archives/143.html/</link>
+      <pubDate>Wed, 22 Jun 2022 09:01:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/143.html/</guid>
+      <description>分享一个掘金抽奖的油猴脚本，可以一键签到，抽奖，梭哈。
+攒多一点矿石，体验买彩票的感觉。
+(async function () { &amp;lsquo;use strict&amp;rsquo;;
+const { createApp } = PetiteVue; // 不会吧不会吧，不会还有人不知道petite-vue吧
+const root = document.createElement(&amp;lsquo;div&amp;rsquo;); root.class = &amp;lsquo;wx_draw_wrap&amp;rsquo;; root.innerHTML = ` &amp;lt;div v-show=&amp;quot;!popup&amp;quot; class=&amp;ldquo;wx_draw&amp;rdquo; @click=&amp;ldquo;open&amp;rdquo;&amp;gt;掘金抽奖
+&amp;lt;div v-if=&amp;quot;popup&amp;quot; class=&amp;quot;wx_popup&amp;quot;&amp;gt;&amp;lt;div class=&amp;quot;wx_mask&amp;quot; @click=&amp;quot;popup = false&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;wx_main&amp;quot;&amp;gt;&amp;lt;div class=&amp;quot;wx_header&amp;quot;&amp;gt;&amp;lt;div&amp;gt;掘金抽奖&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;wx_score&amp;quot;&amp;gt;当前矿石：{{ score }}&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;wx_body&amp;quot;&amp;gt;&amp;lt;div class=&amp;quot;wx_options&amp;quot;&amp;gt;&amp;lt;div @click=&amp;quot;check_in&amp;quot; v-if=&amp;quot;check_status === -1 || check_status === false&amp;quot;&amp;gt;签到&amp;lt;/div&amp;gt;&amp;lt;div @click=&amp;quot;get_free&amp;quot; v-else&amp;gt;签到成功&amp;lt;/div&amp;gt;&amp;lt;div @click=&amp;quot;draw(5)&amp;quot;&amp;gt;5连抽&amp;lt;/div&amp;gt;&amp;lt;div @click=&amp;quot;draw(10)&amp;quot;&amp;gt;10连抽&amp;lt;/div&amp;gt;&amp;lt;div @click=&amp;quot;draw(undefined)&amp;quot;&amp;gt;梭哈抽奖&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;table cellpadding=&amp;quot;0&amp;quot; cellspacing=&amp;quot;0&amp;quot; border=&amp;quot;0&amp;quot; width=&amp;quot;100%&amp;quot;&amp;gt;&amp;lt;thead&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;th&amp;gt;奖品图片&amp;lt;/th&amp;gt;&amp;lt;th&amp;gt;奖品名称&amp;lt;/th&amp;gt;&amp;lt;th&amp;gt;中奖次数&amp;lt;/th&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/thead&amp;gt;&amp;lt;tbody&amp;gt;&amp;lt;tr v-for=&amp;quot;item in award&amp;quot;&amp;gt;&amp;lt;td&amp;gt;&amp;lt;img :src=&amp;quot;item.</description>
+    </item>
+    
+  </channel>
+</rss>

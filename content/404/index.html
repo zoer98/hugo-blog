@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./main.css">
+</head>
+
+<body>
+  <div>
+    <div class="starsec"></div>
+    <div class="starthird"></div>
+    <div class="starfourth"></div>
+    <div class="starfifth"></div>
+  </div>
+
+  <div class="lamp__wrap">
+    <div class="lamp">
+      <div class="cable"></div>
+      <div class="cover"></div>
+      <div class="in-cover">
+        <div class="bulb"></div>
+      </div>
+      <div class="light"></div>
+    </div>
+  </div>
+  <section class="error">
+    <div class="error__content">
+      <div class="error__message message">
+        <h1 class="message__title">404错误页面</h1>
+        <p class="message__text">不好意思，你访问的页面不存在，请关灯后重新尝试</p>
+      </div>
+    </div>
+  </section>
+  <script>
+    // 禁止右键菜单
+    // document.oncontextmenu = function () { return false; };
+    // 禁止文字选择
+    document.onselectstart = function () { return false; };
+    // 禁止复制
+    // document.oncopy = function () { return false; };
+    // 禁止剪切
+    // document.oncut = function () { return false; };
+  </script>
+</body>
+
+</html>

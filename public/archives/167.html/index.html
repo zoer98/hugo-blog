@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.101.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="toTop" content="true">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://zburu.com/archives/167.html/" />
+  <link rel="canonical" href="https://zburu.com/archives/167.html/" /><link rel="apple-touch-icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="shortcut" href="https://cdn.zburu.com/favicon.ico" /><link rel="alternate" type="application/atom+xml" href="https://zburu.comindex.xml" title="子舒的博客">
+
+  <script type="application/ld+json">
+  {
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https:\/\/zburu.com"
+    },
+    "articleSection" : "posts",
+    "name" : "关于密码的一些想法",
+    "headline" : "关于密码的一些想法",
+    "description" : "今天在坐地铁的过程中，突然想要一个问题，一个安全稳定，便于记忆的密码时什么样子的。是否要包括字母大小写，数字，以及特殊符号？\n如何设置并存储？ 我想这是必须的，但是密码如果太过复杂，就不便于记忆。而想要记忆就必须有自己的规律，可一旦有了规律，别人在破解的时候就有了更多的思路，安全性相对来说就下降了。\n不论怎么想，这两者是冲突的，很难让它们统一起来。\n然后就和朋友讨论关于密码的问题，他们也有着自己独特的方法，给了我很多扩展的思路，比如记忆一个公式，圆周率第多少位，拼音\u002b数字等等，这样既能够记忆，也拥有足够的混淆性。你不知道它的位置下标，就不能够找到对应的密码字符，安全性比通用一套密码又高了很多。\n也有朋友表示自己在使用密码管理软件，比如 1password，bitwarden，KeePass 等，通过算法可以自动生成各种高复杂度的密码字符串。但是在述说的过程中，他们表示了对密码管理软件的担忧。如果软件遇到破解或者勒索，主密码丢失等，那么所有密码就不复存在，尽管这种可能性很少，但是前段事件就发生了这样的事情。\n而且大的软件商持有更多的用户，一旦遇到问题，产生的影响就更大，用户只能寄希望于厂商有足够的攻防能力。所有密码在云上都有备份，这本身就是一个致命的缺陷，如果云端数据被攻破，后果不堪设想。\n扩展说说 个人习惯使然，让我很难百分百的信任各种云，可能是被害妄想症吧，总觉得不好，把所有数据扔到云上保存对我来说是一件极其难受的事情。所以我一般都是三处备份，本地肯定要留一份在硬盘中，服务器保存一份，然后在oss桶中再备份一些不太重要的数据。成本不算高，但是需要持续维护这些数据，相对于我来说，还算是比较轻松的，并且我也乐在其中。",
+    "inLanguage" : "en-US",
+    "author" : "",
+    "creator" : "",
+    "publisher": "",
+    "accountablePerson" : "",
+    "copyrightHolder" : "",
+    "copyrightYear" : "2022",
+    "datePublished": "2022-09-21 19:26:00 \u002b0000 UTC",
+    "dateModified" : "2022-09-21 19:26:00 \u002b0000 UTC",
+    "url" : "https:\/\/zburu.com\/archives\/167.html\/",
+    "keywords" : [ "随笔","七日谈", ]
+  }
+</script><title>关于密码的一些想法 - 子舒的博客</title>
+  <meta property="og:title" content="关于密码的一些想法" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="今天在坐地铁的过程中，突然想要一个问题，一个安全稳定，便于记忆的密码时什么样子的。是否要包括字母大小写，数字，以及特殊符号？
+如何设置并存储？ 我想这是必须的，但是密码如果太过复杂，就不便于记忆。而想要记忆就必须有自己的规律，可一旦有了规律，别人在破解的时候就有了更多的思路，安全性相对来说就下降了。
+不论怎么想，这两者是冲突的，很难让它们统一起来。
+然后就和朋友讨论关于密码的问题，他们也有着自己独特的方法，给了我很多扩展的思路，比如记忆一个公式，圆周率第多少位，拼音&#43;数字等等，这样既能够记忆，也拥有足够的混淆性。你不知道它的位置下标，就不能够找到对应的密码字符，安全性比通用一套密码又高了很多。
+也有朋友表示自己在使用密码管理软件，比如 1password，bitwarden，KeePass 等，通过算法可以自动生成各种高复杂度的密码字符串。但是在述说的过程中，他们表示了对密码管理软件的担忧。如果软件遇到破解或者勒索，主密码丢失等，那么所有密码就不复存在，尽管这种可能性很少，但是前段事件就发生了这样的事情。
+而且大的软件商持有更多的用户，一旦遇到问题，产生的影响就更大，用户只能寄希望于厂商有足够的攻防能力。所有密码在云上都有备份，这本身就是一个致命的缺陷，如果云端数据被攻破，后果不堪设想。
+扩展说说 个人习惯使然，让我很难百分百的信任各种云，可能是被害妄想症吧，总觉得不好，把所有数据扔到云上保存对我来说是一件极其难受的事情。所以我一般都是三处备份，本地肯定要留一份在硬盘中，服务器保存一份，然后在oss桶中再备份一些不太重要的数据。成本不算高，但是需要持续维护这些数据，相对于我来说，还算是比较轻松的，并且我也乐在其中。" />
+  <meta name="description" content="今天在坐地铁的过程中，突然想要一个问题，一个安全稳定，便于记忆的密码时什么样子的。是否要包括字母大小写，数字，以及特殊符号？
+如何设置并存储？ 我想这是必须的，但是密码如果太过复杂，就不便于记忆。而想要记忆就必须有自己的规律，可一旦有了规律，别人在破解的时候就有了更多的思路，安全性相对来说就下降了。
+不论怎么想，这两者是冲突的，很难让它们统一起来。
+然后就和朋友讨论关于密码的问题，他们也有着自己独特的方法，给了我很多扩展的思路，比如记忆一个公式，圆周率第多少位，拼音&#43;数字等等，这样既能够记忆，也拥有足够的混淆性。你不知道它的位置下标，就不能够找到对应的密码字符，安全性比通用一套密码又高了很多。
+也有朋友表示自己在使用密码管理软件，比如 1password，bitwarden，KeePass 等，通过算法可以自动生成各种高复杂度的密码字符串。但是在述说的过程中，他们表示了对密码管理软件的担忧。如果软件遇到破解或者勒索，主密码丢失等，那么所有密码就不复存在，尽管这种可能性很少，但是前段事件就发生了这样的事情。
+而且大的软件商持有更多的用户，一旦遇到问题，产生的影响就更大，用户只能寄希望于厂商有足够的攻防能力。所有密码在云上都有备份，这本身就是一个致命的缺陷，如果云端数据被攻破，后果不堪设想。
+扩展说说 个人习惯使然，让我很难百分百的信任各种云，可能是被害妄想症吧，总觉得不好，把所有数据扔到云上保存对我来说是一件极其难受的事情。所以我一般都是三处备份，本地肯定要留一份在硬盘中，服务器保存一份，然后在oss桶中再备份一些不太重要的数据。成本不算高，但是需要持续维护这些数据，相对于我来说，还算是比较轻松的，并且我也乐在其中。" />
+  <meta property="og:locale" content="en-us" /><meta property="og:image" content="https://cdn.zburu.com/favicon.ico" />
+  
+
+  <link rel="stylesheet" href="/css/default.css">
+  <link rel="stylesheet" href="/css/simplebox.min.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="子舒的博客">
+  <script src="https://hm.baidu.com/hm.js?5f4839173d00c8b0d3dd40533d14450d"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-item">
+        <a href="/" class="header-title">
+          <img src="https://cdn.zburu.com/favicon.png" alt="logo">
+          <span>子舒的博客</span>
+        </a>
+      </div>
+      <div class="menu-btn">菜单</div>
+      <div class="opacity"></div>
+      <div class="header-item sticky">
+        <ul id="navi">
+          
+          <li>
+            <a href="/posts">归档</a>
+          </li>
+          
+          <li>
+            <a href="/weekly">周刊</a>
+          </li>
+          
+          <li>
+            <a href="/message">留言</a>
+          </li>
+          
+          <li>
+            <a href="/about">关于</a>
+          </li>
+          
+          <li>
+            <a href="/lab">实验室</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+<article>
+  <div class="post-box">
+    <div class="post-header">
+      <h1 class="post-title">关于密码的一些想法</h1>
+      
+      <div class="post-desc">
+        <div class="post-date">
+          
+          <time datetime=" 2022-09-21 19:26:00 UTC">
+            发布于 2022-09-21
+          </time>
+          
+          浏览: <span id="ArtalkPV">加载中...</span>
+          评论: <span id="ArtalkCount"></span>
+        </div>
+      </div>
+      
+    </div>
+    <div class="post-content markdown-body">
+      <div class="autoMenu" id="autoMenu" data-autoMenu></div>
+      
+      <p>今天在坐地铁的过程中，突然想要一个问题，一个安全稳定，便于记忆的密码时什么样子的。是否要包括字母大小写，数字，以及特殊符号？</p>
+<h3 id="如何设置并存储">如何设置并存储？</h3>
+<p>我想这是必须的，但是密码如果太过复杂，就不便于记忆。而想要记忆就必须有自己的规律，可一旦有了规律，别人在破解的时候就有了更多的思路，安全性相对来说就下降了。</p>
+<p>不论怎么想，这两者是冲突的，很难让它们统一起来。</p>
+<p>然后就和朋友讨论关于密码的问题，他们也有着自己独特的方法，给了我很多扩展的思路，比如记忆一个公式，圆周率第多少位，拼音+数字等等，这样既能够记忆，也拥有足够的混淆性。你不知道它的位置下标，就不能够找到对应的密码字符，安全性比通用一套密码又高了很多。</p>
+<p>也有朋友表示自己在使用密码管理软件，比如 1password，bitwarden，KeePass 等，通过算法可以自动生成各种高复杂度的密码字符串。但是在述说的过程中，他们表示了对密码管理软件的担忧。如果软件遇到破解或者勒索，主密码丢失等，那么所有密码就不复存在，尽管这种可能性很少，但是前段事件就发生了这样的事情。</p>
+<p>而且大的软件商持有更多的用户，一旦遇到问题，产生的影响就更大，用户只能寄希望于厂商有足够的攻防能力。所有密码在云上都有备份，这本身就是一个致命的缺陷，如果云端数据被攻破，后果不堪设想。</p>
+<h3 id="扩展说说">扩展说说</h3>
+<p>个人习惯使然，让我很难百分百的信任各种云，可能是被害妄想症吧，总觉得不好，把所有数据扔到云上保存对我来说是一件极其难受的事情。所以我一般都是三处备份，本地肯定要留一份在硬盘中，服务器保存一份，然后在oss桶中再备份一些不太重要的数据。成本不算高，但是需要持续维护这些数据，相对于我来说，还算是比较轻松的，并且我也乐在其中。</p>
+
+    </div>
+
+    
+    <div class="post-tags">
+      <a href="/tags/%E9%9A%8F%E7%AC%94/">
+        随笔
+      </a>
+    </div>
+    
+    <div class="post-tags">
+      <a href="/tags/%E4%B8%83%E6%97%A5%E8%B0%88/">
+        七日谈
+      </a>
+    </div>
+    
+    
+    <div class="pre-next">
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/168.html/">
+          上一篇：将数组中多个对象的同名属性值取出合并成新数组
+        </a>
+        
+      </p>
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/166.html/">
+          下一篇：你是否想过成为一名作家？
+        </a>
+        
+      </p>
+    </div>
+    
+
+<div class="related-content">
+  <h4>Related Posts</h4>
+  <ul>
+    
+    <li><a href="/archives/166.html/">你是否想过成为一名作家？</a></li>
+    
+    <li><a href="/archives/165.html/">文档和视频，你更喜欢哪种学习方式？</a></li>
+    
+    <li><a href="/archives/157.html/">随想录 (9)</a></li>
+    
+  </ul>
+</div>
+
+
+
+  </div>
+  
+  <div class="post-box">
+    <div class="post-comments">
+      <h4 class="article-h4">评论~</h4>
+<div id="Artalk"></div>
+<link href="https://artalk.zburu.com/dist/Artalk.css" rel="stylesheet">
+<script src="https://artalk.zburu.com/dist/Artalk.js"></script>
+<script>
+  new Artalk({
+    el: '#Artalk',
+    pageKey: '',
+    pageTitle: '',
+    server: 'https://artalk.zburu.com',
+    site: '子舒的博客',
+  })
+</script>
+
+
+    </div>
+    
+  </div>
+  <div class="footer">
+  <p>
+    © 2020-<span id="year"></span> ·
+    <a href="https://beian.miit.gov.cn/" target="_blank">
+      <span>浙ICP备2022002453号-2</span>
+    </a>
+  </p>
+  <i> · </i>
+  <p>网站运行: <span id="days">0</span> 天</p>
+</div>
+<div class="utool">
+  <div class="item totop">
+    <span>top</span>
+  </div>
+</div>
+<script>
+  var s0 = '2020-06-14';
+  s1 = new Date(s0.replace(/-/g, "/"));
+  s2 = new Date();
+  var days = s2.getTime() - s1.getTime();
+  var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+  document.getElementById('days').innerHTML = number_of_days;
+
+  var date = new Date;
+  var year = date.getFullYear();
+  document.getElementById('year').innerHTML = year;
+</script>
+</article>
+
+<script src="/js/jquery3.6.0.min.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/simplebox.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.101.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="toTop" content="true">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://zburu.com/archives/88.html/" />
+  <link rel="canonical" href="https://zburu.com/archives/88.html/" /><link rel="apple-touch-icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="shortcut" href="https://cdn.zburu.com/favicon.ico" /><link rel="alternate" type="application/atom+xml" href="https://zburu.comindex.xml" title="子舒的博客">
+
+  <script type="application/ld+json">
+  {
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https:\/\/zburu.com"
+    },
+    "articleSection" : "posts",
+    "name" : "实现图片灯箱功能",
+    "headline" : "实现图片灯箱功能",
+    "description" : "写博客必不可少的一个功能就是图片灯箱功能，也就是点击放大查看。但是不同程序的博客所使用的插件也都不一样，我这里研究出一套可以满足绝大部分程序的灯箱插件。已经测试过hexo, hugo, typecho 均无问题。\n引入文件 首先引入我们关键的两个文件分别是 zoom.css 和 zoom.js 。\n\u0026lt;!-- head头部 --\u0026gt; \u0026lt;link rel=\u0026#34;stylesheet\u0026#34; href=\u0026#34;https:\/\/cdn.imhan.cn\/list\/zoom.css\u0026#34;\u0026gt; \u0026lt;!-- body底部 --\u0026gt; \u0026lt;!-- 如果已经有jq文件了，就不要引入jquery --\u0026gt; \u0026lt;script src=\u0026#34;https:\/\/cdn.imhan.cn\/list\/jquery3.6.0.js\u0026#34;\u0026gt;\u0026lt;\/script\u0026gt; \u0026lt;!--图片灯箱--\u0026gt; \u0026lt;img src=\u0026#34;\u0026#34; alt=\u0026#34;\u0026#34; class=\u0026#34;bigimg\u0026#34;\u0026gt; \u0026lt;div class=\u0026#34;mask\u0026#34;\u0026gt;\u0026lt;\/div\u0026gt; \u0026lt;script src=\u0026#34;https:\/\/cdn.imhan.cn\/list\/zoom.js\u0026#34;\u0026gt;\u0026lt;\/script\u0026gt; 因为这个文件是放在我自己服务器上的，所以不敢保证以后还是这个路径，建议在浏览器打开，然后把里面的代码复制到本地使用。\n调用js 然后我们需要给图片一个类名，以及一个父元素盒子，同样也可以使用 jq 来完成。\n这里的 .post-content 正文的类名，如果你是别的类名，可以直接将 .post-content 替换掉。\n$(function(){ $(\u0026#39;.post-content img\u0026#39;).addClass(\u0026#39;smallimg\u0026#39;) $(\u0026#39;.post-content img\u0026#39;).wrap(\u0026#39;\u0026lt;div class=\u0026#34;imgbox\u0026#34;\u0026gt;\u0026lt;\/div\u0026gt;\u0026#39;) }) 接着我们需要对插件进行初始化，直接在刚才的代码下面写入。\n$(function(){ $(\u0026#39;.post-content img\u0026#39;).addClass(\u0026#39;smallimg\u0026#39;) $(\u0026#39;.post-content img\u0026#39;).wrap(\u0026#39;\u0026lt;div class=\u0026#34;imgbox\u0026#34;\u0026gt;\u0026lt;\/div\u0026gt;\u0026#39;) \/* smallimg \/\/ 小图 bigimg \/\/点击放大的图片 mask \/\/黑色遮罩 *\/ var obj = new zoom(\u0026#39;mask\u0026#39;, \u0026#39;bigimg\u0026#39;, \u0026#39;smallimg\u0026#39;); obj.",
+    "inLanguage" : "en-US",
+    "author" : "",
+    "creator" : "",
+    "publisher": "",
+    "accountablePerson" : "",
+    "copyrightHolder" : "",
+    "copyrightYear" : "2021",
+    "datePublished": "2021-12-07 16:55:00 \u002b0000 UTC",
+    "dateModified" : "2021-12-07 16:55:00 \u002b0000 UTC",
+    "url" : "https:\/\/zburu.com\/archives\/88.html\/",
+    "keywords" : [ "博客","插件", ]
+  }
+</script><title>实现图片灯箱功能 - 子舒的博客</title>
+  <meta property="og:title" content="实现图片灯箱功能" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="写博客必不可少的一个功能就是图片灯箱功能，也就是点击放大查看。但是不同程序的博客所使用的插件也都不一样，我这里研究出一套可以满足绝大部分程序的灯箱插件。已经测试过hexo, hugo, typecho 均无问题。
+引入文件 首先引入我们关键的两个文件分别是 zoom.css 和 zoom.js 。
+&amp;lt;!-- head头部 --&amp;gt; &amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;https://cdn.imhan.cn/list/zoom.css&amp;#34;&amp;gt; &amp;lt;!-- body底部 --&amp;gt; &amp;lt;!-- 如果已经有jq文件了，就不要引入jquery --&amp;gt; &amp;lt;script src=&amp;#34;https://cdn.imhan.cn/list/jquery3.6.0.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;!--图片灯箱--&amp;gt; &amp;lt;img src=&amp;#34;&amp;#34; alt=&amp;#34;&amp;#34; class=&amp;#34;bigimg&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;mask&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;script src=&amp;#34;https://cdn.imhan.cn/list/zoom.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; 因为这个文件是放在我自己服务器上的，所以不敢保证以后还是这个路径，建议在浏览器打开，然后把里面的代码复制到本地使用。
+调用js 然后我们需要给图片一个类名，以及一个父元素盒子，同样也可以使用 jq 来完成。
+这里的 .post-content 正文的类名，如果你是别的类名，可以直接将 .post-content 替换掉。
+$(function(){ $(&amp;#39;.post-content img&amp;#39;).addClass(&amp;#39;smallimg&amp;#39;) $(&amp;#39;.post-content img&amp;#39;).wrap(&amp;#39;&amp;lt;div class=&amp;#34;imgbox&amp;#34;&amp;gt;&amp;lt;/div&amp;gt;&amp;#39;) }) 接着我们需要对插件进行初始化，直接在刚才的代码下面写入。
+$(function(){ $(&amp;#39;.post-content img&amp;#39;).addClass(&amp;#39;smallimg&amp;#39;) $(&amp;#39;.post-content img&amp;#39;).wrap(&amp;#39;&amp;lt;div class=&amp;#34;imgbox&amp;#34;&amp;gt;&amp;lt;/div&amp;gt;&amp;#39;) /* smallimg // 小图 bigimg //点击放大的图片 mask //黑色遮罩 */ var obj = new zoom(&amp;#39;mask&amp;#39;, &amp;#39;bigimg&amp;#39;, &amp;#39;smallimg&amp;#39;); obj." />
+  <meta name="description" content="写博客必不可少的一个功能就是图片灯箱功能，也就是点击放大查看。但是不同程序的博客所使用的插件也都不一样，我这里研究出一套可以满足绝大部分程序的灯箱插件。已经测试过hexo, hugo, typecho 均无问题。
+引入文件 首先引入我们关键的两个文件分别是 zoom.css 和 zoom.js 。
+&amp;lt;!-- head头部 --&amp;gt; &amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;https://cdn.imhan.cn/list/zoom.css&amp;#34;&amp;gt; &amp;lt;!-- body底部 --&amp;gt; &amp;lt;!-- 如果已经有jq文件了，就不要引入jquery --&amp;gt; &amp;lt;script src=&amp;#34;https://cdn.imhan.cn/list/jquery3.6.0.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;!--图片灯箱--&amp;gt; &amp;lt;img src=&amp;#34;&amp;#34; alt=&amp;#34;&amp;#34; class=&amp;#34;bigimg&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;mask&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;script src=&amp;#34;https://cdn.imhan.cn/list/zoom.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; 因为这个文件是放在我自己服务器上的，所以不敢保证以后还是这个路径，建议在浏览器打开，然后把里面的代码复制到本地使用。
+调用js 然后我们需要给图片一个类名，以及一个父元素盒子，同样也可以使用 jq 来完成。
+这里的 .post-content 正文的类名，如果你是别的类名，可以直接将 .post-content 替换掉。
+$(function(){ $(&amp;#39;.post-content img&amp;#39;).addClass(&amp;#39;smallimg&amp;#39;) $(&amp;#39;.post-content img&amp;#39;).wrap(&amp;#39;&amp;lt;div class=&amp;#34;imgbox&amp;#34;&amp;gt;&amp;lt;/div&amp;gt;&amp;#39;) }) 接着我们需要对插件进行初始化，直接在刚才的代码下面写入。
+$(function(){ $(&amp;#39;.post-content img&amp;#39;).addClass(&amp;#39;smallimg&amp;#39;) $(&amp;#39;.post-content img&amp;#39;).wrap(&amp;#39;&amp;lt;div class=&amp;#34;imgbox&amp;#34;&amp;gt;&amp;lt;/div&amp;gt;&amp;#39;) /* smallimg // 小图 bigimg //点击放大的图片 mask //黑色遮罩 */ var obj = new zoom(&amp;#39;mask&amp;#39;, &amp;#39;bigimg&amp;#39;, &amp;#39;smallimg&amp;#39;); obj." />
+  <meta property="og:locale" content="en-us" /><meta property="og:image" content="https://cdn.zburu.com/favicon.ico" />
+  
+
+  <link rel="stylesheet" href="/css/default.css">
+  <link rel="stylesheet" href="/css/simplebox.min.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="子舒的博客">
+  <script src="https://hm.baidu.com/hm.js?5f4839173d00c8b0d3dd40533d14450d"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-item">
+        <a href="/" class="header-title">
+          <img src="https://cdn.zburu.com/favicon.png" alt="logo">
+          <span>子舒的博客</span>
+        </a>
+      </div>
+      <div class="menu-btn">菜单</div>
+      <div class="opacity"></div>
+      <div class="header-item sticky">
+        <ul id="navi">
+          
+          <li>
+            <a href="/posts">归档</a>
+          </li>
+          
+          <li>
+            <a href="/weekly">周刊</a>
+          </li>
+          
+          <li>
+            <a href="/message">留言</a>
+          </li>
+          
+          <li>
+            <a href="/about">关于</a>
+          </li>
+          
+          <li>
+            <a href="/lab">实验室</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+<article>
+  <div class="post-box">
+    <div class="post-header">
+      <h1 class="post-title">实现图片灯箱功能</h1>
+      
+      <div class="post-desc">
+        <div class="post-date">
+          
+          <time datetime=" 2021-12-07 16:55:00 UTC">
+            发布于 2021-12-07
+          </time>
+          
+          浏览: <span id="ArtalkPV">加载中...</span>
+          评论: <span id="ArtalkCount"></span>
+        </div>
+      </div>
+      
+    </div>
+    <div class="post-content markdown-body">
+      <div class="autoMenu" id="autoMenu" data-autoMenu></div>
+      
+      <p>写博客必不可少的一个功能就是图片灯箱功能，也就是点击放大查看。但是不同程序的博客所使用的插件也都不一样，我这里研究出一套可以满足绝大部分程序的灯箱插件。已经测试过hexo, hugo, typecho 均无问题。</p>
+<h2 id="引入文件">引入文件</h2>
+<p>首先引入我们关键的两个文件分别是 <code>zoom.css</code> 和 <code>zoom.js</code> 。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- head头部 --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.imhan.cn/list/zoom.css&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- body底部 --&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- 如果已经有jq文件了，就不要引入jquery --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.imhan.cn/list/jquery3.6.0.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt; 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!--图片灯箱--&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span> <span style="color:#a6e22e">alt</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;bigimg&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mask&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.imhan.cn/list/zoom.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p>因为这个文件是放在我自己服务器上的，所以不敢保证以后还是这个路径，建议在浏览器打开，然后把里面的代码复制到本地使用。</p>
+<h2 id="调用js">调用js</h2>
+<p>然后我们需要给图片一个类名，以及一个父元素盒子，同样也可以使用 jq 来完成。</p>
+<p>这里的 <code>.post-content</code> 正文的类名，如果你是别的类名，可以直接将 <code>.post-content</code> 替换掉。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">$</span>(<span style="color:#66d9ef">function</span>(){
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#39;.post-content img&#39;</span>).<span style="color:#a6e22e">addClass</span>(<span style="color:#e6db74">&#39;smallimg&#39;</span>)
+</span></span><span style="display:flex;"><span>  	<span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#39;.post-content img&#39;</span>).<span style="color:#a6e22e">wrap</span>(<span style="color:#e6db74">&#39;&lt;div class=&#34;imgbox&#34;&gt;&lt;/div&gt;&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><p>接着我们需要对插件进行初始化，直接在刚才的代码下面写入。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">$</span>(<span style="color:#66d9ef">function</span>(){
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#39;.post-content img&#39;</span>).<span style="color:#a6e22e">addClass</span>(<span style="color:#e6db74">&#39;smallimg&#39;</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#39;.post-content img&#39;</span>).<span style="color:#a6e22e">wrap</span>(<span style="color:#e6db74">&#39;&lt;div class=&#34;imgbox&#34;&gt;&lt;/div&gt;&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">	smallimg   // 小图
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">	bigimg  //点击放大的图片
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">	mask   //黑色遮罩
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">	*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">obj</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">zoom</span>(<span style="color:#e6db74">&#39;mask&#39;</span>, <span style="color:#e6db74">&#39;bigimg&#39;</span>, <span style="color:#e6db74">&#39;smallimg&#39;</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">obj</span>.<span style="color:#a6e22e">init</span>();
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><p>回到页面上，点击正文的图片就可以成功放大了。</p>
+<h2 id="结束">结束</h2>
+<p>随便放个图片试验一下吧！</p>
+<p><img src="https://cdn.staticaly.com/gh/zoer98/pic-cdn@main/2021/11/10/5b39fa131726043fecb309d5ce196243.png" alt=""></p>
+<p>之所以我限制了在正文中才可以放大，是因为网站其他地方也有图片，如果都可以点击放大，就很不合理。</p>
+<p>如果在使用中有其他问题，欢迎留言。</p>
+
+    </div>
+
+    
+    <div class="post-tags">
+      <a href="/tags/%E5%8D%9A%E5%AE%A2/">
+        博客
+      </a>
+    </div>
+    
+    <div class="post-tags">
+      <a href="/tags/%E6%8F%92%E4%BB%B6/">
+        插件
+      </a>
+    </div>
+    
+    
+    <div class="pre-next">
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/90.html/">
+          上一篇：闲谈2021
+        </a>
+        
+      </p>
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/4.html/">
+          下一篇：关于人际交往的礼节感触
+        </a>
+        
+      </p>
+    </div>
+    
+
+<div class="related-content">
+  <h4>Related Posts</h4>
+  <ul>
+    
+    <li><a href="/archives/77.html/">hugo 如何使用 Cusdis ?</a></li>
+    
+    <li><a href="/archives/74.html/">关于我为什么要写博客？</a></li>
+    
+    <li><a href="/archives/67.html/">Typecho博客搭建及优化教程(详细)</a></li>
+    
+  </ul>
+</div>
+
+
+
+  </div>
+  
+  <div class="post-box">
+    <div class="post-comments">
+      <h4 class="article-h4">评论~</h4>
+<div id="Artalk"></div>
+<link href="https://artalk.zburu.com/dist/Artalk.css" rel="stylesheet">
+<script src="https://artalk.zburu.com/dist/Artalk.js"></script>
+<script>
+  new Artalk({
+    el: '#Artalk',
+    pageKey: '',
+    pageTitle: '',
+    server: 'https://artalk.zburu.com',
+    site: '子舒的博客',
+  })
+</script>
+
+
+    </div>
+    
+  </div>
+  <div class="footer">
+  <p>
+    © 2020-<span id="year"></span> ·
+    <a href="https://beian.miit.gov.cn/" target="_blank">
+      <span>浙ICP备2022002453号-2</span>
+    </a>
+  </p>
+  <i> · </i>
+  <p>网站运行: <span id="days">0</span> 天</p>
+</div>
+<div class="utool">
+  <div class="item totop">
+    <span>top</span>
+  </div>
+</div>
+<script>
+  var s0 = '2020-06-14';
+  s1 = new Date(s0.replace(/-/g, "/"));
+  s2 = new Date();
+  var days = s2.getTime() - s1.getTime();
+  var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+  document.getElementById('days').innerHTML = number_of_days;
+
+  var date = new Date;
+  var year = date.getFullYear();
+  document.getElementById('year').innerHTML = year;
+</script>
+</article>
+
+<script src="/js/jquery3.6.0.min.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/simplebox.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

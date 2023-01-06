@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.101.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="toTop" content="true">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://zburu.com/archives/50.html/" />
+  <link rel="canonical" href="https://zburu.com/archives/50.html/" /><link rel="apple-touch-icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="shortcut" href="https://cdn.zburu.com/favicon.ico" /><link rel="alternate" type="application/atom+xml" href="https://zburu.comindex.xml" title="子舒的博客">
+
+  <script type="application/ld+json">
+  {
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https:\/\/zburu.com"
+    },
+    "articleSection" : "posts",
+    "name" : "typecho 博客小表情无法显示问题",
+    "headline" : "typecho 博客小表情无法显示问题",
+    "description" : "typecho 博客建立完成之后，会发现如果插入一些小表情，页面渲染完之后，表情不会显示，并且表情之后的内容全部消失，导致体验感很差。\n表情无法显示的原因是 uft-8 编码的问题，无法识别小表情，需要将其改成 utf8mb4\n第一步，进入数据库 首先登陆博客后台的数据库，然后点击 sql ，输入下列代码：\nalter table typecho_comments convert to character set utf8mb4 collate utf8mb4_unicode_ci; alter table typecho_contents convert to character set utf8mb4 collate utf8mb4_unicode_ci; alter table typecho_fields convert to character set utf8mb4 collate utf8mb4_unicode_ci; alter table typecho_metas convert to character set utf8mb4 collate utf8mb4_unicode_ci; alter table typecho_options convert to character set utf8mb4 collate utf8mb4_unicode_ci; alter table typecho_relationships convert to character set utf8mb4 collate utf8mb4_unicode_ci; alter table typecho_users convert to character set utf8mb4 collate utf8mb4_unicode_ci; 直接复制，然后点击右下角的执行",
+    "inLanguage" : "en-US",
+    "author" : "",
+    "creator" : "",
+    "publisher": "",
+    "accountablePerson" : "",
+    "copyrightHolder" : "",
+    "copyrightYear" : "2021",
+    "datePublished": "2021-02-04 19:47:00 \u002b0000 UTC",
+    "dateModified" : "2021-02-04 19:47:00 \u002b0000 UTC",
+    "url" : "https:\/\/zburu.com\/archives\/50.html\/",
+    "keywords" : [ "博客","typecho", ]
+  }
+</script><title>typecho 博客小表情无法显示问题 - 子舒的博客</title>
+  <meta property="og:title" content="typecho 博客小表情无法显示问题" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="typecho 博客建立完成之后，会发现如果插入一些小表情，页面渲染完之后，表情不会显示，并且表情之后的内容全部消失，导致体验感很差。
+表情无法显示的原因是 uft-8 编码的问题，无法识别小表情，需要将其改成 utf8mb4
+第一步，进入数据库 首先登陆博客后台的数据库，然后点击 sql ，输入下列代码：
+alter table typecho_comments convert to character set utf8mb4 collate utf8mb4_unicode_ci; alter table typecho_contents convert to character set utf8mb4 collate utf8mb4_unicode_ci; alter table typecho_fields convert to character set utf8mb4 collate utf8mb4_unicode_ci; alter table typecho_metas convert to character set utf8mb4 collate utf8mb4_unicode_ci; alter table typecho_options convert to character set utf8mb4 collate utf8mb4_unicode_ci; alter table typecho_relationships convert to character set utf8mb4 collate utf8mb4_unicode_ci; alter table typecho_users convert to character set utf8mb4 collate utf8mb4_unicode_ci; 直接复制，然后点击右下角的执行" />
+  <meta name="description" content="typecho 博客建立完成之后，会发现如果插入一些小表情，页面渲染完之后，表情不会显示，并且表情之后的内容全部消失，导致体验感很差。
+表情无法显示的原因是 uft-8 编码的问题，无法识别小表情，需要将其改成 utf8mb4
+第一步，进入数据库 首先登陆博客后台的数据库，然后点击 sql ，输入下列代码：
+alter table typecho_comments convert to character set utf8mb4 collate utf8mb4_unicode_ci; alter table typecho_contents convert to character set utf8mb4 collate utf8mb4_unicode_ci; alter table typecho_fields convert to character set utf8mb4 collate utf8mb4_unicode_ci; alter table typecho_metas convert to character set utf8mb4 collate utf8mb4_unicode_ci; alter table typecho_options convert to character set utf8mb4 collate utf8mb4_unicode_ci; alter table typecho_relationships convert to character set utf8mb4 collate utf8mb4_unicode_ci; alter table typecho_users convert to character set utf8mb4 collate utf8mb4_unicode_ci; 直接复制，然后点击右下角的执行" />
+  <meta property="og:locale" content="en-us" /><meta property="og:image" content="https://cdn.zburu.com/favicon.ico" />
+  
+
+  <link rel="stylesheet" href="/css/default.css">
+  <link rel="stylesheet" href="/css/simplebox.min.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="子舒的博客">
+  <script src="https://hm.baidu.com/hm.js?5f4839173d00c8b0d3dd40533d14450d"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-item">
+        <a href="/" class="header-title">
+          <img src="https://cdn.zburu.com/favicon.png" alt="logo">
+          <span>子舒的博客</span>
+        </a>
+      </div>
+      <div class="menu-btn">菜单</div>
+      <div class="opacity"></div>
+      <div class="header-item sticky">
+        <ul id="navi">
+          
+          <li>
+            <a href="/posts">归档</a>
+          </li>
+          
+          <li>
+            <a href="/weekly">周刊</a>
+          </li>
+          
+          <li>
+            <a href="/message">留言</a>
+          </li>
+          
+          <li>
+            <a href="/about">关于</a>
+          </li>
+          
+          <li>
+            <a href="/lab">实验室</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+<article>
+  <div class="post-box">
+    <div class="post-header">
+      <h1 class="post-title">typecho 博客小表情无法显示问题</h1>
+      
+      <div class="post-desc">
+        <div class="post-date">
+          
+          <time datetime=" 2021-02-04 19:47:00 UTC">
+            发布于 2021-02-04
+          </time>
+          
+          浏览: <span id="ArtalkPV">加载中...</span>
+          评论: <span id="ArtalkCount"></span>
+        </div>
+      </div>
+      
+    </div>
+    <div class="post-content markdown-body">
+      <div class="autoMenu" id="autoMenu" data-autoMenu></div>
+      
+      <p>typecho 博客建立完成之后，会发现如果插入一些小表情，页面渲染完之后，表情不会显示，并且表情之后的内容全部消失，导致体验感很差。</p>
+<p>表情无法显示的原因是 uft-8 编码的问题，无法识别小表情，需要将其改成 utf8mb4</p>
+<h3 id="第一步进入数据库">第一步，进入数据库</h3>
+<p>首先登陆博客后台的数据库，然后点击 sql ，输入下列代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">alter</span> <span style="color:#66d9ef">table</span> typecho_comments <span style="color:#66d9ef">convert</span> <span style="color:#66d9ef">to</span> character <span style="color:#66d9ef">set</span> utf8mb4 <span style="color:#66d9ef">collate</span> utf8mb4_unicode_ci;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">alter</span> <span style="color:#66d9ef">table</span> typecho_contents <span style="color:#66d9ef">convert</span> <span style="color:#66d9ef">to</span> character <span style="color:#66d9ef">set</span> utf8mb4 <span style="color:#66d9ef">collate</span> utf8mb4_unicode_ci;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">alter</span> <span style="color:#66d9ef">table</span> typecho_fields <span style="color:#66d9ef">convert</span> <span style="color:#66d9ef">to</span> character <span style="color:#66d9ef">set</span> utf8mb4 <span style="color:#66d9ef">collate</span> utf8mb4_unicode_ci;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">alter</span> <span style="color:#66d9ef">table</span> typecho_metas <span style="color:#66d9ef">convert</span> <span style="color:#66d9ef">to</span> character <span style="color:#66d9ef">set</span> utf8mb4 <span style="color:#66d9ef">collate</span> utf8mb4_unicode_ci;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">alter</span> <span style="color:#66d9ef">table</span> typecho_options <span style="color:#66d9ef">convert</span> <span style="color:#66d9ef">to</span> character <span style="color:#66d9ef">set</span> utf8mb4 <span style="color:#66d9ef">collate</span> utf8mb4_unicode_ci;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">alter</span> <span style="color:#66d9ef">table</span> typecho_relationships <span style="color:#66d9ef">convert</span> <span style="color:#66d9ef">to</span> character <span style="color:#66d9ef">set</span> utf8mb4 <span style="color:#66d9ef">collate</span> utf8mb4_unicode_ci;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">alter</span> <span style="color:#66d9ef">table</span> typecho_users <span style="color:#66d9ef">convert</span> <span style="color:#66d9ef">to</span> character <span style="color:#66d9ef">set</span> utf8mb4 <span style="color:#66d9ef">collate</span> utf8mb4_unicode_ci;
+</span></span></code></pre></div><p>直接复制，然后点击右下角的执行</p>
+<h3 id="第二步修改-typecho-配置文件">第二步，修改 typecho 配置文件</h3>
+<p>我使用的宝塔面板，点击左侧 <code>网站</code> ，然后点击我们这个网站的根目录，进入之后，可以找到一个 <code>config.inc.php</code> 的文件，进入然后滑到最下面。</p>
+<p>**可以发现 <code>'charset' =&gt; 'utf8',</code>**下面我为了更直观的显示，将其注释掉，重新写的，实际操作中，将 <code>utf8</code> 改为 <code>utf8mb4</code> 即可。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#e6db74">/** 定义数据库参数 */</span>
+</span></span><span style="display:flex;"><span>$db <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Typecho_Db</span>(<span style="color:#e6db74">&#39;Pdo_Mysql&#39;</span>, <span style="color:#e6db74">&#39;typecho_&#39;</span>);
+</span></span><span style="display:flex;"><span>$db<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addServer</span>(<span style="color:#66d9ef">array</span> (
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;host&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;localhost&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;user&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;blog&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;password&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;blog&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">/** &#39;charset&#39; =&gt; &#39;utf8&#39;, */</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;charset&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;utf8mb4&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;port&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;3306&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;database&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;blog&#39;</span>,
+</span></span><span style="display:flex;"><span>), <span style="color:#a6e22e">Typecho_Db</span><span style="color:#f92672">::</span><span style="color:#a6e22e">READ</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">Typecho_Db</span><span style="color:#f92672">::</span><span style="color:#a6e22e">WRITE</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Typecho_Db</span><span style="color:#f92672">::</span><span style="color:#a6e22e">set</span>($db);
+</span></span></code></pre></div><p>在文章后台重新输入小表情，然后保存回到页面，小表情成功显示了。</p>
+
+    </div>
+
+    
+    <div class="post-tags">
+      <a href="/tags/%E5%8D%9A%E5%AE%A2/">
+        博客
+      </a>
+    </div>
+    
+    <div class="post-tags">
+      <a href="/tags/typecho/">
+        typecho
+      </a>
+    </div>
+    
+    
+    <div class="pre-next">
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/51.html/">
+          上一篇：使用宝塔面板安装 autoPicCdn 图床工具
+        </a>
+        
+      </p>
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/49.html/">
+          下一篇：掘金个人主页头像旋转效果
+        </a>
+        
+      </p>
+    </div>
+    
+
+<div class="related-content">
+  <h4>Related Posts</h4>
+  <ul>
+    
+    <li><a href="/archives/1.html/">hello, world</a></li>
+    
+  </ul>
+</div>
+
+
+
+  </div>
+  
+  <div class="post-box">
+    <div class="post-comments">
+      <h4 class="article-h4">评论~</h4>
+<div id="Artalk"></div>
+<link href="https://artalk.zburu.com/dist/Artalk.css" rel="stylesheet">
+<script src="https://artalk.zburu.com/dist/Artalk.js"></script>
+<script>
+  new Artalk({
+    el: '#Artalk',
+    pageKey: '',
+    pageTitle: '',
+    server: 'https://artalk.zburu.com',
+    site: '子舒的博客',
+  })
+</script>
+
+
+    </div>
+    
+  </div>
+  <div class="footer">
+  <p>
+    © 2020-<span id="year"></span> ·
+    <a href="https://beian.miit.gov.cn/" target="_blank">
+      <span>浙ICP备2022002453号-2</span>
+    </a>
+  </p>
+  <i> · </i>
+  <p>网站运行: <span id="days">0</span> 天</p>
+</div>
+<div class="utool">
+  <div class="item totop">
+    <span>top</span>
+  </div>
+</div>
+<script>
+  var s0 = '2020-06-14';
+  s1 = new Date(s0.replace(/-/g, "/"));
+  s2 = new Date();
+  var days = s2.getTime() - s1.getTime();
+  var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+  document.getElementById('days').innerHTML = number_of_days;
+
+  var date = new Date;
+  var year = date.getFullYear();
+  document.getElementById('year').innerHTML = year;
+</script>
+</article>
+
+<script src="/js/jquery3.6.0.min.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/simplebox.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

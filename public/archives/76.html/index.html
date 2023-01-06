@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.101.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="toTop" content="true">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://zburu.com/archives/76.html/" />
+  <link rel="canonical" href="https://zburu.com/archives/76.html/" /><link rel="apple-touch-icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="shortcut" href="https://cdn.zburu.com/favicon.ico" /><link rel="alternate" type="application/atom+xml" href="https://zburu.comindex.xml" title="子舒的博客">
+
+  <script type="application/ld+json">
+  {
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https:\/\/zburu.com"
+    },
+    "articleSection" : "posts",
+    "name" : "使用jq做一个数字递增效果",
+    "headline" : "使用jq做一个数字递增效果",
+    "description" : "数字递增，顾名思义就是数字不断增加，数字递增的效果就是要一定时间内，让数字有一个增加的特效，一般用于强调某个内容。\n用 jquery 也很好处理，大概就是下面这些。\ndata-to 属性代表最后想要递增到的数值 data-speed 代表数值想要递增的过程时间 class=\u0026quot;num-ber\u0026quot; 和 id=\u0026quot;count-number\u0026quot; 按照这个填入。\n\u0026lt;p\u0026gt; \u0026lt;span class=\u0026#34;num-ber\u0026#34; id=\u0026#34;count-number\u0026#34; data-to=\u0026#34;40\u0026#34; data-speed=\u0026#34;1000\u0026#34;\u0026gt;\u0026lt;\/span\u0026gt;\u002b \u0026lt;\/p\u0026gt; 引入 jquery 之后再添加下面的 js 代码。\n$.fn.countTo = function (a) { a = a || {}; return $(this).each(function () { var c = $.extend({}, $.fn.countTo.defaults, { from: $(this).data(\u0026#34;from\u0026#34;), to: $(this).data(\u0026#34;to\u0026#34;), speed: $(this).data(\u0026#34;speed\u0026#34;), refreshInterval: $(this).data(\u0026#34;refresh-interval\u0026#34;), decimals: $(this).data(\u0026#34;decimals\u0026#34;) }, a); var h = Math.ceil(c.speed \/ c.refreshInterval), i = (c.to - c.from) \/ h; var j = this, f = $(this), e = 0, g = c.",
+    "inLanguage" : "en-US",
+    "author" : "",
+    "creator" : "",
+    "publisher": "",
+    "accountablePerson" : "",
+    "copyrightHolder" : "",
+    "copyrightYear" : "2021",
+    "datePublished": "2021-09-14 15:42:00 \u002b0000 UTC",
+    "dateModified" : "2021-09-14 15:42:00 \u002b0000 UTC",
+    "url" : "https:\/\/zburu.com\/archives\/76.html\/",
+    "keywords" : [ "jquery", ]
+  }
+</script><title>使用jq做一个数字递增效果 - 子舒的博客</title>
+  <meta property="og:title" content="使用jq做一个数字递增效果" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="数字递增，顾名思义就是数字不断增加，数字递增的效果就是要一定时间内，让数字有一个增加的特效，一般用于强调某个内容。
+用 jquery 也很好处理，大概就是下面这些。
+data-to 属性代表最后想要递增到的数值 data-speed 代表数值想要递增的过程时间 class=&amp;quot;num-ber&amp;quot; 和 id=&amp;quot;count-number&amp;quot; 按照这个填入。
+&amp;lt;p&amp;gt; &amp;lt;span class=&amp;#34;num-ber&amp;#34; id=&amp;#34;count-number&amp;#34; data-to=&amp;#34;40&amp;#34; data-speed=&amp;#34;1000&amp;#34;&amp;gt;&amp;lt;/span&amp;gt;&#43; &amp;lt;/p&amp;gt; 引入 jquery 之后再添加下面的 js 代码。
+$.fn.countTo = function (a) { a = a || {}; return $(this).each(function () { var c = $.extend({}, $.fn.countTo.defaults, { from: $(this).data(&amp;#34;from&amp;#34;), to: $(this).data(&amp;#34;to&amp;#34;), speed: $(this).data(&amp;#34;speed&amp;#34;), refreshInterval: $(this).data(&amp;#34;refresh-interval&amp;#34;), decimals: $(this).data(&amp;#34;decimals&amp;#34;) }, a); var h = Math.ceil(c.speed / c.refreshInterval), i = (c.to - c.from) / h; var j = this, f = $(this), e = 0, g = c." />
+  <meta name="description" content="数字递增，顾名思义就是数字不断增加，数字递增的效果就是要一定时间内，让数字有一个增加的特效，一般用于强调某个内容。
+用 jquery 也很好处理，大概就是下面这些。
+data-to 属性代表最后想要递增到的数值 data-speed 代表数值想要递增的过程时间 class=&amp;quot;num-ber&amp;quot; 和 id=&amp;quot;count-number&amp;quot; 按照这个填入。
+&amp;lt;p&amp;gt; &amp;lt;span class=&amp;#34;num-ber&amp;#34; id=&amp;#34;count-number&amp;#34; data-to=&amp;#34;40&amp;#34; data-speed=&amp;#34;1000&amp;#34;&amp;gt;&amp;lt;/span&amp;gt;&#43; &amp;lt;/p&amp;gt; 引入 jquery 之后再添加下面的 js 代码。
+$.fn.countTo = function (a) { a = a || {}; return $(this).each(function () { var c = $.extend({}, $.fn.countTo.defaults, { from: $(this).data(&amp;#34;from&amp;#34;), to: $(this).data(&amp;#34;to&amp;#34;), speed: $(this).data(&amp;#34;speed&amp;#34;), refreshInterval: $(this).data(&amp;#34;refresh-interval&amp;#34;), decimals: $(this).data(&amp;#34;decimals&amp;#34;) }, a); var h = Math.ceil(c.speed / c.refreshInterval), i = (c.to - c.from) / h; var j = this, f = $(this), e = 0, g = c." />
+  <meta property="og:locale" content="en-us" /><meta property="og:image" content="https://cdn.zburu.com/favicon.ico" />
+  
+
+  <link rel="stylesheet" href="/css/default.css">
+  <link rel="stylesheet" href="/css/simplebox.min.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="子舒的博客">
+  <script src="https://hm.baidu.com/hm.js?5f4839173d00c8b0d3dd40533d14450d"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-item">
+        <a href="/" class="header-title">
+          <img src="https://cdn.zburu.com/favicon.png" alt="logo">
+          <span>子舒的博客</span>
+        </a>
+      </div>
+      <div class="menu-btn">菜单</div>
+      <div class="opacity"></div>
+      <div class="header-item sticky">
+        <ul id="navi">
+          
+          <li>
+            <a href="/posts">归档</a>
+          </li>
+          
+          <li>
+            <a href="/weekly">周刊</a>
+          </li>
+          
+          <li>
+            <a href="/message">留言</a>
+          </li>
+          
+          <li>
+            <a href="/about">关于</a>
+          </li>
+          
+          <li>
+            <a href="/lab">实验室</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+<article>
+  <div class="post-box">
+    <div class="post-header">
+      <h1 class="post-title">使用jq做一个数字递增效果</h1>
+      
+      <div class="post-desc">
+        <div class="post-date">
+          
+          <time datetime=" 2021-09-14 15:42:00 UTC">
+            发布于 2021-09-14
+          </time>
+          
+          浏览: <span id="ArtalkPV">加载中...</span>
+          评论: <span id="ArtalkCount"></span>
+        </div>
+      </div>
+      
+    </div>
+    <div class="post-content markdown-body">
+      <div class="autoMenu" id="autoMenu" data-autoMenu></div>
+      
+      <p>数字递增，顾名思义就是数字不断增加，数字递增的效果就是要一定时间内，让数字有一个增加的特效，一般用于强调某个内容。</p>
+<p>用 jquery 也很好处理，大概就是下面这些。</p>
+<ul>
+<li><code>data-to</code> 属性代表最后想要递增到的数值</li>
+<li><code>data-speed</code> 代表数值想要递增的过程时间</li>
+</ul>
+<p><code>class=&quot;num-ber&quot;</code> 和 <code>id=&quot;count-number&quot;</code> 按照这个填入。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;num-ber&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;count-number&#34;</span> <span style="color:#a6e22e">data-to</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;40&#34;</span> <span style="color:#a6e22e">data-speed</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1000&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;+
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span></code></pre></div><p>引入 jquery 之后再添加下面的 js 代码。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">fn</span>.<span style="color:#a6e22e">countTo</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">a</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">||</span> {};
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">$</span>(<span style="color:#66d9ef">this</span>).<span style="color:#a6e22e">each</span>(<span style="color:#66d9ef">function</span> () {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">c</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">extend</span>({},
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">fn</span>.<span style="color:#a6e22e">countTo</span>.<span style="color:#a6e22e">defaults</span>, {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">from</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">$</span>(<span style="color:#66d9ef">this</span>).<span style="color:#a6e22e">data</span>(<span style="color:#e6db74">&#34;from&#34;</span>),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">to</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">$</span>(<span style="color:#66d9ef">this</span>).<span style="color:#a6e22e">data</span>(<span style="color:#e6db74">&#34;to&#34;</span>),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">speed</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">$</span>(<span style="color:#66d9ef">this</span>).<span style="color:#a6e22e">data</span>(<span style="color:#e6db74">&#34;speed&#34;</span>),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">refreshInterval</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">$</span>(<span style="color:#66d9ef">this</span>).<span style="color:#a6e22e">data</span>(<span style="color:#e6db74">&#34;refresh-interval&#34;</span>),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">decimals</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">$</span>(<span style="color:#66d9ef">this</span>).<span style="color:#a6e22e">data</span>(<span style="color:#e6db74">&#34;decimals&#34;</span>)
+</span></span><span style="display:flex;"><span>      }, <span style="color:#a6e22e">a</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">h</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">ceil</span>(<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">speed</span> <span style="color:#f92672">/</span> <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">refreshInterval</span>),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">to</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">from</span>) <span style="color:#f92672">/</span> <span style="color:#a6e22e">h</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">j</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">f</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$</span>(<span style="color:#66d9ef">this</span>),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">e</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">g</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">from</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">d</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">f</span>.<span style="color:#a6e22e">data</span>(<span style="color:#e6db74">&#34;countTo&#34;</span>) <span style="color:#f92672">||</span> {};
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">f</span>.<span style="color:#a6e22e">data</span>(<span style="color:#e6db74">&#34;countTo&#34;</span>, <span style="color:#a6e22e">d</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">interval</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">clearInterval</span>(<span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">interval</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">interval</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">setInterval</span>(<span style="color:#a6e22e">k</span>, <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">refreshInterval</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">b</span>(<span style="color:#a6e22e">g</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">k</span>() {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">g</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">i</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">e</span><span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">b</span>(<span style="color:#a6e22e">g</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">typeof</span> (<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">onUpdate</span>) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;function&#34;</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">onUpdate</span>.<span style="color:#a6e22e">call</span>(<span style="color:#a6e22e">j</span>, <span style="color:#a6e22e">g</span>)
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">e</span> <span style="color:#f92672">&gt;=</span> <span style="color:#a6e22e">h</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">f</span>.<span style="color:#a6e22e">removeData</span>(<span style="color:#e6db74">&#34;countTo&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">clearInterval</span>(<span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">interval</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">g</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">to</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">typeof</span> (<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">onComplete</span>) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;function&#34;</span>) {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">onComplete</span>.<span style="color:#a6e22e">call</span>(<span style="color:#a6e22e">j</span>, <span style="color:#a6e22e">g</span>)
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">b</span>(<span style="color:#a6e22e">m</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">l</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">formatter</span>.<span style="color:#a6e22e">call</span>(<span style="color:#a6e22e">j</span>, <span style="color:#a6e22e">m</span>, <span style="color:#a6e22e">c</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">f</span>.<span style="color:#a6e22e">html</span>(<span style="color:#a6e22e">l</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">fn</span>.<span style="color:#a6e22e">countTo</span>.<span style="color:#a6e22e">defaults</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">from</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">to</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">speed</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1000</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">refreshInterval</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">100</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">decimals</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">formatter</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">formatter</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">onUpdate</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">onComplete</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span>
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">formatter</span>(<span style="color:#a6e22e">b</span>, <span style="color:#a6e22e">a</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">toFixed</span>(<span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;#count-number&#34;</span>).<span style="color:#a6e22e">data</span>(<span style="color:#e6db74">&#34;countToOptions&#34;</span>, {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">formatter</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">b</span>, <span style="color:#a6e22e">a</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">toFixed</span>(<span style="color:#ae81ff">0</span>).<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">/\B(?=(?:\d{3})+(?!\d))/g</span>, <span style="color:#e6db74">&#34;,&#34;</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;.num-ber&#34;</span>).<span style="color:#a6e22e">each</span>(<span style="color:#a6e22e">count</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">count</span>(<span style="color:#a6e22e">a</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">b</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$</span>(<span style="color:#66d9ef">this</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">extend</span>({},
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">a</span> <span style="color:#f92672">||</span> {},
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">data</span>(<span style="color:#e6db74">&#34;countToOptions&#34;</span>) <span style="color:#f92672">||</span> {});
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">countTo</span>(<span style="color:#a6e22e">a</span>)
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div>
+    </div>
+
+    
+    <div class="post-tags">
+      <a href="/tags/jquery/">
+        jquery
+      </a>
+    </div>
+    
+    
+    <div class="pre-next">
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/77.html/">
+          上一篇：hugo 如何使用 Cusdis ?
+        </a>
+        
+      </p>
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/75.html/">
+          下一篇：npm install 报错和取消本地代理的问题
+        </a>
+        
+      </p>
+    </div>
+    
+
+
+
+  </div>
+  
+  <div class="post-box">
+    <div class="post-comments">
+      <h4 class="article-h4">评论~</h4>
+<div id="Artalk"></div>
+<link href="https://artalk.zburu.com/dist/Artalk.css" rel="stylesheet">
+<script src="https://artalk.zburu.com/dist/Artalk.js"></script>
+<script>
+  new Artalk({
+    el: '#Artalk',
+    pageKey: '',
+    pageTitle: '',
+    server: 'https://artalk.zburu.com',
+    site: '子舒的博客',
+  })
+</script>
+
+
+    </div>
+    
+  </div>
+  <div class="footer">
+  <p>
+    © 2020-<span id="year"></span> ·
+    <a href="https://beian.miit.gov.cn/" target="_blank">
+      <span>浙ICP备2022002453号-2</span>
+    </a>
+  </p>
+  <i> · </i>
+  <p>网站运行: <span id="days">0</span> 天</p>
+</div>
+<div class="utool">
+  <div class="item totop">
+    <span>top</span>
+  </div>
+</div>
+<script>
+  var s0 = '2020-06-14';
+  s1 = new Date(s0.replace(/-/g, "/"));
+  s2 = new Date();
+  var days = s2.getTime() - s1.getTime();
+  var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+  document.getElementById('days').innerHTML = number_of_days;
+
+  var date = new Date;
+  var year = date.getFullYear();
+  document.getElementById('year').innerHTML = year;
+</script>
+</article>
+
+<script src="/js/jquery3.6.0.min.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/simplebox.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

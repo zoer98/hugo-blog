@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.101.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="toTop" content="true">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://zburu.com/archives/170.html/" />
+  <link rel="canonical" href="https://zburu.com/archives/170.html/" /><link rel="apple-touch-icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="icon" href="https://cdn.zburu.com/favicon.ico" />
+  <link rel="shortcut" href="https://cdn.zburu.com/favicon.ico" /><link rel="alternate" type="application/atom+xml" href="https://zburu.comindex.xml" title="子舒的博客">
+
+  <script type="application/ld+json">
+  {
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https:\/\/zburu.com"
+    },
+    "articleSection" : "posts",
+    "name" : "hugo 一键打包并上传 github",
+    "headline" : "hugo 一键打包并上传 github",
+    "description" : "分享一个 hugo 一键打包并上传 github 的方法，前提是你之前上传过 GitHub 仓库。\n采用 window 支持的 sh可执行文件，在根目录新建一个 hugo.sh 文件，里面放上一些命令。\nhugo # cd public time=$(date \u0026#34;\u002b%Y-%m-%d %H:%M:%S\u0026#34;) echo $time git add . git commit -m \u0026#34;自动执行构建脚本 🎓$time\u0026#34; git push exit 可以在文件夹双击运行 hugo.sh，也可以在终端输入命令。\n.\\hugo.sh 省去了我输入繁琐的 Git 上传指令，并且自动生成当前系统时间作为 commit。\n其他\n这里我上传的是整体的 hugo 目录，如果你只想上传生成的 \/public ，在中间加入 cd public。",
+    "inLanguage" : "en-US",
+    "author" : "",
+    "creator" : "",
+    "publisher": "",
+    "accountablePerson" : "",
+    "copyrightHolder" : "",
+    "copyrightYear" : "2022",
+    "datePublished": "2022-10-14 00:00:00 \u002b0000 UTC",
+    "dateModified" : "2022-10-14 00:00:00 \u002b0000 UTC",
+    "url" : "https:\/\/zburu.com\/archives\/170.html\/",
+    "keywords" : [ "博客", ]
+  }
+</script><title>hugo 一键打包并上传 github - 子舒的博客</title>
+  <meta property="og:title" content="hugo 一键打包并上传 github" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="分享一个 hugo 一键打包并上传 github 的方法，前提是你之前上传过 GitHub 仓库。
+采用 window 支持的 sh可执行文件，在根目录新建一个 hugo.sh 文件，里面放上一些命令。
+hugo # cd public time=$(date &amp;#34;&#43;%Y-%m-%d %H:%M:%S&amp;#34;) echo $time git add . git commit -m &amp;#34;自动执行构建脚本 🎓$time&amp;#34; git push exit 可以在文件夹双击运行 hugo.sh，也可以在终端输入命令。
+.\hugo.sh 省去了我输入繁琐的 Git 上传指令，并且自动生成当前系统时间作为 commit。
+其他
+这里我上传的是整体的 hugo 目录，如果你只想上传生成的 /public ，在中间加入 cd public。" />
+  <meta name="description" content="分享一个 hugo 一键打包并上传 github 的方法，前提是你之前上传过 GitHub 仓库。
+采用 window 支持的 sh可执行文件，在根目录新建一个 hugo.sh 文件，里面放上一些命令。
+hugo # cd public time=$(date &amp;#34;&#43;%Y-%m-%d %H:%M:%S&amp;#34;) echo $time git add . git commit -m &amp;#34;自动执行构建脚本 🎓$time&amp;#34; git push exit 可以在文件夹双击运行 hugo.sh，也可以在终端输入命令。
+.\hugo.sh 省去了我输入繁琐的 Git 上传指令，并且自动生成当前系统时间作为 commit。
+其他
+这里我上传的是整体的 hugo 目录，如果你只想上传生成的 /public ，在中间加入 cd public。" />
+  <meta property="og:locale" content="en-us" /><meta property="og:image" content="https://cdn.zburu.com/favicon.ico" />
+  
+
+  <link rel="stylesheet" href="/css/default.css">
+  <link rel="stylesheet" href="/css/simplebox.min.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="子舒的博客">
+  <script src="https://hm.baidu.com/hm.js?5f4839173d00c8b0d3dd40533d14450d"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-item">
+        <a href="/" class="header-title">
+          <img src="https://cdn.zburu.com/favicon.png" alt="logo">
+          <span>子舒的博客</span>
+        </a>
+      </div>
+      <div class="menu-btn">菜单</div>
+      <div class="opacity"></div>
+      <div class="header-item sticky">
+        <ul id="navi">
+          
+          <li>
+            <a href="/posts">归档</a>
+          </li>
+          
+          <li>
+            <a href="/weekly">周刊</a>
+          </li>
+          
+          <li>
+            <a href="/message">留言</a>
+          </li>
+          
+          <li>
+            <a href="/about">关于</a>
+          </li>
+          
+          <li>
+            <a href="/lab">实验室</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+<article>
+  <div class="post-box">
+    <div class="post-header">
+      <h1 class="post-title">hugo 一键打包并上传 github</h1>
+      
+      <div class="post-desc">
+        <div class="post-date">
+          
+          <time datetime=" 2022-10-14 00:00:00 UTC">
+            发布于 2022-10-14
+          </time>
+          
+          浏览: <span id="ArtalkPV">加载中...</span>
+          评论: <span id="ArtalkCount"></span>
+        </div>
+      </div>
+      
+    </div>
+    <div class="post-content markdown-body">
+      <div class="autoMenu" id="autoMenu" data-autoMenu></div>
+      
+      <p>分享一个 hugo 一键打包并上传 github 的方法，前提是你之前上传过 GitHub 仓库。</p>
+<p>采用 window 支持的 sh可执行文件，在根目录新建一个 <code>hugo.sh</code> 文件，里面放上一些命令。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>hugo
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># cd public</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>time<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>date <span style="color:#e6db74">&#34;+%Y-%m-%d %H:%M:%S&#34;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>echo $time
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>git add .
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;自动执行构建脚本 🎓</span>$time<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>git push
+</span></span><span style="display:flex;"><span>exit
+</span></span></code></pre></div><p>可以在文件夹双击运行 <code>hugo.sh</code>，也可以在终端输入命令。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>.<span style="color:#ae81ff">\h</span>ugo.sh
+</span></span></code></pre></div><p>省去了我输入繁琐的 Git 上传指令，并且自动生成当前系统时间作为 commit。</p>
+<p><strong>其他</strong></p>
+<p>这里我上传的是整体的 hugo 目录，如果你只想上传生成的 <code>/public</code> ，在中间加入 <code>cd public</code>。</p>
+
+    </div>
+
+    
+    <div class="post-tags">
+      <a href="/tags/%E5%8D%9A%E5%AE%A2/">
+        博客
+      </a>
+    </div>
+    
+    
+    <div class="pre-next">
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/171.html/">
+          上一篇：localStorage 的相关运用
+        </a>
+        
+      </p>
+      <p>
+        
+        <a class="pre-next-btn bg" href="https://zburu.com/archives/169.html/">
+          下一篇：开发后的反省
+        </a>
+        
+      </p>
+    </div>
+    
+
+<div class="related-content">
+  <h4>Related Posts</h4>
+  <ul>
+    
+    <li><a href="/archives/132.html/">typecho 评论回复艾特评论人</a></li>
+    
+    <li><a href="/archives/120.html/">浏览器收藏夹一键填写博客评论信息</a></li>
+    
+    <li><a href="/archives/110.html/">增加了站内搜索功能</a></li>
+    
+  </ul>
+</div>
+
+
+
+  </div>
+  
+  <div class="post-box">
+    <div class="post-comments">
+      <h4 class="article-h4">评论~</h4>
+<div id="Artalk"></div>
+<link href="https://artalk.zburu.com/dist/Artalk.css" rel="stylesheet">
+<script src="https://artalk.zburu.com/dist/Artalk.js"></script>
+<script>
+  new Artalk({
+    el: '#Artalk',
+    pageKey: '',
+    pageTitle: '',
+    server: 'https://artalk.zburu.com',
+    site: '子舒的博客',
+  })
+</script>
+
+
+    </div>
+    
+  </div>
+  <div class="footer">
+  <p>
+    © 2020-<span id="year"></span> ·
+    <a href="https://beian.miit.gov.cn/" target="_blank">
+      <span>浙ICP备2022002453号-2</span>
+    </a>
+  </p>
+  <i> · </i>
+  <p>网站运行: <span id="days">0</span> 天</p>
+</div>
+<div class="utool">
+  <div class="item totop">
+    <span>top</span>
+  </div>
+</div>
+<script>
+  var s0 = '2020-06-14';
+  s1 = new Date(s0.replace(/-/g, "/"));
+  s2 = new Date();
+  var days = s2.getTime() - s1.getTime();
+  var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+  document.getElementById('days').innerHTML = number_of_days;
+
+  var date = new Date;
+  var year = date.getFullYear();
+  document.getElementById('year').innerHTML = year;
+</script>
+</article>
+
+<script src="/js/jquery3.6.0.min.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/simplebox.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>
