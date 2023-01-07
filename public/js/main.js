@@ -38,6 +38,10 @@ $(function () {
   });
 
   // Artalk
+  $('.artalk .atk-main-editor .atk-header').prepend('<span>昵称:</span><span>邮箱:</span><span>网址:</span>')
+  setTimeout(function(){
+    $('.artalk .atk-main-editor .atk-header input').attr('placeholder','')
+  },100)
   $('.atk-main-editor>.atk-bottom').after($('.atk-main-editor>.atk-plug-panel-wrap'))
 
   // search

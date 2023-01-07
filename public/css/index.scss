@@ -280,7 +280,6 @@ a:hover {
 }
 
 /* reset code */
-
 .markdown-body pre > code {
   padding: 0;
   background-color: inherit;
@@ -555,7 +554,6 @@ header {
   }
 
   .posts-content {
-
     & > a {
       padding-top: 10px;
       display: block !important;
@@ -851,14 +849,33 @@ header {
       padding: 0;
       flex-wrap: wrap;
       justify-content: space-between;
+      display: block;
+
+      span {
+        position: absolute;
+        left: 6px;
+        top: 15px;
+        font-size: 14px;
+
+        &:nth-child(2) {
+          top: 62px;
+        }
+
+        &:nth-child(3) {
+          top: 109px;
+        }
+      }
 
       input {
+        display: block;
         flex: none;
-        width: 32.5%;
+        // width: 32.5%;
+        max-width: 300px;
         border: 1px solid #d8d8d8;
         transition: all 0.1s linear;
         margin-bottom: 10px;
         padding: 8px 5px;
+        padding-left: 44px;
 
         &:focus {
           border-color: #7c7c7c;
@@ -900,7 +917,7 @@ header {
 }
 
 .atk-sidebar-layer {
-  width: 600px !important;
+  width: 700px !important;
 }
 
 .atk-comment > .atk-main > .atk-body > .atk-content {
@@ -908,18 +925,15 @@ header {
   line-height: 1.6;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .atk-sidebar-layer {
     width: 100% !important;
   }
 
   .artalk .atk-main-editor .atk-header {
-    flex-wrap: wrap;
-
     input {
-      flex: none;
-      margin-bottom: 5px;
       width: 100%;
+      max-width: 100%;
     }
   }
 }
