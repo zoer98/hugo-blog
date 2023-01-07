@@ -122,8 +122,7 @@ article {
   background: #fff;
   border: 1px solid #eee;
   border-radius: 10px;
-  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.4);
 }
 
 a {
@@ -294,7 +293,6 @@ a:hover {
   display: none;
   top: 30px;
   border: 1px solid #a9a9a9;
-  background: #fff;
   border-radius: 6px;
   padding: 4px 16px;
   cursor: pointer;
@@ -375,6 +373,7 @@ header {
   border: 2px solid #333;
   box-shadow: 0.2rem 0.2rem 0 0 #1e293b;
   transition: all 0.1s linear;
+  margin-left: 10px;
 
   &:hover {
     text-decoration: none;
@@ -442,7 +441,7 @@ header {
     transition: all 0.1s linear;
 
     &:focus {
-      border-color: #666;
+      box-shadow: 0px 0px 5px #6d727b;
     }
   }
 }
@@ -574,6 +573,11 @@ header {
       color: #000 !important;
       line-height: 1.6;
       background: none !important;
+
+      &::before,
+      &::after {
+        display: none;
+      }
     }
 
     br,
@@ -762,6 +766,10 @@ header {
           a {
             color: #fff;
 
+            &:hover {
+              background: none;
+            }
+
             &.active {
               background: #525e70;
             }
@@ -775,6 +783,10 @@ header {
   .header-subtitle,
   .header-items {
     text-align: center;
+  }
+
+  .header-title {
+    margin-left: 0;
   }
 
   .header-items {
@@ -844,42 +856,25 @@ header {
   .atk-main-editor {
     border: none;
     border-radius: 0;
+    overflow: inherit;
 
     .atk-header {
       border-bottom: none;
       padding: 0;
       flex-wrap: wrap;
       justify-content: space-between;
-      display: block;
-
-      span {
-        position: absolute;
-        left: 6px;
-        top: 15px;
-        font-size: 14px;
-
-        &:nth-child(2) {
-          top: 62px;
-        }
-
-        &:nth-child(3) {
-          top: 109px;
-        }
-      }
 
       input {
         display: block;
         flex: none;
-        // width: 32.5%;
-        max-width: 300px;
+        width: 32.5%;
         border: 1px solid #d8d8d8;
         transition: all 0.1s linear;
         margin-bottom: 10px;
         padding: 8px 5px;
-        padding-left: 44px;
 
         &:focus {
-          border-color: #7c7c7c;
+          box-shadow: 0px 0px 5px #6d727b;
         }
       }
     }
@@ -891,11 +886,16 @@ header {
       margin: 0;
 
       &:focus {
-        border-color: #7c7c7c;
+        box-shadow: 0px 0px 5px #6d727b;
       }
     }
 
     .atk-bottom {
+      .atk-plug-btn {
+        &:nth-child(2) {
+          display: none;
+        }
+      }
       .atk-send-btn {
         height: 35px;
       }
