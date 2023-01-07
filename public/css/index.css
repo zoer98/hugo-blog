@@ -577,6 +577,7 @@ header::after {
   white-space: nowrap;
 }
 .post-date time {
+  background: none;
   margin-right: 10px;
 }
 .post-date span {
