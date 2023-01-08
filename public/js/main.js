@@ -1,12 +1,4 @@
 $(function () {
-
-  //pjax 刷新
-  $(document).pjax('a:not(a[target="_blank"], a[no-pjax])', {
-    container: '#pjax-container',
-    fragment: '#pjax-container',
-    timeout: 8000
-  })
-
   $('.menu-btn').click(function () {
     $('header .sticky').css('transform', 'translateX(0)');
     $('.opacity').show();
