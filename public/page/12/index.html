@@ -51,7 +51,7 @@
     title="子舒的博客">
   <script src="https://hm.baidu.com/hm.js?5f4839173d00c8b0d3dd40533d14450d"></script>
 </head>
-<body>
+<body id="pjax-container">
   <header>
     <div class="container">
       <div class="header-item">
@@ -64,6 +64,9 @@
       <div class="opacity"></div>
       <div class="header-item sticky">
         <ul id="navi">
+          <li>
+            <a href="/">首页</a>
+          </li>
           
           <li>
             <a href="/posts">归档</a>
@@ -101,122 +104,98 @@
 
     
     <div class="posts-line">
-      <div class="posts-date">
-        <time datetime=" 2021-03-18 22:15:00 UTC">2021-3-18</time>
-      </div>
-      <a class="posts-title" href="/archives/56.html/">IE10的兼容性处理</a>
+      <a class="posts-title" href="/archives/78.html/">使用js随机生成背景颜色</a>
       <div class="posts-content">
-        <a href="/archives/56.html/">
-          <ol>
-<li>
-<p>IE10不支持箭头函数，写js的时候慎用。</p>
-</li>
-<li>
-<p>IE10下对js的语法要求严格，正常参数后如果没有多余的代码，写个<code>,</code>会报错，如果加了删掉 …</p></li></ol>
+        <a href="/archives/78.html/">
+          <p>先写一个简单的 html 页面出来</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">style</span>&gt;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/* ... */</span>
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">style</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">ul</span>&gt; …</span></span></span></span></span></span></span></span></span></span></code></pre></div>
         </a>
+      </div>
+      <div class="posts-date">
+        <time datetime=" 2021-09-29 13:15:00 UTC">2021年9月29日</time>
       </div>
     </div>
     
     <div class="posts-line">
-      <div class="posts-date">
-        <time datetime=" 2021-03-17 21:55:00 UTC">2021-3-17</time>
-      </div>
-      <a class="posts-title" href="/archives/55.html/">window.scroll 方法只能存在一次该如何解决？</a>
+      <a class="posts-title" href="/archives/77.html/">hugo 如何使用 Cusdis ?</a>
       <div class="posts-content">
-        <a href="/archives/55.html/">
-          <p>页面监听是我们经常用的一个功能，下面两个段代码表示两个事件，分别在页面滚动500px和1000px的时候触发，在代码中使用了箭头函数。 …</p>
+        <a href="/archives/77.html/">
+          <p>Cusdis 是一个界面清爽、注重隐私的轻量级 (~5kb gzip) 评论系统，可以很方便地与 React、Vue 或其他博客系统结合，并 …</p>
         </a>
+      </div>
+      <div class="posts-date">
+        <time datetime=" 2021-09-16 13:14:00 UTC">2021年9月16日</time>
       </div>
     </div>
     
     <div class="posts-line">
-      <div class="posts-date">
-        <time datetime=" 2021-03-16 10:29:00 UTC">2021-3-16</time>
-      </div>
-      <a class="posts-title" href="/archives/54.html/">IE10下`,`符号不能留白</a>
+      <a class="posts-title" href="/archives/76.html/">使用jq做一个数字递增效果</a>
       <div class="posts-content">
-        <a href="/archives/54.html/">
-          <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;#test&#34;</span>).<span style="color:#a6e22e">click</span>(<span style="color:#66d9ef">function</span> () {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#39;html,body&#39;</span>). …</span></span></span></span></code></pre></div>
+        <a href="/archives/76.html/">
+          <p>数字递增，顾名思义就是数字不断增加，数字递增的效果就是要一定时间内，让数字有一个增加的特效，一般用于强调某个内容。</p>
+<p>用 jquery 也很好 …</p>
         </a>
+      </div>
+      <div class="posts-date">
+        <time datetime=" 2021-09-14 15:42:00 UTC">2021年9月14日</time>
       </div>
     </div>
     
     <div class="posts-line">
-      <div class="posts-date">
-        <time datetime=" 2021-03-14 07:31:00 UTC">2021-3-14</time>
-      </div>
-      <a class="posts-title" href="/archives/53.html/">怎么让 css3 里面的动画属性看起来更流畅?</a>
+      <a class="posts-title" href="/archives/75.html/">npm install 报错和取消本地代理的问题</a>
       <div class="posts-content">
-        <a href="/archives/53.html/">
-          <p>ps：先说点题外话，因为工作的原因很久没更新博客了，最近也是告一段落，处理一了一些事情之后可以安心坐下来，把我的博客重新整理一下。</p>
-<p>今天要讲 …</p>
+        <a href="/archives/75.html/">
+          <p><code>npm install</code>下载依赖包的时候出现下面错误，请求失败。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>npm ERR! FetchError: request to …</span></span></code></pre></div>
         </a>
+      </div>
+      <div class="posts-date">
+        <time datetime=" 2021-08-19 11:15:00 UTC">2021年8月19日</time>
       </div>
     </div>
     
     <div class="posts-line">
-      <div class="posts-date">
-        <time datetime=" 2021-02-26 22:38:00 UTC">2021-2-26</time>
-      </div>
-      <a class="posts-title" href="/archives/52.html/">chrome浏览器无法显示12px以下的字体</a>
+      <a class="posts-title" href="/archives/74.html/">关于我为什么要写博客？</a>
       <div class="posts-content">
-        <a href="/archives/52.html/">
-          <p>最近正在面试，遇到了很多有意思的东西，比如今天，在面试前先做了一套面试题，其中有这么一道题，觉得挺有意思，之前也没见过，就打算记录下来： …</p>
+        <a href="/archives/74.html/">
+          <h2 id="关于这个博客的构成">关于这个博客的构成</h2>
+<p>这个就放在最前面吗，算是起到一个统计整理的作用。</p>
+<p>博客基础的框架使用是 hugo, 前端样式是自己慢慢构思的，可能是因为 …</p>
         </a>
+      </div>
+      <div class="posts-date">
+        <time datetime=" 2021-07-21 11:16:00 UTC">2021年7月21日</time>
       </div>
     </div>
     
     <div class="posts-line">
-      <div class="posts-date">
-        <time datetime=" 2021-02-25 22:41:00 UTC">2021-2-25</time>
-      </div>
-      <a class="posts-title" href="/archives/51.html/">使用宝塔面板安装 autoPicCdn 图床工具</a>
+      <a class="posts-title" href="/archives/73.html/">将数据库中的图片信息导出并调用</a>
       <div class="posts-content">
-        <a href="/archives/51.html/">
-          <p>很多小伙伴在做个人网站或者博客时，总能用到各种各样的图床工具，毕竟在写文章的时候需要插入一些图片，我也不例外，来盘点一下之前用的工具，</p>
-<ol>
-<li>最 …</li></ol>
+        <a href="/archives/73.html/">
+          <blockquote>
+<p>接口链接：<a href="http://121.196.166.173/img/img.php">http://121.196.166.173/img/img.php</a>
+展示demo： …</p></blockquote>
         </a>
+      </div>
+      <div class="posts-date">
+        <time datetime=" 2021-07-09 21:03:00 UTC">2021年7月9日</time>
       </div>
     </div>
     
     <div class="posts-line">
-      <div class="posts-date">
-        <time datetime=" 2021-02-04 19:47:00 UTC">2021-2-4</time>
-      </div>
-      <a class="posts-title" href="/archives/50.html/">typecho 博客小表情无法显示问题</a>
+      <a class="posts-title" href="/archives/72.html/">冷知识世界新增一个大洋变成五大洋</a>
       <div class="posts-content">
-        <a href="/archives/50.html/">
-          <p>typecho 博客建立完成之后，会发现如果插入一些小表情，页面渲染完之后，表情不会显示，并且表情之后的内容全部消失，导致体验感很差。</p>
-<p>表情 …</p>
+        <a href="/archives/72.html/">
+          <p>从6月8日世界海洋日开始，南大洋将被认定为世界第五大洋。世界上就有七大洲，五大洋啦！中学课文需要改一改了。</p>
+<p>美国国家地理学会宣布，南极洲周围 …</p>
         </a>
       </div>
-    </div>
-    
-    <div class="posts-line">
       <div class="posts-date">
-        <time datetime=" 2021-02-03 19:43:00 UTC">2021-2-3</time>
-      </div>
-      <a class="posts-title" href="/archives/49.html/">掘金个人主页头像旋转效果</a>
-      <div class="posts-content">
-        <a href="/archives/49.html/">
-          <p>在浏览掘金社区的时候，发现一个很有意思的小彩蛋，在个人主页将鼠标悬浮在头像上，会不停的加速旋转，我感觉挺有意思，f12 看看这个样式怎么写 …</p>
-        </a>
-      </div>
-    </div>
-    
-    <div class="posts-line">
-      <div class="posts-date">
-        <time datetime=" 2021-01-20 19:58:00 UTC">2021-1-20</time>
-      </div>
-      <a class="posts-title" href="/archives/48.html/">ES5 和 ES6 的区别？</a>
-      <div class="posts-content">
-        <a href="/archives/48.html/">
-          <h2 id="一javascript-由三部分组成">一、javascript 由三部分组成</h2>
-<h3 id="1ecmascript核心">1.ECMAScript（核心）</h3>
-<p>它规定了语言的组成部分：法语，类型，语句，关键字，操作符等等。 …</p>
-        </a>
+        <time datetime=" 2021-06-10 15:39:00 UTC">2021年6月10日</time>
       </div>
     </div>
     
@@ -286,12 +265,14 @@
   var date = new Date;
   var year = date.getFullYear();
   document.getElementById('year').innerHTML = year;
+
 </script>
 </article>
 
 <script src="/js/jquery3.6.0.min.js"></script>
 <script src="/js/toc.js"></script>
 <script src="/js/simplebox.min.js"></script>
+<script src="https://zburu.com/usr/themes/white/JS/jquery.pjax.min.js"></script>
 <script src="/js/main.js"></script>
 </body>
 </html>

@@ -51,7 +51,7 @@
     title="子舒的博客">
   <script src="https://hm.baidu.com/hm.js?5f4839173d00c8b0d3dd40533d14450d"></script>
 </head>
-<body>
+<body id="pjax-container">
   <header>
     <div class="container">
       <div class="header-item">
@@ -64,6 +64,9 @@
       <div class="opacity"></div>
       <div class="header-item sticky">
         <ul id="navi">
+          <li>
+            <a href="/">首页</a>
+          </li>
           
           <li>
             <a href="/posts">归档</a>
@@ -101,124 +104,95 @@
 
     
     <div class="posts-line">
-      <div class="posts-date">
-        <time datetime=" 2020-11-25 13:05:00 UTC">2020-11-25</time>
-      </div>
-      <a class="posts-title" href="/archives/29.html/">vue学习笔记(3)－－computed, watch，calss, style</a>
+      <a class="posts-title" href="/archives/57.html/">用ajax请求获取数据</a>
       <div class="posts-content">
-        <a href="/archives/29.html/">
-          <h2 id="一计算属性computed">一、计算属性computed</h2>
-<h3 id="1例子">1.例子</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">div …</span></span></span></span></span></code></pre></div>
+        <a href="/archives/57.html/">
+          <p>通过jquery进行ajax请求数据是一种较为简便的方式，我简单写了一个本地的<code>data.json</code>文件，然后用<code>get</code>请求数据， …</p>
         </a>
+      </div>
+      <div class="posts-date">
+        <time datetime=" 2021-03-19 13:01:00 UTC">2021年3月19日</time>
       </div>
     </div>
     
     <div class="posts-line">
-      <div class="posts-date">
-        <time datetime=" 2020-11-24 13:05:00 UTC">2020-11-24</time>
-      </div>
-      <a class="posts-title" href="/archives/28.html/">vue学习笔记(2)－－vue实例和模板语法</a>
+      <a class="posts-title" href="/archives/56.html/">IE10的兼容性处理</a>
       <div class="posts-content">
-        <a href="/archives/28.html/">
-          <h2 id="一vue实例">一、vue实例</h2>
-<h3 id="1创建vue实例">1.创建vue实例</h3>
-<p>一个vue实例应该通过<code>new Vue</code>来创建根实例，所有的 vue 组件其实都是 vue 实例</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var …</span></span></span></code></pre></div>
+        <a href="/archives/56.html/">
+          <ol>
+<li>
+<p>IE10不支持箭头函数，写js的时候慎用。</p>
+</li>
+<li>
+<p>IE10下对js的语法要求严格，正常参数后如果没有多余的代码，写个<code>,</code>会报错，如果加了删掉 …</p></li></ol>
         </a>
+      </div>
+      <div class="posts-date">
+        <time datetime=" 2021-03-18 22:15:00 UTC">2021年3月18日</time>
       </div>
     </div>
     
     <div class="posts-line">
-      <div class="posts-date">
-        <time datetime=" 2020-11-23 13:04:00 UTC">2020-11-23</time>
-      </div>
-      <a class="posts-title" href="/archives/27.html/">vue学习笔记(1)－－什么是vue?</a>
+      <a class="posts-title" href="/archives/55.html/">window.scroll 方法只能存在一次该如何解决？</a>
       <div class="posts-content">
-        <a href="/archives/27.html/">
-          <h2 id="一什么是vue">一、什么是vue?</h2>
-<p>练习时使用，最新版本</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">= …</span></span></span></code></pre></div>
+        <a href="/archives/55.html/">
+          <p>页面监听是我们经常用的一个功能，下面两个段代码表示两个事件，分别在页面滚动500px和1000px的时候触发，在代码中使用了箭头函数。 …</p>
         </a>
+      </div>
+      <div class="posts-date">
+        <time datetime=" 2021-03-17 21:55:00 UTC">2021年3月17日</time>
       </div>
     </div>
     
     <div class="posts-line">
-      <div class="posts-date">
-        <time datetime=" 2020-11-22 13:02:00 UTC">2020-11-22</time>
-      </div>
-      <a class="posts-title" href="/archives/26.html/">React 学习笔记（一）</a>
+      <a class="posts-title" href="/archives/54.html/">IE10下`,`符号不能留白</a>
       <div class="posts-content">
-        <a href="/archives/26.html/">
-          <p>an</p>
-
+        <a href="/archives/54.html/">
+          <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;#test&#34;</span>).<span style="color:#a6e22e">click</span>(<span style="color:#66d9ef">function</span> () {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#39;html,body&#39;</span>). …</span></span></span></span></code></pre></div>
         </a>
+      </div>
+      <div class="posts-date">
+        <time datetime=" 2021-03-16 10:29:00 UTC">2021年3月16日</time>
       </div>
     </div>
     
     <div class="posts-line">
-      <div class="posts-date">
-        <time datetime=" 2020-11-21 13:01:00 UTC">2020-11-21</time>
-      </div>
-      <a class="posts-title" href="/archives/25.html/">对象，类和接口之间的关系</a>
+      <a class="posts-title" href="/archives/53.html/">怎么让 css3 里面的动画属性看起来更流畅?</a>
       <div class="posts-content">
-        <a href="/archives/25.html/">
-          <p>类是对的类型，类是具有相同属性和方法的一组集合，一个类可以对应多个对象，对象通过他们公开的方法来定义他们与外界的交互行为，而方法就形成了与外 …</p>
+        <a href="/archives/53.html/">
+          <p>ps：先说点题外话，因为工作的原因很久没更新博客了，最近也是告一段落，处理一了一些事情之后可以安心坐下来，把我的博客重新整理一下。</p>
+<p>今天要讲 …</p>
         </a>
+      </div>
+      <div class="posts-date">
+        <time datetime=" 2021-03-14 07:31:00 UTC">2021年3月14日</time>
       </div>
     </div>
     
     <div class="posts-line">
-      <div class="posts-date">
-        <time datetime=" 2020-11-20 13:03:00 UTC">2020-11-20</time>
-      </div>
-      <a class="posts-title" href="/archives/24.html/">vue使用cli脚手架构建项目工程</a>
+      <a class="posts-title" href="/archives/52.html/">chrome浏览器无法显示12px以下的字体</a>
       <div class="posts-content">
-        <a href="/archives/24.html/">
-          <p>vue使用cli脚手架构建项目工程，执行的命令以及遇到的相关的问题</p>
-<!-- raw HTML omitted -->
-<h3 id="1下载安装node">1.下载安装node</h3>
-<p>测试一下是否成功安装，</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ node -v
-</span></span><span style="display:flex;"><span>// …</span></span></span></span></code></pre></div></!-->
+        <a href="/archives/52.html/">
+          <p>最近正在面试，遇到了很多有意思的东西，比如今天，在面试前先做了一套面试题，其中有这么一道题，觉得挺有意思，之前也没见过，就打算记录下来： …</p>
         </a>
+      </div>
+      <div class="posts-date">
+        <time datetime=" 2021-02-26 22:38:00 UTC">2021年2月26日</time>
       </div>
     </div>
     
     <div class="posts-line">
-      <div class="posts-date">
-        <time datetime=" 2020-11-19 13:02:00 UTC">2020-11-19</time>
-      </div>
-      <a class="posts-title" href="/archives/23.html/">react学习路径－－怎么学习react？</a>
+      <a class="posts-title" href="/archives/51.html/">使用宝塔面板安装 autoPicCdn 图床工具</a>
       <div class="posts-content">
-        <a href="/archives/23.html/">
-          <p>转载于:<a href="https://github.com/petehunt/react-howto">https://github.com/petehunt/react-howto</a>，react开源作者对于react框架的一个学习路径的 …</p>
+        <a href="/archives/51.html/">
+          <p>很多小伙伴在做个人网站或者博客时，总能用到各种各样的图床工具，毕竟在写文章的时候需要插入一些图片，我也不例外，来盘点一下之前用的工具，</p>
+<ol>
+<li>最 …</li></ol>
         </a>
       </div>
-    </div>
-    
-    <div class="posts-line">
       <div class="posts-date">
-        <time datetime=" 2020-11-18 13:00:00 UTC">2020-11-18</time>
-      </div>
-      <a class="posts-title" href="/archives/22.html/">在js中运算不能随便把value属性定义成变量</a>
-      <div class="posts-content">
-        <a href="/archives/22.html/">
-          <p>在写一个小demo的时候，无意中发现定义变量的时候直接写入value，会导致获取不到数据，或者获取的不是我们想要的内容，在js中运算不能随便 …</p>
-        </a>
-      </div>
-    </div>
-    
-    <div class="posts-line">
-      <div class="posts-date">
-        <time datetime=" 2020-11-17 13:00:00 UTC">2020-11-17</time>
-      </div>
-      <a class="posts-title" href="/archives/21.html/">事件监听函数，以及事件的捕获和冒泡机制</a>
-      <div class="posts-content">
-        <a href="/archives/21.html/">
-          <p>事件一般是用于浏览器和用户操作之间的交互，当用户执行某些特殊的操作时，浏览器给予反应，触发绑定的事件，<code>事件流</code>，事件发生时会在元素节点和根节点 …</p>
-        </a>
+        <time datetime=" 2021-02-25 22:41:00 UTC">2021年2月25日</time>
       </div>
     </div>
     
@@ -288,12 +262,14 @@
   var date = new Date;
   var year = date.getFullYear();
   document.getElementById('year').innerHTML = year;
+
 </script>
 </article>
 
 <script src="/js/jquery3.6.0.min.js"></script>
 <script src="/js/toc.js"></script>
 <script src="/js/simplebox.min.js"></script>
+<script src="https://zburu.com/usr/themes/white/JS/jquery.pjax.min.js"></script>
 <script src="/js/main.js"></script>
 </body>
 </html>

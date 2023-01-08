@@ -51,7 +51,7 @@
     title="子舒的博客">
   <script src="https://hm.baidu.com/hm.js?5f4839173d00c8b0d3dd40533d14450d"></script>
 </head>
-<body>
+<body id="pjax-container">
   <header>
     <div class="container">
       <div class="header-item">
@@ -64,6 +64,9 @@
       <div class="opacity"></div>
       <div class="header-item sticky">
         <ul id="navi">
+          <li>
+            <a href="/">首页</a>
+          </li>
           
           <li>
             <a href="/posts">归档</a>
@@ -101,125 +104,98 @@
 
     
     <div class="posts-line">
-      <div class="posts-date">
-        <time datetime=" 2022-04-26 14:08:00 UTC">2022-4-26</time>
-      </div>
-      <a class="posts-title" href="/archives/120.html/">浏览器收藏夹一键填写博客评论信息</a>
+      <a class="posts-title" href="/archives/132.html/">typecho 评论回复艾特评论人</a>
       <div class="posts-content">
-        <a href="/archives/120.html/">
-          <p>先点击收藏一个页面，然后右键它，选择修改，在网址输入框复制下面的js代码，就可以一键填入了。</p>
-<p>将其中的昵称，邮箱，网址修改成自己的信息。</p>
-<p>目 …</p>
+        <a href="/archives/132.html/">
+          <p>typecho 在评论时默认是没有 <code>@</code>  评论人的功能，可以用代码加一下。</p>
+<p>在 <code>functions.php</code> 中：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* 评论回复时 @  …</span></span></span></span></span></code></pre></div>
         </a>
+      </div>
+      <div class="posts-date">
+        <time datetime=" 2022-06-07 10:35:00 UTC">2022年6月7日</time>
       </div>
     </div>
     
     <div class="posts-line">
-      <div class="posts-date">
-        <time datetime=" 2022-04-24 09:29:00 UTC">2022-4-24</time>
-      </div>
-      <a class="posts-title" href="/archives/119.html/">随想录 (1)</a>
+      <a class="posts-title" href="/archives/131.html/">随想录 (5)</a>
       <div class="posts-content">
-        <a href="/archives/119.html/">
-          <p>正式启动一周碎碎念计划，起因是无意中发现了一个网站，<a href="https://www.kootinlok.com/blog4.0/blog/blogList.php">古天乐的博客</a> 。看完之后震撼了，虽然每天都是很简短的一句话，但是一个习惯坚持了12年。 …</p>
+        <a href="/archives/131.html/">
+          <p>抽空看完了爱死机第三季，个人感受比第二季优秀，但是还是不如第一季。太过追求三者的结合，科幻与死亡的元素，不够灵活。</p>
+<p>但是其中的剧情还是比较精 …</p>
         </a>
+      </div>
+      <div class="posts-date">
+        <time datetime=" 2022-06-02 08:54:00 UTC">2022年6月2日</time>
       </div>
     </div>
     
     <div class="posts-line">
-      <div class="posts-date">
-        <time datetime=" 2022-04-15 13:57:00 UTC">2022-4-15</time>
-      </div>
-      <a class="posts-title" href="/archives/116.html/">在宝塔中使用青龙面板代挂京豆</a>
+      <a class="posts-title" href="/archives/130.html/">宝塔自动备份网站到邮箱教程</a>
       <div class="posts-content">
-        <a href="/archives/116.html/">
-          <p>如题所述，想要在闲置的服务器中跑一些服务，青龙面板代挂京豆现存很多开源的脚本，安全性已经经过很多人验证，可以放心使用。</p>
+        <a href="/archives/130.html/">
+          <h3 id="前言">前言</h3>
+<p>网站经常备份好处就是遇到问题以后可以迅速的恢复，不那么被动，防止信息丢失，操作性很大。虽然搭建一个网站非常容易，但为了应对网络上各种各 …</p>
+        </a>
+      </div>
+      <div class="posts-date">
+        <time datetime=" 2022-05-25 17:27:00 UTC">2022年5月25日</time>
+      </div>
+    </div>
+    
+    <div class="posts-line">
+      <a class="posts-title" href="/archives/106.html/">一个优雅的字体压缩解决方案 ---fonttools</a>
+      <div class="posts-content">
+        <a href="/archives/106.html/">
+          <p>分享一个 python 的库 &mdash;fonttools，针对字体文件进行处理非常方便。</p>
+<h3 id="下载">下载</h3>
+<p>需要先在电脑上下载 python 环 …</p>
+        </a>
+      </div>
+      <div class="posts-date">
+        <time datetime=" 2022-05-24 14:28:00 UTC">2022年5月24日</time>
+      </div>
+    </div>
+    
+    <div class="posts-line">
+      <a class="posts-title" href="/archives/127.html/">随想录 (4)</a>
+      <div class="posts-content">
+        <a href="/archives/127.html/">
+          <p>好事和坏事总是接踵而至，你永远不知道下一秒会发生什么。但是总有解决的办法，不是吗？但实际上我也不确定。</p>
+<p>昨天很晚才睡，想了很多，乱七八糟的。 …</p>
+        </a>
+      </div>
+      <div class="posts-date">
+        <time datetime=" 2022-05-13 10:37:00 UTC">2022年5月13日</time>
+      </div>
+    </div>
+    
+    <div class="posts-line">
+      <a class="posts-title" href="/archives/128.html/">分享一款自用的 v2ex 主题样式</a>
+      <div class="posts-content">
+        <a href="/archives/128.html/">
+          <p>起因是因为觉得 v2ex 网站主题略有拥挤，阅读体验不好，而正好网站支持自定义 css，所以就在参考其他人的基础上，修改了一套比较美观的样 …</p>
+        </a>
+      </div>
+      <div class="posts-date">
+        <time datetime=" 2022-05-12 13:46:00 UTC">2022年5月12日</time>
+      </div>
+    </div>
+    
+    <div class="posts-line">
+      <a class="posts-title" href="/archives/125.html/">随想录 (3)</a>
+      <div class="posts-content">
+        <a href="/archives/125.html/">
+          <p>五一假期回老家处理一些事情，收拾东西的时候，从角落里翻出来几张老照片，很有怀念意义。（2022/05/03）</p>
 <!-- raw HTML omitted -->
-<p>因此我也安排了一个 …</p></!-->
-        </a>
-      </div>
-    </div>
-    
-    <div class="posts-line">
-      <div class="posts-date">
-        <time datetime=" 2022-04-07 10:21:00 UTC">2022-4-7</time>
-      </div>
-      <a class="posts-title" href="/archives/113.html/">2022 清明出游</a>
-      <div class="posts-content">
-        <a href="/archives/113.html/">
-          <p>清明过去两天了，由于出去玩了两天，身体很累等原因，再加上工作忙碌所以没有来得及记录。今天略有闲时间，整理一下随笔。</p>
 <!-- raw HTML omitted -->
-<h3 id="爬山---杭州半山森林公园"><em>爬山&mdash;杭州 …</em></h3></!-->
+<hr>
+<p>好事和坏事总是接踵而至， …</p></!--></!-->
         </a>
       </div>
-    </div>
-    
-    <div class="posts-line">
       <div class="posts-date">
-        <time datetime=" 2022-04-01 13:28:00 UTC">2022-4-1</time>
-      </div>
-      <a class="posts-title" href="/archives/112.html/">在nuxt中实现图片放大预览功能</a>
-      <div class="posts-content">
-        <a href="/archives/112.html/">
-          <p><code>v-viewer</code> 基于vue的一个插件，可以实现图片放大，缩小，旋转，拖拽，预览等各种功能，效果还是很棒的。这是我在Github摸鱼时发现的 …</p>
-        </a>
-      </div>
-    </div>
-    
-    <div class="posts-line">
-      <div class="posts-date">
-        <time datetime=" 2022-03-29 13:08:00 UTC">2022-3-29</time>
-      </div>
-      <a class="posts-title" href="/archives/111.html/">在vue中制作canvas波浪图</a>
-      <div class="posts-content">
-        <a href="/archives/111.html/">
-          <p>新建组件 <code>Canvas.vue</code> 。</p>
-<!-- raw HTML omitted -->
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// @/components/Canvas.vue
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">template</span><span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt; …</span></span></span></span></span></span></span></span></span></code></pre></div></!-->
-        </a>
-      </div>
-    </div>
-    
-    <div class="posts-line">
-      <div class="posts-date">
-        <time datetime=" 2022-03-25 11:43:00 UTC">2022-3-25</time>
-      </div>
-      <a class="posts-title" href="/archives/110.html/">增加了站内搜索功能</a>
-      <div class="posts-content">
-        <a href="/archives/110.html/">
-          <p>如题，我花了一个多小时，参照nuxt文档，把搜索功能给加上了，url地址 <a href="/search/">/search</a> ，记录一下相关代码。 …</p>
-        </a>
-      </div>
-    </div>
-    
-    <div class="posts-line">
-      <div class="posts-date">
-        <time datetime=" 2022-03-21 17:36:00 UTC">2022-3-21</time>
-      </div>
-      <a class="posts-title" href="/archives/109.html/">好久不做饭，突然上手倒也说得过去</a>
-      <div class="posts-content">
-        <a href="/archives/109.html/">
-          <p>故事前景参照上上篇文章 《小区封锁下的生活》。不想订外卖，打工人觉得饭菜太贵，并且好像味道也就那样，所以和对象打算自己动手，丰衣足食。</p>
-<!-- raw HTML omitted -->
-<p>在 …</p></!-->
-        </a>
-      </div>
-    </div>
-    
-    <div class="posts-line">
-      <div class="posts-date">
-        <time datetime=" 2022-03-20 00:15:00 UTC">2022-3-20</time>
-      </div>
-      <a class="posts-title" href="/archives/108.html/">小区封锁下的生活</a>
-      <div class="posts-content">
-        <a href="/archives/108.html/">
-          <p>2022年3月19日，坐标杭州，很不巧，是我最近几年经历的第一次疫情封锁小区。</p>
-<!-- raw HTML omitted -->
-<p>小区里出现一个密切接触者，询问过医护人员，可能是疑似感染新 …</p></!-->
-        </a>
+        <time datetime=" 2022-05-06 13:23:00 UTC">2022年5月6日</time>
       </div>
     </div>
     
@@ -289,12 +265,14 @@
   var date = new Date;
   var year = date.getFullYear();
   document.getElementById('year').innerHTML = year;
+
 </script>
 </article>
 
 <script src="/js/jquery3.6.0.min.js"></script>
 <script src="/js/toc.js"></script>
 <script src="/js/simplebox.min.js"></script>
+<script src="https://zburu.com/usr/themes/white/JS/jquery.pjax.min.js"></script>
 <script src="/js/main.js"></script>
 </body>
 </html>

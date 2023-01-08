@@ -106,19 +106,17 @@ body {
   border-radius: 10px;
   background: #f3f3f3;
   font-size: 17px;
-  padding-bottom: 20px;
+  min-height: 100vh;
 }
 
 article {
-  box-sizing: border-box;
-  min-height: 80vh;
   margin: 0 auto;
   padding: 0 20px;
-  max-width: 750px;
+  max-width: 850px;
   background: #fff;
   border: 1px solid #eee;
-  border-radius: 10px;
-  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.4);
+  border-radius: 0;
+  box-shadow: 0 10px 20px 0 rgba(179, 179, 179, 0.86);
 }
 
 a {
@@ -207,7 +205,7 @@ a:hover {
 }
 
 .post-content {
-  margin-top: 1em;
+  margin: 1em 0;
 }
 
 .markdown-body {
@@ -285,7 +283,7 @@ header {
   z-index: 99;
 }
 header .container {
-  max-width: 750px;
+  max-width: 850px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -385,11 +383,9 @@ header::after {
   border-radius: 4px;
   color: #666;
 }
-.header-item #navi li a:hover {
-  background: #eceef2;
-}
 .header-item #navi li a.active {
-  background: #eceef2;
+  color: #333;
+  text-decoration: underline;
 }
 
 .search {
@@ -503,9 +499,8 @@ header::after {
   display: block;
   width: 100%;
   border-radius: 4px;
-  box-sizing: border-box;
   text-decoration: none;
-  color: #000;
+  color: #444;
   font-weight: 600;
   font-size: 22px;
 }
@@ -528,8 +523,8 @@ header::after {
   text-decoration: none;
   outline: none;
   box-shadow: none;
-  color: #000 !important;
-  line-height: 1.6;
+  color: #606975 !important;
+  line-height: 1.8;
   background: none !important;
 }
 .posts-line .posts-content *::before, .posts-line .posts-content *::after {
@@ -544,10 +539,14 @@ header::after {
 
 .posts-date {
   display: block;
-  margin-bottom: 6px;
-  font-size: 1rem;
-  color: #858b93;
+  margin-top: 15px;
+  font-size: 16px;
   background: none;
+}
+.posts-date time {
+  background: none;
+  color: #a1a1a1;
+  padding: 0;
 }
 .posts-date a {
   display: inline-block;
@@ -575,12 +574,14 @@ header::after {
 }
 
 .post-date {
-  color: #666;
+  color: #a1a1a1;
   white-space: nowrap;
+  font-size: 16px;
 }
 .post-date time {
   background: none;
   margin-right: 10px;
+  color: #a1a1a1;
 }
 .post-date span {
   margin-right: 10px;
@@ -598,14 +599,24 @@ header::after {
 }
 
 .posts-list {
-  margin-bottom: 20px;
   font-size: 18px;
 }
 .posts-list .posts-title {
+  padding: 10px;
   color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.1s linear;
+  margin-bottom: 10px;
+}
+.posts-list .posts-title:hover {
+  background: #f3f3f3;
+  text-decoration: none;
 }
 .posts-list .posts-date {
-  margin-bottom: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .related-content {
@@ -703,11 +714,8 @@ header::after {
   header .sticky #navi li a {
     color: #fff;
   }
-  header .sticky #navi li a:hover {
-    background: none;
-  }
   header .sticky #navi li a.active {
-    background: #525e70;
+    color: #bbb;
   }
 
   .header-title,
