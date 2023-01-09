@@ -180,51 +180,7 @@
 <script src="/js/simplebox.min.js"></script>
 <script src="/js/main.js"></script>
 <script>
-  function picShow() {
-    var str = '';
-    $.ajax({
-      url: 'https://memos.zburu.com/api/memo?openId=210e3351-77dd-4a55-b297-ac19f022a3bf&tag=说说',
-      type: 'get',
-      dataType: 'json',
-      success: function (data) {
-        
-        const sslist = data.data;
-
-        for (let i = 0; i < sslist.length; i++) {
-          const element = sslist[i];
-
-          
-          var date = new Date(element.createdTs * 1000);
-          Y = date.getFullYear() + '-';
-          M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-          D = date.getDate() + ' ';
-          h = date.getHours() + ':';
-          m = date.getMinutes() + ':';
-          s = date.getSeconds();
-          const createdTsNew = Y + M + D + h + m + s;
-          sslist[i].createdTs = createdTsNew;
-
-          
-          const contentNew = element.content.slice(4);
-          sslist[i].content = contentNew;
-        }
-
-        $.each(data.data, function (i, item) {
-          list = "<div class='sslist-item'>"
-            + "<p class='sslist-date'>" + item.createdTs + "</p>"
-            + item.content
-            + "</div>"
-          str += list;
-        }),
-          $(".sslist").html(str);
-
-      },
-      error: function () {
-        console.log('error')
-      }
-    })
-  }
-  picShow();
+eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('3 g(){6 d="";6 e="t-u-v-w-x";$.y({z:"A://B.C.E/F/G?H="+e+"&I=说说",J:"K",L:"N",O:3(b){5 2=b.j;P(Q i=0;i<2.R;i++){5 7=2[i];6 c=S T(7.8*U);Y=c.V()+"-";M=(c.9()+1<10?"0"+(c.9()+1):c.9()+1)+"-";D=c.W()+" ";h=c.X()+":";m=c.Z()+":";s=c.11();5 k=Y+M+D+h+m+s;2[i].8=k;5 l=7.f.12(4);2[i].f=l}$.13(b.j,3(i,a){n="<o q=\'2-14\'>"+"<p q=\'2-15\'>"+a.8+"</p>"+a.f+"</o>";d+=n}),$(".2").16(d)},r:3(){17.18("r")}})}g();',62,71,'||sslist|function||const|var|element|createdTs|getMonth||||||content|memosShow|||data|createdTsNew|contentNew||list|div||class|error||210e3351|77dd|4a55|b297|ac19f022a3bf|ajax|url|https|memos|zburu||com|api|memo|openId|tag|type|get|dataType||json|success|for|let|length|new|Date|1000|getFullYear|getDate|getHours||getMinutes||getSeconds|slice|each|item|date|html|console|log'.split('|'),0,{}))
 </script>
 
 

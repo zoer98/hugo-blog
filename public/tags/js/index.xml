@@ -6,7 +6,24 @@
     <description>Recent content in js on 子舒的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 06 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://zburu.com/tags/js/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 09 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://zburu.com/tags/js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>利用 memos 生成的在线动态列表</title>
+      <link>https://zburu.com/archives/181.html/</link>
+      <pubDate>Mon, 09 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/archives/181.html/</guid>
+      <description>memos 是一个具有知识管理和社交功能的开源自托管备忘录中心。
+Github地址：https://github.com/usememos/memos
+可以用它本身提供的 api，然后结合静态博客，做成一个在线的动态列表，类似于朋友圈功能。
+接口 url 有固定的格式，openId 是每个用户自动生成的。
+其次我又写了两个方法，一个是时间戳转成正常时间格式，一个是利用正则删去内容中多余的标签。
+将下面代码复制到你想显示的页面编辑，只需修改 openId，提供了一个基础的样式，如果有其他优化方案，欢迎指出。
+由于接口中带了用户密钥，建议完成代码后将js加密再引入，不然可能会有一定的安全风险。
+推荐网址: https://tool.lu/js/
+&amp;lt;!-- 结构和css --&amp;gt; &amp;lt;div class=&amp;#34;sslist&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;style&amp;gt; .sslist-item { padding: 10px 10px 20px; margin-bottom: 20px; border-radius: 2px; background: #f3f3f3; box-shadow: 1px 2px 4px rgba(0, 0, 0, .2); transition: all 0.2s linear; animation: up 1s forwards; transform: translateY(20px); opacity: 0; } @keyframes up { 0% { transform: translateY(20px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } } .</description>
+    </item>
+    
     <item>
       <title>分享一个页面点击特效</title>
       <link>https://zburu.com/archives/180.html/</link>
