@@ -2576,5 +2576,14 @@ https://fyfy.fm/
 听见科技与人文的声音 一档由开发者 @枫影JustinYan 和设计师 @自力hzlzh 主持的播客节目。</description>
     </item>
     
+    <item>
+      <title>说说</title>
+      <link>https://zburu.com/shuoshuo/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zburu.com/shuoshuo/</guid>
+      <description>利用 memos 生成的在线动态。</description>
+    </item>
+    
   </channel>
 </rss>

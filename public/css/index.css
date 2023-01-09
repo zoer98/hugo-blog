@@ -106,7 +106,7 @@ body {
   border-radius: 10px;
   background: #f3f3f3;
   font-size: 17px;
-  min-height: calc(100vh - 30px);
+  min-height: 100vh;
   padding-bottom: 30px;
 }
 
