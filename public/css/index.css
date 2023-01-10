@@ -675,7 +675,7 @@ header::after {
   }
 
   header {
-    padding: 4px 20px;
+    padding: 4px 15px;
     background: #fff;
     position: sticky;
     top: 0;
@@ -744,11 +744,11 @@ header::after {
   }
 
   .post-box {
-    padding: 20px 20px;
+    padding: 20px 15px;
   }
 
   .posts-line {
-    padding: 20px 20px;
+    padding: 20px 15px;
   }
 
   .header-line {
@@ -845,6 +845,16 @@ header::after {
 .atk-comment > .atk-main > .atk-body > .atk-content {
   font-size: 16px;
   line-height: 1.6;
+}
+
+.atk-list-comments-wrap > .atk-comment-wrap {
+  background: #f3f3f3;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+  transition: all 0.1s linear;
+}
+.atk-list-comments-wrap > .atk-comment-wrap:hover {
+  background: #eee;
 }
 
 @media (max-width: 700px) {
